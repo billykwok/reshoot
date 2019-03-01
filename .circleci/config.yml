@@ -3,11 +3,10 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:11.9.0
+      - image: circleci/node:11.10.1
         environment:
           SHARP_IGNORE_GLOBAL_LIBVIPS: 1
     working_directory: ~/repo
-    parallelism: 4
     steps:
       - checkout
       - restore_cache:
@@ -38,9 +37,8 @@ jobs:
           paths: .
   release:
     docker:
-      - image: circleci/node:11.9.0
+      - image: circleci/node:11.10.1
     working_directory: ~/repo
-    parallelism: 4
     steps:
       - attach_workspace:
           at: ~/repo
@@ -49,7 +47,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run:
           name: Publish package
-          command: npx lerna --yes
+          command: npx lerna publish --yes
 
 workflows:
   version: 2
