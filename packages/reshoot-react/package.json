@@ -1,0 +1,33 @@
+{
+  "name": "@reshoot/react",
+  "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "author": "Billy Kwok <xobkwok@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "reshoot",
+    "srcset",
+    "image",
+    "img",
+    "react",
+    "responsive",
+    "babel"
+  ],
+  "files": [
+    "lib"
+  ],
+  "repository": "https://github.com/billykwok/reshoot/packages/reshoot-react",
+  "bugs": {
+    "url": "https://github.com/billykwok/reshoot/issues"
+  },
+  "homepage": "https://github.com/billykwok/reshoot",
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "yarn run clean && babel src --root-mode=upward --out-dir lib"
+  },
+  "peerDependencies": {
+    "react": "^16.8.3",
+    "react-waypoint": "^9.0.0"
+  }
+}

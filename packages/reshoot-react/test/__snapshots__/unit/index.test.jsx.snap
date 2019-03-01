@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`macros parse valid input 1`] = `
+<div
+  data-testid="target"
+  style="overflow: hidden; position: relative; text-decoration: none; padding: 0px; outline: none;"
+>
+  <div
+    style="width: 100%; height: 0px; background: transparent; padding-bottom: 80%;"
+  />
+  <img
+    alt="Test image"
+    src="image.jpg"
+    style="display: block; position: absolute; top: 0px; width: 100%; height: 100%; filter: blur(0px); transform: scale3d(1,1,1);"
+  />
+</div>
+`;
