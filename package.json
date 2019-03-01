@@ -14,7 +14,6 @@
     "example:dev": "lerna run --parallel dev --scope=example-*"
   },
   "workspaces": [
-    "examples/*",
     "packages/*"
   ],
   "devDependencies": {
