@@ -48,7 +48,7 @@ jobs:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run:
-          name: Release
+          name: Publish package
           command: yarn run publish
 
 workflows:
@@ -56,7 +56,7 @@ workflows:
   test_and_release:
     jobs:
       - test
-      - deploy:
+      - release:
           requires:
             - test
           filters:
