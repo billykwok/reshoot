@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-      - run
+      - run:
           name: Prevent GitHub RSA prompt
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
