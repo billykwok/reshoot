@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "@reshoot/macro": "file:../../packages/reshoot-macro",
-    "reshoot-loader": "file:../../packages/reshoot-loader"
+    "@reshoot/loader": "file:../../packages/@reshoot/loader"
   }
 }

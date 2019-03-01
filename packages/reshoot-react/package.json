@@ -17,6 +17,9 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/billykwok/reshoot/packages/reshoot-react",
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"

@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'reshoot-loader',
+  displayName: '@reshoot/loader',
   testEnvironment: 'node',
   verbose: true,
   snapshotResolver: '<rootDir>/snapshotResolver.js'

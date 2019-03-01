@@ -14,7 +14,7 @@ module.exports = {
         test: /\.(jpe?g|png)$/,
         use: [
           {
-            loader: require.resolve('../packages/reshoot-loader/lib/index.js'),
+            loader: require.resolve('../packages/@reshoot/loader/lib/index.js'),
             options: {}
           }
         ]

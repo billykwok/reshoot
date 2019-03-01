@@ -18,7 +18,7 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         use: [
           {
-            loader: 'reshoot-loader',
+            loader: '@reshoot/loader',
             options: { outputPath: 'public/', shape: { color: 'color' } }
           }
         ]

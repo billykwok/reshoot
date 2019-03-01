@@ -13,7 +13,7 @@ By the way, this library is shipped with sensable default options so it can be c
 ## What is in the box?
 
 - A [`webpack-loader`](https://webpack.js.org/loaders) that emits low-quality image preview ([`lqip`](https://github.com/zouhir/lqip)) and responsive images, and returns meta info of the images.
-- A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) that transpile `reshoot('image.jpg', { a: 1, b: 2 })` into `require('image.jpg!reshoot-loader?a=1&b=2')`.
+- A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) that transpile `reshoot('image.jpg', { a: 1, b: 2 })` into `require('image.jpg!@reshoot/loader?a=1&b=2')`.
 - A [`React`](https://reactjs.org) component that is even faster and sleeker than the legendary [`react-ideal-image`](https://github.com/stereobooster/react-ideal-image). (Comming soon)
 
 ## Usage
