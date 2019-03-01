@@ -18,7 +18,7 @@
     "react-dom": "^16.8.3"
   },
   "devDependencies": {
-    "@reshoot/loader": "file:../../packages/@reshoot/loader",
+    "@reshoot/loader": "file:../../packages/reshoot-loader",
     "@reshoot/macro": "file:../../packages/reshoot-macro"
   }
 }

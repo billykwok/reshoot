@@ -20,7 +20,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/billykwok/reshoot/packages/@reshoot/loader",
+  "repository": "https://github.com/billykwok/reshoot/packages/reshoot-loader",
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },
