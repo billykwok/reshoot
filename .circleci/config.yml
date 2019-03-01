@@ -53,8 +53,8 @@ jobs:
           name: Build packages
           command: yarn build
       - run:
-          name: Run semantic release
-          command: yarn run semantic-release
+          name: Release
+          command: yarn run publish
       - save_cache:
           name: Save node_modules cache
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
