@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.4.0...@reshoot/loader@0.5.0) (2019-03-03)
+
+
+### Features
+
+* **@reshoot/loader:** include extra options in output ([ae110a2](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/ae110a2))
+
+
+
+
+
 # [0.4.0](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.3.2...@reshoot/loader@0.4.0) (2019-03-03)
 
 
