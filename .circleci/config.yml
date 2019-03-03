@@ -50,13 +50,15 @@ jobs:
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
           name: Publish package
-          command: npx lerna publish --yes
+          command: yarn run release
 
 workflows:
   version: 2
   test_and_release:
     jobs:
-      - test
+      - test:
+          tags:
+            ignore: /@[0-9]+\.[0-9]+\.[0-9]+/
       - release:
           requires:
             - test
