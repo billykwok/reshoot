@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.0...@reshoot/loader@0.6.1) (2019-03-03)
+
+
+### Bug Fixes
+
+* **@reshoot/loader:** fix palette color extraction ([5169940](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/5169940))
+
+
+
+
+
 # [0.6.0](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.5.0...@reshoot/loader@0.6.0) (2019-03-03)
 
 
