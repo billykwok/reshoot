@@ -4,7 +4,8 @@ const defaultExpected = {
   aspectRatio: 63.34,
   hashLength: 16,
   sizes: [480, 640, 840, 1080],
-  keys: ['aspectRatio', 'placeholder', 'src', 'srcSet']
+  color: '#1c2c34',
+  keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color']
 };
 
 export function matchOutputAsString(expected, actual) {
@@ -25,11 +26,15 @@ export function matchOutputAsObject(expected, actual) {
     aspectRatio,
     hashLength,
     sizes,
+    color,
     keys
   } = Object.assign({}, defaultExpected, expected);
   const actualKeys = Object.keys(actual);
   expect(actualKeys).toHaveLength(keys.length);
   expect(actualKeys).toEqual(expect.arrayContaining(keys));
+  if (keys.includes('mime')) {
+    expect(actual.mime).toEqual(mime);
+  }
   if (keys.includes('aspectRatio')) {
     expect(actual.aspectRatio).toEqual(aspectRatio);
   }
@@ -51,5 +56,8 @@ export function matchOutputAsObject(expected, actual) {
           .join(',')}$`
       )
     );
+  }
+  if (keys.includes('color')) {
+    expect(actual.color).toEqual(color);
   }
 }

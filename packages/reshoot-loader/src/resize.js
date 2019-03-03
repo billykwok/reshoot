@@ -14,7 +14,7 @@ export default function resize(
   if (mime === mimes.svg) return [[], sizeToWidthMap];
 
   const widthSet = new Set([placeholder.size]);
-  const promises = [image.resize(placeholder.size, mime, options)];
+  const promises = [image.resize(placeholder.size, mimes.jpg, options)];
 
   if (options.shape.srcSet) {
     options.srcSet.forEach(size => {
