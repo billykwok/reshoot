@@ -12,6 +12,8 @@ const palettePresets = [
   'LightMuted'
 ];
 
+const supportedMimes = [mimes.jpg, mimes.png];
+
 export default async function palette(
   mime: string,
   color: string,
@@ -20,7 +22,7 @@ export default async function palette(
   if (!color) {
     return Promise.resolve('#fff');
   }
-  if (palettePresets.indexOf(color) > -1) {
+  if (supportedMimes.indexOf(mime) > -1 && palettePresets.indexOf(color) > -1) {
     return Vibrant.from(imagePath)
       .getPalette()
       .then(palette => palette[color].hex);
