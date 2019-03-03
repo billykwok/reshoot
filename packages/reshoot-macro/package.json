@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/macro",
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "lib/index.js",
   "author": "Billy Kwok <xobkwok@gmail.com>",
   "license": "MIT",
