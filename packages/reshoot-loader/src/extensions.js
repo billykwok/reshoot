@@ -2,6 +2,7 @@
 export type Extensions = {
   'image/jpeg': 'jpg',
   'image/png': 'png',
+  'image/gif': 'gif',
   'image/webp': 'webp',
   'image/svg+xml': 'svg'
 };
@@ -9,6 +10,7 @@ export type Extensions = {
 const extensions: Extensions = {
   'image/jpeg': 'jpg',
   'image/png': 'png',
+  'image/gif': 'gif',
   'image/webp': 'webp',
   'image/svg+xml': 'svg'
 };

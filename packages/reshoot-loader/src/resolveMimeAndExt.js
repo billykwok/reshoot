@@ -6,7 +6,7 @@ import extensions from './extensions';
 
 export default function resolveMimeAndExt(
   loaderContext: any,
-  forceFormat: string | boolean
+  forceFormat: string | false
 ) {
   let mime: string;
   let ext: string;
