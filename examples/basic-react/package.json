@@ -12,13 +12,14 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.4",
-    "@reshoot/react": "file:../../packages/reshoot-react",
+    "@reshoot/react": "^0.2.0",
     "babel-plugin-macros": "^2.5.0",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "react-waypoint": "^9.0.1"
   },
   "devDependencies": {
-    "@reshoot/loader": "file:../../packages/reshoot-loader",
-    "@reshoot/macro": "file:../../packages/reshoot-macro"
+    "@reshoot/loader": "^0.2.0",
+    "@reshoot/macro": "^0.2.0"
   }
 }

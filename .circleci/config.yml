@@ -20,7 +20,7 @@ jobs:
           command: node --version
       - run:
           name: Install packages
-          command: yarn --frozen-lockfile
+          command: yarn
       - run:
           name: Build packages
           command: yarn build
