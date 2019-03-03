@@ -9,12 +9,12 @@ describe('default options', () => {
       publicPath: null,
       context: null,
       shape: {
+        mime: 'mime',
         src: 'src',
         aspectRatio: 'aspectRatio',
         srcSet: 'srcSet',
         placeholder: 'placeholder',
-        background: false,
-        palette: false
+        color: 'color'
       },
       srcSet: [480, 640, 840, 1080],
       quality: 80,
@@ -35,12 +35,12 @@ describe('default options', () => {
       publicPath: null,
       context: null,
       shape: {
+        mime: 'mime',
         src: 'src',
         aspectRatio: 'aspectRatio',
         srcSet: 'srcSet',
         placeholder: 'placeholder',
-        background: false,
-        palette: false
+        color: 'color'
       },
       srcSet: [480, 640, 840, 1080],
       quality: 80,
