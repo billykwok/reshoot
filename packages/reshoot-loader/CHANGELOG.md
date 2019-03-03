@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.5.0...@reshoot/loader@0.6.0) (2019-03-03)
+
+
+### Features
+
+* **@reshoot/loader:** support GIF ([ada2c9a](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/ada2c9a))
+
+
+
+
+
 # [0.5.0](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.4.0...@reshoot/loader@0.5.0) (2019-03-03)
 
 
