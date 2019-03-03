@@ -1,16 +1,24 @@
 // @flow
 import sharp from 'sharp';
 
-export default function processImage(imagePath: string) {
+export type MetaData = { width: number, height: number };
+export type ResizeOptions = { background: string, quality: number };
+export type ResizeResult = { content: Buffer, width: number };
+export type ImageProcessor = {
+  metadata: () => Promise<MetaData>,
+  resize: (
+    width: number,
+    mime: string,
+    options: ResizeOptions
+  ) => Promise<ResizeResult>
+};
+
+export default function processImage(imagePath: string): ImageProcessor {
   const image = sharp(imagePath);
 
   return {
     metadata: () => image.metadata(),
-    resize: async (
-      width: number,
-      mime: string,
-      options: { background: string, quality: number }
-    ): Promise<{ data: Buffer, width: number }> => {
+    resize: async (width, mime, options) => {
       let resized = image
         .clone()
         .rotate()

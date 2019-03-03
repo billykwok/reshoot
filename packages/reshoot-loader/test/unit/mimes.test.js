@@ -6,7 +6,9 @@ describe('MIME map', () => {
     expect(mimes).toEqual({
       jpg: 'image/jpeg',
       jpeg: 'image/jpeg',
-      png: 'image/png'
+      png: 'image/png',
+      webp: 'image/webp',
+      svg: 'image/svg+xml'
     });
   });
 });
