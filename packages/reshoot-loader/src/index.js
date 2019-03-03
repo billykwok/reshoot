@@ -19,13 +19,17 @@ export default async function loader(content: string): void {
   const options: Options = resolveOptions(this);
   options.srcSet = dedupe(options.srcSet);
   const context = options.context || this.rootContext || this.options.context;
+  const output = {};
 
-  let [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
+  let [mime, ext]: Array<string> = resolveMimeAndExt(this, options.forceFormat);
   this.addDependency(this.resourcePath);
 
-  const output = {};
-  const color = await palette(options.color, this.resourcePath);
-  if (color) {
+  if (options.shape.mime) {
+    output.mime = JSON.stringify(mime);
+  }
+
+  if (options.shape.color) {
+    const color = await palette(mime, options.color, this.resourcePath);
     output.color = JSON.stringify(color);
   }
 
@@ -33,21 +37,38 @@ export default async function loader(content: string): void {
   const meta = await image.metadata();
 
   const rawPath = createFile(this, context, content, meta.width, ext, options);
+
   output.src = '__webpack_public_path__+' + JSON.stringify(rawPath);
+
   if (options.shape.aspectRatio) {
-    output.aspectRatio = JSON.stringify(
-      computeAspectRatio(meta, options.aspectRatio)
-    );
+    const aspectRatio = computeAspectRatio(meta, options.aspectRatio);
+    output.aspectRatio = JSON.stringify(aspectRatio);
   }
 
   if (options.disable) {
-    output.placeholder = JSON.stringify(rawPath);
-    output.srcSet = '__webpack_public_path__+' + JSON.stringify(rawPath);
-    return callback(null, stringify(options.shape, output));
+    if (options.shape.placeholder) {
+      output.placeholder = JSON.stringify(rawPath);
+    }
+    if (options.shape.srcSet) {
+      output.srcSet = '__webpack_public_path__+' + JSON.stringify(rawPath);
+    }
+    callback(null, stringify(options.shape, output));
+    return Promise.resolve(null);
   }
 
   const placeholder = options.placeholder;
   const [promises, widths] = resize(image, meta, placeholder, mime, options);
+  if (widths.size === 0) {
+    if (options.shape.placeholder) {
+      output.placeholder = null;
+    }
+    if (options.shape.srcSet) {
+      output.srcSet = null;
+    }
+    callback(null, stringify(options.shape, output));
+    return Promise.resolve(null);
+  }
+
   const [placeholderData, ...imagesData] = await Promise.all(promises);
 
   if (options.shape.placeholder) {
@@ -67,7 +88,9 @@ export default async function loader(content: string): void {
       )}`;
     output.srcSet = options.srcSet.map(formatSize).join('+","+');
   }
-  return callback(null, stringify(options.shape, output));
+
+  callback(null, stringify(options.shape, output));
+  return Promise.resolve(null);
 }
 
 export const raw = true;
