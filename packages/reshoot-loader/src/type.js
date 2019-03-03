@@ -1,11 +1,11 @@
 // @flow
 export type OutputShape = {
+  mime: string,
   src: string | false,
   aspectRatio: string | false,
   srcSet: string | false,
   placeholder: string | false,
-  background: string | false,
-  palette: string | false
+  color: string | false
 };
 
 export type AspectRatio = {
@@ -20,12 +20,12 @@ export type Placeholder = {
 };
 
 export type Output = {
+  mime: string,
   src?: string,
-  aspectRatio?: string,
+  aspectRatio?: number,
   srcSet?: string,
   placeholder?: string,
-  background?: string,
-  palette?: string
+  color?: string
 };
 
 export type Options = {

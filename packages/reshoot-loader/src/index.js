@@ -3,6 +3,7 @@ import cosmiconfig from 'cosmiconfig';
 
 import resolveOptions from './resolveOptions';
 import dedupe from './dedupe';
+import extractRest from './extractRest';
 import resolveMimeAndExt from './resolveMimeAndExt';
 import stringify from './stringify';
 import palette from './palette';
@@ -19,7 +20,7 @@ export default async function loader(content: string): void {
   const options: Options = resolveOptions(this);
   options.srcSet = dedupe(options.srcSet);
   const context = options.context || this.rootContext || this.options.context;
-  const output = {};
+  const output = extractRest(options);
 
   let [mime, ext]: Array<string> = resolveMimeAndExt(this, options.forceFormat);
   this.addDependency(this.resourcePath);
