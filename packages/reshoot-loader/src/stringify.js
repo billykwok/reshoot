@@ -2,12 +2,12 @@
 import type { OutputShape } from './type';
 
 export type OutputArgument = {
+  mime?: string,
   src?: string,
   srcSet?: string,
   placeholder?: string,
   aspectRatio?: number,
-  background?: string,
-  palette?: Array<string>
+  color?: string
 };
 
 export default function stringify(
