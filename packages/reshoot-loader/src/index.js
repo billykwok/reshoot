@@ -29,7 +29,12 @@ export default async function loader(content: string): void {
   }
 
   if (options.shape.color) {
-    const color = await palette(mime, options.color, this.resourcePath);
+    const color = await palette(
+      mime,
+      options.color,
+      this.resourcePath,
+      options.disable
+    );
     output.color = JSON.stringify(color);
   }
 
