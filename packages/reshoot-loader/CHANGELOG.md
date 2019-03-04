@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.2...@reshoot/loader@0.6.3) (2019-03-04)
+
+
+### Bug Fixes
+
+* **@reshoot/loader:** improve performance in dev env ([9bf08ae](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/9bf08ae))
+
+
+
+
+
 ## [0.6.2](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.1...@reshoot/loader@0.6.2) (2019-03-04)
 
 
