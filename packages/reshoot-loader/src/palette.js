@@ -17,15 +17,20 @@ const supportedMimes = [mimes.jpg, mimes.png];
 export default async function palette(
   mime: string,
   color: string,
-  imagePath: string
+  imagePath: string,
+  disable: boolean
 ) {
   if (!color) {
-    return Promise.resolve('#fff');
+    return '#fff';
   }
-  if (supportedMimes.indexOf(mime) > -1 && palettePresets.indexOf(color) > -1) {
-    return Vibrant.from(imagePath)
+  if (
+    !disable &&
+    supportedMimes.indexOf(mime) > -1 &&
+    palettePresets.indexOf(color) > -1
+  ) {
+    return await Vibrant.from(imagePath)
       .getPalette()
       .then(palette => palette[color].hex);
   }
-  return Promise.resolve(color);
+  return color;
 }
