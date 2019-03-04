@@ -23,7 +23,6 @@ export default async function loader(content: string): void {
   const output = extractRest(options);
 
   let [mime, ext]: Array<string> = resolveMimeAndExt(this, options.forceFormat);
-  this.addDependency(this.resourcePath);
 
   if (options.shape.mime) {
     output.mime = JSON.stringify(mime);
