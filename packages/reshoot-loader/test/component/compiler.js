@@ -16,10 +16,7 @@ export default function compiler(fixture: string, options: any = {}) {
         {
           test: /\.(jpe?g|png)$/,
           use: [
-            {
-              loader: path.resolve(__dirname, '../../src/index.js'),
-              options
-            }
+            { loader: path.resolve(__dirname, '../../src/index.js'), options }
           ]
         }
       ]
