@@ -52,13 +52,13 @@ export default async function loader(content: string): void {
 
   if (options.disable) {
     if (options.shape.placeholder) {
-      output.placeholder = JSON.stringify(rawPath);
+      output.placeholder = '__webpack_public_path__+' + JSON.stringify(rawPath);
     }
     if (options.shape.srcSet) {
-      output.srcSet = '__webpack_public_path__+' + JSON.stringify(rawPath);
+      output.srcSet = JSON.stringify(null);
     }
     callback(null, stringify(options.shape, output));
-    return Promise.resolve(null);
+    return;
   }
 
   const placeholder = options.placeholder;
@@ -71,7 +71,7 @@ export default async function loader(content: string): void {
       output.srcSet = null;
     }
     callback(null, stringify(options.shape, output));
-    return Promise.resolve(null);
+    return;
   }
 
   const [placeholderData, ...imagesData] = await Promise.all(promises);
@@ -95,7 +95,7 @@ export default async function loader(content: string): void {
   }
 
   callback(null, stringify(options.shape, output));
-  return Promise.resolve(null);
+  return;
 }
 
 export const raw = true;
