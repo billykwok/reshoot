@@ -87,14 +87,18 @@ export default async function loader(content: string): void {
     imagesData.forEach(({ content, width }) => {
       paths.set(width, createFile(this, context, content, width, ext, options));
     });
-    const formatSize = size =>
-      `__webpack_public_path__+${JSON.stringify(
-        `${paths.get(widths.get(size))} ${size}w`
-      )}`;
-    output.srcSet = options.srcSet
-      .filter(size => paths.has(size))
-      .map(formatSize)
-      .join('+","+');
+    if (paths.size > 0) {
+      const formatSize = size =>
+        `__webpack_public_path__+${JSON.stringify(
+          `${paths.get(widths.get(size))} ${size}w`
+        )}`;
+      output.srcSet = options.srcSet
+        .filter(size => paths.has(size))
+        .map(formatSize)
+        .join('+","+');
+    } else {
+      output.srcSet = JSON.stringify(null);
+    }
   }
 
   callback(null, stringify(options.shape, output));
