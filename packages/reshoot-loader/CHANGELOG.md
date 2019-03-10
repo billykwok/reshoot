@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.4...@reshoot/loader@0.6.5) (2019-03-10)
+
+
+### Bug Fixes
+
+* **@reshoot/react:** fix srcSet string bug ([36850ca](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/36850ca))
+
+
+
+
+
 ## [0.6.4](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.3...@reshoot/loader@0.6.4) (2019-03-04)
 
 
