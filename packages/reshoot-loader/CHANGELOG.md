@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.7](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.6...@reshoot/loader@0.6.7) (2019-03-10)
+
+
+### Bug Fixes
+
+* **@reshoot/loader:** include extra props in output ([107a671](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/107a671))
+
+
+
+
+
 ## [0.6.6](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.5...@reshoot/loader@0.6.6) (2019-03-10)
 
 
