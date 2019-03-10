@@ -14,29 +14,20 @@ describe('stringify', () => {
     placeholder: JSON.stringify(
       'data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak'
     ),
-    background: JSON.stringify('#666666'),
-    palette: JSON.stringify([
-      '#111111',
-      '#222222',
-      '#333333',
-      '#444444',
-      '#555555'
-    ])
+    color: JSON.stringify('#666666')
   };
 
   test('all options', () => {
     const shape = {
       ...defaultOptions.shape,
-      background: 'background',
-      palette: 'palette'
+      color: 'background'
     };
     expect(stringify(shape, object)).toEqual(oneLineTrim`module.exports={
       "src":"abc.jpg",
       "aspectRatio":3.14,
       "srcSet":"abc-100.jpg 100w, abc-200.jpg 100w, abc-300.jpg 100w",
       "placeholder":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      "background":"#666666",
-      "palette":["#111111","#222222","#333333","#444444","#555555"]
+      "background":"#666666"
     }`);
   });
 
@@ -46,13 +37,15 @@ describe('stringify', () => {
       src: 'r',
       srcSet: 's',
       placeholder: 'p',
-      aspectRatio: 'a'
+      aspectRatio: 'a',
+      color: 'c'
     };
     expect(stringify(shape, object)).toEqual(oneLineTrim`module.exports={
       "r":"abc.jpg",
       "a":3.14,
       "s":"abc-100.jpg 100w, abc-200.jpg 100w, abc-300.jpg 100w",
-      "p":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak"
+      "p":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
+      "c":"#666666"
     }`);
   });
 
@@ -62,7 +55,8 @@ describe('stringify', () => {
       "src":"abc.jpg",
       "aspectRatio":3.14,
       "srcSet":"abc-100.jpg 100w, abc-200.jpg 100w, abc-300.jpg 100w",
-      "placeholder":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak"
+      "placeholder":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
+      "color":"#666666"
     }`);
   });
 });

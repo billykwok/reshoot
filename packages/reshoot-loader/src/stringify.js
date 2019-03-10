@@ -15,7 +15,9 @@ export default function stringify(
   object: OutputArgument
 ): string {
   return `module.exports={${Object.keys(object)
-    .filter(key => key in shape && shape[key])
-    .map(key => `${JSON.stringify(shape[key])}:${object[key]}`)
+    .filter(key => !(key in shape) || shape[key])
+    .map(
+      key => `${JSON.stringify(key in shape ? shape[key] : key)}:${object[key]}`
+    )
     .join(',')}}`;
 }
