@@ -91,7 +91,10 @@ export default async function loader(content: string): void {
       `__webpack_public_path__+${JSON.stringify(
         `${paths.get(widths.get(size))} ${size}w`
       )}`;
-    output.srcSet = options.srcSet.map(formatSize).join('+","+');
+    output.srcSet = options.srcSet
+      .filter(size => paths.has(size))
+      .map(formatSize)
+      .join('+","+');
   }
 
   callback(null, stringify(options.shape, output));
