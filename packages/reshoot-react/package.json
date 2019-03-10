@@ -27,10 +27,13 @@
   "homepage": "https://github.com/billykwok/reshoot",
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "yarn run clean && babel src --root-mode=upward --out-dir lib"
+    "build": "yarn run clean && rollup -c rollup.config.js"
   },
   "peerDependencies": {
-    "react": "^16.8.3",
+    "react": "^16.8.4",
     "react-waypoint": "^9.0.1"
+  },
+  "dependencies": {
+    "object-assign": "^4.1.1"
   }
 }

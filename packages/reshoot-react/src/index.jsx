@@ -2,9 +2,8 @@
 import React, { useState, useCallback } from 'react';
 import { Waypoint } from 'react-waypoint';
 
-import Container from './Container';
 import Placeholder from './Placeholder';
-import AdvancedImage from './AdvancedImage';
+import Img from './Img';
 import Message from './Message';
 import { INITIAL, LOADED, MANUAL, OFFLINE, ERROR } from './state';
 
@@ -18,8 +17,16 @@ type Props = {
   color?: string,
   placeholder?: ?string,
   srcSet?: ?string,
+  target?: string,
   href?: ?string,
   messages?: { MANUAL: string, OFFLINE: string, ERROR: string }
+};
+
+type ContainerProps = {
+  onClick?: () => void,
+  target?: string,
+  href?: ?string,
+  style: any
 };
 
 const IS_SERVER = typeof window === 'undefined';
@@ -45,6 +52,17 @@ function deriveInitialState(src): State {
   return INITIAL;
 }
 
+const containerStyle = {
+  overflow: 'hidden',
+  position: 'relative',
+  textDecoration: 'none',
+  padding: 0,
+  border: 'none',
+  outline: 'none'
+};
+
+const buttonContainerStyle = { ...containerStyle, cursor: 'pointer' };
+
 function Reshoot({
   src,
   alt,
@@ -53,6 +71,7 @@ function Reshoot({
   color,
   placeholder,
   srcSet,
+  target,
   href,
   messages,
   ...rest
@@ -85,22 +104,32 @@ function Reshoot({
     [state]
   );
 
-  const hasMessage = state !== INITIAL && state !== LOADED;
+  let Container: string = 'div';
+  const containerProps: ContainerProps = { style: containerStyle };
+  if (state !== INITIAL && state !== LOADED) {
+    Container = 'button';
+    containerProps.style = buttonContainerStyle;
+    containerProps.onClick = onClick;
+  } else if (href) {
+    Container = 'a';
+    containerProps.target = target;
+    containerProps.href = href;
+    containerProps.onClick = onClick;
+  }
+
   return (
     <Waypoint onEnter={onEnter}>
-      <Container state={state} onClick={onClick} {...rest}>
+      <Container {...containerProps} {...rest}>
         <Placeholder color={color} aspectRatio={aspectRatio} />
-        {(!placeholder && hasMessage) || (
-          <AdvancedImage
-            placeholder={placeholder}
-            src={src}
-            srcSet={srcSet}
-            alt={alt}
-            state={state}
-            blur={blur}
-          />
-        )}
-        {hasMessage && <Message text={messages[state]} />}
+        <Img
+          placeholder={placeholder}
+          src={src}
+          srcSet={srcSet}
+          alt={alt}
+          state={state}
+          blur={blur}
+        />
+        <Message state={state} text={messages[state]} />
       </Container>
     </Waypoint>
   );
@@ -111,6 +140,7 @@ Reshoot.defaultProps = {
   color: 'transparent',
   placeholder: null,
   srcSet: null,
+  target: '_self',
   href: null,
   messages: {
     MANUAL: 'Not autoloaded in slow network',
