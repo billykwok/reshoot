@@ -5,7 +5,8 @@ const defaultExpected = {
   hashLength: 16,
   sizes: [480, 640, 840, 1080],
   color: '#1c2c34',
-  keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color']
+  keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color'],
+  extra: {}
 };
 
 export function matchOutputAsString(expected, actual) {
@@ -27,11 +28,13 @@ export function matchOutputAsObject(expected, actual) {
     hashLength,
     sizes,
     color,
-    keys
+    keys,
+    extra
   } = Object.assign({}, defaultExpected, expected);
   const actualKeys = Object.keys(actual);
-  expect(actualKeys).toHaveLength(keys.length);
-  expect(actualKeys).toEqual(expect.arrayContaining(keys));
+  const extraKeys = Object.keys(extra);
+  expect(actualKeys).toHaveLength(keys.length + extraKeys.length);
+  expect(actualKeys).toEqual(expect.arrayContaining([...keys, ...extraKeys]));
   if (keys.includes('mime')) {
     expect(actual.mime).toEqual(mime);
   }
@@ -59,5 +62,8 @@ export function matchOutputAsObject(expected, actual) {
   }
   if (keys.includes('color')) {
     expect(actual.color).toEqual(color);
+  }
+  if (extra) {
+    extraKeys.forEach(key => expect(extra[key]).toEqual(actual[key]));
   }
 }
