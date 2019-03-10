@@ -17,13 +17,12 @@ const style = {
 const buttonStyle = { ...style, cursor: 'pointer' };
 
 type Ref = { current: null | HTMLElement } | ((null | HTMLElement) => mixed);
-type Props = { href?: ?string, state: State };
-type InnerProps = { ref: Ref, target?: ?string, href?: ?string, style: any };
-
+type Props = { target?: string, href?: ?string, state: State };
+type InnerProps = { ref: Ref, target?: string, href?: ?string, style: any };
 type Config = { href?: ?string, state: State };
 
 export default React.forwardRef<Props, HTMLElement>(function container(
-  { target, href, state, ...rest }: Props,
+  { target = '_self', href, state, ...rest }: Props,
   ref: Ref
 ) {
   let Element: string = 'div';
@@ -33,7 +32,7 @@ export default React.forwardRef<Props, HTMLElement>(function container(
     props.style = buttonStyle;
   } else if (href) {
     Element = 'a';
-    props.target = '_self';
+    props.target = target;
     props.href = href;
   }
   return <Element {...props} {...rest} />;
