@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.8](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.7...@reshoot/loader@0.6.8) (2019-03-10)
+
+
+### Bug Fixes
+
+* **@reshoot/loader:** fix a serialization bug ([f0f5d8d](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/f0f5d8d))
+* **@reshoot/loader:** fix stringify error ([b6e2d40](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/b6e2d40))
+
+
+
+
+
 ## [0.6.7](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.6...@reshoot/loader@0.6.7) (2019-03-10)
 
 
