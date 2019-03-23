@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/billykwok/reshoot/packages/reshoot-react/compare/@reshoot/react@0.3.3...@reshoot/react@0.3.4) (2019-03-23)
+
+
+### Bug Fixes
+
+* improve default configuration ([78c7924](https://github.com/billykwok/reshoot/packages/reshoot-react/commit/78c7924))
+
+
+
+
+
 ## [0.3.3](https://github.com/billykwok/reshoot/packages/reshoot-react/compare/@reshoot/react@0.3.2...@reshoot/react@0.3.3) (2019-03-10)
 
 **Note:** Version bump only for package @reshoot/react
