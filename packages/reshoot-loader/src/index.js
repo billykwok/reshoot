@@ -16,6 +16,7 @@ import resize from './resize';
 import type { Options } from './type';
 
 export default async function loader(content: string): void {
+  this.cacheable();
   const callback: (?Error, ?string) => void = this.async();
   const options: Options = resolveOptions(this);
   options.srcSet = dedupe(options.srcSet);

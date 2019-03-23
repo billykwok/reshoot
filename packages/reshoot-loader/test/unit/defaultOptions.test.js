@@ -4,7 +4,7 @@ import { generateDefaultOptions } from '../../src/defaultOptions';
 describe('default options', () => {
   test('are correct in development environment', () => {
     expect(generateDefaultOptions('development')).toEqual({
-      name: '[contenthash:16]-[width].[ext]',
+      name: '[path][name].[ext]',
       outputPath: null,
       publicPath: null,
       context: null,
@@ -21,7 +21,7 @@ describe('default options', () => {
       background: '#fff',
       color: 'DarkMuted',
       forceFormat: false,
-      placeholder: { size: 10, trimDataUrl: false },
+      placeholder: { size: 8, trimDataUrl: false },
       aspectRatio: { type: 'heightByWidth', format: 'percent', decimal: 2 },
       disable: true,
       emitFile: true
@@ -47,7 +47,7 @@ describe('default options', () => {
       background: '#fff',
       color: 'DarkMuted',
       forceFormat: false,
-      placeholder: { size: 10, trimDataUrl: false },
+      placeholder: { size: 8, trimDataUrl: false },
       aspectRatio: { type: 'heightByWidth', format: 'percent', decimal: 2 },
       disable: false,
       emitFile: true
