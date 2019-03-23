@@ -3,7 +3,10 @@ import type { Options } from './type';
 
 export function generateDefaultOptions(env: string): Options {
   return {
-    name: '[contenthash:16]-[width].[ext]',
+    name:
+      env === 'development'
+        ? '[path][name].[ext]'
+        : '[contenthash:16]-[width].[ext]',
     outputPath: null,
     publicPath: null,
     context: null,
@@ -21,7 +24,7 @@ export function generateDefaultOptions(env: string): Options {
     color: 'DarkMuted',
     forceFormat: false,
     placeholder: {
-      size: 10,
+      size: 8,
       trimDataUrl: false
     },
     aspectRatio: {
