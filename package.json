@@ -15,9 +15,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "resolutions": {
-    "lodash": "^4.7.11"
-  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
