@@ -39,12 +39,12 @@ function Img({ placeholder, src, srcSet, alt, state, blur }: Props) {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          filter: `blur(${finalState ? 0 : blur}px)`,
+          filter: finalState ? 'initial' : `blur(${blur}px)`,
           transition:
             state === LOADED
               ? 'filter 0.5s ease, transform 0.5s ease'
               : 'initial',
-          transform: scale3d(finalState ? 1 : 1.05)
+          transform: finalState ? 'initial' : scale3d(1.05)
         }}
         src={resolvedSrc}
         srcSet={resolvedSrcSet}
