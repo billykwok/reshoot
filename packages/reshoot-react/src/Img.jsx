@@ -7,7 +7,7 @@ import { INITIAL, LOADED } from './state';
 import type { State } from './state';
 
 function scale3d(scale: number) {
-  return `scale3d(${scale},${scale},${scale})`;
+  return `scale3d(${scale},${scale},1)`;
 }
 
 type Props = {
