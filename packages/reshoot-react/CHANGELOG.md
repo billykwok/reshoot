@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/billykwok/reshoot/packages/reshoot-react/compare/@reshoot/react@0.3.5...@reshoot/react@0.3.6) (2019-03-24)
+
+
+### Bug Fixes
+
+* **@reshoot/react:** fix scale3d shown outside viewport ([39a1c4f](https://github.com/billykwok/reshoot/packages/reshoot-react/commit/39a1c4f))
+
+
+
+
+
 ## [0.3.5](https://github.com/billykwok/reshoot/packages/reshoot-react/compare/@reshoot/react@0.3.4...@reshoot/react@0.3.5) (2019-03-24)
 
 
