@@ -2,7 +2,10 @@
 module.exports = {
   babelrcRoots: ['.', './packages/*'],
   presets: [
-    ['@babel/preset-env', { targets: { node: 'current' } }],
+    [
+      '@babel/preset-env',
+      { targets: { node: 'current' }, useBuiltIns: 'usage', corejs: 3 }
+    ],
     '@babel/preset-react',
     '@babel/preset-flow'
   ],
@@ -10,7 +13,7 @@ module.exports = {
     '@babel/plugin-proposal-optional-chaining',
     [
       '@babel/plugin-transform-runtime',
-      { corejs: 2, helpers: true, regenerator: true, useESModules: false }
+      { corejs: 3, helpers: true, regenerator: true, useESModules: false }
     ]
   ]
 };

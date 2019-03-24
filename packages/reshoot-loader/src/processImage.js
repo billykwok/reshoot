@@ -1,5 +1,8 @@
 // @flow
 import sharp from 'sharp';
+import { promisify } from 'util';
+
+const sizeOf = promisify(require('image-size'));
 
 export type MetaData = { width: number, height: number };
 export type ResizeOptions = { background: string, quality: number };
@@ -14,12 +17,10 @@ export type ImageProcessor = {
 };
 
 export default function processImage(imagePath: string): ImageProcessor {
-  const image = sharp(imagePath);
-
   return {
-    metadata: () => image.metadata(),
+    metadata: () => sizeOf(imagePath),
     resize: async (width, mime, options) => {
-      let resized = image
+      let resized = sharp(imagePath)
         .clone()
         .rotate()
         .resize(width);
