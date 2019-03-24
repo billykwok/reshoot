@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.10](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.9...@reshoot/loader@0.6.10) (2019-03-24)
+
+
+### Bug Fixes
+
+* **@reshoot/loader:** use image-size to get image size ([404b6cd](https://github.com/billykwok/reshoot/packages/reshoot-loader/commit/404b6cd))
+
+
+
+
+
 ## [0.6.9](https://github.com/billykwok/reshoot/packages/reshoot-loader/compare/@reshoot/loader@0.6.8...@reshoot/loader@0.6.9) (2019-03-23)
 
 
