@@ -11,25 +11,25 @@
     "build": "yarn run clean && webpack"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.4",
-    "@reshoot/react": "^0.3.3",
+    "@babel/runtime-corejs3": "^7.4.2",
+    "@reshoot/react": "^0.3.6",
     "babel-plugin-macros": "^2.5.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "react-waypoint": "^9.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-transform-runtime": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@reshoot/loader": "^0.6.4",
+    "@reshoot/loader": "^0.6.10",
     "@reshoot/macro": "^0.3.2",
     "babel-loader": "^8.0.5",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
+    "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   }
 }
