@@ -38,7 +38,6 @@
     "babel-plugin-tester": "^6.0.1",
     "common-tags": "^1.8.0",
     "conventional-changelog-atom": "^2.0.1",
-    "conventional-changelog-cli": "^2.0.12",
     "cross-env": "^5.2.0",
     "eslint": "^5.15.3",
     "eslint-config-airbnb": "^17.1.0",
