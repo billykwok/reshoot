@@ -10,7 +10,7 @@
     "test:snapshot": "yarn build && webpack --config=integration/webpack.config.js && jest integration",
     "test": "yarn build && webpack --config=integration/webpack.config.js && jest",
     "commit": "commit",
-    "release": "lerna publish --yes"
+    "release": "lerna publish --yes --no-changelog"
   },
   "workspaces": [
     "packages/*"

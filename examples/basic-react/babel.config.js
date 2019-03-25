@@ -9,7 +9,7 @@ module.exports = {
     'babel-plugin-macros',
     '@babel/plugin-proposal-optional-chaining',
     [
-      '@babel/plugin-transform-runtime',
+      '@babel/transform-runtime',
       { corejs: 3, helpers: true, regenerator: true }
     ]
   ]
