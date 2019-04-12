@@ -30,7 +30,7 @@
     "build": "yarn run clean && rollup -c rollup.config.js"
   },
   "peerDependencies": {
-    "react": "^16.8.5",
+    "react": "^16.8.6",
     "react-waypoint": "^9.0.1"
   }
 }

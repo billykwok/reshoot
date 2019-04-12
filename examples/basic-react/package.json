@@ -14,8 +14,8 @@
     "@babel/runtime-corejs3": "^7.4.2",
     "@reshoot/react": "^0.3.8",
     "babel-plugin-macros": "^2.5.0",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-waypoint": "^9.0.1"
   },
   "devDependencies": {
