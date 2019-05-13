@@ -13,7 +13,9 @@ export default {
     '@emotion/css',
     '@emotion/serialize',
     '@emotion/unitless',
-    '@emotion/utils'
+    '@emotion/utils',
+    'object-assign',
+    'react'
   ],
   plugins: [
     babel({
