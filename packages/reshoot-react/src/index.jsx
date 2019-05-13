@@ -1,11 +1,14 @@
 // @flow
 import React, { useState, useCallback } from 'react';
+import { jsx } from '@emotion/core';
 import { Waypoint } from 'react-waypoint';
+import assign from 'object-assign';
 
 import Placeholder from './Placeholder';
 import Img from './Img';
 import Message from './Message';
 import { INITIAL, LOADED, MANUAL, OFFLINE, ERROR } from './state';
+import staticProps from './staticProps';
 
 import type { State } from './state';
 
@@ -22,12 +25,7 @@ type Props = {
   messages?: { MANUAL: string, OFFLINE: string, ERROR: string }
 };
 
-type ContainerProps = {
-  onClick?: () => void,
-  target?: string,
-  href?: ?string,
-  style: any
-};
+type ContainerProps = { onClick?: () => void, target?: string, href?: ?string };
 
 const IS_SERVER = typeof window === 'undefined';
 
@@ -41,14 +39,10 @@ function setCache(hashId, onError) {
 
 function deriveInitialState(src): State {
   if (IS_SERVER || sessionStorage.getItem(src)) return LOADED;
-  const connection =
-    typeof navigator !== 'undefined' &&
-    (navigator?.connection ||
-      navigator?.webkitConnection ||
-      navigator?.mozConnection);
-  if (connection && ['slow-2g', '2g'].indexOf(connection.effectiveType) > -1)
-    return MANUAL;
-  if (typeof navigator !== 'undefined' && !navigator?.onLine) return OFFLINE;
+  const support = typeof navigator !== 'undefined';
+  const connection = support && navigator.connection;
+  if (connection && connection.effectiveType.indexOf('2g') > -1) return MANUAL;
+  if (support && 'onLine' in navigator && !navigator.onLine) return OFFLINE;
   return INITIAL;
 }
 
@@ -61,33 +55,45 @@ const containerStyle = {
   outline: 'none'
 };
 
-const buttonContainerStyle = { ...containerStyle, cursor: 'pointer' };
+const buttonContainerStyle = { cursor: 'pointer' };
 
-function Reshoot({
-  src,
-  alt,
-  aspectRatio,
-  blur,
-  color,
-  placeholder,
-  srcSet,
-  target,
-  href,
-  messages,
-  ...rest
-}: Props) {
-  const [state, setState] = useState(() => deriveInitialState(src));
+const whilelist = [
+  'src',
+  'alt',
+  'aspectRatio',
+  'blur',
+  'color',
+  'placeholder',
+  'srcSet',
+  'target',
+  'href',
+  'messages'
+];
+
+function filterProps(p) {
+  const r = {};
+  Object.keys(p).map(k => whilelist.indexOf(k) < 0 && (r[k] = p[k]));
+  return r;
+}
+
+function Reshoot(props: Props) {
+  const useStateResult = useState(() => deriveInitialState(props.src));
+  const state = useStateResult[0];
+  const setState = useStateResult[1];
+
+  const rest = filterProps(props);
+
   const download = useCallback(function() {
     const image = new Image();
     image.onload = () => {
-      setCache(src);
+      setCache(props.src);
       setState(LOADED);
     };
     image.onerror = () => setState(ERROR);
-    if (srcSet) {
-      image.srcset = srcSet;
+    if (props.srcSet) {
+      image.srcset = props.srcSet;
     }
-    image.src = src;
+    image.src = props.src;
   }, []);
   const onEnter = useCallback(
     function() {
@@ -105,33 +111,41 @@ function Reshoot({
   );
 
   let Container: string = 'div';
-  const containerProps: ContainerProps = { style: containerStyle };
-  if (state !== INITIAL && state !== LOADED) {
+  let containerProps: ContainerProps;
+  const asButton = state !== INITIAL && state !== LOADED;
+  if (asButton) {
     Container = 'button';
-    containerProps.style = buttonContainerStyle;
-    containerProps.onClick = onClick;
-  } else if (href) {
+    containerProps = { onClick: props.onClick };
+  } else if (props.href) {
     Container = 'a';
-    containerProps.target = target;
-    containerProps.href = href;
-    containerProps.onClick = onClick;
+    containerProps = {
+      target: props.target,
+      href: props.href,
+      onClick: props.onClick
+    };
   }
 
-  return (
-    <Waypoint onEnter={onEnter}>
-      <Container {...containerProps} {...rest}>
-        <Placeholder color={color} aspectRatio={aspectRatio} />
-        <Img
-          placeholder={placeholder}
-          src={src}
-          srcSet={srcSet}
-          alt={alt}
-          state={state}
-          blur={blur}
-        />
-        <Message state={state} text={messages[state]} />
-      </Container>
-    </Waypoint>
+  return jsx(
+    Waypoint,
+    { onEnter },
+    jsx(
+      Container,
+      assign(
+        { css: [containerStyle, asButton && buttonContainerStyle] },
+        containerProps,
+        rest
+      ),
+      jsx(Placeholder, { color: props.color, aspectRatio: props.aspectRatio }),
+      jsx(Img, {
+        placeholder: props.placeholder,
+        src: props.src,
+        srcSet: props.srcSet,
+        alt: props.alt,
+        state: state,
+        blur: props.blur
+      }),
+      jsx(Message, { state, text: props.messages[state] })
+    )
   );
 }
 
@@ -149,4 +163,4 @@ Reshoot.defaultProps = {
   }
 };
 
-export default React.memo<Props>(Reshoot, () => true);
+export default React.memo<Props>(Reshoot, staticProps);

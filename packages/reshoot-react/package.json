@@ -29,7 +29,10 @@
     "clean": "rm -rf lib",
     "build": "yarn run clean && rollup -c rollup.config.js"
   },
+  "sideEffects": false,
   "peerDependencies": {
+    "@emotion/core": "^10.0.10",
+    "object-assign": "^4.1.1",
     "react": "^16.8.6",
     "react-waypoint": "^9.0.2"
   }

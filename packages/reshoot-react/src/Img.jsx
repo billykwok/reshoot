@@ -1,7 +1,8 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
+import { jsx } from '@emotion/core';
 
-import defaultStyle from './defaultStyles';
+import defaultStyle from './defaultStyle';
 import { INITIAL, LOADED } from './state';
 
 import type { State } from './state';
@@ -32,10 +33,11 @@ function Img({ placeholder, src, srcSet, alt, state, blur }: Props) {
   }
 
   return (
-    (!placeholder && state !== INITIAL && state !== LOADED) || (
-      <img
-        style={{
-          ...defaultStyle,
+    (!placeholder && state !== INITIAL && state !== LOADED) ||
+    jsx('img', {
+      css: [
+        defaultStyle,
+        {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
@@ -45,12 +47,12 @@ function Img({ placeholder, src, srcSet, alt, state, blur }: Props) {
               ? 'filter 0.5s ease, transform 0.5s ease'
               : 'initial',
           transform: finalState ? 'initial' : scale3d(1.05)
-        }}
-        src={resolvedSrc}
-        srcSet={resolvedSrcSet}
-        alt={alt}
-      />
-    )
+        }
+      ],
+      src: resolvedSrc,
+      srcSet: resolvedSrcSet,
+      alt
+    })
   );
 }
 

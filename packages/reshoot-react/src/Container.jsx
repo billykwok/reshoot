@@ -1,5 +1,7 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
+import { jsx } from '@emotion/core';
+import assign from 'object-assign';
 
 import { INITIAL, LOADED } from './state';
 
@@ -14,26 +16,27 @@ const style = {
   outline: 'none'
 };
 
-const buttonStyle = { ...style, cursor: 'pointer' };
+const btnStyle = { cursor: 'pointer' };
 
 type Ref = { current: null | HTMLElement } | ((null | HTMLElement) => mixed);
 type Props = { target?: string, href?: ?string, state: State };
 type InnerProps = { ref: Ref, target?: string, href?: ?string, style: any };
 type Config = { href?: ?string, state: State };
 
-export default React.forwardRef<Props, HTMLElement>(function container(
-  { target = '_self', href, state, ...rest }: Props,
-  ref: Ref
-) {
-  let Element: string = 'div';
-  const props: InnerProps = { ref, style };
+function createElement(tag, props, ref, css) {
+  delete cloned.state;
+  delete cloned.mime;
+  return jsx(tag, assign(props, { ref, css }));
+}
+
+function Container(props: Props, ref: Ref) {
+  const cloned = props;
   if (state !== INITIAL && state !== LOADED) {
-    Element = 'button';
-    props.style = buttonStyle;
-  } else if (href) {
-    Element = 'a';
-    props.target = target;
-    props.href = href;
+    return createElement('button', cloned, ref, [style, btnStyle]);
+  } else if (props.href) {
+    return createElement('a', cloned, ref, [style, btnStyle]);
   }
-  return <Element {...props} {...rest} />;
-});
+  return createElement('div', cloned, ref, style);
+}
+
+export default React.forwardRef<Props, HTMLElement>(Container);
