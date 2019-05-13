@@ -113,7 +113,7 @@ function Reshoot(props: Props) {
   const asButton = state !== INITIAL && state !== LOADED;
   if (asButton) {
     Container = 'button';
-    containerProps = { onClick: props.onClick };
+    containerProps = { onClick };
   } else if (props.href) {
     Container = 'a';
     containerProps = {
