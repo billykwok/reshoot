@@ -1,17 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`macros parse valid input 1`] = `
+exports[`macros parse invalid input 1`] = `
+.emotion-2 {
+  overflow: hidden;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.emotion-0 {
+  width: 100%;
+  height: 0;
+  background: transparent;
+  padding-bottom: 80%;
+}
+
+.emotion-1 {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-filter: initial;
+  filter: initial;
+  -webkit-transition: initial;
+  transition: initial;
+  -webkit-transform: initial;
+  -ms-transform: initial;
+  transform: initial;
+}
+
 <div
-  data-testid="target"
-  style="overflow: hidden; position: relative; text-decoration: none; padding: 0px; outline: none;"
+  className="emotion-2"
 >
   <div
-    style="width: 100%; height: 0px; background: transparent; padding-bottom: 80%;"
+    className="emotion-0"
   />
   <img
     alt="Test image"
+    className="emotion-1"
+    src="image2.jpg"
+    srcSet={null}
+  />
+</div>
+`;
+
+exports[`macros parse valid input 1`] = `
+.emotion-2 {
+  overflow: hidden;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.emotion-0 {
+  width: 100%;
+  height: 0;
+  background: transparent;
+  padding-bottom: 80%;
+}
+
+.emotion-1 {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-filter: initial;
+  filter: initial;
+  -webkit-transition: initial;
+  transition: initial;
+  -webkit-transform: initial;
+  -ms-transform: initial;
+  transform: initial;
+}
+
+<div
+  className="emotion-2"
+>
+  <div
+    className="emotion-0"
+  />
+  <img
+    alt="Test image"
+    className="emotion-1"
     src="image.jpg"
-    style="display: block; position: absolute; top: 0px; width: 100%; height: 100%; object-fit: cover; filter: initial; transition: initial; transform: initial;"
+    srcSet={null}
   />
 </div>
 `;

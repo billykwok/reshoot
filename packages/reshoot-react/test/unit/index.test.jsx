@@ -1,19 +1,26 @@
 // @flow
 import React from 'react';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
+import renderer from 'react-test-renderer';
 import 'jest-dom/extend-expect';
 
 import Reshoot from '../../src';
 
 describe('macros', () => {
   test('parse valid input', () => {
-    const props = {
-      'data-testid': 'target',
-      src: 'image.jpg',
-      alt: 'Test image',
-      aspectRatio: 80
-    };
-    const { container, getByTestId } = render(<Reshoot {...props} />);
-    expect(getByTestId('target')).toMatchSnapshot();
+    expect(
+      renderer
+        .create(<Reshoot src="image.jpg" alt="Test image" aspectRatio={80} />)
+        .toJSON()
+    ).toMatchSnapshot();
+  });
+});
+
+describe('macros', () => {
+  test('parse invalid input', () => {
+    expect(
+      renderer
+        .create(<Reshoot src="image2.jpg" alt="Test image" aspectRatio={80} />)
+        .toJSON()
+    ).toMatchSnapshot();
   });
 });
