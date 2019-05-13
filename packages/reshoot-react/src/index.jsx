@@ -83,32 +83,30 @@ function Reshoot(props: Props) {
 
   const rest = filterProps(props);
 
-  const download = useCallback(function() {
+  const download = useCallback(() => {
     const image = new Image();
     image.onload = () => {
       setCache(props.src);
       setState(LOADED);
     };
-    image.onerror = () => setState(ERROR);
+    image.onerror = () => {
+      console.error('Failed to download ' + props.src);
+      setState(ERROR);
+    };
     if (props.srcSet) {
       image.srcset = props.srcSet;
     }
     image.src = props.src;
   }, []);
   const onEnter = useCallback(
-    function() {
-      return IS_SERVER || state === LOADED || state === MANUAL || download();
-    },
+    () => IS_SERVER || state === LOADED || state === MANUAL || download(),
     [state]
   );
-  const onClick = useCallback(
-    function() {
-      if (state === LOADED) return;
-      setState(INITIAL);
-      download();
-    },
-    [state]
-  );
+  const onClick = useCallback(() => {
+    if (state === LOADED) return;
+    setState(INITIAL);
+    download();
+  }, [state]);
 
   let Container: string = 'div';
   let containerProps: ContainerProps;
