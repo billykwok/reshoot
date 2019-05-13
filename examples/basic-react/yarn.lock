@@ -1104,10 +1104,10 @@
   dependencies:
     babel-plugin-macros "^2.5.1"
 
-"@reshoot/react@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.5.0.tgz#b2f40826815f6edcfe3989139c7b49caad731857"
-  integrity sha512-a0Hkot5TTM+FH+rhhUTpygEBbXO5JCwyOqU4SEof3nJ1+WzH4zWJJh7/XqR6IQQO2fFuCFlZir9hBfIdBB3+8g==
+"@reshoot/react@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.5.1.tgz#1742a42dfd525ce292b09acc3cfc1fa415661156"
+  integrity sha512-pEptceiWzxEP2E+Zj5OLuhkJJCKRLY3fp2+Xvyq7rQjkQLCXRGnl8HbTJC7F6tYfX7x4zyvmRKFIF+JxrSHm9A==
 
 "@types/events@*":
   version "3.0.0"
