@@ -31,6 +31,6 @@
     "build": "yarn run clean && babel src --root-mode=upward --out-dir lib"
   },
   "dependencies": {
-    "babel-plugin-macros": "^2.5.1"
+    "babel-plugin-macros": "^2.6.1"
   }
 }
