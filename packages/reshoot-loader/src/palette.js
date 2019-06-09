@@ -21,12 +21,14 @@ export default async function palette(
   disable: boolean
 ) {
   if (disable) {
+    if (palettePresets.indexOf(color) < 0) return color;
     return 'transparent';
-  }
-  if (!color) {
+  } else if (!color) {
     return '#fff';
-  }
-  if (supportedMimes.indexOf(mime) > -1 && palettePresets.indexOf(color) > -1) {
+  } else if (
+    supportedMimes.indexOf(mime) > -1 &&
+    palettePresets.indexOf(color) > -1
+  ) {
     return await Vibrant.from(imagePath)
       .getPalette()
       .then(palette => palette[color].hex);
