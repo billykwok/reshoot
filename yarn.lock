@@ -2159,7 +2159,7 @@
     url-template "^2.0.8"
 
 "@reshoot/loader@file:packages/reshoot-loader":
-  version "0.6.11"
+  version "0.6.15"
   dependencies:
     deepmerge "^3.2.0"
     image-size "^0.7.4"
@@ -2168,12 +2168,12 @@
     sharp "^0.22.1"
 
 "@reshoot/macro@file:packages/reshoot-macro":
-  version "0.3.3"
+  version "0.3.6"
   dependencies:
     babel-plugin-macros "^2.6.1"
 
 "@reshoot/react@file:packages/reshoot-react":
-  version "0.3.7"
+  version "0.5.2"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -7705,9 +7705,9 @@ lodash.ismatch@^4.4.0:
   integrity sha1-dWy1FQyjum8RCFp4hJZF8Yj4Xzc=
 
 lodash.merge@^4.6.0:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
-  integrity sha512-AOYza4+Hf5z1/0Hztxpm2/xiPZgi/cjMqdnKTUWTBSKchJlxXXuUSxCCl8rJlf4g6yww/j6mA8nC8Hw/EZWxKQ==
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
 lodash.set@^4.3.2:
   version "4.3.2"
