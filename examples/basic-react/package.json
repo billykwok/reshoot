@@ -10,26 +10,32 @@
     "dev": "yarn run clean && webpack-dev-server --config webpack.config.js",
     "build": "yarn run clean && webpack"
   },
+  "resolutions": {
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
+    "lodash.merge": "^4.6.2"
+  },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.5",
-    "@reshoot/react": "^0.5.2",
+    "@babel/runtime-corejs3": "^7.5.5",
+    "@emotion/core": "^10.0.14",
+    "@reshoot/react": "^0.5.3",
     "babel-plugin-macros": "^2.6.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-waypoint": "^9.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@reshoot/loader": "^0.6.15",
+    "@reshoot/loader": "^0.6.16",
     "@reshoot/macro": "^0.3.6",
     "babel-loader": "^8.0.6",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.3",
-    "webpack-dev-server": "^3.7.1"
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
   }
 }
