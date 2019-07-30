@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:11.10.1
+      - image: circleci/node:12.7.0
         environment:
           SHARP_IGNORE_GLOBAL_LIBVIPS: 1
     working_directory: ~/repo
@@ -37,7 +37,7 @@ jobs:
           paths: .
   release:
     docker:
-      - image: circleci/node:11.10.1
+      - image: circleci/node:12.7.0
     working_directory: ~/repo
     steps:
       - attach_workspace:
