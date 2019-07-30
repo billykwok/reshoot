@@ -31,7 +31,7 @@
   },
   "sideEffects": false,
   "peerDependencies": {
-    "@emotion/core": "^10.0.10",
+    "@emotion/core": "^10.0.14",
     "react-waypoint": "^9.0.2"
   }
 }
