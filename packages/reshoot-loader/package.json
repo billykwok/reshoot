@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/loader",
   "description": "Webpack loader for Reshoot.",
-  "version": "0.6.15",
+  "version": "0.6.16",
   "main": "lib/index.js",
   "author": "Billy Kwok <xobkwok@gmail.com>",
   "license": "MIT",
