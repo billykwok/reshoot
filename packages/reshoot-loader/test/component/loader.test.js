@@ -2,6 +2,8 @@
 import compiler from './compiler';
 import { matchOutputAsString } from '../utils/matchOutput';
 
+jest.setTimeout(10000);
+
 describe('loaderTest', () => {
   test('Inserts name and outputs JavaScript', async () => {
     const expected = {
