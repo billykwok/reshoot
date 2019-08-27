@@ -19,6 +19,37 @@ By the way, this library is shipped with sensable default options so it can be c
 ## Usage
 
 ```jsx
+import React from 'react';
+import { render } from 'react-dom';
+
+import Reshoot from '@reshoot/react';
+import reshoot from '@reshoot/macro';
+
+sessionStorage.clear();
+
+const color = '#FDDFB0';
+
+function Example({ title }) {
+  return (
+    <React.Fragment>
+      <h2 style={{ paddingLeft: 10 }}>{title}</h2>
+      <div className="grid-container">
+        <Reshoot {...reshoot('./image.jpg', { color })} />
+        <Reshoot
+          {...reshoot('./image.jpg', { color })}
+          src="image.jpg"
+          srcSet={null}
+        />
+        <Reshoot {...reshoot('./image.jpg', { color })} placeholder={false} />
+      </div>
+    </React.Fragment>
+  );
+}
+
+render(
+  <Example title="Client-side Rendered" />,
+  document.getElementById('root')
+);
 ```
 
 ## License

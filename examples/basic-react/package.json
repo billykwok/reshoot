@@ -17,11 +17,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.5.5",
-    "@emotion/core": "^10.0.14",
-    "@reshoot/react": "^0.5.3",
+    "@emotion/core": "^10.0.16",
+    "@reshoot/react": "latest",
     "babel-plugin-macros": "^2.6.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-waypoint": "^9.0.2"
   },
   "devDependencies": {
@@ -31,11 +31,11 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@reshoot/loader": "^0.6.16",
-    "@reshoot/macro": "^0.3.6",
+    "@reshoot/loader": "latest",
+    "@reshoot/macro": "latest",
     "babel-loader": "^8.0.6",
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2"
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
   }
 }
