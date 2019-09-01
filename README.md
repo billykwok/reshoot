@@ -20,7 +20,7 @@ By the way, this library is shipped with sensable default options so it can be c
 
 Add the following loader config to Webpack config.
 
-```json
+```javascript
 {
   loader: '@reshoot/loader',
   options: {

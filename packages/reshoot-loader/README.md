@@ -15,7 +15,7 @@ This loader is meant to be used with [`@reshoot/macro`](https://www.npmjs.com/pa
 
 Add the following loader config to Webpack config.
 
-```json
+```javascript
 {
   loader: '@reshoot/loader',
   options: {
