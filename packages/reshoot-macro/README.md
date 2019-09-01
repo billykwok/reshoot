@@ -16,7 +16,7 @@ This loader is meant to be used with [`@reshoot/loader`](https://www.npmjs.com/p
 
 Add the following loader config to Webpack config.
 
-```json
+```javascript
 {
   loader: '@reshoot/loader',
   options: {
