@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.5.5",
-    "@emotion/core": "^10.0.16",
+    "@emotion/core": "^10.0.17",
     "@reshoot/react": "latest",
     "babel-plugin-macros": "^2.6.1",
     "react": "^16.9.0",
@@ -36,7 +36,7 @@
     "@reshoot/loader": "latest",
     "@reshoot/macro": "latest",
     "babel-loader": "^8.0.6",
-    "webpack": "^4.39.2",
+    "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
   }
