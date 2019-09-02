@@ -2,9 +2,9 @@
 
 [![npm version](https://badgen.net/npm/v/@reshoot/loader)](https://badgen.net/npm/v/@reshoot/loader)
 [![download](https://badgen.net/npm/dm/@reshoot/loader)](https://badgen.net/npm/dm/@reshoot/loader)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io)
-[![Greenkeeper badge](https://badges.greenkeeper.io/billykwok/reshoot.svg)](https://greenkeeper.io/)
-[![CircleCI](https://badgen.net/npm/license/@reshoot/loader)](https://badgen.net/npm/license/@reshoot/loader)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
+[![Greenkeeper badge](https://badges.greenkeeper.io/billykwok/reshoot.svg)](https://greenkeeper.io)
+[![License](https://badgen.net/npm/license/@reshoot/loader)](https://badgen.net/npm/license/@reshoot/loader)
 [![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
 
 A Webpack loader that optimizes images and gathers metadata for responsive image display.
