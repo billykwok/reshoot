@@ -2306,7 +2306,7 @@
     url-template "^2.0.8"
 
 "@reshoot/loader@file:packages/reshoot-loader":
-  version "0.6.17"
+  version "0.6.20"
   dependencies:
     deepmerge "^4.0.0"
     image-size "^0.7.4"
@@ -2315,12 +2315,12 @@
     sharp "^0.23.0"
 
 "@reshoot/macro@file:packages/reshoot-macro":
-  version "0.3.6"
+  version "0.3.9"
   dependencies:
     babel-plugin-macros "^2.6.1"
 
 "@reshoot/react@file:packages/reshoot-react":
-  version "0.5.4"
+  version "0.5.8"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -5925,10 +5925,10 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
   integrity sha512-a1hQMktqW9Nmqr5aktAux3JMNqaucxGcjtjWnZLHX7yyPCmlSV3M54nGYbqT8K+0GhF3NBgmJCc3ma+WOgX8Jg==
 
-flow-bin@^0.106.3:
-  version "0.106.3"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.106.3.tgz#87b5647bc23ae0efceabb6c50490c02a8478960c"
-  integrity sha512-QDwmhsMmiASmwgr6r2WTz9RPsN0pb84PY0whz0JqFaBX7/Fx2wj2MOtjbR2yv+qWZnozP9U40Jd9LLt8rC3WSQ==
+flow-bin@^0.107.0:
+  version "0.107.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.107.0.tgz#b37bfcce51204d35d58f8eb93b3a76b52291e4cc"
+  integrity sha512-hsmwO5Q0+XUXaO2kIKLpleUNNBSFcsGEQGBOTEC/KR/4Ez695I1fweX/ioSjbU4RWhPZhkIqnpbF9opVAauCHg==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
