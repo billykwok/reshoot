@@ -1,13 +1,15 @@
-// @flow
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'index'),
+  mode: 'production',
+  target: 'node',
+  entry: path.resolve(__dirname, 'index.ts'),
   output: {
     path: path.resolve(__dirname, 'build'),
     publicPath: '__webpack_public_path__/',
     filename: 'test.js'
   },
+  resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'] },
   module: {
     rules: [
       {
@@ -21,6 +23,5 @@ module.exports = {
       }
     ]
   },
-  target: 'node',
-  mode: 'production'
+  performance: { hints: false }
 };

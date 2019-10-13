@@ -27,7 +27,7 @@
   "homepage": "https://github.com/billykwok/reshoot",
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "yarn run clean && babel src --root-mode=upward --out-dir lib"
+    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts,.tsx,.mjs,.js,.jsx"
   },
   "dependencies": {
     "deepmerge": "^4.1.1",
