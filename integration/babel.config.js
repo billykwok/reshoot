@@ -1,4 +1,3 @@
-// @flow
 module.exports = {
   babelrcRoots: ['.', './packages/*'],
   presets: [
@@ -6,8 +5,11 @@ module.exports = {
       '@babel/preset-env',
       { targets: { node: 'current' }, useBuiltIns: 'usage', corejs: 3 }
     ],
-    '@babel/preset-react',
-    '@babel/preset-flow'
+    [
+      '@babel/preset-typescript',
+      { isTSX: true, allExtensions: true, allowNamespaces: true }
+    ],
+    '@babel/preset-react'
   ],
   plugins: [
     'babel-plugin-macros',

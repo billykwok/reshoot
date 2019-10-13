@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf build",
-    "dev": "yarn run clean && webpack-dev-server --config webpack.config.js",
-    "build": "yarn run clean && webpack"
+    "dev": "yarn clean && webpack-dev-server --config webpack.config.js",
+    "build": "yarn clean && webpack"
   },
   "resolutions": {
     "eslint-utils": "^1.4.2",
@@ -32,7 +32,6 @@
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
-    "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.6.3",
     "@reshoot/loader": "^0.6.20",
     "@reshoot/macro": "^0.3.9",

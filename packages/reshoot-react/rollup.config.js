@@ -1,4 +1,3 @@
-// @flow
 import babel from 'rollup-plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import commonjs from 'rollup-plugin-commonjs';
@@ -7,7 +6,7 @@ import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
-  input: 'src/index.jsx',
+  input: 'src/index.tsx',
   output: { file: 'lib/index.js', format: 'cjs', sourcemap: false },
   external: [
     '@emotion/css',
@@ -24,25 +23,28 @@ export default {
       exclude: '../../node_modules/**',
       presets: [
         '@babel/preset-env',
+        [
+          '@babel/preset-typescript',
+          { isTSX: true, allExtensions: true, allowNamespaces: true }
+        ],
         '@babel/preset-react',
-        '@babel/preset-flow',
         [
           '@emotion/babel-preset-css-prop',
           { hoist: true, useBuiltIns: true, throwIfNamespace: true }
         ]
       ],
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
       plugins: ['@babel/plugin-proposal-optional-chaining']
     }),
     peerDepsExternal(),
-    resolve({ extensions: ['.js', '.jsx'] }),
+    resolve({ extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'] }),
     replace({
       ENVIRONMENT: JSON.stringify('production'),
       'process.env.NODE_ENV': () => JSON.stringify('production')
     }),
     commonjs({
       include: '../../node_modules/**',
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
       namedExports: {
         '../../node_modules/react-js/index.js': ['useState'],
         '../../node_modules/react-waypoint/cjs/index.js': ['Waypoint']

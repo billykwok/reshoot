@@ -6,7 +6,6 @@ build/
 test/integration/build/
 *.log
 test/build
-flow-typed/npm/
 
 # General
 .DS_Store

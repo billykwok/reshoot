@@ -1,13 +1,14 @@
-// @flow
 module.exports = {
   babelrcRoots: ['.', './packages/*'],
   presets: [
     ['@babel/preset-env', { targets: { node: 'current' } }],
-    '@babel/preset-react',
-    '@babel/preset-flow'
+    [
+      '@babel/preset-typescript',
+      { isTSX: true, allExtensions: true, allowNamespaces: true }
+    ],
+    '@babel/preset-react'
   ],
   plugins: [
-    '@babel/plugin-proposal-optional-chaining',
     [
       '@babel/plugin-transform-runtime',
       {
@@ -16,6 +17,8 @@ module.exports = {
         regenerator: true,
         useESModules: false
       }
-    ]
+    ],
+    ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
+    '@babel/plugin-proposal-optional-chaining'
   ]
 };

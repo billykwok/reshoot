@@ -1,9 +1,11 @@
-// @flow
 module.exports = {
   presets: [
     '@babel/preset-env',
+    [
+      '@babel/preset-typescript',
+      { isTSX: true, allExtensions: true, allowNamespaces: true }
+    ],
     '@babel/preset-react',
-    '@babel/preset-flow',
     ['@emotion/babel-preset-css-prop', { hoist: true }]
   ],
   plugins: [
