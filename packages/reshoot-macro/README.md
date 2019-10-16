@@ -1,11 +1,11 @@
 # @reshoot/macro
 
-[![npm version](https://badgen.net/npm/v/@reshoot/macro)](https://badgen.net/npm/v/@reshoot/macro)
-[![download](https://badgen.net/npm/dm/@reshoot/macro)](https://badgen.net/npm/dm/@reshoot/macro)
+[![npm version](https://badgen.net/npm/v/@reshoot/macro)](https://www.npmjs.com/package/@reshoot/macro)
+[![download](https://badgen.net/npm/dm/@reshoot/macro)](https://www.npmjs.com/package/@reshoot/macro)
 [![Babel Macro](https://img.shields.io/badge/babel--macro-%F0%9F%8E%A3-f5da55.svg?style=flat-square)](https://github.com/kentcdodds/babel-plugin-macros)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
 [![Greenkeeper badge](https://badges.greenkeeper.io/billykwok/reshoot.svg)](https://greenkeeper.io)
-[![License](https://badgen.net/npm/license/@reshoot/react)](https://badgen.net/npm/license/@reshoot/react)
+[![License](https://badgen.net/npm/license/@reshoot/react)](https://github.com/billykwok/reshoot/blob/master/LICENSE)
 [![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
 
 A Babel macro serving as a shortcut for [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader).
