@@ -1066,28 +1066,28 @@
   dependencies:
     core-js "^2.5.7"
 
-"@reshoot/loader@^0.6.20":
-  version "0.6.20"
-  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.6.20.tgz#dd84ea1081a5551065e373bccb0de7c218bce409"
-  integrity sha512-RcpUSMwiSCZ4iJaLTU+XuTVwxBjabogCZJ2eEM3Lz3ebUQh9+N1JEYHqX1KjGo1jbZjvSwETFXWV4R243He+6w==
+"@reshoot/loader@^0.6.22":
+  version "0.6.22"
+  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.6.22.tgz#93ef17890df6056c5de899bb4ed2b6d2b30361c0"
+  integrity sha512-n82G0Vz91fvV+PltydnpbJqJ1mGYSafP2GsyhGo5UF1Vax9BvucVs0oyTke2BHlLQHlM/f4slWoJxC3J3YQ5Xg==
   dependencies:
-    deepmerge "^4.0.0"
-    image-size "^0.7.4"
+    deepmerge "^4.1.1"
+    image-size "^0.8.3"
     loader-utils "^1.2.3"
     node-vibrant "^3.2.0-alpha"
-    sharp "^0.23.0"
+    sharp "^0.23.1"
 
-"@reshoot/macro@^0.3.9":
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.3.9.tgz#d9e51d8126a34fb471b585fe9f99c6845251cbf8"
-  integrity sha512-ppDMI0dIZaCYE7LN5IHvKpAS7O21vJBEMbhDTZJ4A9YRRgw8gi9DLSSXX1iVAjcxM8IWi7P1xpqZx1iiaXM0xw==
+"@reshoot/macro@^0.3.10":
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.3.10.tgz#99cdb1a13f7509d4cf7741ff0019e0f11fa313b5"
+  integrity sha512-h2w7+BH/8kKdrtC3Ex2I1GfJ83oOKBltmR76WMLreqSJrArBMgXiFp+I8jisTdmjs8wERi3PWD4E+NLJ4lNdVQ==
   dependencies:
     babel-plugin-macros "^2.6.1"
 
-"@reshoot/react@^0.5.8":
-  version "0.5.8"
-  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.5.8.tgz#59dfe42c577f3ddc662d773f3f647e9bf5fd8d6a"
-  integrity sha512-Dg/ao/GlXWgbxQcSpLAmUZ/wl9XP0ViZqy2p9RsMvdPs5wc01pPzepnuOu5RC1sGbrmkR7ENQFNYf/fbWeT9Yw==
+"@reshoot/react@^0.5.10":
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.5.10.tgz#121c36077382de431775fae42108b61f8cbaba2d"
+  integrity sha512-ynLaxj+2ZQ2iIiO5GKcAWJIPrLs7IsI3y84aNc09Qdu7hD4MyeLS06EJ684EUO29YlaxodZNoiK6VO9opyCX5g==
 
 "@types/events@*":
   version "3.0.0"
@@ -2303,7 +2303,7 @@ deep-extend@^0.6.0:
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
   integrity sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==
 
-deepmerge@^4.0.0:
+deepmerge@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.1.1.tgz#ee0866e4019fe62c1276b9062d4c4803d9aea14c"
   integrity sha512-+qO5WbNBKBaZez95TffdUDnGIo4+r5kmsX8aOb7PDHvXsTbghAmleuxjs6ytNaf5Eg4FGBXDS5vqO61TRi6BMg==
@@ -3243,10 +3243,12 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-image-size@^0.7.4:
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.7.5.tgz#269f357cf5797cb44683dfa99790e54c705ead04"
-  integrity sha512-Hiyv+mXHfFEP7LzUL/llg9RwFxxY+o9N3JVLIeG5E7iFIFAalxvRU9UZthBdYDEVnzHMgjnKJPPpay5BWf1g9g==
+image-size@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.8.3.tgz#f0b568857e034f29baffd37013587f2c0cad8b46"
+  integrity sha512-SMtq1AJ+aqHB45c3FsB4ERK0UCiA2d3H1uq8s+8T0Pf8A3W4teyBQyaFaktH6xvZqh+npwlKU7i4fJo0r7TYTg==
+  dependencies:
+    queue "6.0.1"
 
 import-fresh@^2.0.0:
   version "2.0.0"
@@ -4741,6 +4743,13 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
 
+queue@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/queue/-/queue-6.0.1.tgz#abd5a5b0376912f070a25729e0b6a7d565683791"
+  integrity sha512-AJBQabRCCNr9ANq8v77RJEv73DPbn55cdTb+Giq4X0AVnNVZvMHlYp7XlQiN+1npCZj1DuSmaA2hYVUUDgxFDg==
+  dependencies:
+    inherits "~2.0.3"
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
@@ -5158,7 +5167,7 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-sharp@^0.23.0:
+sharp@^0.23.1:
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.23.1.tgz#28f930c1677f219b448dee4d28d04a69dc0966aa"
   integrity sha512-xt1SOwC5ewuqApBzKMFQ5VaRsC3GjOl1xklsnPNAAG7KWEAi50STFrVwjxFRe4puZ/59JU0QQqoFe7TZNnXd/g==
@@ -5921,10 +5930,10 @@ webpack-sources@^1.4.0, webpack-sources@^1.4.1:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.41.1:
-  version "4.41.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.1.tgz#5388dd3047d680d5d382a84249fd4750e87372fd"
-  integrity sha512-ak7u4tUu/U63sCVxA571IuPZO/Q0pZ9cEXKg+R/woxkDzVovq57uB6L2Hlg/pC8LCU+TWpvtcYwsstivQwMJmw==
+webpack@^4.41.2:
+  version "4.41.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.2.tgz#c34ec76daa3a8468c9b61a50336d8e3303dce74e"
+  integrity sha512-Zhw69edTGfbz9/8JJoyRQ/pq8FYUoY0diOXqW0T6yhgdhCv6wr0hra5DwwWexNRns2Z2+gsnrNcbe9hbGBgk/A==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"

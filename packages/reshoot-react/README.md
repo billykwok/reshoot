@@ -1,12 +1,12 @@
 # @reshoot/react
 
-[![npm version](https://badgen.net/npm/v/@reshoot/react)](https://badgen.net/npm/v/@reshoot/react)
-[![download](https://badgen.net/npm/dm/@reshoot/react)](https://badgen.net/npm/dm/@reshoot/react)
-[![minified size](https://badgen.net/bundlephobia/min/@reshoot/react)](https://badgen.net/bundlephobia/min/@reshoot/react)
-[![GZip size](https://badgen.net/bundlephobia/minzip/@reshoot/react)](https://badgen.net/bundlephobia/minzip/@reshoot/react)
+[![npm version](https://badgen.net/npm/v/@reshoot/react)](https://www.npmjs.com/package/@reshoot/react)
+[![download](https://badgen.net/npm/dm/@reshoot/react)](https://www.npmjs.com/package/@reshoot/react)
+[![minified size](https://badgen.net/bundlephobia/min/@reshoot/react)](https://www.npmjs.com/package/@reshoot/macro)
+[![GZip size](https://badgen.net/bundlephobia/minzip/@reshoot/react)](https://www.npmjs.com/package/@reshoot/macro)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
 [![Greenkeeper badge](https://badges.greenkeeper.io/billykwok/reshoot.svg)](https://greenkeeper.io)
-[![License](https://badgen.net/npm/license/@reshoot/react)](https://badgen.net/npm/license/@reshoot/react)
+[![License](https://badgen.net/npm/license/@reshoot/react)](https://github.com/billykwok/reshoot/blob/master/LICENSE)
 [![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
 
 A React component that displays responsive image.
