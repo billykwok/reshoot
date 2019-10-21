@@ -2,13 +2,11 @@ const path = require('path');
 
 module.exports = {
   env: {
-    worker: true,
     commonjs: true,
     amd: true,
     es6: true,
     node: true,
-    browser: true,
-    'shared-node-browser': true
+    browser: true
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -19,17 +17,15 @@ module.exports = {
   },
   settings: {
     react: { version: 'detect' },
+    'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
+    'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.json'],
     'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.json'],
-        moduleDirectory: ['node-modules']
-      },
       lerna: { packages: path.resolve(__dirname, 'packages') },
-      webpack: {
-        config: {
-          resolve: { extensions: ['js', 'jsx', '.mjs', '.ts', '.tsx', '.json'] }
-        }
-      }
+      node: {
+        paths: [path.resolve(__dirname, 'node_modules')],
+        moduleDirectory: ['node_modules']
+      },
+      webpack: { config: {} }
     }
   },
   plugins: [
@@ -54,17 +50,13 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/prefer-includes': 'off',
+    'prefer-spread': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'jsx-a11y/image-has-content': 'off',
     'jsx-a11y/heading-has-content': 'off',
     'jsx-a11y/anchor-has-content': 'off',
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: true,
-        optionalDependencies: true,
-        peerDependencies: true
-      }
-    ],
     'react-hooks/rules-of-hooks': 'error',
     'consistent-return': 'off',
     'max-len': 'off',

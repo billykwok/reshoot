@@ -28,9 +28,12 @@
   "homepage": "https://github.com/billykwok/reshoot",
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts,.tsx,.mjs,.js,.jsx"
+    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts,.tsx,.mjs,.js,.jsx",
+    "eslint": "eslint ./src/**",
+    "dtslint": "dtslint --onlyTestTsNext --localTs ../../node_modules/typescript/lib types",
+    "lint": "yarn eslint && yarn dtslint"
   },
-  "dependencies": {
+  "peerDependencies": {
     "babel-plugin-macros": "^2.6.1"
   }
 }

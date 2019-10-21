@@ -117,7 +117,7 @@ function Reshoot(props: Props) {
     download();
   }, [state]);
 
-  let Container: string = 'div';
+  let Container = 'div';
   let containerProps: ContainerProps;
   const asButton = state !== State.INITIAL && state !== State.LOADED;
   if (asButton) {

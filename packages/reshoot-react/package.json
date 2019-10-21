@@ -17,7 +17,7 @@
   "files": [
     "lib"
   ],
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
@@ -29,10 +29,14 @@
   "homepage": "https://github.com/billykwok/reshoot",
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "yarn clean && rollup -c rollup.config.js"
+    "build": "yarn clean && rollup -c rollup.config.js",
+    "eslint": "eslint ./src/**",
+    "dtslint": "dtslint --onlyTestTsNext --localTs ../../node_modules/typescript/lib types",
+    "lint": "yarn eslint && yarn dtslint"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.21",
+    "react": "^16.10.2",
     "react-waypoint": "^9.0.2"
   }
 }

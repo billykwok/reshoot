@@ -1,6 +1,7 @@
-import React from 'react';
+// TypeScript Version: 2.8
+import React = require('react');
 
-declare type Img = React.NamedExoticComponent<{
+export default class Img extends React.Component<{
   src: string;
   alt: string;
   aspectRatio: number;
@@ -12,6 +13,4 @@ declare type Img = React.NamedExoticComponent<{
   href?: string;
   messages?: { MANUAL: string; OFFLINE: string; ERROR: string };
   onClick?: () => void;
-}>;
-
-export default Img;
+}> {}

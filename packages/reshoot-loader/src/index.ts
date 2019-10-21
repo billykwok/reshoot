@@ -29,7 +29,7 @@ export default async function loader(content: string) {
   const context = options.context || this.rootContext || this.options.context;
   const output: Partial<Output> = extractRest(options);
 
-  let [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
+  const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
 
   if (options.shape.mime) {
     output.mime = JSON.stringify(mime);

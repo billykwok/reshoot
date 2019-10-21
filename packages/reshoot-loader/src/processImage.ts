@@ -1,18 +1,19 @@
 import sharp from 'sharp';
 import { promisify } from 'util';
+import { imageSize } from 'image-size';
 
-const sizeOf = promisify(require('image-size'));
+const sizeOf = promisify(imageSize);
 
-export type MetaData = { width: number, height: number };
-export type ResizeOptions = { background: string, quality: number };
-export type ResizeResult = { content: Buffer, width: number };
+export type MetaData = { width: number; height: number };
+export type ResizeOptions = { background: string; quality: number };
+export type ResizeResult = { content: Buffer; width: number };
 export type ImageProcessor = {
-  metadata: () => Promise<MetaData>,
+  metadata: () => Promise<MetaData>;
   resize: (
     width: number,
     mime: string,
     options: ResizeOptions
-  ) => Promise<ResizeResult>
+  ) => Promise<ResizeResult>;
 };
 
 export default function processImage(imagePath: string): ImageProcessor {
