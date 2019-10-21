@@ -1,4 +1,5 @@
-declare type reshoot = (
+// TypeScript Version: 2.8
+export default function reshoot(
   path: string,
   options?: {
     src?: string;
@@ -9,7 +10,7 @@ declare type reshoot = (
     placeholder?: string;
     srcSet?: string;
   }
-) => {
+): {
   src: string;
   alt: string;
   aspectRatio: number;
@@ -18,5 +19,3 @@ declare type reshoot = (
   placeholder: string;
   srcSet: string;
 };
-
-export default reshoot;

@@ -1066,10 +1066,10 @@
   dependencies:
     core-js "^2.5.7"
 
-"@reshoot/loader@^0.6.22":
-  version "0.6.22"
-  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.6.22.tgz#93ef17890df6056c5de899bb4ed2b6d2b30361c0"
-  integrity sha512-n82G0Vz91fvV+PltydnpbJqJ1mGYSafP2GsyhGo5UF1Vax9BvucVs0oyTke2BHlLQHlM/f4slWoJxC3J3YQ5Xg==
+"@reshoot/loader@^0.6.23":
+  version "0.6.23"
+  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.6.23.tgz#553629e77d64b152b3e9b420c9d89a26ed1d2682"
+  integrity sha512-q9ALH2UZpUx9UoVkdLdoNyZfnTTvuxuyK2C8a1s8sfWTJfYhP3s/Cz5bHtp2fRAvl8bo5psv5AucDvJtpgo+AQ==
   dependencies:
     deepmerge "^4.1.1"
     image-size "^0.8.3"
@@ -1077,17 +1077,17 @@
     node-vibrant "^3.2.0-alpha"
     sharp "^0.23.1"
 
-"@reshoot/macro@^0.3.10":
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.3.10.tgz#99cdb1a13f7509d4cf7741ff0019e0f11fa313b5"
-  integrity sha512-h2w7+BH/8kKdrtC3Ex2I1GfJ83oOKBltmR76WMLreqSJrArBMgXiFp+I8jisTdmjs8wERi3PWD4E+NLJ4lNdVQ==
+"@reshoot/macro@^0.3.11":
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.3.11.tgz#f12799cebbd39bb365d1c973188f940d8ead8f88"
+  integrity sha512-Ea6kvKjEmtI942s/kzY2DNFAJSL2lvwEk+SeQyfyCiQLznYGQqPzyD/M5cPPeG7VWdE1pT9HkDKcE/Ci+0j3/A==
   dependencies:
     babel-plugin-macros "^2.6.1"
 
-"@reshoot/react@^0.5.10":
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.5.10.tgz#121c36077382de431775fae42108b61f8cbaba2d"
-  integrity sha512-ynLaxj+2ZQ2iIiO5GKcAWJIPrLs7IsI3y84aNc09Qdu7hD4MyeLS06EJ684EUO29YlaxodZNoiK6VO9opyCX5g==
+"@reshoot/react@^0.5.11":
+  version "0.5.11"
+  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.5.11.tgz#d4746d3b894a3d5386e9b8fd20b3245a031c9cb9"
+  integrity sha512-sdOugiZMOFPMdTzh08eWomKGJbNoaF4orimg4ObQUQkKZjsynwrlyskbtQKt1ovfn2fBjxVJgILwkOfJ3D1zYA==
 
 "@types/events@*":
   version "3.0.0"

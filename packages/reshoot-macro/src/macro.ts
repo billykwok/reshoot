@@ -1,29 +1,8 @@
-import { createMacro, MacroParams } from 'babel-plugin-macros';
+import { createMacro } from 'babel-plugin-macros';
 
 import extractArgumentPaths from './arguments';
 
-type ReshootMacro = (
-  path: string,
-  options: {
-    src?: string;
-    alt?: string;
-    aspectRatio?: number;
-    blur?: number;
-    color?: string;
-    placeholder?: string;
-    srcSet?: string;
-  }
-) => {
-  src: string;
-  alt: string;
-  aspectRatio: number;
-  blur: number;
-  color: string;
-  placeholder: string;
-  srcSet: string;
-};
-
-function reshootMacro({ references }: MacroParams<ReshootMacro>) {
+export default createMacro(function reshootMacro({ references }) {
   references.default.forEach(referencePath => {
     const [path, options] = extractArgumentPaths(referencePath);
     const queryString = Object.keys(options).length
@@ -33,6 +12,4 @@ function reshootMacro({ references }: MacroParams<ReshootMacro>) {
       `require('${path}${queryString}')`
     );
   });
-}
-
-export default createMacro(reshootMacro);
+});
