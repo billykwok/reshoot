@@ -35,8 +35,8 @@
     "lint": "yarn eslint && yarn dtslint"
   },
   "peerDependencies": {
-    "@emotion/core": "^10.0.21",
-    "react": "^16.10.2",
+    "@emotion/core": "^10.0.22",
+    "react": "^16.11.0",
     "react-waypoint": "^9.0.2"
   }
 }
