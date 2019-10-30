@@ -1,5 +1,5 @@
 module.exports = {
-  babelrcRoots: ['.', './packages/*'],
+  babelrcRoots: ['integration/*', 'packages/*'],
   presets: [
     ['@babel/preset-env', { targets: { node: 'current' } }],
     [

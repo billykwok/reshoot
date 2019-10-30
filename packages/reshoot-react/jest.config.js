@@ -1,6 +1,6 @@
 module.exports = {
   displayName: '@reshoot/react',
-  verbose: true,
   snapshotSerializers: ['jest-emotion'],
-  snapshotResolver: '<rootDir>/snapshotResolver.js'
+  snapshotResolver: '<rootDir>/test/snapshotResolver.js',
+  verbose: true
 };
