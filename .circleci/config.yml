@@ -27,6 +27,9 @@ jobs:
       - run:
           name: Test packages
           command: yarn test
+      - run:
+          name: Upload coverage
+          command: yarn codecov
       - save_cache:
           name: Save node_modules cache
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}

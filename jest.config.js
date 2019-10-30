@@ -1,12 +1,12 @@
 module.exports = {
   projects: [
-    './packages/*/test/**/jest.config.js',
-    './integration/jest.config.js'
+    '<rootDir>/packages/*/jest.config.js',
+    '<rootDir>/integration/jest.config.js'
   ],
-  collectCoverageFrom: [
-    'packages/*/src/**/*.js',
-    'packages/*/src/**/*.jsx',
-    'packages/*/src/**/*.ts',
-    'packages/*/src/**/*.tsx'
-  ]
+  collectCoverage: true,
+  coverageDirectory: '<rootDir>/coverage',
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
+  notify: true,
+  notifyMode: 'always',
+  verbose: true
 };
