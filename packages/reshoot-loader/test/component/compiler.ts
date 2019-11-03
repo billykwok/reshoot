@@ -1,6 +1,5 @@
 import path from 'path';
 import webpack from 'webpack';
-import memoryFS from 'memory-fs';
 
 export default function compiler(fixture: string, options: any = {}) {
   const compiler = webpack({
@@ -12,6 +11,7 @@ export default function compiler(fixture: string, options: any = {}) {
       filename: 'bundle.js'
     },
     performance: { hints: false },
+    resolve: { alias: { fs: 'memfs' } },
     module: {
       rules: [
         {
@@ -23,8 +23,6 @@ export default function compiler(fixture: string, options: any = {}) {
       ]
     }
   });
-
-  compiler.outputFileSystem = new memoryFS();
 
   return new Promise<webpack.Stats>((resolve, reject) =>
     compiler.run((err, stats) => {
