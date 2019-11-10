@@ -144,6 +144,7 @@ function Reshoot(props: Props) {
       ),
       jsx(Placeholder, { color: props.color, aspectRatio: props.aspectRatio }),
       jsx(Img, {
+        color: props.color,
         placeholder: props.placeholder,
         src: props.src,
         srcSet: props.srcSet,
