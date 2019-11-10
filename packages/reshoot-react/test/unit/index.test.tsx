@@ -12,13 +12,48 @@ describe('react', () => {
         .toJSON()
     ).toMatchSnapshot();
   });
-});
 
-describe('react', () => {
-  test('parse invalid input', () => {
+  test('customized options for image link', () => {
     expect(
       renderer
-        .create(<Reshoot src="image2.jpg" alt="Test image" aspectRatio={80} />)
+        .create(
+          <Reshoot
+            src="image.jpg"
+            alt="Test image"
+            aspectRatio={80}
+            blur={100}
+            color="#fff"
+            placeholder="placeholder.jpg"
+            target="_blank"
+            href="https://example.com"
+            messages={{
+              MANUAL: 'manual!',
+              OFFLINE: 'offline!',
+              ERROR: 'error!'
+            }}
+          />
+        )
+        .toJSON()
+    ).toMatchSnapshot();
+  });
+
+  test('customized options for normal image', () => {
+    expect(
+      renderer
+        .create(
+          <Reshoot
+            src="image.jpg"
+            alt="Test image"
+            aspectRatio={80}
+            blur={100}
+            color="#fff"
+            messages={{
+              MANUAL: 'manual!',
+              OFFLINE: 'offline!',
+              ERROR: 'error!'
+            }}
+          />
+        )
         .toJSON()
     ).toMatchSnapshot();
   });

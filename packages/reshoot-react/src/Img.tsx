@@ -9,6 +9,7 @@ function scale3d(scale: number) {
 }
 
 type Props = {
+  color: string;
   placeholder: string;
   src: string;
   srcSet: string;
@@ -17,7 +18,7 @@ type Props = {
   blur: number;
 };
 
-function Img({ placeholder, src, srcSet, alt, state, blur }: Props) {
+function Img({ color, placeholder, src, srcSet, alt, state, blur }: Props) {
   const finalState = !placeholder || state === State.LOADED;
 
   let resolvedSrc = null;
@@ -38,6 +39,8 @@ function Img({ placeholder, src, srcSet, alt, state, blur }: Props) {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            color,
+            background: color,
             filter: finalState ? 'initial' : `blur(${blur}px)`,
             transition:
               state === State.LOADED
