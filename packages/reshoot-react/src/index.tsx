@@ -30,9 +30,9 @@ type ContainerProps = { onClick?: () => void; target?: string; href?: string };
 
 const IS_SERVER = typeof window === 'undefined';
 
-function setCache(hashId: string) {
+function setCache(src: string) {
   try {
-    sessionStorage.setItem(hashId, 'y');
+    sessionStorage.setItem(src, 'y');
   } catch (e) {
     console.log('Failed to set cache');
   }
@@ -62,7 +62,7 @@ const containerStyle = {
 
 const buttonContainerStyle = { cursor: 'pointer' };
 
-const whilelist = [
+const whitelist = [
   'src',
   'alt',
   'aspectRatio',
@@ -77,7 +77,7 @@ const whilelist = [
 
 function filterProps(p: any) {
   const r = {};
-  Object.keys(p).map(k => whilelist.indexOf(k) < 0 && (r[k] = p[k]));
+  Object.keys(p).map(k => whitelist.indexOf(k) < 0 && (r[k] = p[k]));
   return r;
 }
 

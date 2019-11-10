@@ -9,6 +9,7 @@ function scale3d(scale: number) {
 }
 
 type Props = {
+  color: string;
   placeholder: string;
   src: string;
   srcSet: string;

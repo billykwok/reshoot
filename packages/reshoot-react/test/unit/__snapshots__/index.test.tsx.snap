@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`react parse invalid input 1`] = `
+exports[`react customized options for image link 1`] = `
 .emotion-2 {
   overflow: hidden;
   position: relative;
@@ -14,8 +14,8 @@ exports[`react parse invalid input 1`] = `
 .emotion-0 {
   width: 100%;
   height: 0;
-  color: transparent;
-  background: transparent;
+  color: #fff;
+  background: #fff;
   padding-bottom: 80%;
 }
 
@@ -26,8 +26,62 @@ exports[`react parse invalid input 1`] = `
   width: 100%;
   height: 100%;
   object-fit: cover;
-  color: transparent;
-  background: transparent;
+  color: #fff;
+  background: #fff;
+  -webkit-filter: blur(100px);
+  filter: blur(100px);
+  -webkit-transition: initial;
+  transition: initial;
+  -webkit-transform: scale3d(1.05,1.05,1);
+  -ms-transform: scale3d(1.05,1.05,1);
+  transform: scale3d(1.05,1.05,1);
+}
+
+<a
+  className="emotion-2"
+  href="https://example.com"
+  target="_blank"
+>
+  <div
+    className="emotion-0"
+  />
+  <img
+    alt="Test image"
+    className="emotion-1"
+    src="placeholder.jpg"
+    srcSet={null}
+  />
+</a>
+`;
+
+exports[`react customized options for normal image 1`] = `
+.emotion-2 {
+  overflow: hidden;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.emotion-0 {
+  width: 100%;
+  height: 0;
+  color: #fff;
+  background: #fff;
+  padding-bottom: 80%;
+}
+
+.emotion-1 {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: #fff;
+  background: #fff;
   -webkit-filter: initial;
   filter: initial;
   -webkit-transition: initial;
@@ -46,7 +100,7 @@ exports[`react parse invalid input 1`] = `
   <img
     alt="Test image"
     className="emotion-1"
-    src="image2.jpg"
+    src="image.jpg"
     srcSet={null}
   />
 </div>
