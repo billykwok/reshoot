@@ -16,7 +16,8 @@
     "babel-plugin-macros"
   ],
   "files": [
-    "lib"
+    "lib",
+    "types"
   ],
   "publishConfig": {
     "access": "public"
