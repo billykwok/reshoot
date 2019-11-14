@@ -12,5 +12,5 @@ export default class Img extends React.Component<{
   target?: string;
   href?: string;
   messages?: { MANUAL: string; OFFLINE: string; ERROR: string };
-  onClick?: () => void;
+  onClick?: (e: MouseEvent) => void;
 }> {}
