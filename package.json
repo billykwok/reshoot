@@ -63,7 +63,7 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-macros": "^2.6.1",
-    "babel-plugin-tester": "^7.0.3",
+    "babel-plugin-tester": "^8.0.0",
     "codecov": "^3.6.1",
     "common-tags": "^1.8.0",
     "conventional-changelog-atom": "^2.0.3",
