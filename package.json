@@ -90,7 +90,7 @@
     "jest-emotion": "^10.0.17",
     "jest-environment-jsdom-fifteen": "^1.0.0",
     "lerna": "^3.18.4",
-    "memfs": "^2.16.1",
+    "memfs": "^3.0.0",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.0",
     "react": "^16.11.0",
