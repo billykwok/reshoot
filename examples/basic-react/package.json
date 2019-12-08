@@ -16,28 +16,29 @@
     "lodash.template": "^4.5.0",
     "lodash.merge": "^4.6.2",
     "mixin-deep": "^1.3.2",
+    "serialize-javascript": "^2.1.1",
     "set-value": "^2.0.1"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.6.3",
+    "@babel/runtime-corejs3": "^7.7.6",
     "@emotion/core": "^10.0.22",
-    "@reshoot/react": "^0.5.13",
-    "babel-plugin-macros": "^2.6.1",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "@reshoot/react": "^0.5.17",
+    "babel-plugin-macros": "^2.8.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-waypoint": "^9.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.6.3",
-    "@reshoot/loader": "^0.6.25",
-    "@reshoot/macro": "^0.3.13",
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "@reshoot/loader": "^0.6.27",
+    "@reshoot/macro": "^0.3.14",
     "babel-loader": "^8.0.6",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
   }
 }
