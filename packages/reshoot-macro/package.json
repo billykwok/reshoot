@@ -35,6 +35,6 @@
     "lint": "yarn eslint && yarn dtslint"
   },
   "peerDependencies": {
-    "babel-plugin-macros": "^2.6.1"
+    "babel-plugin-macros": "^2.8.0"
   }
 }
