@@ -32,7 +32,6 @@ module.exports = {
     '@typescript-eslint',
     'import',
     'prettier',
-    'emotion',
     'react',
     'react-hooks',
     'jsx-a11y'

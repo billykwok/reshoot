@@ -4,19 +4,16 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import linaria from 'linaria/rollup';
+import css from 'rollup-plugin-css-only';
 
 export default {
-  input: 'src/index.tsx',
+  input: 'src/index.ts',
   output: { file: 'lib/index.js', format: 'cjs', sourcemap: false },
-  external: [
-    '@emotion/css',
-    '@emotion/serialize',
-    '@emotion/unitless',
-    '@emotion/utils',
-    'object-assign',
-    'react'
-  ],
+  external: ['object-assign', 'react'],
   plugins: [
+    linaria(),
+    css({ output: 'lib/styles.css' }),
     babel({
       babelrc: false,
       runtimeHelpers: true,
@@ -27,11 +24,7 @@ export default {
           '@babel/preset-typescript',
           { isTSX: true, allExtensions: true, allowNamespaces: true }
         ],
-        '@babel/preset-react',
-        [
-          '@emotion/babel-preset-css-prop',
-          { hoist: true, useBuiltIns: true, throwIfNamespace: true }
-        ]
+        '@babel/preset-react'
       ],
       extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
       plugins: ['@babel/plugin-proposal-optional-chaining']
