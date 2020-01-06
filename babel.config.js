@@ -6,7 +6,8 @@ module.exports = {
       '@babel/preset-typescript',
       { isTSX: true, allExtensions: true, allowNamespaces: true }
     ],
-    '@babel/preset-react'
+    '@babel/preset-react',
+    'linaria/babel'
   ],
   plugins: [
     [

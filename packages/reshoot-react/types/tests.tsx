@@ -15,6 +15,7 @@ export function Page(): JSX.Element {
       aspectRatio={1.6}
       blur={5}
       color="#fff"
+      className="123"
       placeholder="../img/placeholder.jpg"
       srcSet=""
       target="_blank"

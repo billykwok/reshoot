@@ -6,7 +6,7 @@ module.exports = {
       { isTSX: true, allExtensions: true, allowNamespaces: true }
     ],
     '@babel/preset-react',
-    ['@emotion/babel-preset-css-prop', { hoist: true }]
+    'linaria/babel'
   ],
   plugins: [
     ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],

@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
-import { jsx } from '@emotion/core';
+import { useState, useCallback, memo } from 'react';
 import { Waypoint } from 'react-waypoint';
+import { css } from 'linaria';
 import assign from 'object-assign';
 
+import h from './h';
 import Placeholder from './Placeholder';
 import Img from './Img';
 import Message from './Message';
@@ -26,7 +27,11 @@ type Props = {
   onClick?: () => void;
 };
 
-type ContainerProps = { onClick?: () => void; target?: string; href?: string };
+type ContainerProps = {
+  onClick?: (event: MouseEvent) => void;
+  target?: string;
+  href?: string;
+};
 
 const IS_SERVER = typeof window === 'undefined';
 
@@ -51,16 +56,18 @@ function deriveInitialState(src: string): State {
   return State.INITIAL;
 }
 
-const containerStyle = {
-  overflow: 'hidden',
-  position: 'relative',
-  textDecoration: 'none',
-  padding: 0,
-  border: 'none',
-  outline: 'none'
-};
+const asContainerStyle = css`
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  padding: 0;
+  border: none;
+  outline: none;
+`;
 
-const buttonContainerStyle = { cursor: 'pointer' };
+const asButtonContainerStyle = css`
+  cursor: pointer;
+`;
 
 const whitelist = [
   'src',
@@ -92,11 +99,11 @@ function Reshoot(props: Props) {
     const image = new Image();
     image.onload = () => {
       setCache(props.src);
-      setState(State.LOADED);
+      setState(() => State.LOADED);
     };
     image.onerror = () => {
       console.error('Failed to download ' + props.src);
-      setState(State.ERROR);
+      setState(() => State.ERROR);
     };
     if (props.srcSet) {
       image.srcset = props.srcSet;
@@ -111,39 +118,52 @@ function Reshoot(props: Props) {
       download(),
     [state]
   );
-  const onClick = useCallback(() => {
-    if (state === State.LOADED) return;
-    setState(State.INITIAL);
-    download();
-  }, [state]);
+  const onClick = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault();
+      if (state === State.LOADED) return;
+      setState(() => State.INITIAL);
+      download();
+    },
+    [state]
+  );
 
   let Container = 'div';
   let containerProps: ContainerProps;
-  const asButton = state !== State.INITIAL && state !== State.LOADED;
-  if (asButton) {
+  const isButton = state !== State.INITIAL && state !== State.LOADED;
+  if (isButton) {
     Container = 'button';
-    containerProps = { onClick };
+    containerProps = assign(
+      {
+        className: asContainerStyle + ' ' + asButtonContainerStyle,
+        onClick
+      },
+      rest
+    );
   } else if (props.href) {
     Container = 'a';
-    containerProps = {
-      target: props.target,
-      href: props.href,
-      onClick: props.onClick
-    };
+    containerProps = assign(
+      {
+        className: asContainerStyle,
+        target: props.target,
+        href: props.href,
+        onClick: props.onClick
+      },
+      rest
+    );
   }
 
-  return jsx(
+  return h(
     Waypoint,
     { onEnter },
-    jsx(
+    h(
       Container,
-      assign(
-        { css: [containerStyle, asButton && buttonContainerStyle] },
-        containerProps,
-        rest
-      ),
-      jsx(Placeholder, { color: props.color, aspectRatio: props.aspectRatio }),
-      jsx(Img, {
+      containerProps,
+      h(Placeholder, {
+        color: props.color,
+        aspectRatio: props.aspectRatio
+      }),
+      h(Img, {
         color: props.color,
         placeholder: props.placeholder,
         src: props.src,
@@ -152,7 +172,7 @@ function Reshoot(props: Props) {
         state,
         blur: props.blur
       }),
-      jsx(Message, { state, text: props.messages[state] })
+      h(Message, { state, text: props.messages[state] })
     )
   );
 }
@@ -171,4 +191,4 @@ Reshoot.defaultProps = {
   }
 };
 
-export default React.memo<Props>(Reshoot);
+export default memo(Reshoot);

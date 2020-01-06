@@ -7,6 +7,7 @@ export default class Img extends React.Component<{
   aspectRatio: number;
   blur?: number;
   color?: string;
+  className?: string;
   placeholder?: string;
   srcSet?: string;
   target?: string;
