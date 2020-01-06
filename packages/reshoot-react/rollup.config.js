@@ -48,8 +48,10 @@ export default {
       toplevel: true,
       compress: {
         arguments: true,
+        /* eslint-disable @typescript-eslint/camelcase */
         booleans_as_integers: true,
         hoist_funs: true,
+        /* eslint-enable @typescript-eslint/camelcase */
         passes: 3,
         toplevel: true
       }

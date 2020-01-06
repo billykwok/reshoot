@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom'; // eslint-disable-line import/no-extraneous-dependencies
+import { render } from 'react-dom';
 import Img from '@reshoot/react';
 
 render(
@@ -7,7 +7,7 @@ render(
   document.getElementById('root')
 );
 
-export function Page(): JSX.Element {
+export function Page() {
   return (
     <Img
       src="../img/abc.png"
@@ -21,7 +21,9 @@ export function Page(): JSX.Element {
       target="_blank"
       href="https://example.com"
       messages={{ MANUAL: '', OFFLINE: '', ERROR: '' }}
-      onClick={() => {}}
+      onClick={() => {
+        console.log('Clicked');
+      }}
     />
   );
 }
