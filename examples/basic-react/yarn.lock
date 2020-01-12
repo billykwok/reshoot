@@ -556,15 +556,15 @@
     node-vibrant "^3.2.0-alpha"
     sharp "^0.23.4"
 
-"@reshoot/macro@^0.3.15":
-  version "0.3.15"
-  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.3.15.tgz#4824fafa19937ec0be413c15095343a78ebe69ab"
-  integrity sha512-L/imly7ivfAdaO7TChUG4Gu5Qkc2LE5j3Ve/+ylUvZdiSpGLoFHTZ5pW86GeOeigczpzqVIDTfm9iae2tAHKbQ==
+"@reshoot/macro@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.4.0.tgz#1349affdd6feec102087472daaa243f8abb71069"
+  integrity sha512-Xqry+AgvbEynmmQrjosO4+bJEYwRCAbHEQrZcRiLOKIr/F3qteCcrSCj+1bP24ehomS3vOXfa0w4W++9lm4EAA==
 
-"@reshoot/react@^0.5.21":
-  version "0.5.21"
-  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.5.21.tgz#15e1ae697aee6405fb269f403f6c2b9b9a0fdb53"
-  integrity sha512-thQOSy03UzxEL8/OQgmwroE2LM1Frvff+Q4vfoYxlTOITUL1sMTCNZdNjQES4UnWVxzmqbfoub4os3e+k/TD6w==
+"@reshoot/react@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.6.0.tgz#3575177dc8ccdde6aa8fd1d06f83cb0384681996"
+  integrity sha512-p1jCrr6nIYaKN3Yk5MD8GO+iOAfv7gSHEQ8GAS8elEQAxlkJgOcllyIKaaM2cdMsWtR9HyIzmlpcZhEOtOfbOg==
 
 "@types/events@*":
   version "3.0.0"
