@@ -1,5 +1,3 @@
-import { RefObject, useEffect } from 'react';
-
 const handlers: WeakMap<
   Element,
   (entry: IntersectionObserverEntry) => void
@@ -12,17 +10,15 @@ const observer =
     { root: null, rootMargin: '-5% 0%' }
   );
 
-const useIntersection = (
-  ref: RefObject<Element>,
+export const subscribe = (
+  el: Element,
   handler: (entry: IntersectionObserverEntry) => void
-) =>
-  useEffect(() => {
-    const el = ref.current;
-    if (el && !handlers.has(el)) {
-      handlers.set(el, entry => handler(entry));
-      observer.observe(el);
-    }
-    return () => el && handlers.delete(el) && observer.unobserve(el);
-  }, [ref]);
+) => {
+  if (el && !handlers.has(el)) {
+    handlers.set(el, handler);
+    observer.observe(el);
+  }
+};
 
-export default useIntersection;
+export const unsubscribe = (el: Element) =>
+  el && handlers.delete(el) && observer.unobserve(el);
