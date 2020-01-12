@@ -1,4 +1,11 @@
-import { useState, useCallback, memo, useRef, SyntheticEvent } from 'react';
+import {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  memo,
+  SyntheticEvent
+} from 'react';
 import { css } from 'linaria';
 
 import h from './h';
@@ -6,7 +13,7 @@ import Placeholder from './Placeholder';
 import Img from './Img';
 import Message from './Message';
 import State from './state';
-import useIntersection from './useIntersection';
+import { subscribe, unsubscribe } from './useIntersection';
 
 type Props = {
   src: string;
@@ -89,24 +96,29 @@ const Reshoot = ({
     image.onload = () => {
       setCache(src);
       setState(() => State.LOADED);
+      unsubscribe(ref.current);
     };
     image.onerror = () => {
       console.error('Failed to download ' + src);
       setState(() => State.ERROR);
+      unsubscribe(ref.current);
     };
     srcSet && (image.srcset = srcSet);
     image.src = src;
   }, []);
-  const onIntersection = useCallback(
-    (entry: IntersectionObserverEntry) =>
-      (entry && !entry.isIntersecting) ||
-      IS_SERVER ||
-      state === State.LOADED ||
-      state === State.MANUAL ||
-      download(),
-    [state]
-  );
-  useIntersection(ref, onIntersection);
+
+  useEffect(() => {
+    subscribe(
+      ref.current,
+      (entry: IntersectionObserverEntry) =>
+        IS_SERVER ||
+        (entry && !entry.isIntersecting) ||
+        state === State.LOADED ||
+        state === State.MANUAL ||
+        download()
+    );
+    return () => unsubscribe(ref.current);
+  }, [ref]);
 
   const cx = (...cls: string[]) =>
     (className ? cls.concat(className) : cls).join(' ');
