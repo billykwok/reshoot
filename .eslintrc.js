@@ -52,6 +52,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/prefer-includes': 'off',
     'prefer-spread': 'off',
+    'react/prop-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'jsx-a11y/image-has-content': 'off',
     'jsx-a11y/heading-has-content': 'off',
