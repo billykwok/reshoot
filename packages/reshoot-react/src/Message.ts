@@ -57,10 +57,8 @@ const clickToReload = h(
 
 type Props = { state: State; text: string };
 
-function Message({ state, text }: Props) {
-  const useStateResult = useState(false);
-  const loaded = useStateResult[0];
-  const setLoaded = useStateResult[1];
+const Message = ({ state, text }: Props) => {
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => setLoaded(() => true), []);
   return (
     state !== State.INITIAL &&
@@ -73,6 +71,6 @@ function Message({ state, text }: Props) {
       clickToReload
     )
   );
-}
+};
 
 export default Message;

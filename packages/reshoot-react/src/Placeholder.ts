@@ -9,8 +9,8 @@ const asPlaceholder = css`
 
 type Props = { color: string; aspectRatio: number };
 
-function Placeholder({ color, aspectRatio }: Props) {
-  return h('div', {
+const Placeholder = ({ color, aspectRatio }: Props) =>
+  h('div', {
     className: asPlaceholder,
     style: {
       color,
@@ -18,6 +18,5 @@ function Placeholder({ color, aspectRatio }: Props) {
       paddingBottom: aspectRatio ? aspectRatio + '%' : 0
     }
   });
-}
 
 export default Placeholder;

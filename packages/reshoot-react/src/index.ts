@@ -1,4 +1,4 @@
-import { useState, useCallback, memo, useRef, Ref } from 'react';
+import { useState, useCallback, memo, useRef, SyntheticEvent } from 'react';
 import { css } from 'linaria';
 
 import h from './h';
@@ -12,6 +12,7 @@ type Props = {
   src: string;
   alt: string;
   aspectRatio: number;
+  className?: string;
   blur?: number;
   color?: string;
   placeholder?: string;
@@ -23,31 +24,23 @@ type Props = {
     [State.OFFLINE]: string;
     [State.ERROR]: string;
   };
-  onClick?: () => void;
-};
-
-type ContainerProps = {
-  className?: string;
-  ref?: Ref<HTMLElement>;
-  onClick?: (event: MouseEvent) => void;
-  target?: string;
-  href?: string;
+  onClick?: (e: SyntheticEvent<Element, MouseEvent>) => void;
 };
 
 const IS_SERVER = typeof window === 'undefined';
 
-function setCache(src: string) {
+const setCache = (src: string) => {
   try {
     sessionStorage.setItem(src, 'y');
   } catch (e) {
     console.log('Failed to set cache');
   }
-}
+};
 
-function deriveInitialState(src: string): State {
+const deriveInitialState = (src: string): State => {
   if (IS_SERVER || sessionStorage.getItem(src)) return State.LOADED;
-  const support = typeof window.navigator !== 'undefined';
-  const connection = support && window.navigator['connection'];
+  const support = typeof navigator !== 'undefined';
+  const connection = support && navigator['connection'];
   if (connection && connection.effectiveType.indexOf('2g') > -1) {
     return State.MANUAL;
   }
@@ -55,9 +48,9 @@ function deriveInitialState(src: string): State {
     return State.OFFLINE;
   }
   return State.INITIAL;
-}
+};
 
-const asContainerStyle = css`
+const asContainer = css`
   overflow: hidden;
   position: relative;
   text-decoration: none;
@@ -66,12 +59,13 @@ const asContainerStyle = css`
   outline: none;
 `;
 
-const asButtonContainerStyle = css`
+const asButtonContainer = css`
   cursor: pointer;
 `;
 
-function Reshoot({
+const Reshoot = ({
   src,
+  className,
   alt,
   aspectRatio,
   blur = 20,
@@ -87,7 +81,7 @@ function Reshoot({
   },
   onClick,
   ...rest
-}: Props) {
+}: Props) => {
   const ref = useRef(null);
   const [state, setState] = useState(() => deriveInitialState(src));
   const download = useCallback(() => {
@@ -100,14 +94,12 @@ function Reshoot({
       console.error('Failed to download ' + src);
       setState(() => State.ERROR);
     };
-    if (srcSet) {
-      image.srcset = srcSet;
-    }
+    srcSet && (image.srcset = srcSet);
     image.src = src;
   }, []);
   const onIntersection = useCallback(
-    (entries: IntersectionObserverEntry[]) =>
-      (entries[0] && !entries[0].isIntersecting) ||
+    (entry: IntersectionObserverEntry) =>
+      (entry && !entry.isIntersecting) ||
       IS_SERVER ||
       state === State.LOADED ||
       state === State.MANUAL ||
@@ -116,43 +108,39 @@ function Reshoot({
   );
   useIntersection(ref, onIntersection);
 
-  let Container = 'div';
-  let containerProps: ContainerProps = {
-    className: asContainerStyle,
-    ref,
-    ...rest
-  };
-  const isButton = state !== State.INITIAL && state !== State.LOADED;
-  if (isButton) {
-    Container = 'button';
-    containerProps = {
-      ...containerProps,
-      className: asContainerStyle + ' ' + asButtonContainerStyle,
-      onClick: (e: MouseEvent) => {
-        e.preventDefault();
-        if (state === State.LOADED) return;
-        setState(() => State.INITIAL);
-        download();
-      }
-    };
-  } else if (href) {
-    Container = 'a';
-    containerProps = {
-      ...containerProps,
-      className: asContainerStyle,
-      target,
-      href,
-      onClick
-    };
-  }
+  const cx = (...cls: string[]) =>
+    (className ? cls.concat(className) : cls).join(' ');
 
-  return h(
-    Container,
-    containerProps,
+  const children = [
     h(Placeholder, { color, aspectRatio }),
     h(Img, { color, placeholder, src, srcSet, alt, state, blur }),
     h(Message, { state, text: messages[state] })
-  );
-}
+  ];
+
+  if (state !== State.INITIAL && state !== State.LOADED) {
+    return h(
+      'button',
+      {
+        ref,
+        className: cx(asContainer, asButtonContainer),
+        onClick: (e: SyntheticEvent<Element, MouseEvent>) => {
+          e.preventDefault();
+          setState(() => State.INITIAL);
+          download();
+        },
+        ...rest
+      },
+      ...children
+    );
+  }
+  if (href) {
+    return h(
+      'a',
+      { ref, className: cx(asContainer), target, href, onClick, ...rest },
+      ...children
+    );
+  }
+  return h('div', { ref, className: cx(asContainer), ...rest }, ...children);
+};
 
 export default memo(Reshoot);

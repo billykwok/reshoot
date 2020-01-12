@@ -5,6 +5,18 @@ import '@testing-library/jest-dom/extend-expect';
 import Reshoot from '../../src';
 
 describe('react', () => {
+  beforeAll(() => {
+    (window as any).IntersectionObserver = class IntersectionObserver {
+      observe() {
+        return null;
+      }
+
+      unobserve() {
+        return null;
+      }
+    };
+  });
+
   test('parse valid input', () => {
     expect(
       renderer
