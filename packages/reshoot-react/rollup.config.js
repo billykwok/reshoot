@@ -19,15 +19,14 @@ export default {
       runtimeHelpers: true,
       exclude: '../../node_modules/**',
       presets: [
-        '@babel/preset-env',
+        '@babel/preset-modules',
         [
           '@babel/preset-typescript',
           { isTSX: true, allExtensions: true, allowNamespaces: true }
         ],
         '@babel/preset-react'
       ],
-      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-      plugins: ['@babel/plugin-proposal-optional-chaining']
+      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx']
     }),
     peerDepsExternal(),
     resolve({ extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'] }),
@@ -38,10 +37,7 @@ export default {
     commonjs({
       include: '../../node_modules/**',
       extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-      namedExports: {
-        '../../node_modules/react-js/index.js': ['useState'],
-        '../../node_modules/react-waypoint/cjs/index.js': ['Waypoint']
-      }
+      namedExports: { '../../node_modules/react-js/index.js': ['useState'] }
     }),
     terser({
       sourcemap: false,

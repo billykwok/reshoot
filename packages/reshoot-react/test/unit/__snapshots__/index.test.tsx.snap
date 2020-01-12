@@ -35,7 +35,9 @@ exports[`react customized options for image link 1`] = `
 `;
 
 exports[`react customized options for normal image 1`] = `
-<div>
+<div
+  className="a1l1v48i"
+>
   <div
     className="ab5l1i6"
     style={
@@ -65,7 +67,9 @@ exports[`react customized options for normal image 1`] = `
 `;
 
 exports[`react parse valid input 1`] = `
-<div>
+<div
+  className="a1l1v48i"
+>
   <div
     className="ab5l1i6"
     style={

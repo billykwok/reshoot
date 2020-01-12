@@ -16,10 +16,8 @@ module.exports = {
         corejs: { version: 3, proposals: true },
         helpers: true,
         regenerator: true,
-        useESModules: false
+        useESModules: true
       }
-    ],
-    ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
-    '@babel/plugin-proposal-optional-chaining'
+    ]
   ]
 };

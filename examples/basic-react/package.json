@@ -20,20 +20,19 @@
     "set-value": "^2.0.1"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.7.7",
-    "@reshoot/react": "^0.5.18",
+    "@babel/runtime-corejs3": "^7.8.0",
+    "@reshoot/react": "^0.5.21",
     "babel-plugin-macros": "^2.8.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-waypoint": "^9.0.2"
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.7",
-    "@babel/core": "^7.7.7",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.7.7",
-    "@babel/preset-react": "^7.7.4",
-    "@reshoot/loader": "^0.6.28",
+    "@babel/cli": "^7.8.0",
+    "@babel/core": "^7.8.0",
+    "@babel/plugin-transform-runtime": "^7.8.0",
+    "@babel/preset-modules": "^0.1.2",
+    "@babel/preset-react": "^7.8.0",
+    "@reshoot/loader": "^0.6.29",
     "@reshoot/macro": "^0.3.15",
     "babel-loader": "^8.0.6",
     "webpack": "^4.41.5",
