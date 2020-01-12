@@ -5,9 +5,7 @@ import h from './h';
 import defaultStyle from './defaultStyle';
 import State from './state';
 
-function scale3d(scale: number) {
-  return `scale3d(${scale},${scale},1)`;
-}
+const scale3d = (scale: number) => `scale3d(${scale},${scale},1)`;
 
 const asImg = css`
   width: 100%;
@@ -25,7 +23,7 @@ type Props = {
   blur: number;
 };
 
-function Img({ color, placeholder, src, srcSet, alt, state, blur }: Props) {
+const Img = ({ color, placeholder, src, srcSet, alt, state, blur }: Props) => {
   const finalState = !placeholder || state === State.LOADED;
   const resolvedSrc = finalState ? src : placeholder;
   const resolvedSrcSet = finalState ? srcSet : null;
@@ -47,6 +45,6 @@ function Img({ color, placeholder, src, srcSet, alt, state, blur }: Props) {
         srcSet: resolvedSrcSet,
         alt
       });
-}
+};
 
 export default memo(Img);
