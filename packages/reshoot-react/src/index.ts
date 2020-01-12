@@ -1,13 +1,12 @@
-import { useState, useCallback, memo } from 'react';
-import { Waypoint } from 'react-waypoint';
+import { useState, useCallback, memo, useRef, Ref } from 'react';
 import { css } from 'linaria';
-import assign from 'object-assign';
 
 import h from './h';
 import Placeholder from './Placeholder';
 import Img from './Img';
 import Message from './Message';
 import State from './state';
+import useIntersection from './useIntersection';
 
 type Props = {
   src: string;
@@ -28,6 +27,8 @@ type Props = {
 };
 
 type ContainerProps = {
+  className?: string;
+  ref?: Ref<HTMLElement>;
   onClick?: (event: MouseEvent) => void;
   target?: string;
   href?: string;
@@ -69,126 +70,89 @@ const asButtonContainerStyle = css`
   cursor: pointer;
 `;
 
-const whitelist = [
-  'src',
-  'alt',
-  'aspectRatio',
-  'blur',
-  'color',
-  'placeholder',
-  'srcSet',
-  'target',
-  'href',
-  'messages'
-];
-
-function filterProps(p: any) {
-  const r = {};
-  Object.keys(p).map(k => whitelist.indexOf(k) < 0 && (r[k] = p[k]));
-  return r;
-}
-
-function Reshoot(props: Props) {
-  const useStateResult = useState(() => deriveInitialState(props.src));
-  const state = useStateResult[0];
-  const setState = useStateResult[1];
-
-  const rest = filterProps(props);
-
+function Reshoot({
+  src,
+  alt,
+  aspectRatio,
+  blur = 20,
+  color = 'transparent',
+  placeholder = null,
+  srcSet = null,
+  target = '_self',
+  href = null,
+  messages = {
+    [State.MANUAL]: 'Not autoloaded in slow network',
+    [State.OFFLINE]: 'Browser is offline',
+    [State.ERROR]: 'Fail to load'
+  },
+  onClick,
+  ...rest
+}: Props) {
+  const ref = useRef(null);
+  const [state, setState] = useState(() => deriveInitialState(src));
   const download = useCallback(() => {
     const image = new Image();
     image.onload = () => {
-      setCache(props.src);
+      setCache(src);
       setState(() => State.LOADED);
     };
     image.onerror = () => {
-      console.error('Failed to download ' + props.src);
+      console.error('Failed to download ' + src);
       setState(() => State.ERROR);
     };
-    if (props.srcSet) {
-      image.srcset = props.srcSet;
+    if (srcSet) {
+      image.srcset = srcSet;
     }
-    image.src = props.src;
+    image.src = src;
   }, []);
-  const onEnter = useCallback(
-    () =>
+  const onIntersection = useCallback(
+    (entries: IntersectionObserverEntry[]) =>
+      (entries[0] && !entries[0].isIntersecting) ||
       IS_SERVER ||
       state === State.LOADED ||
       state === State.MANUAL ||
       download(),
     [state]
   );
-  const onClick = useCallback(
-    (e: MouseEvent) => {
-      e.preventDefault();
-      if (state === State.LOADED) return;
-      setState(() => State.INITIAL);
-      download();
-    },
-    [state]
-  );
+  useIntersection(ref, onIntersection);
 
   let Container = 'div';
-  let containerProps: ContainerProps;
+  let containerProps: ContainerProps = {
+    className: asContainerStyle,
+    ref,
+    ...rest
+  };
   const isButton = state !== State.INITIAL && state !== State.LOADED;
   if (isButton) {
     Container = 'button';
-    containerProps = assign(
-      {
-        className: asContainerStyle + ' ' + asButtonContainerStyle,
-        onClick
-      },
-      rest
-    );
-  } else if (props.href) {
+    containerProps = {
+      ...containerProps,
+      className: asContainerStyle + ' ' + asButtonContainerStyle,
+      onClick: (e: MouseEvent) => {
+        e.preventDefault();
+        if (state === State.LOADED) return;
+        setState(() => State.INITIAL);
+        download();
+      }
+    };
+  } else if (href) {
     Container = 'a';
-    containerProps = assign(
-      {
-        className: asContainerStyle,
-        target: props.target,
-        href: props.href,
-        onClick: props.onClick
-      },
-      rest
-    );
+    containerProps = {
+      ...containerProps,
+      className: asContainerStyle,
+      target,
+      href,
+      onClick
+    };
   }
 
   return h(
-    Waypoint,
-    { onEnter },
-    h(
-      Container,
-      containerProps,
-      h(Placeholder, {
-        color: props.color,
-        aspectRatio: props.aspectRatio
-      }),
-      h(Img, {
-        color: props.color,
-        placeholder: props.placeholder,
-        src: props.src,
-        srcSet: props.srcSet,
-        alt: props.alt,
-        state,
-        blur: props.blur
-      }),
-      h(Message, { state, text: props.messages[state] })
-    )
+    Container,
+    containerProps,
+    h(Placeholder, { color, aspectRatio }),
+    h(Img, { color, placeholder, src, srcSet, alt, state, blur }),
+    h(Message, { state, text: messages[state] })
   );
 }
-
-Reshoot.defaultProps = {
-  blur: 20,
-  color: 'transparent',
-  placeholder: null,
-  srcSet: null,
-  target: '_self',
-  href: null,
-  messages: {
-    [State.MANUAL]: 'Not autoloaded in slow network',
-    [State.OFFLINE]: 'Browser is offline',
-    [State.ERROR]: 'Fail to load'
-  }
-};
 
 export default memo(Reshoot);

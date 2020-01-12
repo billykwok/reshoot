@@ -2,7 +2,7 @@ module.exports = {
   babelrcRoots: ['.', './packages/*'],
   presets: [
     [
-      '@babel/preset-env',
+      '@babel/preset-modules',
       { targets: { node: 'current' }, useBuiltIns: 'usage', corejs: 3 }
     ],
     [
@@ -13,7 +13,6 @@ module.exports = {
   ],
   plugins: [
     'babel-plugin-macros',
-    '@babel/plugin-proposal-optional-chaining',
     [
       '@babel/plugin-transform-runtime',
       { corejs: 3, helpers: true, regenerator: true, useESModules: false }

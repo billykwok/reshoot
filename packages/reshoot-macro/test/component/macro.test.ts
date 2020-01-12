@@ -1,11 +1,11 @@
 import { transformAsync } from '@babel/core';
 
 const babelConfig: {
-  readonly filename: string;
-  readonly configFile: false;
-  readonly babelrc: false;
-  readonly presets: any[];
-  readonly plugins: any[];
+  filename: string;
+  configFile: false;
+  babelrc: false;
+  presets: any[];
+  plugins: any[];
 } = {
   filename: __filename,
   configFile: false,
