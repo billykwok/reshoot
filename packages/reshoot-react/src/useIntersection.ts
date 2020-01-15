@@ -7,7 +7,7 @@ const observer =
   typeof IntersectionObserver !== 'undefined' &&
   new IntersectionObserver(
     entries => entries.forEach(entry => handlers.get(entry.target)(entry)),
-    { root: null, rootMargin: '-5% 0%' }
+    { rootMargin: '-5% 0%' }
   );
 
 export const subscribe = (
