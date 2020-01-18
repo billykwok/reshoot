@@ -10,14 +10,12 @@ const style = css`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
   text-align: center;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 15px 20px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  width: 100%;
   max-width: 120px;
   transition: opacity 0.5s ease;
 `;
