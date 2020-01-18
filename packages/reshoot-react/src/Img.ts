@@ -9,7 +9,6 @@ const scale3d = (scale: number) => `scale3d(${scale},${scale},1)`;
 
 const asImg = css`
   top: 0;
-  width: 100%;
   height: 100%;
   object-fit: cover;
 `;
