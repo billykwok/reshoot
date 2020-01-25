@@ -67,7 +67,7 @@
     "common-tags": "^1.8.0",
     "conventional-changelog-atom": "^2.0.3",
     "core-js": "^3.6.4",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "dtslint": "^2.0.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
