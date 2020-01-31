@@ -5,8 +5,7 @@ const defaultExpected = {
   hashLength: 16,
   sizes: [480, 640, 840, 1080],
   color: '#1c2c34',
-  keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color'],
-  extra: {}
+  keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color']
 };
 
 export function matchOutputAsObject(expected, actual) {
@@ -17,13 +16,11 @@ export function matchOutputAsObject(expected, actual) {
     hashLength,
     sizes,
     color,
-    keys,
-    extra
+    keys
   } = Object.assign({}, defaultExpected, expected);
   const actualKeys = Object.keys(actual);
-  const extraKeys = Object.keys(extra);
-  expect(actualKeys).toHaveLength(keys.length + extraKeys.length);
-  expect(actualKeys).toEqual(expect.arrayContaining([...keys, ...extraKeys]));
+  expect(actualKeys).toHaveLength(keys.length);
+  expect(actualKeys).toEqual(expect.arrayContaining(keys));
   if (keys.includes('mime')) {
     expect(actual.mime).toEqual(mime);
   }
@@ -43,7 +40,8 @@ export function matchOutputAsObject(expected, actual) {
       new RegExp(
         `^${sizes
           .map(
-            size => `${publicPath}[0-9a-f]{${hashLength}}-${size}.jpg ${size}w`
+            (size: number) =>
+              `${publicPath}[0-9a-f]{${hashLength}}-${size}.jpg ${size}w`
           )
           .join(',')}$`
       )
@@ -51,9 +49,6 @@ export function matchOutputAsObject(expected, actual) {
   }
   if (keys.includes('color')) {
     expect(actual.color).toEqual(color);
-  }
-  if (extra) {
-    extraKeys.forEach(key => expect(extra[key]).toEqual(actual[key]));
   }
 }
 

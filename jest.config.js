@@ -4,6 +4,8 @@ module.exports = {
     '<rootDir>/integration/jest.config.js'
   ],
   collectCoverage: true,
+  testEnvironment: 'jest-environment-jsdom-sixteen',
+  coverageProvider: 'v8',
   coverageDirectory: '<rootDir>/coverage',
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
   notify: true,
