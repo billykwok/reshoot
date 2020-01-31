@@ -4,9 +4,9 @@
       "packages": [
         "examples/basic-react/package.json",
         "package.json",
-        "packages/reshoot-loader/package.json",
-        "packages/reshoot-macro/package.json",
-        "packages/reshoot-react/package.json"
+        "packages/loader/package.json",
+        "packages/macro/package.json",
+        "packages/react/package.json"
       ]
     }
   }

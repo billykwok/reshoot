@@ -23,7 +23,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/billykwok/reshoot/packages/reshoot-macro",
+  "repository": "https://github.com/billykwok/reshoot/packages/macro",
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },

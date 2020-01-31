@@ -73,7 +73,7 @@ Please voice your opinion and report bugs in the [issues](https://github.com/bil
 
 ## Contributing
 
-You are more than welcome to add more functionalities, improve documentation, fix bugs, and anything you think is needed. The build step is pretty self-explanatory. Please refer to [`package.json`](https://github.com/billykwok/reshoot/blob/master/packages/reshoot-react/package.json).
+You are more than welcome to add more functionalities, improve documentation, fix bugs, and anything you think is needed. The build step is pretty self-explanatory. Please refer to [`package.json`](https://github.com/billykwok/reshoot/blob/master/packages/react/package.json).
 
 ## License
 
