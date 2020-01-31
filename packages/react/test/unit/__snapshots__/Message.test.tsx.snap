@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message tag renders error 1`] = `
+<div
+  className="drphubp skl3xcs"
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+>
+  <svg
+    className="atih7cb"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"
+      fill="#fff"
+    />
+    <path
+      d="M0 0h24v24H0z"
+      fill="none"
+    />
+  </svg>
+  <div
+    className="a1pleuz"
+  >
+    some message
+  </div>
+  <div
+    className="c1xvhtgv"
+  >
+    Click to reload
+  </div>
+</div>
+`;
+
+exports[`Message tag renders initial 1`] = `null`;
+
+exports[`Message tag renders loaded 1`] = `null`;
+
+exports[`Message tag renders manual 1`] = `
+<div
+  className="drphubp skl3xcs"
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <svg
+    className="atih7cb"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"
+      fill="#fff"
+    />
+    <path
+      d="M0 0h24v24H0z"
+      fill="none"
+    />
+  </svg>
+  <div
+    className="a1pleuz"
+  >
+    some message
+  </div>
+  <div
+    className="c1xvhtgv"
+  >
+    Click to reload
+  </div>
+</div>
+`;
+
+exports[`Message tag renders offline 1`] = `
+<div
+  className="drphubp skl3xcs"
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+>
+  <svg
+    className="atih7cb"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"
+      fill="#fff"
+    />
+    <path
+      d="M0 0h24v24H0z"
+      fill="none"
+    />
+  </svg>
+  <div
+    className="a1pleuz"
+  >
+    some message
+  </div>
+  <div
+    className="c1xvhtgv"
+  >
+    Click to reload
+  </div>
+</div>
+`;

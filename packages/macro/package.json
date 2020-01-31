@@ -1,0 +1,43 @@
+{
+  "name": "@reshoot/macro",
+  "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
+  "version": "0.4.0",
+  "main": "lib/index.js",
+  "author": "Billy Kwok <xobkwok@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "reshoot",
+    "srcset",
+    "image",
+    "img",
+    "responsive",
+    "babel",
+    "babel-macros",
+    "babel-plugin-macros"
+  ],
+  "files": [
+    "lib",
+    "types"
+  ],
+  "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/billykwok/reshoot/packages/reshoot-macro",
+  "bugs": {
+    "url": "https://github.com/billykwok/reshoot/issues"
+  },
+  "homepage": "https://github.com/billykwok/reshoot",
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts,.tsx,.mjs,.js,.jsx",
+    "eslint": "eslint ./src/**",
+    "dtslint": "dtslint --onlyTestTsNext --localTs ../../node_modules/typescript/lib types",
+    "lint": "yarn eslint && yarn dtslint"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/types": "^7.8.3",
+    "babel-plugin-macros": "^2.8.0"
+  }
+}
