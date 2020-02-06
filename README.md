@@ -14,7 +14,7 @@ This library has a single mission - to make rendering responsive and lazy-loaded
 
 By the way, this library is shipped with sensable default options so it can be considered as a zero-config library. Plus, it is powered by [`hook`](https://reactjs.org/docs/hooks-overview.html) (if it matters to you).
 
-## What is in the box?
+## What is in the box
 
 - A [`webpack-loader`](https://webpack.js.org/loaders) that emits low-quality image preview ([`lqip`](https://github.com/zouhir/lqip)) and responsive images, and returns meta info of the images.
 - A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) that transpile `reshoot('image.jpg', { a: 1, b: 2 })` into `require('image.jpg!@reshoot/loader?a=1&b=2')`.
