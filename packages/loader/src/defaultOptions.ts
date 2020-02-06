@@ -1,4 +1,4 @@
-import { Options } from './type';
+import { Options, AspectRatioType, AspectRatioFormat } from './type';
 
 export function generateDefaultOptions(env: string): Options {
   return {
@@ -22,13 +22,10 @@ export function generateDefaultOptions(env: string): Options {
     background: '#fff',
     color: 'DarkMuted',
     forceFormat: false,
-    placeholder: {
-      size: 8,
-      trimDataUrl: false
-    },
+    placeholder: { size: 8, trimDataUrl: false },
     aspectRatio: {
-      type: 'heightByWidth',
-      format: 'percent',
+      type: AspectRatioType.HeightByWidth,
+      format: AspectRatioFormat.Percent,
       decimal: 2
     },
     disable: env === 'development',
