@@ -1,7 +1,0 @@
-[
-  { "src": "test path 1", "color": "red", "others": 1 },
-  { "src": "test path 2", "color": "blue", "others": 2 },
-  { "src": "test path 3", "color": "yellow", "others": 3 },
-  { "src": "test path 4", "color": "#ddeeaa", "others": 4 },
-  { "src": "test path 5", "color": "black", "others": 5 }
-]

@@ -25,12 +25,12 @@ function handle({ references, state }: MacroParams) {
       );
     }
 
+    const images = require(path.join(path.dirname(filename), firstArg));
     referencePath.parentPath.replaceWith(
       arrayExpression(
-        require(path.join(
-          path.dirname(filename),
-          firstArg
-        )).map(({ src, ...options }) => requireExpression(src, options))
+        images.map(({ src, ...rest }) =>
+          requireExpression(src, { ...options, ...rest })
+        )
       )
     );
   });
