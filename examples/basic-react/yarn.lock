@@ -564,10 +564,10 @@
   dependencies:
     core-js "^2.5.7"
 
-"@reshoot/loader@^0.6.30":
-  version "0.6.30"
-  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.6.30.tgz#fe76ff17510c383b7dd2cf58844ca9b67a5cff38"
-  integrity sha512-dfR5QRlXEnuKXgRNjF3UG2thfVRGYUvyYde02NWAbBqrIiQAu6IRNzknqgas9OGE3nYfLnBtcrvNs7Womjq9VQ==
+"@reshoot/loader@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.7.0.tgz#7a5d04bc2a18dd261a066e25fabe30392f609abb"
+  integrity sha512-0mAIGOus+fH9qc5l4Yhkr6zzRE3Nznt6pLlwUug7GU7NzjVFxFIaihW2Jg/wHZZ6fY+AQjb3g15QT0HRmmipbw==
   dependencies:
     deepmerge "^4.2.2"
     image-size "^0.8.3"
@@ -575,15 +575,15 @@
     node-vibrant "^3.2.0-alpha"
     sharp "^0.24.0"
 
-"@reshoot/macro@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.4.0.tgz#1349affdd6feec102087472daaa243f8abb71069"
-  integrity sha512-Xqry+AgvbEynmmQrjosO4+bJEYwRCAbHEQrZcRiLOKIr/F3qteCcrSCj+1bP24ehomS3vOXfa0w4W++9lm4EAA==
+"@reshoot/macro@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.5.1.tgz#04a5c6665a0aa7ae141d9a453b8b378a23611068"
+  integrity sha512-AvdFDHUmNW3otx9rQbazCYmyOtmMLfLgBIQKUREgGAn0a4vccStuZBBhQFvZlhLuE5l8xdZGo8YKNi7Xn8s1tg==
 
-"@reshoot/react@^0.6.7":
-  version "0.6.7"
-  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.6.7.tgz#16a48a5ab90edb7bdbbd548fdb5a9ab0905cc18d"
-  integrity sha512-SwUHYykuXeVBjQibwCPy1Fs/ukq3ePP6zABCqIVe+A/akKbXX2DnJtSnCaHmSbikTyPFIbg0q71cliZBFkUykA==
+"@reshoot/react@^0.6.10":
+  version "0.6.10"
+  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.6.10.tgz#02a2870a9b934bd4420c555d8f517125ab6b58e9"
+  integrity sha512-UImFSqX8vjaHOABeC92TKFlLyCx8kDWbjpBcuTmAeVKNfctMa2nUspZ2DLT/kcUbg8c7oJLLYOveWkK4/Xm25Q==
 
 "@types/events@*":
   version "3.0.0"
@@ -5288,10 +5288,10 @@ webpack-dev-middleware@^3.7.2:
     range-parser "^1.2.1"
     webpack-log "^2.0.0"
 
-webpack-dev-server@^3.10.1:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.10.1.tgz#1ff3e5cccf8e0897aa3f5909c654e623f69b1c0e"
-  integrity sha512-AGG4+XrrXn4rbZUueyNrQgO4KGnol+0wm3MPdqGLmmA+NofZl3blZQKxZ9BND6RDNuvAK9OMYClhjOSnxpWRoA==
+webpack-dev-server@^3.10.3:
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.10.3.tgz#f35945036813e57ef582c2420ef7b470e14d3af0"
+  integrity sha512-e4nWev8YzEVNdOMcNzNeCN947sWJNd43E5XvsJzbAL08kGc2frm1tQ32hTJslRS+H65LCb/AaUCYU7fjHCpDeQ==
   dependencies:
     ansi-html "0.0.7"
     bonjour "^3.5.0"
