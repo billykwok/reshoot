@@ -10,7 +10,6 @@ export interface ImageMeta {
   readonly [key: string | number | symbol]: any;
 }
 
-export default function reshoot(
-  path: string,
-  options?: Partial<ImageMeta>
-): ImageMeta & ImageMeta[];
+export default function reshoot<
+  T extends Partial<ImageMeta> = Partial<ImageMeta>
+>(path: string, options?: T): T & T[];

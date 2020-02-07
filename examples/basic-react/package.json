@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.8.4",
-    "@reshoot/react": "^0.6.7",
+    "@reshoot/react": "^0.6.10",
     "babel-plugin-macros": "^2.8.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
@@ -32,11 +32,11 @@
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-modules": "^0.1.2",
     "@babel/preset-react": "^7.8.3",
-    "@reshoot/loader": "^0.6.30",
-    "@reshoot/macro": "^0.4.0",
+    "@reshoot/loader": "^0.7.0",
+    "@reshoot/macro": "^0.5.1",
     "babel-loader": "^8.0.6",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
+    "webpack-dev-server": "^3.10.3"
   }
 }
