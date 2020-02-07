@@ -1,9 +1,5 @@
 import { NodePath } from '@babel/core';
-import {
-  isExpression,
-  isCallExpression,
-  isObjectExpression
-} from '@babel/types';
+import { isExpression, isCallExpression } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
 import util from 'util';
 
@@ -16,10 +12,7 @@ function extractArguments(referencePath: NodePath) {
     throw new MacroError('Please use it as a function.');
   }
 
-  const argumentPaths = referencePath.parentPath.get('arguments');
-  if (!Array.isArray(argumentPaths)) {
-    throw new Error('Expect an array of arguments');
-  }
+  const argumentPaths = referencePath.parentPath.get('arguments') as NodePath[];
   const numberOfArguments = argumentPaths.length;
   if (numberOfArguments < 1 || numberOfArguments > 2) {
     throw new MacroError(
@@ -35,7 +28,7 @@ function extractArguments(referencePath: NodePath) {
     );
   }
 
-  if (numberOfArguments > 1 && !isObjectExpression(argumentPaths[1].node)) {
+  if (numberOfArguments > 1 && !isExpression(argumentPaths[1].node)) {
     throw new MacroError(
       `The second argument must be an expression, but got ${inspect(
         argumentPaths[1].node

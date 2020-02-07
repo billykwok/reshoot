@@ -63,12 +63,12 @@ describe('macros', () => {
     const tranformed = await transformAsync(
       `
         import reshoot from '../../lib/macro';
-        const images = reshoot('../../../../__fixtures__/paths.json', { key: 'irrelevant' });
+        const images = reshoot('../../../../__fixtures__/images.json', { key: 'irrelevant' });
       `,
       babelConfig
     );
     expect(tranformed.code.trim()).toEqual(
-      'var images = [require("test path 1?{\\"color\\":\\"red\\",\\"others\\":1}"), require("test path 2?{\\"color\\":\\"blue\\",\\"others\\":2}"), require("test path 3?{\\"color\\":\\"yellow\\",\\"others\\":3}"), require("test path 4?{\\"color\\":\\"#ddeeaa\\",\\"others\\":4}"), require("test path 5?{\\"color\\":\\"black\\",\\"others\\":5}")];'
+      'var images = [require("image-1.jpg?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"red\\",\\"others\\":1}"), require("image-2.png?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"blue\\",\\"others\\":2}"), require("image-3.webp?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"yellow\\",\\"others\\":3}"), require("image-4.gif?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"#ddeeaa\\",\\"others\\":4}"), require("image-5.svg?{\\"key\\":\\"irrelevant\\",\\"others\\":5}")];'
     );
   });
 });

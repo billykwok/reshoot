@@ -1,6 +1,10 @@
 import util from 'util';
 import { NodePath } from '@babel/core';
-import { stringLiteral, objectExpression } from '@babel/types';
+import {
+  stringLiteral,
+  objectExpression,
+  continueStatement
+} from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
 
 import extractArgumentPaths from '../../src/extractArguments';
@@ -18,7 +22,7 @@ function createReferencePath(argumentNodes: NodePath[]): NodePath {
 
 describe('arguments', () => {
   test('parse valid input', () => {
-    const path = 'image.jpeg';
+    const path = 'image.jpg';
     const firstArgPath = { node: stringLiteral(path) } as NodePath;
     const secondArgPath = { node: objectExpression([]) } as NodePath;
     const referencePath = createReferencePath([firstArgPath, secondArgPath]);
@@ -35,17 +39,37 @@ describe('arguments', () => {
     );
   });
 
-  test('parse second argument of wrong type', () => {
-    const path = 'image.jpeg';
+  test('parse first argument of wrong type', () => {
+    const path = 'image.jpg';
+    const nonExpression = continueStatement();
     const stringPath = stringLiteral(path);
     const referencePath = createReferencePath([
-      { node: stringPath } as NodePath,
+      { node: nonExpression } as NodePath,
       { node: stringPath } as NodePath
     ]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
       new MacroError(
+        `The first argument must be an expression, but got ${util.inspect(
+          nonExpression,
+          false,
+          null,
+          true
+        )}.`
+      )
+    );
+  });
+
+  test('parse second argument of wrong type', () => {
+    const path = 'image.jpg';
+    const nonExpression = continueStatement();
+    const referencePath = createReferencePath([
+      { node: stringLiteral(path) } as NodePath,
+      { node: nonExpression } as NodePath
+    ]);
+    expect(() => extractArgumentPaths(referencePath)).toThrow(
+      new MacroError(
         `The second argument must be an expression, but got ${util.inspect(
-          stringPath,
+          nonExpression,
           false,
           null,
           true
@@ -55,7 +79,7 @@ describe('arguments', () => {
   });
 
   test('parse extra arguments', () => {
-    const path = 'image.jpeg';
+    const path = 'image.jpg';
     const referencePath = createReferencePath([
       { node: stringLiteral(path) } as NodePath,
       { node: objectExpression([]) } as NodePath,

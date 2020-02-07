@@ -1,11 +1,4 @@
-import {
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-  memo,
-  SyntheticEvent
-} from 'react';
+import { useRef, memo, SyntheticEvent } from 'react';
 import { css } from 'linaria';
 
 import h from './h';
@@ -13,7 +6,8 @@ import Placeholder from './Placeholder';
 import Img from './Img';
 import Message from './Message';
 import State from './state';
-import { subscribe, unsubscribe } from './useIntersection';
+import useImage from './useImage';
+import useCx from './useCx';
 
 type Props = {
   src: string;
@@ -32,29 +26,6 @@ type Props = {
     [State.ERROR]: string;
   };
   onClick?: (e: SyntheticEvent<Element, MouseEvent>) => void;
-};
-
-const IS_SERVER = typeof window === 'undefined';
-
-const setCache = (src: string) => {
-  try {
-    sessionStorage.setItem(src, 'y');
-  } catch (e) {
-    console.log('Failed to set cache');
-  }
-};
-
-const deriveInitialState = (src: string): State => {
-  if (IS_SERVER || sessionStorage.getItem(src)) return State.LOADED;
-  const support = typeof navigator !== 'undefined';
-  const connection = support && navigator['connection'];
-  if (connection && connection.effectiveType.indexOf('2g') > -1) {
-    return State.MANUAL;
-  }
-  if (support && 'onLine' in navigator && !navigator.onLine) {
-    return State.OFFLINE;
-  }
-  return State.INITIAL;
 };
 
 const asContainer = css`
@@ -90,38 +61,8 @@ const Reshoot = ({
   ...rest
 }: Props) => {
   const ref = useRef(null);
-  const [state, setState] = useState(() => deriveInitialState(src));
-  const download = useCallback(() => {
-    const image = new Image();
-    image.onload = () => {
-      setCache(src);
-      setState(() => State.LOADED);
-      unsubscribe(ref.current);
-    };
-    image.onerror = () => {
-      console.error('Failed to download ' + src);
-      setState(() => State.ERROR);
-      unsubscribe(ref.current);
-    };
-    srcSet && (image.srcset = srcSet);
-    image.src = src;
-  }, []);
-
-  useEffect(() => {
-    subscribe(
-      ref.current,
-      (entry: IntersectionObserverEntry) =>
-        IS_SERVER ||
-        (entry && !entry.isIntersecting) ||
-        state === State.LOADED ||
-        state === State.MANUAL ||
-        download()
-    );
-    return () => unsubscribe(ref.current);
-  }, [ref]);
-
-  const cx = (...cls: string[]) =>
-    (className ? cls.concat(className) : cls).join(' ');
+  const [state, setState, download] = useImage(ref, src, srcSet);
+  const cx = useCx(className);
 
   const children = [
     h(Placeholder, { color, aspectRatio }),
@@ -136,6 +77,7 @@ const Reshoot = ({
         ref,
         className: cx(asContainer, asButtonContainer),
         onClick: (e: SyntheticEvent<Element, MouseEvent>) => {
+          e.stopPropagation();
           e.preventDefault();
           setState(() => State.INITIAL);
           download();
