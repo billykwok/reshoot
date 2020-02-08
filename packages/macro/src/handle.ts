@@ -29,7 +29,10 @@ function handle({ references, state }: MacroParams) {
     referencePath.parentPath.replaceWith(
       arrayExpression(
         images.map(({ src, ...rest }) =>
-          requireExpression(src, { ...options, ...rest })
+          requireExpression(path.join(path.dirname(firstArg), src), {
+            ...options,
+            ...rest
+          })
         )
       )
     );
