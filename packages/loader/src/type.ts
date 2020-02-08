@@ -17,11 +17,13 @@ export enum AspectRatioFormat {
   Ratio = 'ratio'
 }
 
-export type AspectRatio = {
-  type: AspectRatioType;
-  format: AspectRatioFormat;
-  decimal: number;
-};
+export type AspectRatio =
+  | number
+  | {
+      type: AspectRatioType;
+      format: AspectRatioFormat;
+      decimal: number;
+    };
 
 export type Placeholder = {
   size: number;

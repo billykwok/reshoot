@@ -4,6 +4,7 @@ export default function computeAspectRatio(
   meta: { width: number; height: number },
   options: AspectRatio
 ): number {
+  if (typeof options === 'number') return options;
   if (typeof options.decimal !== 'number' || options.decimal > 10) {
     throw new Error(
       `Option "decimal" for aspect ratio must be a number not larger than 10, but got ${options.decimal}`
