@@ -68,7 +68,7 @@ describe('macros', () => {
       babelConfig
     );
     expect(tranformed.code.trim()).toEqual(
-      'var images = [require("image-1.jpg?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"red\\",\\"others\\":1}"), require("image-2.png?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"blue\\",\\"others\\":2}"), require("image-3.webp?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"yellow\\",\\"others\\":3}"), require("image-4.gif?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"#ddeeaa\\",\\"others\\":4}"), require("image-5.svg?{\\"key\\":\\"irrelevant\\",\\"others\\":5}")];'
+      'var images = [require("../../../../__fixtures__/image-1.jpg?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"red\\",\\"others\\":1}"), require("../../../../__fixtures__/image-2.png?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"blue\\",\\"others\\":2}"), require("../../../../__fixtures__/image-3.webp?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"yellow\\",\\"others\\":3}"), require("../../../../__fixtures__/image-4.gif?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"#ddeeaa\\",\\"others\\":4}"), require("../../../../__fixtures__/image-5.svg?{\\"key\\":\\"irrelevant\\",\\"others\\":5}")];'
     );
   });
 });

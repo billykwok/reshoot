@@ -19,7 +19,6 @@ function evalFirstArgument(argPath: NodePath): string {
     );
   }
 
-  console.info(`Received argument ${evaluation.value}.`);
   return evaluation.value;
 }
 
