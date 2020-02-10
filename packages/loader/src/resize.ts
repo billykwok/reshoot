@@ -2,17 +2,17 @@ import Mimes from './mimes';
 import { Options } from './type';
 import { ImageProcessor, ResizeResult } from './processImage';
 
-export default function resize(
+function resize(
   image: ImageProcessor,
   meta: { width: number; height: number },
   placeholder: { size: number },
   mime: string,
   options: Options
 ): [Promise<ResizeResult>[], Map<number, number>] {
-  const sizeToWidthMap = new Map();
+  const sizeToWidthMap = new Map<number, number>();
   if (mime === Mimes.SVG) return [[], sizeToWidthMap];
 
-  const widthSet = new Set([placeholder.size]);
+  const widthSet = new Set<number>([placeholder.size]);
   const promises = [image.resize(placeholder.size, Mimes.JPG, options)];
 
   if (options.shape.srcSet) {
@@ -29,3 +29,5 @@ export default function resize(
 
   return [promises, sizeToWidthMap];
 }
+
+export default resize;

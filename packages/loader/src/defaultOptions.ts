@@ -33,4 +33,6 @@ export function generateDefaultOptions(env: string): Options {
   };
 }
 
-export default generateDefaultOptions(process.env.NODE_ENV);
+const defaultOptions = generateDefaultOptions(process.env.NODE_ENV);
+
+export default defaultOptions;

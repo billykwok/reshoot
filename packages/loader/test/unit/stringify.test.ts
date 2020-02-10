@@ -13,20 +13,19 @@ describe('stringify', () => {
     placeholder: JSON.stringify(
       'data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak'
     ),
-    color: JSON.stringify('#666666')
+    color: JSON.stringify('#666666'),
+    extra: JSON.stringify(123)
   };
 
   test('all options', () => {
-    const shape = {
-      ...defaultOptions.shape,
-      color: 'background'
-    };
+    const shape = { ...defaultOptions.shape, color: 'background', extra: 'e' };
     expect(stringify(shape, object)).toEqual(oneLineTrim`module.exports={
       "src":"abc.jpg",
       "aspectRatio":3.14,
       "srcSet":"abc-100.jpg 100w, abc-200.jpg 100w, abc-300.jpg 100w",
       "placeholder":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      "background":"#666666"
+      "background":"#666666",
+      "e":123
     }`);
   });
 
@@ -37,14 +36,16 @@ describe('stringify', () => {
       srcSet: 's',
       placeholder: 'p',
       aspectRatio: 'a',
-      color: 'c'
+      color: 'c',
+      extra: 'e'
     };
     expect(stringify(shape, object)).toEqual(oneLineTrim`module.exports={
       "r":"abc.jpg",
       "a":3.14,
       "s":"abc-100.jpg 100w, abc-200.jpg 100w, abc-300.jpg 100w",
       "p":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      "c":"#666666"
+      "c":"#666666",
+      "e":123
     }`);
   });
 
@@ -55,7 +56,8 @@ describe('stringify', () => {
       "aspectRatio":3.14,
       "srcSet":"abc-100.jpg 100w, abc-200.jpg 100w, abc-300.jpg 100w",
       "placeholder":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      "color":"#666666"
+      "color":"#666666",
+      "extra":123
     }`);
   });
 });

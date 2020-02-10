@@ -3,6 +3,6 @@ export default function createDataUrl(
   data: Buffer,
   trimDataUrl = false
 ): string {
-  if (trimDataUrl) return data.toString('base64').replace(/^(\/9j\/\.)/, '');
+  if (trimDataUrl) return data.toString('base64');
   return `data:${meme};base64,${data.toString('base64')}`;
 }
