@@ -4,6 +4,7 @@
     "lib": ["dom", "dom.iterable", "webworker", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
