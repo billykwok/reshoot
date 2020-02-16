@@ -23,16 +23,20 @@ function toScriptString(
         return `${serializeKey(shape.src)}:${serializedValue}`;
       }
       if (key === 'placeholder' && shape.placeholder) {
-        const serializedValue = object.placeholder.startsWith('data:')
-          ? JSON.stringify(object.placeholder)
-          : serializePath(object.placeholder);
+        const serializedValue = object.placeholder
+          ? /^data:/gi.test(object.placeholder)
+            ? JSON.stringify(object.placeholder)
+            : serializePath(object.placeholder)
+          : JSON.stringify(null);
         return `${serializeKey(shape.placeholder)}:${serializedValue}`;
       }
       if (key === 'srcSet' && shape.srcSet) {
         const serializedValue = object.srcSet
-          .map(serializePath)
-          .join('+","+')
-          .replace(/"\+","/gi, ',"');
+          ? object.srcSet
+              .map(serializePath)
+              .join('+","+')
+              .replace(/"\+","/gi, ',"')
+          : JSON.stringify(null);
         return `${serializeKey(shape.srcSet)}:${serializedValue}`;
       }
       return `${serializeKey(shape[key])}:${JSON.stringify(object[key])}`;
