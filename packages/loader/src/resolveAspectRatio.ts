@@ -1,7 +1,7 @@
 import { AspectRatio, AspectRatioFormat, AspectRatioType } from './type';
 
-export default function computeAspectRatio(
-  meta: { width: number; height: number },
+function resolveAspectRatio(
+  meta: { width?: number; height?: number },
   options: AspectRatio
 ): number {
   if (typeof options === 'number') return options;
@@ -31,3 +31,5 @@ export default function computeAspectRatio(
       );
   }
 }
+
+export default resolveAspectRatio;

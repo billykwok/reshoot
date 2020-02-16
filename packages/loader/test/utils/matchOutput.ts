@@ -4,7 +4,7 @@ const defaultExpected = {
   aspectRatio: 63.34,
   hashLength: 16,
   sizes: [480, 640, 840, 1080],
-  color: '#1c2c34',
+  color: '#545b59',
   keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color']
 };
 
@@ -55,10 +55,12 @@ export function matchOutputAsObject(expected, actual) {
 export function matchOutputAsString(expected, actual) {
   const object = JSON.parse(
     actual
-      .replace(/^export default {/g, '{')
-      .replace(/^module\.exports={/g, '{')
-      .replace(/__webpack_public_path__\+"/g, '"__webpack_public_path__/')
-      .replace(/"\+","\+"/g, ',')
+      .replace(/^export default {/gi, '{')
+      .replace(/^module\.exports={/gi, '{')
+      .replace(/(,|{)([a-zA-Z][a-zA-Z]*):/gi, '$1"$2":')
+      .replace(/__webpack_public_path__\+"/gi, '"__webpack_public_path__/')
+      .replace(/"\+","\+"/gi, ',')
+      .replace(/"\+"/gi, '')
   );
   matchOutputAsObject(expected, object);
 }

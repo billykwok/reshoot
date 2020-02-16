@@ -1,115 +1,140 @@
+import { readFile } from 'fs-extra';
+import { loader } from 'webpack';
+
 import resolveOptions from './resolveOptions';
-import dedupe from './dedupe';
-import extractRest from './extractRest';
+import extractPassThroughProperties from './extractPassThroughProperties';
 import resolveMimeAndExt from './resolveMimeAndExt';
-import stringify from './stringify';
-import palette from './palette';
-import processImage from './processImage';
+import toScriptString from './toScriptString';
+import resolveColor from './resolveColor';
+import createSharp from './createSharp';
 import createDataUrl from './createDataUrl';
-import createFile from './createFile';
-import computeAspectRatio from './computeAspectRatio';
+import emit from './emit';
+import resolveAspectRatio from './resolveAspectRatio';
 import resize from './resize';
+import createHash from './createHash';
+import cache from './cache';
 
-import { Options } from './type';
+async function reshootLoader(content: string) {
+  const loaderContext = this as loader.LoaderContext;
+  loaderContext.cacheable();
+  const callback = loaderContext.async();
+  const options = resolveOptions(loaderContext);
+  const context = options.context || loaderContext.rootContext;
+  const output = extractPassThroughProperties(options);
 
-type Output = {
-  src: string;
-  aspectRatio: string;
-  placeholder: string;
-  srcSet: string;
-  mime: string;
-  color: string;
-};
+  const { shape: outputShape } = options;
+  const [mime, ext] = resolveMimeAndExt(loaderContext, options.forceFormat);
 
-export default async function loader(content: string) {
-  this.cacheable();
-  const callback = this.async();
-  const options: Options = resolveOptions(this);
-  options.srcSet = dedupe(options.srcSet);
-  const context = options.context || this.rootContext || this.options.context;
-  const output: Partial<Output> = extractRest(options);
+  const image = createSharp(loaderContext.resourcePath);
+  const hash = createHash(await image.content(), options);
 
-  const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
-
-  if (options.shape.mime) {
-    output.mime = JSON.stringify(mime);
+  const cachedOutput = cache.invalidateCache(hash);
+  if (cachedOutput) {
+    if (options.emitFile) {
+      const emitCache = async ({ outputPath, cachePath }) => {
+        const content = await readFile(cache.resolvePath(cachePath));
+        loaderContext.emitFile(outputPath, content, null);
+      };
+      await Promise.all(cachedOutput.files.map(emitCache));
+    }
+    image.close();
+    return callback(null, cachedOutput.output);
   }
 
-  if (options.shape.color) {
-    const color = await palette(
-      mime,
-      options.color,
-      this.resourcePath,
-      options.disable
-    );
-    output.color = JSON.stringify(color);
+  const saver = cache.createSaver(hash);
+  const metadata = await image.metadata();
+  const rawPath = emit(
+    loaderContext,
+    context,
+    content,
+    hash,
+    metadata.width,
+    ext,
+    options,
+    saver
+  );
+
+  output.src = rawPath;
+
+  if (outputShape.mime) {
+    output.mime = mime;
   }
 
-  const image = processImage(this.resourcePath);
-  const meta = await image.metadata();
+  if (outputShape.aspectRatio) {
+    output.aspectRatio = resolveAspectRatio(metadata, options.aspectRatio);
+  }
 
-  const rawPath = createFile(this, context, content, meta.width, ext, options);
-
-  output.src = '__webpack_public_path__+' + JSON.stringify(rawPath);
-
-  if (options.shape.aspectRatio) {
-    const aspectRatio = computeAspectRatio(meta, options.aspectRatio);
-    output.aspectRatio = JSON.stringify(aspectRatio);
+  if (outputShape.color) {
+    output.color = await resolveColor(image, options.color, options.disable);
   }
 
   if (options.disable) {
-    if (options.shape.placeholder) {
-      output.placeholder = '__webpack_public_path__+' + JSON.stringify(rawPath);
+    if (outputShape.placeholder) {
+      output.placeholder = rawPath;
     }
-    if (options.shape.srcSet) {
-      output.srcSet = JSON.stringify(null);
+    if (outputShape.srcSet) {
+      output.srcSet = null;
     }
-    callback(null, stringify(options.shape, output));
-    return;
+    const serializedOutput = toScriptString(outputShape, output);
+    saver.save(serializedOutput);
+    image.close();
+    return callback(null, serializedOutput);
   }
 
   const placeholder = options.placeholder;
-  const [promises, widths] = resize(image, meta, placeholder, mime, options);
+  const [promises, widths] = resize(
+    image,
+    metadata,
+    placeholder,
+    mime,
+    options
+  );
   if (widths.size === 0) {
-    if (options.shape.placeholder) {
+    if (outputShape.placeholder) {
       output.placeholder = null;
     }
-    if (options.shape.srcSet) {
+    if (outputShape.srcSet) {
       output.srcSet = null;
     }
-    callback(null, stringify(options.shape, output));
-    return;
+    const serializedOutput = toScriptString(outputShape, output);
+    saver.save(serializedOutput);
+    image.close();
+    return callback(null, serializedOutput);
   }
 
   const [placeholderData, ...imagesData] = await Promise.all(promises);
 
-  if (options.shape.placeholder) {
-    output.placeholder = JSON.stringify(
-      createDataUrl(mime, placeholderData.content, placeholder.trimDataUrl)
+  if (outputShape.placeholder) {
+    output.placeholder = createDataUrl(
+      mime,
+      placeholderData.content,
+      placeholder.trimDataUrl
     );
   }
 
-  if (options.shape.srcSet) {
-    const paths = new Map();
-    imagesData.forEach(({ content, width }) => {
-      paths.set(width, createFile(this, context, content, width, ext, options));
-    });
+  if (outputShape.srcSet) {
+    const paths = new Map<number, string>();
+    imagesData.forEach(({ content, width }) =>
+      paths.set(
+        width,
+        emit(loaderContext, context, content, hash, width, ext, options, saver)
+      )
+    );
     if (paths.size > 0) {
-      const formatSize = size =>
-        `__webpack_public_path__+${JSON.stringify(
-          `${paths.get(widths.get(size))} ${size}w`
-        )}`;
       output.srcSet = options.srcSet
         .filter(size => paths.has(size))
-        .map(formatSize)
-        .join('+","+');
+        .map(size => `${paths.get(widths.get(size))} ${size}w`);
     } else {
-      output.srcSet = JSON.stringify(null);
+      output.srcSet = null;
     }
   }
 
-  callback(null, stringify(options.shape, output));
-  return;
+  const serializedOutput = toScriptString(outputShape, output);
+  saver.save(serializedOutput);
+  image.close();
+  return callback(null, serializedOutput);
 }
 
 export const raw = true;
+
+export default reshootLoader;

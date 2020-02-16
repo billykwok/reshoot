@@ -233,10 +233,10 @@
     resolve "^1.8.1"
     semver "^5.5.1"
 
-"@babel/preset-modules@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@babel/preset-modules/-/preset-modules-0.1.2.tgz#9365f51343ee69d99351b2892ff7479ef4505e78"
-  integrity sha512-FMhghLBAnMG7Dh0C/xgpX+HbzkrDDK9BdgS+NUuEzcro+ySmKKk2F9ROnqRawHS5aR/AH56rVtL/LM2vsy+81g==
+"@babel/preset-modules@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@babel/preset-modules/-/preset-modules-0.1.3.tgz#13242b53b5ef8c883c3cf7dddd55b36ce80fbc72"
+  integrity sha512-Ra3JXOHBq2xd56xSF7lMKXdjBn3T772Y1Wet3yWnkDly9zHvJki029tAFzvAAK5cf4YV3yoxuP61crYRol6SVg==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-proposal-unicode-property-regex" "^7.4.4"
@@ -564,10 +564,10 @@
   dependencies:
     core-js "^2.5.7"
 
-"@reshoot/loader@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.7.0.tgz#7a5d04bc2a18dd261a066e25fabe30392f609abb"
-  integrity sha512-0mAIGOus+fH9qc5l4Yhkr6zzRE3Nznt6pLlwUug7GU7NzjVFxFIaihW2Jg/wHZZ6fY+AQjb3g15QT0HRmmipbw==
+"@reshoot/loader@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@reshoot/loader/-/loader-0.7.2.tgz#aa5be41a522fced34bfedd07e165bd69bcc91a07"
+  integrity sha512-UYDYvQ0Z1kTCrE7fgGLHUG7PXvgO4K1J9HM0efe2C1ZWFNbWbAbwjMotZQE5HvixTWKGkONb4XhJaRiK8sLFEA==
   dependencies:
     deepmerge "^4.2.2"
     image-size "^0.8.3"
@@ -575,10 +575,10 @@
     node-vibrant "^3.2.0-alpha"
     sharp "^0.24.0"
 
-"@reshoot/macro@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.5.1.tgz#04a5c6665a0aa7ae141d9a453b8b378a23611068"
-  integrity sha512-AvdFDHUmNW3otx9rQbazCYmyOtmMLfLgBIQKUREgGAn0a4vccStuZBBhQFvZlhLuE5l8xdZGo8YKNi7Xn8s1tg==
+"@reshoot/macro@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.5.3.tgz#6f9d04913ff2280db8a13121f012bd11556b60a8"
+  integrity sha512-ISZEsbBpCQlEkmBEFp2hEeWhLKvDWCZWYgH9C9N2reGFFF7Ui7ZiADnIKVmKA6ft+BfIheNQa6klBwU9c7P2JA==
 
 "@reshoot/react@^0.6.10":
   version "0.6.10"
@@ -5343,10 +5343,10 @@ webpack-sources@^1.4.0, webpack-sources@^1.4.1:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.41.5:
-  version "4.41.5"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.5.tgz#3210f1886bce5310e62bb97204d18c263341b77c"
-  integrity sha512-wp0Co4vpyumnp3KlkmpM5LWuzvZYayDwM2n17EHFr4qxBBbRokC7DJawPJC7TfSFZ9HZ6GsdH40EBj4UV0nmpw==
+webpack@^4.41.6:
+  version "4.41.6"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.6.tgz#12f2f804bf6542ef166755050d4afbc8f66ba7e1"
+  integrity sha512-yxXfV0Zv9WMGRD+QexkZzmGIh54bsvEs+9aRWxnN8erLWEOehAKUTeNBoUbA6HPEZPlRo7KDi2ZcNveoZgK9MA==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
