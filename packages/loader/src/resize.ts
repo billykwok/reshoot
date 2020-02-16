@@ -1,10 +1,12 @@
+import { Metadata } from 'sharp';
+
 import Mimes from './mimes';
 import { Options } from './type';
-import { ImageProcessor, ResizeResult } from './processImage';
+import { SharpImage, ResizeResult } from './createSharp';
 
 function resize(
-  image: ImageProcessor,
-  meta: { width: number; height: number },
+  image: SharpImage,
+  meta: Metadata,
   placeholder: { size: number },
   mime: string,
   options: Options
@@ -22,7 +24,11 @@ function resize(
       if (width === meta.width) return;
       if (!widthSet.has(width)) {
         widthSet.add(width);
-        promises.push(image.resize(width, mime, options));
+        if (options.emitFile) {
+          promises.push(image.resize(width, mime, options));
+        } else {
+          promises.push(Promise.resolve({ width, content: null }));
+        }
       }
     });
   }

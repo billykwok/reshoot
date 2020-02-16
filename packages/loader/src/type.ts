@@ -30,6 +30,15 @@ export type Placeholder = {
   trimDataUrl: boolean;
 };
 
+export type InternalOutput = {
+  mime: string;
+  src?: string;
+  aspectRatio?: number;
+  srcSet?: string[];
+  placeholder?: string;
+  color?: string;
+};
+
 export type Output = {
   mime: string;
   src?: string;
@@ -43,7 +52,7 @@ export type Options = {
   name: string;
   outputPath: string | ((path: string) => string) | null;
   publicPath: string | ((path: string) => string) | null;
-  context: string | ((path: string) => string) | null;
+  context: string;
   shape: OutputShape;
   srcSet: Array<number>;
   quality: number;

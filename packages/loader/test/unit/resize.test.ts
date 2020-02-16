@@ -1,15 +1,18 @@
 import resize from '../../src/resize';
 import Mimes from '../../src/mimes';
-import { ImageProcessor } from '../../src/processImage';
+import { SharpImage } from '../../src/createSharp';
 import defaultOptions from '../../src/defaultOptions';
 import { Options } from '../../src/type';
 
-const metadata = { width: 16, height: 9 };
-const image: ImageProcessor = {
-  metadata: jest.fn(() => Promise.resolve(metadata)),
+const size = { width: 16, height: 9 };
+const color = '#fff';
+const image: SharpImage = {
+  size: jest.fn(() => Promise.resolve(size)),
+  color: jest.fn(() => Promise.resolve(color)),
   resize: jest.fn(() =>
     Promise.resolve({ content: Buffer.from('123'), width: 16 })
-  )
+  ),
+  close: jest.fn()
 };
 const placeholder = { size: 7 };
 const mime = Mimes.JPG;
@@ -26,7 +29,7 @@ describe('resize', () => {
   });
 
   test('with config', () => {
-    const [promises, map] = resize(image, metadata, placeholder, mime, options);
+    const [promises, map] = resize(image, size, placeholder, mime, options);
     expect(promises).toHaveLength(1);
     expect([...map.values()]).toHaveLength(3);
     expect(map.get(512)).toEqual(16);

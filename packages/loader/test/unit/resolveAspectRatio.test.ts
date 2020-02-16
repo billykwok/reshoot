@@ -1,10 +1,10 @@
-import computeAspectRatio from '../../src/computeAspectRatio';
+import resolveAspectRatio from '../../src/resolveAspectRatio';
 import { AspectRatioFormat, AspectRatioType } from '../../src/type';
 
-describe('computeAspectRatio', () => {
+describe('resolveAspectRatio', () => {
   test('throw when decimal exceeds 10', () => {
     expect(() =>
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 5, height: 5 },
         {
           decimal: 11,
@@ -21,7 +21,7 @@ describe('computeAspectRatio', () => {
 
   test('throw when decimal is falsy', () => {
     expect(() =>
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 5, height: 5 },
         {
           decimal: undefined,
@@ -38,7 +38,7 @@ describe('computeAspectRatio', () => {
 
   test('throw when format is falsy', () => {
     expect(() =>
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 5, height: 5 },
         {
           decimal: 2,
@@ -55,7 +55,7 @@ describe('computeAspectRatio', () => {
 
   test('throw when type is falsy', () => {
     expect(() =>
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 5, height: 5 },
         {
           decimal: 2,
@@ -72,7 +72,7 @@ describe('computeAspectRatio', () => {
 
   test('convert to integer whenever possible', () => {
     expect(
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 5, height: 5 },
         {
           decimal: 10,
@@ -85,7 +85,7 @@ describe('computeAspectRatio', () => {
 
   test('convert to width-by-height percentage in 2 d.p.', () => {
     expect(
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 3, height: 2 },
         {
           decimal: 2,
@@ -98,7 +98,7 @@ describe('computeAspectRatio', () => {
 
   test('convert to height-by-width percentage in 2 d.p.', () => {
     expect(
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 3, height: 2 },
         {
           decimal: 2,
@@ -111,7 +111,7 @@ describe('computeAspectRatio', () => {
 
   test('convert to width-by-height ratio in 2 d.p.', () => {
     expect(
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 3, height: 2 },
         {
           decimal: 2,
@@ -124,7 +124,7 @@ describe('computeAspectRatio', () => {
 
   test('convert to height-by-width ratio in 2 d.p.', () => {
     expect(
-      computeAspectRatio(
+      resolveAspectRatio(
         { width: 3, height: 2 },
         {
           decimal: 2,

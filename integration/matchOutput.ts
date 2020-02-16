@@ -4,7 +4,7 @@ const defaultExpected = {
   aspectRatio: 63.34,
   hashLength: 16,
   sizes: [480, 640, 840, 1080],
-  color: '#1c2c34',
+  color: '#545b59',
   keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color'],
   extra: {}
 };
