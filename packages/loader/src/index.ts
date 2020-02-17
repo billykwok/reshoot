@@ -1,4 +1,3 @@
-import { readFile } from 'fs-extra';
 import { loader } from 'webpack';
 
 import resolveOptions from './resolveOptions';
@@ -15,27 +14,26 @@ import createHash from './createHash';
 import cache from './cache';
 import resolveDefaultOptions from './defaultOptions';
 
-async function reshootLoader(content: string) {
-  const loaderContext = this as loader.LoaderContext;
-  loaderContext.cacheable();
-  const callback = loaderContext.async();
-  const defaultOptions = resolveDefaultOptions(loaderContext.mode);
-  const options = resolveOptions(loaderContext, defaultOptions);
-  const context = options.context || loaderContext.rootContext;
+async function reshootLoader(this: loader.LoaderContext, content: string) {
+  this.cacheable(true);
+  const callback = this.async();
+  const defaultOptions = resolveDefaultOptions(this.mode);
+  const options = resolveOptions(this, defaultOptions);
+  const context = options.context || this.rootContext;
   const output = extractPassThroughProperties(options, defaultOptions);
 
   const { shape: outputShape } = options;
-  const [mime, ext] = resolveMimeAndExt(loaderContext, options.forceFormat);
+  const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
 
-  const image = createSharp(loaderContext.resourcePath);
+  const image = createSharp(this.resourcePath);
   const hash = createHash(await image.content(), options);
 
-  const cachedOutput = cache.invalidateCache(hash);
+  const cachedOutput = await cache.invalidateCache(hash);
   if (cachedOutput) {
-    if (options.emitFile) {
+    if (options.emitFile && cachedOutput.files.length > 0) {
       const emitCache = async ({ outputPath, cachePath }) => {
-        const content = await readFile(cache.resolvePath(cachePath));
-        loaderContext.emitFile(outputPath, content, null);
+        const content = await cache.readCacheFile(cachePath);
+        this.emitFile(outputPath, content, null);
       };
       await Promise.all(cachedOutput.files.map(emitCache));
     }
@@ -43,10 +41,12 @@ async function reshootLoader(content: string) {
     return callback(null, cachedOutput.output);
   }
 
-  const saver = cache.createSaver(hash);
-  const metadata = await image.metadata();
+  const [saver, metadata] = await Promise.all([
+    cache.createSaver(hash),
+    image.metadata()
+  ]);
   const rawPath = emit(
-    loaderContext,
+    this,
     context,
     content,
     hash,
@@ -119,7 +119,7 @@ async function reshootLoader(content: string) {
     imagesData.forEach(({ content, width }) =>
       paths.set(
         width,
-        emit(loaderContext, context, content, hash, width, ext, options, saver)
+        emit(this, context, content, hash, width, ext, options, saver)
       )
     );
     if (paths.size > 0) {
