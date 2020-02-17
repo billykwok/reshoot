@@ -1,11 +1,15 @@
 import path from 'path';
 import findCacheDir from 'find-cache-dir';
-import {
-  writeJSONSync,
-  pathExistsSync,
-  writeFileSync,
-  writeJsonSync
-} from 'fs-extra';
+import { readFile, writeFile, readJson, writeJson } from 'fs-extra';
+
+export type Saver = {
+  addFile(
+    outputPath: string,
+    filename: string,
+    content: string | Buffer
+  ): Promise<void>;
+  save(output: string): Promise<void>;
+};
 
 const resolvePath = findCacheDir({
   name: '@reshoot/loader',
@@ -13,63 +17,45 @@ const resolvePath = findCacheDir({
   thunk: true
 });
 
-const statsPath = resolvePath('./stats.json');
-
-function initializeStats() {
-  try {
-    const s = require(statsPath);
-    if (s) return s;
-  } catch (e) {
-    writeJSONSync(statsPath, {});
-  }
-  return {};
+async function readCacheFile(cachePath: string) {
+  return await readFile(resolvePath(cachePath));
 }
 
-const stats = initializeStats();
+async function readCacheStats(hash: string, defaultValue: any) {
+  try {
+    return await readJson(resolvePath(`${hash}.json`));
+  } catch (e) {
+    return defaultValue;
+  }
+}
 
-function invalidateCache(
+async function invalidateCache(
   hash: string
-): {
+): Promise<{
   output: string;
   files: { outputPath: string; cachePath: string }[];
-} | null {
-  const cached = stats[hash];
-  if (
-    !cached ||
-    !cached.output ||
-    !cached.files ||
-    cached.files.some(
-      ({ cachePath }) => !pathExistsSync(resolvePath(cachePath))
-    )
-  ) {
-    return null;
-  }
-  return cached;
+} | null> {
+  return await readCacheStats(hash, null);
 }
 
-export class Saver {
-  hash: string;
-
-  constructor(hash: string) {
-    this.hash = hash;
-    stats[hash] = { output: {}, files: [] };
-  }
-
-  addFile(outputPath: string, filename: string, content: string | Buffer) {
-    stats[this.hash].files.push({ outputPath, cachePath: filename });
-    writeFileSync(path.join(resolvePath(), filename), content);
-  }
-
-  save(output: string) {
-    stats[this.hash].output = output;
-    writeJsonSync(statsPath, stats);
-  }
+async function createSaver(hash: string): Promise<Saver> {
+  const stats = await readCacheStats(hash, { output: {}, files: [] });
+  return {
+    async addFile(
+      outputPath: string,
+      filename: string,
+      content: string | Buffer
+    ) {
+      stats.files.push({ outputPath, cachePath: filename });
+      await writeFile(path.join(resolvePath(), filename), content);
+    },
+    async save(output: string) {
+      stats.output = output;
+      await writeJson(resolvePath(`${hash}.json`), stats);
+    }
+  };
 }
 
-function createSaver(hash: string) {
-  return new Saver(hash);
-}
-
-const cache = { resolvePath, invalidateCache, createSaver };
+const cache = { readCacheFile, readCacheStats, invalidateCache, createSaver };
 
 export default cache;

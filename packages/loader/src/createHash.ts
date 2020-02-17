@@ -3,8 +3,13 @@ import { MetroHash128 } from 'metrohash';
 import { version } from '../package.json';
 import { Options } from './type.js';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function excludeNonCacheDeterminingOptions({ emitFile, ...options }: Options) {
+function excludeNonCacheDeterminingOptions({
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  outputPath,
+  emitFile,
+  /* eslint-enable @typescript-eslint/no-unused-vars */
+  ...options
+}: Options) {
   return options;
 }
 
