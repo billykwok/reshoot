@@ -1,7 +1,9 @@
 import { oneLineTrim } from 'common-tags';
 
-import defaultOptions from '../../src/defaultOptions';
+import resolveDefaultOptions from '../../src/defaultOptions';
 import toScriptString from '../../src/toScriptString';
+
+const defaultOptions = resolveDefaultOptions('development');
 
 describe('toScriptString', () => {
   const object = {

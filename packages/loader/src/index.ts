@@ -13,14 +13,16 @@ import resolveAspectRatio from './resolveAspectRatio';
 import resize from './resize';
 import createHash from './createHash';
 import cache from './cache';
+import resolveDefaultOptions from './defaultOptions';
 
 async function reshootLoader(content: string) {
   const loaderContext = this as loader.LoaderContext;
   loaderContext.cacheable();
   const callback = loaderContext.async();
-  const options = resolveOptions(loaderContext);
+  const defaultOptions = resolveDefaultOptions(loaderContext.mode);
+  const options = resolveOptions(loaderContext, defaultOptions);
   const context = options.context || loaderContext.rootContext;
-  const output = extractPassThroughProperties(options);
+  const output = extractPassThroughProperties(options, defaultOptions);
 
   const { shape: outputShape } = options;
   const [mime, ext] = resolveMimeAndExt(loaderContext, options.forceFormat);

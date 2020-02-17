@@ -1,8 +1,8 @@
-import { generateDefaultOptions } from '../../src/defaultOptions';
+import resolveDefaultOptions from '../../src/defaultOptions';
 
 describe('default options', () => {
   test('are correct in development environment', () => {
-    expect(generateDefaultOptions('development')).toEqual({
+    expect(resolveDefaultOptions('development')).toEqual({
       name: '[path][name].[ext]',
       outputPath: null,
       publicPath: null,
@@ -28,7 +28,7 @@ describe('default options', () => {
   });
 
   test('are correct in other environment', () => {
-    expect(generateDefaultOptions('production')).toEqual({
+    expect(resolveDefaultOptions('production')).toEqual({
       name: '[contenthash:16]-[width].[ext]',
       outputPath: null,
       publicPath: null,
