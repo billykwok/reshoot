@@ -2,11 +2,12 @@ import { parseQuery, getOptions } from 'loader-utils';
 import deepmerge from 'deepmerge';
 import { loader } from 'webpack';
 
-import defaultOptions from './defaultOptions';
-
 import { Options } from './type';
 
-function resolveOptions(loaderContext: loader.LoaderContext): Options {
+function resolveOptions(
+  loaderContext: loader.LoaderContext,
+  defaultOptions: Options
+): Options {
   const resourceQuery = loaderContext.resourceQuery
     ? parseQuery(loaderContext.resourceQuery)
     : {};

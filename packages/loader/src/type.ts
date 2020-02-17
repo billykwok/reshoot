@@ -57,14 +57,7 @@ export type Options = {
   srcSet: Array<number>;
   quality: number;
   background: string;
-  color:
-    | 'Vibrant'
-    | 'Muted'
-    | 'DarkVibrant'
-    | 'DarkMuted'
-    | 'LightVibrant'
-    | 'LightMuted'
-    | string;
+  color: string;
   forceFormat: string | false;
   placeholder: Placeholder;
   aspectRatio: AspectRatio;

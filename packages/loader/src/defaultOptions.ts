@@ -1,6 +1,6 @@
 import { Options, AspectRatioType, AspectRatioFormat } from './type';
 
-export function generateDefaultOptions(env: string): Options {
+function resolveDefaultOptions(env: string): Options {
   return {
     name:
       env === 'development'
@@ -33,6 +33,4 @@ export function generateDefaultOptions(env: string): Options {
   };
 }
 
-const defaultOptions = generateDefaultOptions(process.env.NODE_ENV);
-
-export default defaultOptions;
+export default resolveDefaultOptions;
