@@ -13,6 +13,7 @@ import resize from './resize';
 import createHash from './createHash';
 import cache from './cache';
 import resolveDefaultOptions from './defaultOptions';
+import createOutputPathResolver from './createOutputPathResolver';
 
 async function reshootLoader(this: loader.LoaderContext, content: string) {
   this.cacheable(true);
@@ -23,8 +24,8 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   const output = extractPassThroughProperties(options, defaultOptions);
 
   const { shape: outputShape } = options;
-  const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
 
+  const resolveOutputPath = createOutputPathResolver(options);
   const image = createSharp(this.resourcePath);
   const hash = createHash(await image.content(), options);
 
@@ -33,7 +34,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     if (options.emitFile && cachedOutput.files.length > 0) {
       const emitCache = async ({ outputPath, cachePath }) => {
         const content = await cache.readCacheFile(cachePath);
-        this.emitFile(outputPath, content, null);
+        this.emitFile(resolveOutputPath(outputPath), content, null);
       };
       await Promise.all(cachedOutput.files.map(emitCache));
     }
@@ -45,6 +46,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     cache.createSaver(hash),
     image.metadata()
   ]);
+  const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
   const rawPath = emit(
     this,
     context,
@@ -53,6 +55,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     metadata.width,
     ext,
     options,
+    resolveOutputPath,
     saver
   );
 
@@ -119,7 +122,17 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     imagesData.forEach(({ content, width }) =>
       paths.set(
         width,
-        emit(this, context, content, hash, width, ext, options, saver)
+        emit(
+          this,
+          context,
+          content,
+          hash,
+          width,
+          ext,
+          options,
+          resolveOutputPath,
+          saver
+        )
       )
     );
     if (paths.size > 0) {

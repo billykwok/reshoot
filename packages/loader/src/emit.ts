@@ -1,23 +1,8 @@
-import path from 'path';
 import { loader } from 'webpack';
 
 import { Options } from './type';
 import interpolateName from './interpolateName';
 import { Saver } from './cache';
-
-function resolveOutputPath(
-  filename: string,
-  options: { outputPath: string | ((value: string) => string) }
-) {
-  if (options.outputPath) {
-    if (typeof options.outputPath === 'function') {
-      return options.outputPath(filename);
-    } else {
-      return path.join(options.outputPath, filename);
-    }
-  }
-  return filename;
-}
 
 function resolvePublicPath(
   outputPath: string,
@@ -44,6 +29,7 @@ function emit(
   width: number,
   ext: string,
   options: Options,
+  resolveOutputPath: (filename: string) => string,
   saver: Saver
 ): string {
   const filename = interpolateName(loaderContext, options.name, {
@@ -53,7 +39,7 @@ function emit(
     context,
     content
   });
-  const outputPath = resolveOutputPath(filename, options);
+  const outputPath = resolveOutputPath(filename);
   const publicPath = resolvePublicPath(outputPath, filename, options);
 
   if (options.emitFile) {
