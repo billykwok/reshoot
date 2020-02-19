@@ -1,6 +1,5 @@
-import path from 'path';
 import findCacheDir from 'find-cache-dir';
-import { readFile, writeFile, readJson, writeJson } from 'fs-extra';
+import { readFile, readJson, outputFile, outputJson } from 'fs-extra';
 
 export type Saver = {
   addFile(
@@ -17,29 +16,30 @@ const resolvePath = findCacheDir({
   thunk: true
 });
 
-async function readCacheFile(cachePath: string) {
-  return await readFile(resolvePath(cachePath));
+async function readCacheFile(mode: string, cachePath: string) {
+  return await readFile(resolvePath(mode, cachePath));
 }
 
-async function readCacheStats(hash: string, defaultValue: any) {
+async function readCacheStats(mode: string, hash: string, defaultValue: any) {
   try {
-    return await readJson(resolvePath(`${hash}.json`));
+    return await readJson(resolvePath(mode, `${hash}.json`));
   } catch (e) {
     return defaultValue;
   }
 }
 
 async function invalidateCache(
+  mode: string,
   hash: string
 ): Promise<{
   output: string;
   files: { outputPath: string; cachePath: string }[];
 } | null> {
-  return await readCacheStats(hash, null);
+  return await readCacheStats(mode, hash, null);
 }
 
-async function createSaver(hash: string): Promise<Saver> {
-  const stats = await readCacheStats(hash, { output: {}, files: [] });
+async function createSaver(mode: string, hash: string): Promise<Saver> {
+  const stats = await readCacheStats(mode, hash, { output: {}, files: [] });
   return {
     async addFile(
       outputPath: string,
@@ -47,11 +47,11 @@ async function createSaver(hash: string): Promise<Saver> {
       content: string | Buffer
     ) {
       stats.files.push({ outputPath, cachePath: filename });
-      await writeFile(path.join(resolvePath(), filename), content);
+      await outputFile(resolvePath(mode, filename), content);
     },
     async save(output: string) {
       stats.output = output;
-      await writeJson(resolvePath(`${hash}.json`), stats);
+      await outputJson(resolvePath(mode, `${hash}.json`), stats);
     }
   };
 }
