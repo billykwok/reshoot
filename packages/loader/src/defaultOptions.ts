@@ -8,7 +8,6 @@ function resolveDefaultOptions(env: string): Options {
         : '[contenthash:16]-[width].[ext]',
     outputPath: null,
     publicPath: null,
-    context: null,
     shape: {
       mime: 'mime',
       src: 'src',
@@ -29,7 +28,8 @@ function resolveDefaultOptions(env: string): Options {
       decimal: 2
     },
     disable: env === 'development',
-    emitFile: true
+    emitFile: true,
+    esModule: true
   };
 }
 

@@ -1,41 +1,52 @@
-import { OutputShape, InternalOutput } from './type';
+import { InternalOutput, Options } from './type';
 
 function serializeKey(value: string) {
   return /^[a-zA-Z][a-zA-Z0-9]*$/gi.test(value) ? value : JSON.stringify(value);
 }
 
-function serializePath(value: string) {
-  return '__webpack_public_path__+' + JSON.stringify(value);
+function serializePath(
+  value: string,
+  prefix: string | ((path: string) => string)
+) {
+  return prefix
+    ? '__webpack_public_path__+' + JSON.stringify(value)
+    : JSON.stringify(value);
 }
 
-function toScriptString(
-  shape: OutputShape,
-  object: Partial<InternalOutput>
+function renderScript(
+  object: Partial<InternalOutput>,
+  options: Options
 ): string {
-  return `module.exports={${Object.keys(object)
-    .filter(key => !(key in shape) || shape[key])
-    .map(key => {
+  const { shape } = options;
+  return `${
+    options.esModule ? 'export default ' : 'module.exports='
+  }{${Object.keys(object)
+    .filter(
+      key => !(key in shape) || (typeof shape[key] === 'string' && shape[key])
+    )
+    .map((key: string) => {
       if (!(key in shape)) {
         return `${serializeKey(key)}:${JSON.stringify(object[key])}`;
       }
       if (key === 'src' && shape.src) {
-        const serializedValue = serializePath(object.src);
+        const serializedValue = serializePath(object.src, options.publicPath);
         return `${serializeKey(shape.src)}:${serializedValue}`;
       }
       if (key === 'placeholder' && shape.placeholder) {
         const serializedValue = object.placeholder
           ? /^data:/gi.test(object.placeholder)
             ? JSON.stringify(object.placeholder)
-            : serializePath(object.placeholder)
+            : serializePath(object.placeholder, options.publicPath)
           : JSON.stringify(null);
         return `${serializeKey(shape.placeholder)}:${serializedValue}`;
       }
       if (key === 'srcSet' && shape.srcSet) {
         const serializedValue = object.srcSet
           ? object.srcSet
-              .map(serializePath)
+              .map(s => serializePath(s, options.publicPath))
               .join('+","+')
               .replace(/"\+","/gi, ',"')
+              .replace(/"\+"/gi, '')
           : JSON.stringify(null);
         return `${serializeKey(shape.srcSet)}:${serializedValue}`;
       }
@@ -44,4 +55,4 @@ function toScriptString(
     .join(',')}}`;
 }
 
-export default toScriptString;
+export default renderScript;

@@ -1,10 +1,11 @@
 export type OutputShape = {
-  mime: string;
+  mime: string | false;
   src: string | false;
   aspectRatio: string | false;
   srcSet: string | false;
   placeholder: string | false;
   color: string | false;
+  [key: string]: any;
 };
 
 export enum AspectRatioType {
@@ -52,7 +53,6 @@ export type Options = {
   name: string;
   outputPath: string | ((path: string) => string) | null;
   publicPath: string | ((path: string) => string) | null;
-  context: string;
   shape: OutputShape;
   srcSet: Array<number>;
   quality: number;
@@ -63,4 +63,5 @@ export type Options = {
   aspectRatio: AspectRatio;
   disable: boolean;
   emitFile: boolean;
+  esModule: boolean;
 };

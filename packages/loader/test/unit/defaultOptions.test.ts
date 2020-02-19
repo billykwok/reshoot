@@ -6,7 +6,6 @@ describe('default options', () => {
       name: '[path][name].[ext]',
       outputPath: null,
       publicPath: null,
-      context: null,
       shape: {
         mime: 'mime',
         src: 'src',
@@ -23,7 +22,8 @@ describe('default options', () => {
       placeholder: { size: 8, trimDataUrl: false },
       aspectRatio: { type: 'heightByWidth', format: 'percent', decimal: 2 },
       disable: true,
-      emitFile: true
+      emitFile: true,
+      esModule: true
     });
   });
 
@@ -32,7 +32,6 @@ describe('default options', () => {
       name: '[contenthash:16]-[width].[ext]',
       outputPath: null,
       publicPath: null,
-      context: null,
       shape: {
         mime: 'mime',
         src: 'src',
@@ -49,7 +48,8 @@ describe('default options', () => {
       placeholder: { size: 8, trimDataUrl: false },
       aspectRatio: { type: 'heightByWidth', format: 'percent', decimal: 2 },
       disable: false,
-      emitFile: true
+      emitFile: true,
+      esModule: true
     });
   });
 });

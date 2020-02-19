@@ -1,11 +1,11 @@
 import { oneLineTrim } from 'common-tags';
 
 import resolveDefaultOptions from '../../src/defaultOptions';
-import toScriptString from '../../src/toScriptString';
+import renderScript from '../../src/renderScript';
 
 const defaultOptions = resolveDefaultOptions('development');
 
-describe('toScriptString', () => {
+describe('renderScript', () => {
   const object = {
     src: 'abc.jpg',
     aspectRatio: 3.14,
@@ -16,11 +16,16 @@ describe('toScriptString', () => {
   };
 
   test('all options', () => {
-    const shape = { ...defaultOptions.shape, color: 'background', extra: 'e' };
-    expect(toScriptString(shape, object)).toEqual(oneLineTrim`module.exports={
-      src:__webpack_public_path__+"abc.jpg",
+    const shape = {
+      ...defaultOptions.shape,
+      color: 'background',
+      extra: 'e'
+    };
+    expect(renderScript(object, { ...defaultOptions, shape }))
+      .toEqual(oneLineTrim`export default {
+      src:"abc.jpg",
       aspectRatio:3.14,
-      srcSet:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
+      srcSet:"abc-100.jpg 100w,abc-200.jpg 100w,abc-300.jpg 100w",
       placeholder:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
       background:"#666666",
       e:123
@@ -37,10 +42,15 @@ describe('toScriptString', () => {
       color: 'c',
       extra: 'e'
     };
-    expect(toScriptString(shape, object)).toEqual(oneLineTrim`module.exports={
-      r:__webpack_public_path__+"abc.jpg",
+    expect(
+      renderScript(object, {
+        ...defaultOptions,
+        shape
+      })
+    ).toEqual(oneLineTrim`export default {
+      r:"abc.jpg",
       a:3.14,
-      s:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
+      s:"abc-100.jpg 100w,abc-200.jpg 100w,abc-300.jpg 100w",
       p:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
       c:"#666666",
       e:123
@@ -48,11 +58,11 @@ describe('toScriptString', () => {
   });
 
   test('default options', () => {
-    const shape = defaultOptions.shape;
-    expect(toScriptString(shape, object)).toEqual(oneLineTrim`module.exports={
-      src:__webpack_public_path__+"abc.jpg",
+    expect(renderScript(object, defaultOptions))
+      .toEqual(oneLineTrim`export default {
+      src:"abc.jpg",
       aspectRatio:3.14,
-      srcSet:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
+      srcSet:"abc-100.jpg 100w,abc-200.jpg 100w,abc-300.jpg 100w",
       placeholder:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
       color:"#666666",
       extra:123

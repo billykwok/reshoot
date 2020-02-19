@@ -1,8 +1,5 @@
 module.exports = {
-  projects: [
-    '<rootDir>/packages/*/jest.config.js',
-    '<rootDir>/integration/jest.config.js'
-  ],
+  projects: ['<rootDir>/packages/*/jest.config.js'],
   collectCoverage: true,
   testEnvironment: 'jest-environment-jsdom-sixteen',
   coverageProvider: 'v8',
