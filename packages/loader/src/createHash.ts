@@ -13,11 +13,12 @@ function excludeNonCacheDeterminingOptions({
   return options;
 }
 
-function createHash(content: string | Buffer, options: Options) {
+function createHash(content: string | Buffer, options: Options, mode: string) {
   const hasher = new MetroHash128();
   hasher.update(version);
   hasher.update(content);
   hasher.update(JSON.stringify(excludeNonCacheDeterminingOptions(options)));
+  hasher.update(mode);
   return hasher.digest();
 }
 
