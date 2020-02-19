@@ -48,7 +48,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   ]);
   const resolvePublicPath = createPublicPathResolver(options);
   const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
-  const rawPath = emit(
+  const rawPath = await emit(
     this,
     content,
     hash,
@@ -82,7 +82,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
       output.srcSet = null;
     }
     const serializedOutput = renderScript(output, options);
-    saver.save(serializedOutput);
+    await saver.save(serializedOutput);
     image.close();
     return callback(null, serializedOutput);
   }
@@ -103,7 +103,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
       output.srcSet = null;
     }
     const serializedOutput = renderScript(output, options);
-    saver.save(serializedOutput);
+    await saver.save(serializedOutput);
     image.close();
     return callback(null, serializedOutput);
   }
@@ -120,10 +120,9 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
 
   if (outputShape.srcSet) {
     const paths = new Map<number, string>();
-    imagesData.forEach(({ content, width }) =>
-      paths.set(
-        width,
-        emit(
+    await Promise.all(
+      imagesData.map(async ({ content, width }) => {
+        const publicPath = await emit(
           this,
           content,
           hash,
@@ -133,8 +132,9 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
           resolveOutputPath,
           resolvePublicPath,
           saver
-        )
-      )
+        );
+        paths.set(width, publicPath);
+      })
     );
     if (paths.size > 0) {
       output.srcSet = options.srcSet
@@ -146,7 +146,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   }
 
   const serializedOutput = renderScript(output, options);
-  saver.save(serializedOutput);
+  await saver.save(serializedOutput);
   image.close();
   return callback(null, serializedOutput);
 }
