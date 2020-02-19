@@ -27,13 +27,18 @@ export function matchOutputAsObject(expected, actual) {
     expect(actual.placeholder).toMatch(new RegExp(`^data:${mime};base64,`));
   }
   if (keys.includes('src')) {
-    expect(actual.src).toMatch(new RegExp(`^[0-9a-f]{${hashLength}}-4774.jpg`));
+    expect(actual.src).toMatch(
+      new RegExp(`^__webpack_public_path__/[0-9a-f]{${hashLength}}-4774.jpg`)
+    );
   }
   if (keys.includes('srcSet')) {
     expect(actual.srcSet).toMatch(
       new RegExp(
         `^${sizes
-          .map((size: number) => `[0-9a-f]{${hashLength}}-${size}.jpg ${size}w`)
+          .map(
+            (size: number) =>
+              `__webpack_public_path__/[0-9a-f]{${hashLength}}-${size}.jpg ${size}w`
+          )
           .join(',')}$`
       )
     );
