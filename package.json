@@ -10,9 +10,7 @@
     "eslint": "lerna run --parallel --no-private eslint",
     "dtslint": "lerna run --parallel --no-private dtslint",
     "lint": "lerna run --parallel --no-private lint",
-    "test:package": "jest --detectOpenHandles",
-    "test:snapshot": "yarn clean && yarn build && webpack --config=integration/webpack.config.js && jest integration --detectOpenHandles",
-    "test": "yarn clean && yarn build && webpack --config=integration/webpack.config.js && yarn test:package",
+    "test": "yarn clean && yarn build && jest --detectOpenHandles",
     "commit": "commit",
     "release": "lerna publish --yes --no-changelog"
   },

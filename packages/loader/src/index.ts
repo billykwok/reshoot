@@ -3,7 +3,7 @@ import { loader } from 'webpack';
 import resolveOptions from './resolveOptions';
 import extractPassThroughProperties from './extractPassThroughProperties';
 import resolveMimeAndExt from './resolveMimeAndExt';
-import toScriptString from './toScriptString';
+import renderScript from './renderScript';
 import resolveColor from './resolveColor';
 import createSharp from './createSharp';
 import createDataUrl from './createDataUrl';
@@ -14,13 +14,13 @@ import createHash from './createHash';
 import cache from './cache';
 import resolveDefaultOptions from './defaultOptions';
 import createOutputPathResolver from './createOutputPathResolver';
+import createPublicPathResolver from './createPublicPathResolver';
 
 async function reshootLoader(this: loader.LoaderContext, content: string) {
   this.cacheable(true);
   const callback = this.async();
   const defaultOptions = resolveDefaultOptions(this.mode);
   const options = resolveOptions(this, defaultOptions);
-  const context = options.context || this.rootContext;
   const output = extractPassThroughProperties(options, defaultOptions);
 
   const { shape: outputShape } = options;
@@ -46,16 +46,17 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     cache.createSaver(hash),
     image.metadata()
   ]);
+  const resolvePublicPath = createPublicPathResolver(options);
   const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
   const rawPath = emit(
     this,
-    context,
     content,
     hash,
     metadata.width,
     ext,
     options,
     resolveOutputPath,
+    resolvePublicPath,
     saver
   );
 
@@ -80,7 +81,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     if (outputShape.srcSet) {
       output.srcSet = null;
     }
-    const serializedOutput = toScriptString(outputShape, output);
+    const serializedOutput = renderScript(output, options);
     saver.save(serializedOutput);
     image.close();
     return callback(null, serializedOutput);
@@ -101,7 +102,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     if (outputShape.srcSet) {
       output.srcSet = null;
     }
-    const serializedOutput = toScriptString(outputShape, output);
+    const serializedOutput = renderScript(output, options);
     saver.save(serializedOutput);
     image.close();
     return callback(null, serializedOutput);
@@ -124,13 +125,13 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
         width,
         emit(
           this,
-          context,
           content,
           hash,
           width,
           ext,
           options,
           resolveOutputPath,
+          resolvePublicPath,
           saver
         )
       )
@@ -144,7 +145,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     }
   }
 
-  const serializedOutput = toScriptString(outputShape, output);
+  const serializedOutput = renderScript(output, options);
   saver.save(serializedOutput);
   image.close();
   return callback(null, serializedOutput);

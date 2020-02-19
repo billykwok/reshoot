@@ -9,15 +9,11 @@ const defaultExpected = {
 };
 
 export function matchOutputAsObject(expected, actual) {
-  const {
-    publicPath,
-    mime,
-    aspectRatio,
-    hashLength,
-    sizes,
-    color,
-    keys
-  } = Object.assign({}, defaultExpected, expected);
+  const { mime, aspectRatio, hashLength, sizes, color, keys } = Object.assign(
+    {},
+    defaultExpected,
+    expected
+  );
   const actualKeys = Object.keys(actual);
   expect(actualKeys).toHaveLength(keys.length);
   expect(actualKeys).toEqual(expect.arrayContaining(keys));
@@ -31,18 +27,13 @@ export function matchOutputAsObject(expected, actual) {
     expect(actual.placeholder).toMatch(new RegExp(`^data:${mime};base64,`));
   }
   if (keys.includes('src')) {
-    expect(actual.src).toMatch(
-      new RegExp(`^${publicPath}[0-9a-f]{${hashLength}}-4774.jpg`)
-    );
+    expect(actual.src).toMatch(new RegExp(`^[0-9a-f]{${hashLength}}-4774.jpg`));
   }
   if (keys.includes('srcSet')) {
     expect(actual.srcSet).toMatch(
       new RegExp(
         `^${sizes
-          .map(
-            (size: number) =>
-              `${publicPath}[0-9a-f]{${hashLength}}-${size}.jpg ${size}w`
-          )
+          .map((size: number) => `[0-9a-f]{${hashLength}}-${size}.jpg ${size}w`)
           .join(',')}$`
       )
     );

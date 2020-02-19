@@ -5,7 +5,6 @@ type Options = {
   hash: string;
   width: number;
   ext: string;
-  context: string;
   content: string | Buffer;
 };
 
@@ -14,7 +13,7 @@ const regex = /\[(?:metrohash(?:64|128)?:)?(?:hash|contenthash)(?::hex)?(?::(\d+
 function interpolateName(
   loaderContext: loader.LoaderContext,
   name: string,
-  { hash, width, ext, ...options }: Options
+  { hash, width, ext, content }: Options
 ): string {
   let filename = name
     .replace(/\[ext\]/gi, ext)
@@ -26,7 +25,10 @@ function interpolateName(
       hash.substring(0, parseInt(result[1] || '16'))
     );
   }
-  return loaderUtils.interpolateName(loaderContext, filename, options);
+  return loaderUtils.interpolateName(loaderContext, filename, {
+    context: loaderContext.rootContext,
+    content
+  });
 }
 
 export default interpolateName;
