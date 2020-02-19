@@ -6,11 +6,11 @@ function serializeKey(value: string) {
 
 function serializePath(
   value: string,
-  prefix: string | ((path: string) => string)
+  staticPublicPath: string | ((path: string) => string)
 ) {
-  return prefix
-    ? '__webpack_public_path__+' + JSON.stringify(value)
-    : JSON.stringify(value);
+  return staticPublicPath
+    ? JSON.stringify(value)
+    : '__webpack_public_path__+' + JSON.stringify(value);
 }
 
 function renderScript(

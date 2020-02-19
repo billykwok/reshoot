@@ -23,9 +23,9 @@ describe('renderScript', () => {
     };
     expect(renderScript(object, { ...defaultOptions, shape }))
       .toEqual(oneLineTrim`export default {
-      src:"abc.jpg",
+      src:__webpack_public_path__+"abc.jpg",
       aspectRatio:3.14,
-      srcSet:"abc-100.jpg 100w,abc-200.jpg 100w,abc-300.jpg 100w",
+      srcSet:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
       placeholder:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
       background:"#666666",
       e:123
@@ -48,9 +48,9 @@ describe('renderScript', () => {
         shape
       })
     ).toEqual(oneLineTrim`export default {
-      r:"abc.jpg",
+      r:__webpack_public_path__+"abc.jpg",
       a:3.14,
-      s:"abc-100.jpg 100w,abc-200.jpg 100w,abc-300.jpg 100w",
+      s:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
       p:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
       c:"#666666",
       e:123
@@ -60,9 +60,9 @@ describe('renderScript', () => {
   test('default options', () => {
     expect(renderScript(object, defaultOptions))
       .toEqual(oneLineTrim`export default {
-      src:"abc.jpg",
+      src:__webpack_public_path__+"abc.jpg",
       aspectRatio:3.14,
-      srcSet:"abc-100.jpg 100w,abc-200.jpg 100w,abc-300.jpg 100w",
+      srcSet:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
       placeholder:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
       color:"#666666",
       extra:123
