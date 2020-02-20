@@ -14,7 +14,7 @@ async function emit(
   resolveOutputPath: (filename: string) => string,
   resolvePublicPath: (filename: string) => string,
   saver: Saver
-): Promise<string> {
+): Promise<[number, string]> {
   const filename = interpolateName(loaderContext, options.name, {
     hash,
     width,
@@ -24,11 +24,11 @@ async function emit(
   const outputPath = resolveOutputPath(filename);
 
   if (options.emitFile) {
-    await saver.addFile(outputPath, filename, content);
+    await saver.addFile(filename, content);
     loaderContext.emitFile(outputPath, content, null);
   }
 
-  return options.publicPath ? resolvePublicPath(filename) : outputPath;
+  return [width, options.publicPath ? resolvePublicPath(filename) : outputPath];
 }
 
 export default emit;

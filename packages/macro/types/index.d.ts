@@ -12,4 +12,4 @@ export interface ImageMeta {
 
 export default function reshoot<
   T extends Partial<ImageMeta> = Partial<ImageMeta>
->(path: string, options?: T): T & T[];
+>(path: string, options?: T): { default: T & T[] } & T & T[];
