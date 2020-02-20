@@ -11,6 +11,12 @@ const data = reshoot('../../img/abc.png', {
   extra: 123
 });
 
+function Img(props: { src: string; srcSet: string; aspectRatio: number }) {
+  return props;
+}
+
+Img({ ...data });
+
 export const d1: string = data.src;
 export const d2: string = data.alt;
 export const d3: number = data.aspectRatio;

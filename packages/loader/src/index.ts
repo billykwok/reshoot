@@ -29,17 +29,19 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   const image = createSharp(this.resourcePath);
   const hash = createHash(await image.content(), options, this.mode);
 
-  const cachedOutput = await cache.invalidateCache(this.mode, hash);
-  if (cachedOutput) {
-    if (options.emitFile && cachedOutput.files.length > 0) {
-      const emitCache = async ({ outputPath, cachePath }) => {
-        const content = await cache.readCacheFile(this.mode, cachePath);
-        this.emitFile(resolveOutputPath(outputPath), content, null);
-      };
-      await Promise.all(cachedOutput.files.map(emitCache));
+  if (!options.disable) {
+    const cachedOutput = await cache.invalidateCache(this.mode, hash);
+    if (cachedOutput) {
+      if (options.emitFile && cachedOutput.files.length > 0) {
+        const emitCache = async (filename: string) => {
+          const content = await cache.readCacheFile(this.mode, filename);
+          this.emitFile(resolveOutputPath(filename), content, null);
+        };
+        await Promise.all(cachedOutput.files.map(emitCache));
+      }
+      image.close();
+      return callback(null, cachedOutput.output);
     }
-    image.close();
-    return callback(null, cachedOutput.output);
   }
 
   const [saver, metadata] = await Promise.all([
@@ -48,17 +50,19 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   ]);
   const resolvePublicPath = createPublicPathResolver(options);
   const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
-  const rawPath = await emit(
-    this,
-    content,
-    hash,
-    metadata.width,
-    ext,
-    options,
-    resolveOutputPath,
-    resolvePublicPath,
-    saver
-  );
+  const rawPath = (
+    await emit(
+      this,
+      content,
+      hash,
+      metadata.width,
+      ext,
+      options,
+      resolveOutputPath,
+      resolvePublicPath,
+      saver
+    )
+  )[1];
 
   output.src = rawPath;
 
@@ -119,22 +123,23 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   }
 
   if (outputShape.srcSet) {
-    const paths = new Map<number, string>();
-    await Promise.all(
-      imagesData.map(async ({ content, width }) => {
-        const publicPath = await emit(
-          this,
-          content,
-          hash,
-          width,
-          ext,
-          options,
-          resolveOutputPath,
-          resolvePublicPath,
-          saver
-        );
-        paths.set(width, publicPath);
-      })
+    const paths = new Map<number, string>(
+      await Promise.all(
+        imagesData.map(
+          async ({ content, width }) =>
+            await emit(
+              this,
+              content,
+              hash,
+              width,
+              ext,
+              options,
+              resolveOutputPath,
+              resolvePublicPath,
+              saver
+            )
+        )
+      )
     );
     if (paths.size > 0) {
       output.srcSet = options.srcSet
