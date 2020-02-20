@@ -10,6 +10,18 @@ export interface ImageMeta {
   readonly [key: string | number | symbol]: any;
 }
 
+type MandatoryProperties<T> = {
+  readonly src: string;
+  readonly alt: string;
+  readonly aspectRatio: number;
+} & T &
+  T[];
+
 export default function reshoot<
   T extends Partial<ImageMeta> = Partial<ImageMeta>
->(path: string, options?: T): { default: T & T[] } & T & T[];
+>(
+  path: string,
+  options?: T
+): { default: MandatoryProperties<T> } & MandatoryProperties<T>;
+
+export {};
