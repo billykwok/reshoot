@@ -24,7 +24,9 @@ async function emit(
   const outputPath = resolveOutputPath(filename);
 
   if (options.emitFile) {
-    await saver.addFile(filename, content);
+    if (options.cache) {
+      await saver.addFile(filename, content);
+    }
     loaderContext.emitFile(outputPath, content, null);
   }
 

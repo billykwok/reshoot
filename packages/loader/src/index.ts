@@ -29,7 +29,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   const image = createSharp(this.resourcePath);
   const hash = createHash(await image.content(), options, this.mode);
 
-  if (!options.disable) {
+  if (options.cache) {
     const cachedOutput = await cache.invalidateCache(this.mode, hash);
     if (cachedOutput) {
       if (options.emitFile && cachedOutput.files.length > 0) {
@@ -45,7 +45,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   }
 
   const [saver, metadata] = await Promise.all([
-    cache.createSaver(this.mode, hash),
+    await cache.createSaver(this.mode, hash),
     image.metadata()
   ]);
   const resolvePublicPath = createPublicPathResolver(options);
