@@ -62,6 +62,7 @@ export type Options = {
   placeholder: Placeholder;
   aspectRatio: AspectRatio;
   disable: boolean;
+  cache: boolean;
   emitFile: boolean;
   esModule: boolean;
 };
