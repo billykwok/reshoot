@@ -47,7 +47,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   }
 
   const [[saveCache, saveCacheStats], metadata] = await Promise.all([
-    cache.createSaver(this, hash),
+    cache.createSaver(this, hash, options),
     image.metadata()
   ]);
   const resolvePublicPath = createPublicPathResolver(options);
