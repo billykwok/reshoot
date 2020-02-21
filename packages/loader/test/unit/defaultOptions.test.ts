@@ -22,7 +22,7 @@ describe('default options', () => {
       placeholder: { size: 8, trimDataUrl: false },
       aspectRatio: { type: 'heightByWidth', format: 'percent', decimal: 2 },
       disable: true,
-      cache: false,
+      cache: true,
       emitFile: true,
       esModule: true
     });
