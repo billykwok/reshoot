@@ -39,30 +39,31 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
         };
         await Promise.all(cachedOutput.files.map(emitCache));
       }
-      image.close();
-      return callback(null, cachedOutput.output);
+      if (!options.emitFile || cachedOutput.files.length > 0) {
+        image.close();
+        return callback(null, cachedOutput.output);
+      }
     }
   }
 
   const [saver, metadata] = await Promise.all([
-    await cache.createSaver(this.mode, hash),
+    cache.createSaver(this, hash),
     image.metadata()
   ]);
   const resolvePublicPath = createPublicPathResolver(options);
   const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
-  const rawPath = (
-    await emit(
-      this,
-      content,
-      hash,
-      metadata.width,
-      ext,
-      options,
-      resolveOutputPath,
-      resolvePublicPath,
-      saver
-    )
-  )[1];
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, rawPath] = await emit(
+    this,
+    content,
+    hash,
+    metadata.width,
+    ext,
+    options,
+    resolveOutputPath,
+    resolvePublicPath,
+    saver
+  );
 
   output.src = rawPath;
 
