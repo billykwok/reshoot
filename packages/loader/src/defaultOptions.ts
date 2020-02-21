@@ -28,7 +28,7 @@ function resolveDefaultOptions(env: string): Options {
       decimal: 2
     },
     disable: env === 'development',
-    cache: true,
+    cache: env !== 'development',
     emitFile: true,
     esModule: true
   };

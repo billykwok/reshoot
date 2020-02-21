@@ -1,5 +1,6 @@
 import findCacheDir from 'find-cache-dir';
 import { readFile, readJson, outputFile, outputJson } from 'fs-extra';
+import { loader } from 'webpack';
 
 export type Saver = {
   addFile(filename: string, content: string | Buffer): Promise<void>;
@@ -16,7 +17,11 @@ async function readCacheFile(mode: string, filename: string) {
   return await readFile(resolvePath(mode, filename));
 }
 
-async function readCacheStats(mode: string, hash: string, defaultValue: any) {
+async function readCacheStats<T>(
+  mode: string,
+  hash: string,
+  defaultValue: T
+): Promise<T> {
   try {
     return await readJson(resolvePath(mode, `${hash}.json`));
   } catch (e) {
@@ -34,16 +39,26 @@ async function invalidateCache(
   return await readCacheStats(mode, hash, null);
 }
 
-async function createSaver(mode: string, hash: string): Promise<Saver> {
-  const stats = await readCacheStats(mode, hash, { output: {}, files: [] });
+async function createSaver(
+  loaderContext: loader.LoaderContext,
+  hash: string
+): Promise<Saver> {
+  const { files } = await readCacheStats(loaderContext.mode, hash, {
+    files: []
+  });
   return {
     async addFile(filename: string, content: string | Buffer) {
-      stats.files.push(filename);
-      await outputFile(resolvePath(mode, filename), content);
+      files.push(filename);
+      await outputFile(resolvePath(loaderContext.mode, filename), content);
     },
     async save(output: string) {
-      stats.output = output;
-      await outputJson(resolvePath(mode, `${hash}.json`), stats);
+      if (files.length === 0) {
+        loaderContext.emitWarning(`Caching ${hash} without files`);
+      }
+      await outputJson(resolvePath(loaderContext.mode, `${hash}.json`), {
+        output,
+        files
+      });
     }
   };
 }
