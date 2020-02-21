@@ -2,7 +2,6 @@ import { loader } from 'webpack';
 
 import { Options } from './type';
 import interpolateName from './interpolateName';
-import { Saver } from './cache';
 
 async function emit(
   loaderContext: loader.LoaderContext,
@@ -13,7 +12,7 @@ async function emit(
   options: Options,
   resolveOutputPath: (filename: string) => string,
   resolvePublicPath: (filename: string) => string,
-  saver: Saver
+  markForCache: (filename: string, content: string | Buffer) => Promise<void>
 ): Promise<[number, string]> {
   const filename = interpolateName(loaderContext, options.name, {
     hash,
@@ -25,7 +24,7 @@ async function emit(
 
   if (options.emitFile) {
     if (options.cache) {
-      await saver.addFile(filename, content);
+      await markForCache(filename, content);
     }
     loaderContext.emitFile(outputPath, content, null);
   }

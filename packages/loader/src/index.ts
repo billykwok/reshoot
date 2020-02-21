@@ -46,7 +46,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     }
   }
 
-  const [saver, metadata] = await Promise.all([
+  const [[saveCache, saveCacheStats], metadata] = await Promise.all([
     cache.createSaver(this, hash),
     image.metadata()
   ]);
@@ -62,7 +62,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     options,
     resolveOutputPath,
     resolvePublicPath,
-    saver
+    saveCache
   );
 
   output.src = rawPath;
@@ -87,7 +87,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
       output.srcSet = null;
     }
     const serializedOutput = renderScript(output, options);
-    await saver.save(serializedOutput);
+    await saveCacheStats(serializedOutput);
     image.close();
     return callback(null, serializedOutput);
   }
@@ -108,7 +108,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
       output.srcSet = null;
     }
     const serializedOutput = renderScript(output, options);
-    await saver.save(serializedOutput);
+    await saveCacheStats(serializedOutput);
     image.close();
     return callback(null, serializedOutput);
   }
@@ -137,7 +137,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
               options,
               resolveOutputPath,
               resolvePublicPath,
-              saver
+              saveCache
             )
         )
       )
@@ -152,7 +152,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
   }
 
   const serializedOutput = renderScript(output, options);
-  await saver.save(serializedOutput);
+  await saveCacheStats(serializedOutput);
   image.close();
   return callback(null, serializedOutput);
 }

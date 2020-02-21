@@ -2,11 +2,6 @@ import findCacheDir from 'find-cache-dir';
 import { readFile, readJson, outputFile, outputJson } from 'fs-extra';
 import { loader } from 'webpack';
 
-export type Saver = {
-  addFile(filename: string, content: string | Buffer): Promise<void>;
-  save(output: string): Promise<void>;
-};
-
 const resolvePath = findCacheDir({
   name: '@reshoot/loader',
   create: true,
@@ -42,25 +37,30 @@ async function invalidateCache(
 async function createSaver(
   loaderContext: loader.LoaderContext,
   hash: string
-): Promise<Saver> {
+): Promise<
+  [
+    (filename: string, content: string | Buffer) => Promise<void>,
+    (output: string) => Promise<void>
+  ]
+> {
   const { files } = await readCacheStats(loaderContext.mode, hash, {
     files: []
   });
-  return {
-    async addFile(filename: string, content: string | Buffer) {
+  return [
+    async (filename: string, content: string | Buffer) => {
       files.push(filename);
       await outputFile(resolvePath(loaderContext.mode, filename), content);
     },
-    async save(output: string) {
+    async (output: string) => {
       if (files.length === 0) {
-        loaderContext.emitWarning(`Caching ${hash} without files`);
+        loaderContext.emitWarning(new Error(`Caching ${hash} without files`));
       }
       await outputJson(resolvePath(loaderContext.mode, `${hash}.json`), {
         output,
         files
       });
     }
-  };
+  ];
 }
 
 const cache = { readCacheFile, readCacheStats, invalidateCache, createSaver };
