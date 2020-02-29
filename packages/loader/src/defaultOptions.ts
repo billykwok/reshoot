@@ -19,7 +19,7 @@ function resolveDefaultOptions(env: string): Options {
     srcSet: [480, 640, 840, 1080],
     quality: 80,
     background: '#fff',
-    color: 'DarkMuted',
+    color: '#fff',
     forceFormat: false,
     placeholder: { size: 8, trimDataUrl: false },
     aspectRatio: {
