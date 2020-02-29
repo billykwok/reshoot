@@ -5,9 +5,8 @@ async function resolveColor(
   color: string,
   disable: boolean
 ) {
-  if (/^#(?:[0-9a-f]{3}){1,2}$/i.test(color)) return color;
+  if (color) return color;
   if (disable) return 'transparent';
-  if (!color) return '#fff';
   return await image.color();
 }
 

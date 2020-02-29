@@ -38,6 +38,6 @@
     "lint": "yarn eslint && yarn dtslint"
   },
   "peerDependencies": {
-    "react": "^16.12.0"
+    "react": "^16.13.0"
   }
 }
