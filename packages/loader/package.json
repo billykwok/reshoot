@@ -36,9 +36,9 @@
     "find-cache-dir": "^3.3.0",
     "loader-utils": "^1.4.0",
     "metrohash": "^2.6.0",
-    "sharp": "^0.24.1"
+    "sharp": "^0.25.1"
   },
   "peerDependencies": {
-    "webpack": "^4.41.6"
+    "webpack": "^4.42.0"
   }
 }
