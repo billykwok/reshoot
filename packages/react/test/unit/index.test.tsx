@@ -41,7 +41,7 @@ describe('react', () => {
             messages={{
               MANUAL: 'manual!',
               OFFLINE: 'offline!',
-              ERROR: 'error!'
+              ERROR: 'error!',
             }}
           />
         )
@@ -62,7 +62,7 @@ describe('react', () => {
             messages={{
               MANUAL: 'manual!',
               OFFLINE: 'offline!',
-              ERROR: 'error!'
+              ERROR: 'error!',
             }}
           />
         )

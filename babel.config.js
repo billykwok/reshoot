@@ -4,10 +4,16 @@ module.exports = {
     ['@babel/preset-env', { targets: { node: 'current' } }],
     [
       '@babel/preset-typescript',
-      { isTSX: true, allExtensions: true, allowNamespaces: true }
+      {
+        isTSX: true,
+        allExtensions: true,
+        allowNamespaces: true,
+        allowDeclareFields: true,
+        onlyRemoveTypeImports: true,
+      },
     ],
     '@babel/preset-react',
-    'linaria/babel'
+    'linaria/babel',
   ],
   plugins: [
     [
@@ -16,8 +22,9 @@ module.exports = {
         corejs: { version: 3, proposals: true },
         helpers: true,
         regenerator: true,
-        useESModules: true
-      }
-    ]
-  ]
+        useESModules: true,
+      },
+    ],
+    'const-enum',
+  ],
 };

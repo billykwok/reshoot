@@ -12,14 +12,14 @@ describe('renderScript', () => {
     srcSet: ['abc-100.jpg 100w', 'abc-200.jpg 100w', 'abc-300.jpg 100w'],
     placeholder: 'data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak',
     color: '#666666',
-    extra: 123
+    extra: 123,
   };
 
   test('all options', () => {
     const shape = {
       ...defaultOptions.shape,
       color: 'background',
-      extra: 'e'
+      extra: 'e',
     };
     expect(renderScript(object, { ...defaultOptions, shape }))
       .toEqual(oneLineTrim`export default {
@@ -40,12 +40,12 @@ describe('renderScript', () => {
       placeholder: 'p',
       aspectRatio: 'a',
       color: 'c',
-      extra: 'e'
+      extra: 'e',
     };
     expect(
       renderScript(object, {
         ...defaultOptions,
-        shape
+        shape,
       })
     ).toEqual(oneLineTrim`export default {
       r:__webpack_public_path__+"abc.jpg",

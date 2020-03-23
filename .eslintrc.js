@@ -6,14 +6,14 @@ module.exports = {
     amd: true,
     es6: true,
     node: true,
-    browser: true
+    browser: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 11,
     sourceType: 'module',
     ecmaFeatures: { impliedStrict: true, jsx: true },
-    project: './tsconfig.json'
+    project: './tsconfig.json',
   },
   settings: {
     react: { version: 'detect' },
@@ -23,10 +23,10 @@ module.exports = {
       lerna: { packages: path.resolve(__dirname, 'packages') },
       node: {
         paths: [path.resolve(__dirname, 'node_modules')],
-        moduleDirectory: ['node_modules']
+        moduleDirectory: ['node_modules'],
       },
-      webpack: { config: {} }
-    }
+      webpack: { config: {} },
+    },
   },
   plugins: [
     '@typescript-eslint',
@@ -34,7 +34,7 @@ module.exports = {
     'prettier',
     'react',
     'react-hooks',
-    'jsx-a11y'
+    'jsx-a11y',
   ],
   extends: [
     'eslint:recommended',
@@ -45,7 +45,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier',
-    'prettier/react'
+    'prettier/react',
   ],
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
@@ -61,6 +61,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'consistent-return': 'off',
     'max-len': 'off',
-    'no-console': 'off'
-  }
+    'no-console': 'off',
+  },
 };

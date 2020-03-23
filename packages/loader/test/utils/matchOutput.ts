@@ -5,7 +5,7 @@ const defaultExpected = {
   hashLength: 16,
   sizes: [480, 640, 840, 1080],
   color: '#fff',
-  keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color']
+  keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color'],
 };
 
 export function matchOutputAsObject(expected, actual) {

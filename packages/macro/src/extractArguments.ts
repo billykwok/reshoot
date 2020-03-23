@@ -1,7 +1,7 @@
-import { NodePath } from '@babel/core';
+import util from 'util';
 import { isExpression, isCallExpression } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
-import util from 'util';
+import type { NodePath } from '@babel/core';
 
 function inspect(obj: any) {
   return util.inspect(obj, false, null, true);

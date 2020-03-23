@@ -1,10 +1,10 @@
-import { Metadata } from 'sharp';
+import type { Metadata } from 'sharp';
 
 import resize from '../../src/resize';
 import Mimes from '../../src/mimes';
-import { SharpImage } from '../../src/createSharp';
 import resolveDefaultOptions from '../../src/defaultOptions';
 import { Options } from '../../src/type';
+import type { SharpImage } from '../../src/createSharp';
 
 const size = { width: 16, height: 9 } as Metadata;
 const content = Buffer.from('');
@@ -16,7 +16,7 @@ const image: SharpImage = {
   resize: jest.fn(() =>
     Promise.resolve({ content: Buffer.from('123'), width: 16 })
   ),
-  close: jest.fn()
+  close: jest.fn(),
 };
 const placeholder = { size: 7 };
 const mime = Mimes.JPG;
@@ -24,7 +24,7 @@ const defaultOptions = resolveDefaultOptions('development');
 const options: Options = {
   ...defaultOptions,
   shape: { ...defaultOptions.shape, srcSet: 'srcSet' },
-  srcSet: [512, 840, 1024]
+  srcSet: [512, 840, 1024],
 };
 
 describe('resize', () => {

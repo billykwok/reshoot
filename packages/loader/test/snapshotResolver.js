@@ -9,5 +9,5 @@ module.exports = {
       .replace('test/__snapshots__/unit', 'test/unit')
       .replace('test/__snapshots__/component', 'test/component')
       .slice(0, -snapshotExtension.length),
-  testPathForConsistencyCheck: 'some/test/unit/example.test.js'
+  testPathForConsistencyCheck: 'some/test/unit/example.test.js',
 };

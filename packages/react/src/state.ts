@@ -1,9 +1,9 @@
-enum State {
+const enum State {
   INITIAL = 'INITIAL',
   LOADED = 'LOADED',
   MANUAL = 'MANUAL',
   OFFLINE = 'OFFLINE',
-  ERROR = 'ERROR'
+  ERROR = 'ERROR',
 }
 
 export default State;

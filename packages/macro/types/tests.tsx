@@ -8,7 +8,7 @@ const data1 = reshoot('../../img/abc.png', {
   color: '',
   placeholder: '',
   srcSet: '',
-  extra: 123
+  extra: 123,
 });
 
 export const d1: string = data1.src;
@@ -34,7 +34,7 @@ const data2 = reshoot('../../img/abc.png', {
   color: '',
   placeholder: '',
   srcSet: '',
-  extra: 123
+  extra: 123,
 });
 
 function Img(props: { src: string; srcSet: string; aspectRatio: number }) {

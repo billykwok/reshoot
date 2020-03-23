@@ -1,7 +1,7 @@
 import util from 'util';
-import { NodePath } from '@babel/core';
 import { stringLiteral, objectExpression } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
+import type { NodePath } from '@babel/core';
 
 import evalFirstArgument from '../../src/evalFirstArgument';
 
@@ -10,7 +10,7 @@ describe('arguments', () => {
     const path = 'image.jpg';
     const nodePath = {
       node: stringLiteral(path),
-      evaluate: () => ({ confident: true, value: path })
+      evaluate: () => ({ confident: true, value: path }),
     } as NodePath;
     expect(evalFirstArgument(nodePath)).toEqual(path);
   });
@@ -19,7 +19,7 @@ describe('arguments', () => {
     const options = {};
     const nodePath = {
       node: objectExpression([]),
-      evaluate: () => ({ confident: true, value: options })
+      evaluate: () => ({ confident: true, value: options }),
     } as NodePath;
     expect(() => evalFirstArgument(nodePath)).toThrow(
       new MacroError(
@@ -33,7 +33,7 @@ describe('arguments', () => {
     const stringPath = stringLiteral(path);
     const nodePath = {
       node: stringPath,
-      evaluate: () => ({ confident: false, value: path })
+      evaluate: () => ({ confident: false, value: path }),
     } as NodePath;
     expect(() => evalFirstArgument(nodePath)).toThrow(
       new MacroError(

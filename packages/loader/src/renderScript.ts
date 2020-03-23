@@ -1,4 +1,4 @@
-import { InternalOutput, Options } from './type';
+import type { InternalOutput, Options } from './type';
 
 function serializeKey(value: string) {
   return /^[a-zA-Z][a-zA-Z0-9]*$/gi.test(value) ? value : JSON.stringify(value);
@@ -22,7 +22,7 @@ function renderScript(
     options.esModule ? 'export default ' : 'module.exports='
   }{${Object.keys(object)
     .filter(
-      key => !(key in shape) || (typeof shape[key] === 'string' && shape[key])
+      (key) => !(key in shape) || (typeof shape[key] === 'string' && shape[key])
     )
     .map((key: string) => {
       if (!(key in shape)) {
@@ -43,7 +43,7 @@ function renderScript(
       if (key === 'srcSet' && shape.srcSet) {
         const serializedValue = object.srcSet
           ? object.srcSet
-              .map(s => serializePath(s, options.publicPath))
+              .map((s) => serializePath(s, options.publicPath))
               .join('+","+')
               .replace(/"\+","/gi, ',"')
               .replace(/"\+"/gi, '')

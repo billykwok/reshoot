@@ -10,12 +10,12 @@ export type OutputShape = {
 
 export enum AspectRatioType {
   WidthByHeight = 'widthByHeight',
-  HeightByWidth = 'heightByWidth'
+  HeightByWidth = 'heightByWidth',
 }
 
 export enum AspectRatioFormat {
   Percent = 'percent',
-  Ratio = 'ratio'
+  Ratio = 'ratio',
 }
 
 export type AspectRatio =

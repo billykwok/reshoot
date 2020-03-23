@@ -1,12 +1,13 @@
 import findCacheDir from 'find-cache-dir';
 import { readFile, readJson, outputFile, outputJson } from 'fs-extra';
 import { loader } from 'webpack';
-import { Options } from './type';
+
+import type { Options } from './type';
 
 const resolvePath = findCacheDir({
   name: '@reshoot/loader',
   create: true,
-  thunk: true
+  thunk: true,
 });
 
 async function readCacheFile(mode: string, filename: string) {
@@ -46,7 +47,7 @@ async function createSaver(
   ]
 > {
   const { files } = await readCacheStats(loaderContext.mode, hash, {
-    files: []
+    files: [],
   });
   return [
     async (filename: string, content: string | Buffer) => {
@@ -59,9 +60,9 @@ async function createSaver(
       }
       await outputJson(resolvePath(loaderContext.mode, `${hash}.json`), {
         output,
-        files
+        files,
       });
-    }
+    },
   ];
 }
 

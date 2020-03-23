@@ -7,7 +7,7 @@ describe('Extensions map', () => {
       'image/png': 'png',
       'image/gif': 'gif',
       'image/webp': 'webp',
-      'image/svg+xml': 'svg'
+      'image/svg+xml': 'svg',
     });
   });
 });

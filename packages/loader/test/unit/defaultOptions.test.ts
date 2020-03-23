@@ -12,7 +12,7 @@ describe('default options', () => {
         aspectRatio: 'aspectRatio',
         srcSet: 'srcSet',
         placeholder: 'placeholder',
-        color: 'color'
+        color: 'color',
       },
       srcSet: [480, 640, 840, 1080],
       quality: 80,
@@ -24,7 +24,7 @@ describe('default options', () => {
       disable: true,
       cache: true,
       emitFile: true,
-      esModule: true
+      esModule: true,
     });
   });
 
@@ -39,7 +39,7 @@ describe('default options', () => {
         aspectRatio: 'aspectRatio',
         srcSet: 'srcSet',
         placeholder: 'placeholder',
-        color: 'color'
+        color: 'color',
       },
       srcSet: [480, 640, 840, 1080],
       quality: 80,
@@ -51,7 +51,7 @@ describe('default options', () => {
       disable: false,
       cache: true,
       emitFile: true,
-      esModule: true
+      esModule: true,
     });
   });
 });

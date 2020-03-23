@@ -1,5 +1,6 @@
 import { loader } from 'webpack';
-import { parseQuery, getOptions, OptionObject } from 'loader-utils';
+import { parseQuery, getOptions } from 'loader-utils';
+import type { OptionObject } from 'loader-utils';
 
 import resolveOptions from '../../src/resolveOptions';
 import resolveDefaultOptions from '../../src/defaultOptions';

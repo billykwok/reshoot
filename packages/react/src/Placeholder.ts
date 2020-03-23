@@ -15,8 +15,8 @@ const Placeholder = ({ color, aspectRatio }: Props) =>
     style: {
       color,
       background: color,
-      paddingBottom: aspectRatio ? aspectRatio + '%' : 0
-    }
+      paddingBottom: aspectRatio ? aspectRatio + '%' : 0,
+    },
   });
 
 export default Placeholder;

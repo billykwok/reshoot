@@ -1,4 +1,5 @@
-import { Options, AspectRatioType, AspectRatioFormat } from './type';
+import { AspectRatioType, AspectRatioFormat } from './type';
+import type { Options } from './type';
 
 function resolveDefaultOptions(env: string): Options {
   return {
@@ -14,7 +15,7 @@ function resolveDefaultOptions(env: string): Options {
       aspectRatio: 'aspectRatio',
       srcSet: 'srcSet',
       placeholder: 'placeholder',
-      color: 'color'
+      color: 'color',
     },
     srcSet: [480, 640, 840, 1080],
     quality: 80,
@@ -25,12 +26,12 @@ function resolveDefaultOptions(env: string): Options {
     aspectRatio: {
       type: AspectRatioType.HeightByWidth,
       format: AspectRatioFormat.Percent,
-      decimal: 2
+      decimal: 2,
     },
     disable: env === 'development',
     cache: true,
     emitFile: true,
-    esModule: true
+    esModule: true,
   };
 }
 

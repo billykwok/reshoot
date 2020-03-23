@@ -1,4 +1,5 @@
-import sharp, { Metadata } from 'sharp';
+import sharp from 'sharp';
+import type { Metadata } from 'sharp';
 
 export type ResizeOptions = { background: string; quality: number };
 export type ResizeResult = { content: Buffer; width: number };
@@ -32,10 +33,7 @@ function createSharp(imagePath: string): SharpImage {
       return `#${hex(rc.mean)}${hex(gc.mean)}${hex(bc.mean)}`;
     },
     resize: async (width, mime, options) => {
-      let resized = image
-        .clone()
-        .rotate()
-        .resize(width);
+      let resized = image.clone().rotate().resize(width);
 
       if (options.background) {
         resized = resized.flatten({ background: options.background });
@@ -45,7 +43,7 @@ function createSharp(imagePath: string): SharpImage {
         case 'image/jpeg':
           resized = resized.jpeg({
             quality: options.quality,
-            chromaSubsampling: '4:4:4'
+            chromaSubsampling: '4:4:4',
           });
           break;
         case 'image/png':
@@ -60,10 +58,10 @@ function createSharp(imagePath: string): SharpImage {
 
       return {
         content: await resized.toBuffer(),
-        width
+        width,
       };
     },
-    close: () => image.destroy()
+    close: () => image.destroy(),
   };
 }
 

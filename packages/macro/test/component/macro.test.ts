@@ -13,8 +13,8 @@ const babelConfig: {
   presets: ['@babel/preset-env', '@babel/preset-typescript'],
   plugins: [
     'babel-plugin-macros',
-    ['@babel/plugin-transform-modules-commonjs', { strictMode: false }]
-  ]
+    ['@babel/plugin-transform-modules-commonjs', { strictMode: false }],
+  ],
 };
 
 describe('macros', () => {

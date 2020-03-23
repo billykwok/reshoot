@@ -2,14 +2,21 @@ import isServer from './isServer';
 import { getCache } from './cache';
 import State from './state';
 
+declare global {
+  interface Navigator {
+    connection: { effectiveType: string };
+  }
+}
+
 const deriveInitialState = (src: string): State => {
   if (isServer || getCache(src)) return State.LOADED;
-  const support = typeof navigator !== 'undefined';
-  const connection = support && navigator['connection'];
+  const n = navigator;
+  const support = typeof n !== 'undefined';
+  const connection = support && n.connection;
   if (connection && connection.effectiveType.indexOf('2g') > -1) {
     return State.MANUAL;
   }
-  if (support && 'onLine' in navigator && !navigator.onLine) {
+  if (support && 'onLine' in n && !n.onLine) {
     return State.OFFLINE;
   }
   return State.INITIAL;
