@@ -11,6 +11,7 @@
     "build": "yarn clean && webpack"
   },
   "resolutions": {
+    "acorn": "^7.1.1",
     "eslint-utils": "^2.0.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",

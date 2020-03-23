@@ -18,9 +18,12 @@
     "packages/*"
   ],
   "resolutions": {
-    "@babel/core": "7.9.0",
-    "@babel/parser": "7.9.3",
-    "@babel/types": "7.9.0",
+    "@babel/core": "^7.9.0",
+    "@babel/generator": "^7.9.3",
+    "@babel/parser": "^7.9.3",
+    "@babel/template": "^7.8.6",
+    "@babel/traverse": "^7.9.0",
+    "@babel/types": "^7.9.0",
     "eslint-utils": "^2.0.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
@@ -94,6 +97,7 @@
     "lerna": "^3.20.2",
     "linaria": "^1.4.0-beta.4",
     "memfs": "^3.1.2",
+    "object-assign": "^4.1.1",
     "prettier": "^2.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
