@@ -1,4 +1,4 @@
-import { SharpImage } from './createSharp';
+import type { SharpImage } from './createSharp';
 
 async function resolveColor(
   image: SharpImage,

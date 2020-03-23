@@ -9,7 +9,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 11,
           format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.WidthByHeight
+          type: AspectRatioType.WidthByHeight,
         }
       )
     ).toThrow(
@@ -26,7 +26,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: undefined,
           format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.WidthByHeight
+          type: AspectRatioType.WidthByHeight,
         }
       )
     ).toThrow(
@@ -43,7 +43,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 2,
           format: undefined,
-          type: AspectRatioType.WidthByHeight
+          type: AspectRatioType.WidthByHeight,
         }
       )
     ).toThrow(
@@ -60,7 +60,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 2,
           format: AspectRatioFormat.Ratio,
-          type: undefined
+          type: undefined,
         }
       )
     ).toThrow(
@@ -77,7 +77,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 10,
           format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.WidthByHeight
+          type: AspectRatioType.WidthByHeight,
         }
       )
     ).toEqual(1);
@@ -90,7 +90,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 2,
           format: AspectRatioFormat.Percent,
-          type: AspectRatioType.WidthByHeight
+          type: AspectRatioType.WidthByHeight,
         }
       )
     ).toEqual(150);
@@ -103,7 +103,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 2,
           format: AspectRatioFormat.Percent,
-          type: AspectRatioType.HeightByWidth
+          type: AspectRatioType.HeightByWidth,
         }
       )
     ).toEqual(66.66);
@@ -116,7 +116,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 2,
           format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.WidthByHeight
+          type: AspectRatioType.WidthByHeight,
         }
       )
     ).toEqual(1.5);
@@ -129,7 +129,7 @@ describe('resolveAspectRatio', () => {
         {
           decimal: 2,
           format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.HeightByWidth
+          type: AspectRatioType.HeightByWidth,
         }
       )
     ).toEqual(0.66);

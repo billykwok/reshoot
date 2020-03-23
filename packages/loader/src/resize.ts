@@ -1,8 +1,8 @@
-import { Metadata } from 'sharp';
+import type { Metadata } from 'sharp';
 
 import Mimes from './mimes';
-import { Options } from './type';
-import { SharpImage, ResizeResult } from './createSharp';
+import type { Options } from './type';
+import type { SharpImage, ResizeResult } from './createSharp';
 
 function resize(
   image: SharpImage,
@@ -18,7 +18,7 @@ function resize(
   const promises = [image.resize(placeholder.size, Mimes.JPG, options)];
 
   if (options.shape.srcSet) {
-    options.srcSet.forEach(size => {
+    options.srcSet.forEach((size) => {
       const width = Math.min(meta.width, size);
       sizeToWidthMap.set(size, width);
       if (width === meta.width) return;

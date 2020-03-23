@@ -1,7 +1,7 @@
 import { loader } from 'webpack';
 
-import { Options } from './type';
 import interpolateName from './interpolateName';
+import type { Options } from './type';
 
 async function emit(
   loaderContext: loader.LoaderContext,
@@ -18,7 +18,7 @@ async function emit(
     hash,
     width,
     ext,
-    content
+    content,
   });
   const outputPath = resolveOutputPath(filename);
 

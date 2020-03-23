@@ -22,22 +22,22 @@ export default {
         '@babel/preset-modules',
         [
           '@babel/preset-typescript',
-          { isTSX: true, allExtensions: true, allowNamespaces: true }
+          { isTSX: true, allExtensions: true, allowNamespaces: true },
         ],
-        '@babel/preset-react'
+        '@babel/preset-react',
       ],
-      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx']
+      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
     }),
     peerDepsExternal(),
     resolve({ extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'] }),
     replace({
       ENVIRONMENT: JSON.stringify('production'),
-      'process.env.NODE_ENV': () => JSON.stringify('production')
+      'process.env.NODE_ENV': () => JSON.stringify('production'),
     }),
     commonjs({
       include: '../../node_modules/**',
       extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-      namedExports: { '../../node_modules/react-js/index.js': ['useState'] }
+      namedExports: { '../../node_modules/react-js/index.js': ['useState'] },
     }),
     terser({
       sourcemap: false,
@@ -49,8 +49,8 @@ export default {
         hoist_funs: true,
         /* eslint-enable @typescript-eslint/camelcase */
         passes: 3,
-        toplevel: true
-      }
-    })
-  ]
+        toplevel: true,
+      },
+    }),
+  ],
 };

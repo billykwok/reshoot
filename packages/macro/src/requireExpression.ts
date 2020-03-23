@@ -6,7 +6,7 @@ function requireExpression(path: string, ...options: { [key: string]: any }[]) {
     ? `?${JSON.stringify(mergedOptions)}`
     : '';
   return callExpression(identifier('require'), [
-    stringLiteral(`${path}${queryString}`)
+    stringLiteral(`${path}${queryString}`),
   ]);
 }
 

@@ -1,7 +1,7 @@
 import { MetroHash128 } from 'metrohash';
 
 import { version } from '../package.json';
-import { Options } from './type.js';
+import type { Options } from './type.js';
 
 function excludeNonCacheDeterminingOptions({
   /* eslint-disable @typescript-eslint/no-unused-vars */

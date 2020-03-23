@@ -6,7 +6,7 @@ const handlers: WeakMap<
 const observer =
   typeof IntersectionObserver !== 'undefined' &&
   new IntersectionObserver(
-    entries => entries.forEach(entry => handlers.get(entry.target)(entry)),
+    (entries) => entries.forEach((entry) => handlers.get(entry.target)(entry)),
     { rootMargin: '-5% 0%' }
   );
 

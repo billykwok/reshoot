@@ -1,5 +1,7 @@
-import { useRef, memo, SyntheticEvent } from 'react';
+import { useRef, memo } from 'react';
 import { css } from 'linaria';
+import assign from 'object-assign';
+import type { SyntheticEvent } from 'react';
 
 import h from './h';
 import Placeholder from './Placeholder';
@@ -53,9 +55,9 @@ const Reshoot = ({
   target = '_self',
   href = null,
   messages = {
-    [State.MANUAL]: 'Not autoloaded in slow network',
-    [State.OFFLINE]: 'Browser is offline',
-    [State.ERROR]: 'Fail to load'
+    MANUAL: 'Not autoloaded in slow network',
+    OFFLINE: 'Browser is offline',
+    ERROR: 'Fail to load',
   },
   onClick,
   ...rest
@@ -67,34 +69,40 @@ const Reshoot = ({
   const children = [
     h(Placeholder, { color, aspectRatio }),
     h(Img, { color, placeholder, src, srcSet, alt, state, blur }),
-    h(Message, { state, text: messages[state] })
+    h(Message, { state, text: messages[state] }),
   ];
 
   if (state !== State.INITIAL && state !== State.LOADED) {
     return h(
       'button',
-      {
-        ref,
-        className: cx(asContainer, asButtonContainer),
-        onClick: (e: SyntheticEvent<Element, MouseEvent>) => {
-          e.stopPropagation();
-          e.preventDefault();
-          setState(() => State.INITIAL);
-          download();
+      assign(
+        {
+          ref,
+          className: cx(asContainer, asButtonContainer),
+          onClick: (e: SyntheticEvent<Element, MouseEvent>) => {
+            e.stopPropagation();
+            e.preventDefault();
+            setState(() => State.INITIAL);
+            download();
+          },
         },
-        ...rest
-      },
+        rest
+      ),
       ...children
     );
   }
   if (href) {
     return h(
       'a',
-      { ref, className: cx(asContainer), target, href, onClick, ...rest },
+      assign({ ref, className: cx(asContainer), target, href, onClick }, rest),
       ...children
     );
   }
-  return h('div', { ref, className: cx(asContainer), ...rest }, ...children);
+  return h(
+    'div',
+    assign({ ref, className: cx(asContainer) }, rest),
+    ...children
+  );
 };
 
 export default memo(Reshoot);

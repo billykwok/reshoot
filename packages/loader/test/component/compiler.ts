@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+
 import createMemfs from './createMemfs';
 
 async function compiler(fixture: string, options: any = {}) {
@@ -14,11 +15,11 @@ async function compiler(fixture: string, options: any = {}) {
         {
           test: /\.(jpe?g)$/,
           use: [
-            { loader: path.resolve(__dirname, '../../src/index.ts'), options }
-          ]
-        }
-      ]
-    }
+            { loader: path.resolve(__dirname, '../../src/index.ts'), options },
+          ],
+        },
+      ],
+    },
   });
   compiler.outputFileSystem = createMemfs();
 

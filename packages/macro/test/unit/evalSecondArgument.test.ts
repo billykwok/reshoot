@@ -1,6 +1,6 @@
-import { NodePath } from '@babel/core';
 import { objectExpression } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
+import type { NodePath } from '@babel/core';
 
 import evalSecondArgument from '../../src/evalSecondArgument';
 
@@ -8,7 +8,7 @@ describe('arguments', () => {
   test('parse valid second argument', () => {
     const nodePath = {
       node: objectExpression([]),
-      evaluate: () => ({ confident: true, value: {} })
+      evaluate: () => ({ confident: true, value: {} }),
     } as NodePath;
     expect(evalSecondArgument(nodePath)).toEqual({});
   });
@@ -16,7 +16,7 @@ describe('arguments', () => {
   test('parse second argument that cannot be evaluated', () => {
     const nodePath = {
       node: objectExpression([]),
-      evaluate: () => ({ confident: false, value: {} })
+      evaluate: () => ({ confident: false, value: {} }),
     } as NodePath;
     expect(() => evalSecondArgument(nodePath)).toThrow(
       new MacroError('Failed to evaluate the second argument {}.')

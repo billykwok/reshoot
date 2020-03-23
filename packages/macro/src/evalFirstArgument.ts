@@ -1,5 +1,5 @@
 import { MacroError } from 'babel-plugin-macros';
-import { NodePath } from '@babel/core';
+import type { NodePath } from '@babel/core';
 
 import inspect from './inspect';
 

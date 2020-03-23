@@ -2,7 +2,7 @@ import { parseQuery, getOptions } from 'loader-utils';
 import deepmerge from 'deepmerge';
 import { loader } from 'webpack';
 
-import { Options } from './type';
+import type { Options } from './type';
 
 function resolveOptions(
   loaderContext: loader.LoaderContext,
@@ -14,7 +14,7 @@ function resolveOptions(
   return deepmerge.all<Options>([
     defaultOptions,
     getOptions(loaderContext) || {},
-    resourceQuery
+    resourceQuery,
   ]);
 }
 

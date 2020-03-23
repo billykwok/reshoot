@@ -6,7 +6,9 @@ function extractPassThroughProperties(
 ): Partial<InternalOutput> {
   const supportedKeys = Object.keys(defaultOptions);
   return Object.fromEntries(
-    Object.entries(options).filter(entry => supportedKeys.indexOf(entry[0]) < 0)
+    Object.entries(options).filter(
+      (entry) => supportedKeys.indexOf(entry[0]) < 0
+    )
   );
 }
 

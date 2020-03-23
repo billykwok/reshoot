@@ -1,11 +1,11 @@
 import util from 'util';
-import { NodePath } from '@babel/core';
 import {
   stringLiteral,
   objectExpression,
-  continueStatement
+  continueStatement,
 } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
+import type { NodePath } from '@babel/core';
 
 import extractArgumentPaths from '../../src/extractArguments';
 
@@ -15,8 +15,8 @@ function createReferencePath(argumentNodes: NodePath[]): NodePath {
       type: 'CallExpression',
       get(property: string) {
         if (property === 'arguments') return argumentNodes;
-      }
-    }
+      },
+    },
   } as NodePath;
 }
 
@@ -45,7 +45,7 @@ describe('arguments', () => {
     const stringPath = stringLiteral(path);
     const referencePath = createReferencePath([
       { node: nonExpression } as NodePath,
-      { node: stringPath } as NodePath
+      { node: stringPath } as NodePath,
     ]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
       new MacroError(
@@ -64,7 +64,7 @@ describe('arguments', () => {
     const nonExpression = continueStatement();
     const referencePath = createReferencePath([
       { node: stringLiteral(path) } as NodePath,
-      { node: nonExpression } as NodePath
+      { node: nonExpression } as NodePath,
     ]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
       new MacroError(
@@ -83,7 +83,7 @@ describe('arguments', () => {
     const referencePath = createReferencePath([
       { node: stringLiteral(path) } as NodePath,
       { node: objectExpression([]) } as NodePath,
-      { node: objectExpression([]) } as NodePath
+      { node: objectExpression([]) } as NodePath,
     ]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
       new MacroError('Expect 1 or 2 arguments, but got 3.')

@@ -3,7 +3,7 @@ enum Extensions {
   'image/png' = 'png',
   'image/gif' = 'gif',
   'image/webp' = 'webp',
-  'image/svg+xml' = 'svg'
+  'image/svg+xml' = 'svg',
 }
 
 export default Extensions;

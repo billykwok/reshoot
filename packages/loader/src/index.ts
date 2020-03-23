@@ -48,7 +48,7 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
 
   const [[saveCache, saveCacheStats], metadata] = await Promise.all([
     cache.createSaver(this, hash, options),
-    image.metadata()
+    image.metadata(),
   ]);
   const resolvePublicPath = createPublicPathResolver(options);
   const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
@@ -144,8 +144,8 @@ async function reshootLoader(this: loader.LoaderContext, content: string) {
     );
     if (paths.size > 0) {
       output.srcSet = options.srcSet
-        .filter(size => paths.has(size))
-        .map(size => `${paths.get(widths.get(size))} ${size}w`);
+        .filter((size) => paths.has(size))
+        .map((size) => `${paths.get(widths.get(size))} ${size}w`);
     } else {
       output.srcSet = null;
     }

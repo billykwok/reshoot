@@ -39,11 +39,11 @@ const Img = ({ color, placeholder, src, srcSet, alt, state, blur }: Props) => {
             state === State.LOADED
               ? 'filter 0.5s ease, transform 0.5s ease'
               : 'initial',
-          transform: finalState ? 'initial' : scale3d(1.05)
+          transform: finalState ? 'initial' : scale3d(1.05),
         },
         src: resolvedSrc,
         srcSet: resolvedSrcSet,
-        alt
+        alt,
       });
 };
 

@@ -27,7 +27,7 @@ function interpolateName(
   }
   return loaderUtils.interpolateName(loaderContext, filename, {
     context: loaderContext.rootContext,
-    content
+    content,
   });
 }
 

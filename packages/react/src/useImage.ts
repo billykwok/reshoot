@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback, RefObject } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import deriveInitialState from './deriveInitialState';
+import type { RefObject } from 'react';
 
 import { setCache } from './cache';
 import { subscribe, unsubscribe } from './intersection';
