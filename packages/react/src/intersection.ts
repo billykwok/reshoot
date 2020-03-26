@@ -3,10 +3,12 @@ const handlers: WeakMap<
   (entry: IntersectionObserverEntry) => void
 > = new WeakMap();
 
+const f = () => 0;
+
 const observer =
   typeof IntersectionObserver !== 'undefined' &&
   new IntersectionObserver(
-    (entries) => entries.forEach((entry) => handlers.get(entry.target)(entry)),
+    (entries) => entries.forEach((e) => (handlers.get(e.target) || f)(e)),
     { rootMargin: '-5% 0%' }
   );
 
