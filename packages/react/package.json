@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/react",
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
-  "version": "0.6.12",
+  "version": "0.6.13",
   "main": "lib/index.js",
   "author": "Billy Kwok <xobkwok@gmail.com>",
   "license": "MIT",
