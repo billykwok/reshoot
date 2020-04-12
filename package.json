@@ -68,7 +68,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.1.0",
-    "babel-plugin-const-enum": "^0.0.5",
+    "babel-plugin-const-enum": "^1.0.0",
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-tester": "^9.0.0",
     "codecov": "^4.0.0-0",
