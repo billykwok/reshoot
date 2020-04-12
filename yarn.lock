@@ -2274,7 +2274,7 @@
     url-template "^2.0.8"
 
 "@reshoot/loader@file:packages/loader":
-  version "0.8.15"
+  version "0.8.16"
   dependencies:
     deepmerge "^4.2.2"
     find-cache-dir "^3.3.1"
@@ -2283,10 +2283,10 @@
     sharp "^0.25.2"
 
 "@reshoot/macro@file:packages/macro":
-  version "0.5.7"
+  version "0.5.8"
 
 "@reshoot/react@file:packages/react":
-  version "0.6.11"
+  version "0.6.13"
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.0"
@@ -3406,10 +3406,10 @@ babel-loader@^8.1.0:
     pify "^4.0.1"
     schema-utils "^2.6.5"
 
-babel-plugin-const-enum@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-const-enum/-/babel-plugin-const-enum-0.0.5.tgz#1e807d52572bb193a0df60130ed06b07a59b04b3"
-  integrity sha512-EAOnmHcsn+hbMS1yYZoc0jBemNbRR+NATO9RrLJF/1iXJbDTEaOwH0Y7XPb7vvWc5C/nHp7v8WhAsHW7UjxYQA==
+babel-plugin-const-enum@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-const-enum/-/babel-plugin-const-enum-1.0.0.tgz#32f613ce47be8e1963c02ddaf94b3b1064b26519"
+  integrity sha512-FczX+fXF34WrWBK0fvLn8Ju715sQZEHdGXQnO0bvTWPWearVHLRRLNiwhnmRIKpg3zpdKn6RP9cmb3haUUTPnA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-typescript" "^7.3.3"
