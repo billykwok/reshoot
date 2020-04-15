@@ -424,10 +424,10 @@
   resolved "https://registry.yarnpkg.com/@reshoot/macro/-/macro-0.5.7.tgz#4b50ba271f2948d53140a43491fd1acd82089abd"
   integrity sha512-xIlcYA+fpykFyv2mX15iZ+ziOHEDnAx68anNXS5Chf4MtsCmAh7cJg86M3a3JL1TCl4BaCoo1m5QJWCrV/Mlag==
 
-"@reshoot/react@^0.6.11":
-  version "0.6.11"
-  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.6.11.tgz#d531f6e56caca286eec03aea3c927fbd96c15105"
-  integrity sha512-vQoCj8Vs6yqssWHCt/JBmHPj7KXSfufrO0bVBZAl3Yf/IDZ/RtNEeOKLQVpL3Md+tvJI5IBFAMjGHfGZQLRMJQ==
+"@reshoot/react@^0.6.12":
+  version "0.6.13"
+  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.6.13.tgz#c2aac10b9930e5981317b5362c792007773f0018"
+  integrity sha512-5xiPZSZjYZQmukynqTBDqi6k4ZJlAZ0wA4eYDCDAbka5g5cBxIQpCU9cieY9Yp1d5Ci/Hre6yXQ1OkfGwfjLoQ==
 
 "@types/events@*":
   version "3.0.0"
