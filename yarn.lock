@@ -2274,7 +2274,7 @@
     url-template "^2.0.8"
 
 "@reshoot/loader@file:packages/loader":
-  version "0.8.15"
+  version "0.8.16"
   dependencies:
     deepmerge "^4.2.2"
     find-cache-dir "^3.3.1"
@@ -2283,10 +2283,10 @@
     sharp "^0.25.2"
 
 "@reshoot/macro@file:packages/macro":
-  version "0.5.7"
+  version "0.5.8"
 
 "@reshoot/react@file:packages/react":
-  version "0.6.11"
+  version "0.6.13"
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.0"
@@ -2433,10 +2433,10 @@
   resolved "https://registry.yarnpkg.com/@types/find-cache-dir/-/find-cache-dir-3.2.0.tgz#eaaf331699dccf52c47926e4d4f8f3ed8db33f3c"
   integrity sha512-+JeT9qb2Jwzw72WdjU+TSvD5O1QRPWCeRpDJV+guiIq+2hwR0DFGw+nZNbTFjMIVe6Bf4GgAKeB/6Ytx6+MbeQ==
 
-"@types/fs-extra@^8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-8.1.0.tgz#1114834b53c3914806cd03b3304b37b3bd221a4d"
-  integrity sha512-UoOfVEzAUpeSPmjm7h1uk5MH6KZma2z2O7a75onTGjnNvAvMVrPzPL/vBbT65iIGHWj6rokwfmYcmxmlSf2uwg==
+"@types/fs-extra@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.0.tgz#02b9aa0cdbeedc997642b6736fe48b8e4c271895"
+  integrity sha512-xCbDUSZArlmMjiJdczt8AFNH2MwcMb/pj/HKja1hx3u1qzOUINcJktQMGoGVlgFnzxnuCahxKFlcRBkSAcm33g==
   dependencies:
     "@types/node" "*"
 
