@@ -22,7 +22,7 @@
     "set-value": "^2.0.1"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.9.6",
+    "@babel/runtime-corejs3": "^7.10.0",
     "@reshoot/react": "^0.6.13",
     "babel-plugin-macros": "^2.8.0",
     "react": "^16.13.1",
