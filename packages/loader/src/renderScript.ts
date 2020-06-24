@@ -22,7 +22,8 @@ function renderScript(
     options.esModule ? 'export default ' : 'module.exports='
   }{${Object.keys(object)
     .filter(
-      (key) => !(key in shape) || (typeof shape[key] === 'string' && shape[key])
+      (key: string): boolean =>
+        !(key in shape) || (typeof shape[key] === 'string' && !!shape[key])
     )
     .map((key: string) => {
       if (!(key in shape)) {

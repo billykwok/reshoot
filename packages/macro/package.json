@@ -37,8 +37,8 @@
     "lint": "yarn eslint && yarn dtslint"
   },
   "peerDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/types": "^7.9.6",
+    "@babel/core": "^7.10.3",
+    "@babel/types": "^7.10.3",
     "babel-plugin-macros": "^2.8.0"
   }
 }

@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ES2015",
     "lib": ["dom", "dom.iterable", "webworker", "esnext"],
-    "allowJs": true,
     "skipLibCheck": true,
     "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,5 +13,5 @@
     "jsx": "preserve"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

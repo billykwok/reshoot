@@ -8,7 +8,7 @@ module.exports = {
     node: true,
     browser: true,
   },
-  parser: '@typescript-eslint/parser',
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 11,
     sourceType: 'module',
@@ -17,8 +17,7 @@ module.exports = {
   },
   settings: {
     react: { version: 'detect' },
-    'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
-    'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.json'],
+    'import/extensions': ['.js', '.jsx', '.mjs', '.json'],
     'import/resolver': {
       lerna: { packages: path.resolve(__dirname, 'packages') },
       node: {
@@ -28,19 +27,9 @@ module.exports = {
       webpack: { config: {} },
     },
   },
-  plugins: [
-    '@typescript-eslint',
-    'import',
-    'prettier',
-    'react',
-    'react-hooks',
-    'jsx-a11y',
-  ],
+  plugins: ['import', 'prettier', 'react', 'react-hooks', 'jsx-a11y'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
@@ -48,13 +37,8 @@ module.exports = {
     'prettier/react',
   ],
   rules: {
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/prefer-includes': 'off',
     'prefer-spread': 'off',
     'react/prop-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
     'jsx-a11y/image-has-content': 'off',
     'jsx-a11y/heading-has-content': 'off',
     'jsx-a11y/anchor-has-content': 'off',
@@ -63,4 +47,43 @@ module.exports = {
     'max-len': 'off',
     'no-console': 'off',
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      settings: {
+        'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
+        'import/extensions': ['.ts', '.tsx'],
+      },
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:react/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:prettier/recommended',
+        'prettier',
+        'prettier/react',
+      ],
+      plugins: [
+        '@typescript-eslint',
+        'import',
+        'prettier',
+        'react',
+        'react-hooks',
+        'jsx-a11y',
+      ],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': [
+          'error',
+          { allowArgumentsExplicitlyTypedAsAny: true },
+        ],
+        '@typescript-eslint/prefer-includes': 'off',
+      },
+    },
+  ],
 };

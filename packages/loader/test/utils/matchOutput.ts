@@ -1,3 +1,5 @@
+import type { OutputShape } from '../../src/type';
+
 const defaultExpected = {
   publicPath: '__webpack_public_path__/',
   mime: 'image/jpeg',
@@ -8,7 +10,10 @@ const defaultExpected = {
   keys: ['mime', 'aspectRatio', 'placeholder', 'src', 'srcSet', 'color'],
 };
 
-export function matchOutputAsObject(expected, actual) {
+export function matchOutputAsObject(
+  expected: OutputShape,
+  actual: OutputShape
+): void {
   const { mime, aspectRatio, hashLength, sizes, color, keys } = Object.assign(
     {},
     defaultExpected,
@@ -48,7 +53,10 @@ export function matchOutputAsObject(expected, actual) {
   }
 }
 
-export function matchOutputAsString(expected, actual) {
+export function matchOutputAsString(
+  expected: OutputShape,
+  actual: string
+): void {
   const object = JSON.parse(
     actual
       .replace(/^export default {/gi, '{')
@@ -57,6 +65,6 @@ export function matchOutputAsString(expected, actual) {
       .replace(/__webpack_public_path__\+"/gi, '"__webpack_public_path__/')
       .replace(/"\+","\+"/gi, ',')
       .replace(/"\+"/gi, '')
-  );
+  ) as OutputShape;
   matchOutputAsObject(expected, object);
 }

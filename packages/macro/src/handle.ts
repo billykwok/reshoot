@@ -8,7 +8,7 @@ import evalFirstArgument from './evalFirstArgument';
 import evalSecondArgument from './evalSecondArgument';
 import requireExpression from './requireExpression';
 
-function handle({ references, state }: MacroParams) {
+function handle({ references, state }: MacroParams): void {
   const filename = state?.file?.opts?.filename;
   if (!filename) {
     throw new MacroError('Failed to retrieve filename.');
@@ -26,7 +26,10 @@ function handle({ references, state }: MacroParams) {
       );
     }
 
-    const images = require(path.join(path.dirname(filename), firstArg));
+    const images = require(path.join(
+      path.dirname(filename),
+      firstArg
+    )) as Array<{ src: string; [key: string]: any }>;
     referencePath.parentPath.replaceWith(
       arrayExpression(
         images.map(({ src, ...rest }) =>

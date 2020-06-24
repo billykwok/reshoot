@@ -1,8 +1,8 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import linaria from 'linaria/rollup';
 import css from 'rollup-plugin-css-only';
@@ -16,7 +16,7 @@ export default {
     css({ output: 'lib/styles.css' }),
     babel({
       babelrc: false,
-      runtimeHelpers: true,
+      babelHelpers: 'bundled',
       exclude: '../../node_modules/**',
       presets: [
         '@babel/preset-modules',
@@ -37,17 +37,13 @@ export default {
     commonjs({
       include: '../../node_modules/**',
       extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-      namedExports: { '../../node_modules/react-js/index.js': ['useState'] },
     }),
     terser({
-      sourcemap: false,
       toplevel: true,
       compress: {
         arguments: true,
-        /* eslint-disable @typescript-eslint/camelcase */
         booleans_as_integers: true,
         hoist_funs: true,
-        /* eslint-enable @typescript-eslint/camelcase */
         passes: 3,
         toplevel: true,
       },

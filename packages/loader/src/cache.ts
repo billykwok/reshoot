@@ -10,7 +10,7 @@ const resolvePath = findCacheDir({
   thunk: true,
 });
 
-async function readCacheFile(mode: string, filename: string) {
+async function readCacheFile(mode: string, filename: string): Promise<Buffer> {
   return await readFile(resolvePath(mode, filename));
 }
 
@@ -20,7 +20,7 @@ async function readCacheStats<T>(
   defaultValue: T
 ): Promise<T> {
   try {
-    return await readJson(resolvePath(mode, `${hash}.json`));
+    return (await readJson(resolvePath(mode, `${hash}.json`))) as Promise<T>;
   } catch (e) {
     return defaultValue;
   }
@@ -33,7 +33,11 @@ async function invalidateCache(
   output: string;
   files: string[];
 } | null> {
-  return await readCacheStats(mode, hash, null);
+  return await readCacheStats<{ output: string; files: string[] } | null>(
+    mode,
+    hash,
+    null
+  );
 }
 
 async function createSaver(

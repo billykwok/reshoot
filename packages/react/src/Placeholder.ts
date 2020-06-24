@@ -1,5 +1,7 @@
 import { css } from 'linaria';
 
+import type { ReactElement } from 'react';
+
 import h from './h';
 
 const asPlaceholder = css`
@@ -9,13 +11,13 @@ const asPlaceholder = css`
 
 type Props = { color: string; aspectRatio: number };
 
-const Placeholder = ({ color, aspectRatio }: Props) =>
+const Placeholder = ({ color, aspectRatio }: Props): ReactElement =>
   h('div', {
     className: asPlaceholder,
     style: {
       color,
       background: color,
-      paddingBottom: aspectRatio ? aspectRatio + '%' : 0,
+      paddingBottom: aspectRatio ? `${aspectRatio}%` : 0,
     },
   });
 

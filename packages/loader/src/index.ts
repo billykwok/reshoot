@@ -16,7 +16,10 @@ import resolveDefaultOptions from './defaultOptions';
 import createOutputPathResolver from './createOutputPathResolver';
 import createPublicPathResolver from './createPublicPathResolver';
 
-async function reshootLoader(this: loader.LoaderContext, content: string) {
+async function reshootLoader(
+  this: loader.LoaderContext,
+  content: string
+): Promise<void> {
   this.cacheable(true);
   const callback = this.async();
   const defaultOptions = resolveDefaultOptions(this.mode);

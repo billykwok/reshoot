@@ -15,12 +15,12 @@ const observer =
 export const subscribe = (
   el: Element,
   handler: (entry: IntersectionObserverEntry) => void
-) => {
+): void => {
   if (el && !handlers.has(el)) {
     handlers.set(el, handler);
     observer.observe(el);
   }
 };
 
-export const unsubscribe = (el: Element) =>
+export const unsubscribe = (el: Element): void =>
   el && handlers.delete(el) && observer.unobserve(el);
