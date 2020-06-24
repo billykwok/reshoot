@@ -1,6 +1,6 @@
 import util from 'util';
 
-function inspect(obj: any) {
+function inspect(obj: any): string {
   return util.inspect(obj, false, null, true);
 }
 

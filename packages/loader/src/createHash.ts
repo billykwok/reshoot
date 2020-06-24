@@ -14,7 +14,11 @@ function excludeNonCacheDeterminingOptions({
   return options;
 }
 
-function createHash(content: string | Buffer, options: Options, mode: string) {
+function createHash(
+  content: string | Buffer,
+  options: Options,
+  mode: string
+): string {
   const hasher = new MetroHash128();
   hasher.update(version);
   hasher.update(content);

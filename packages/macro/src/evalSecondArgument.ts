@@ -3,16 +3,19 @@ import type { NodePath } from '@babel/core';
 
 import inspect from './inspect';
 
-function evalSecondArgument(argPath: NodePath) {
-  const evaluation = argPath.evaluate();
+function evalSecondArgument(argPath: NodePath): Record<string, unknown> {
+  const { confident, value } = argPath.evaluate() as {
+    confident: boolean;
+    value: Record<string, unknown>;
+  };
 
-  if (!evaluation.confident) {
+  if (!confident) {
     throw new MacroError(
-      `Failed to evaluate the second argument ${inspect(evaluation.value)}.`
+      `Failed to evaluate the second argument ${inspect(value)}.`
     );
   }
 
-  return evaluation.value;
+  return value;
 }
 
 export default evalSecondArgument;

@@ -16,7 +16,9 @@ function resolveAspectRatio(
     options.format !== AspectRatioFormat.Ratio
   ) {
     throw new Error(
-      `Option "format" for aspect ratio must be either ${AspectRatioFormat.Percent} or ${AspectRatioFormat.Ratio} but got ${options.format}`
+      `Option "format" for aspect ratio must be either ${
+        AspectRatioFormat.Percent
+      } or ${AspectRatioFormat.Ratio} but got ${options.format as string}`
     );
   }
   const scale = options.format === AspectRatioFormat.Percent ? 100 : 1;
@@ -27,7 +29,11 @@ function resolveAspectRatio(
       return Math.floor((meta.height / meta.width) * scale * rounder) / rounder;
     default:
       throw new Error(
-        `Option "type" for aspect ratio must be either ${AspectRatioType.WidthByHeight} or ${AspectRatioType.HeightByWidth} but got "${options.type}"`
+        `Option "type" for aspect ratio must be either ${
+          AspectRatioType.WidthByHeight
+        } or ${AspectRatioType.HeightByWidth} but got "${
+          options.type as string
+        }"`
       );
   }
 }

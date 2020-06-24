@@ -1,7 +1,7 @@
 import { InternalOutput, Options } from './type';
 
 function extractPassThroughProperties(
-  options: Partial<Options> & { [extra: string]: any },
+  options: Partial<Options> & Record<string, unknown>,
   defaultOptions: Options
 ): Partial<InternalOutput> {
   const supportedKeys = Object.keys(defaultOptions);

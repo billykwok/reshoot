@@ -1,7 +1,15 @@
 import { callExpression, identifier, stringLiteral } from '@babel/types';
 
-function requireExpression(path: string, ...options: { [key: string]: any }[]) {
-  const mergedOptions = Object.assign({}, ...options);
+import type { CallExpression } from '@babel/types';
+
+function requireExpression(
+  path: string,
+  ...options: Array<Record<string, unknown>>
+): CallExpression {
+  const mergedOptions = Object.assign({}, ...options) as Record<
+    string,
+    unknown
+  >;
   const queryString = Object.keys(mergedOptions).length
     ? `?${JSON.stringify(mergedOptions)}`
     : '';

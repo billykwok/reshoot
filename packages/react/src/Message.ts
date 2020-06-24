@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { css } from 'linaria';
 
+import type { ReactElement } from 'react';
+
 import h from './h';
 import defaultStyle from './defaultStyle';
 import State from './state';
@@ -55,7 +57,7 @@ const clickToReload = h(
 
 type Props = { state: State; text: string };
 
-const Message = ({ state, text }: Props) => {
+const Message = ({ state, text }: Props): ReactElement => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => setLoaded(() => true), []);
   return (

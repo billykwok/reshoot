@@ -4,7 +4,7 @@ async function resolveColor(
   image: SharpImage,
   color: string,
   disable: boolean
-) {
+): Promise<string> {
   if (color) return color;
   if (disable) return 'transparent';
   return await image.color();

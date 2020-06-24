@@ -69,7 +69,7 @@ const Reshoot = ({
   const children = [
     h(Placeholder, { color, aspectRatio }),
     h(Img, { color, placeholder, src, srcSet, alt, state, blur }),
-    h(Message, { state, text: messages[state] }),
+    h(Message, { state, text: messages[state] as string }),
   ];
 
   if (state !== State.INITIAL && state !== State.LOADED) {
