@@ -2,12 +2,14 @@ import React from 'react';
 import { render } from 'react-dom';
 import Img from '@reshoot/react';
 
+import type { ReactElement } from 'react';
+
 render(
   <Img src="../img/abc.png" alt="abc" aspectRatio={1.6} />,
   document.getElementById('root')
 );
 
-export function Page() {
+export function Page(): ReactElement {
   return (
     <Img
       src="../img/abc.png"

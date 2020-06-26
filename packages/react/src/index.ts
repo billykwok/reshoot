@@ -1,7 +1,7 @@
-import { useRef, memo } from 'react';
+import { memo, useRef, useImperativeHandle, forwardRef } from 'react';
 import { css } from 'linaria';
 import assign from 'object-assign';
-import type { SyntheticEvent } from 'react';
+import type { RefObject, SyntheticEvent } from 'react';
 
 import h from './h';
 import Placeholder from './Placeholder';
@@ -43,27 +43,31 @@ const asButtonContainer = css`
   cursor: pointer;
 `;
 
-const Reshoot = ({
-  src,
-  className,
-  alt,
-  aspectRatio,
-  blur = 20,
-  color = 'transparent',
-  placeholder = null,
-  srcSet = null,
-  target = '_self',
-  href = null,
-  messages = {
-    MANUAL: 'Not autoloaded in slow network',
-    OFFLINE: 'Browser is offline',
-    ERROR: 'Fail to load',
-  },
-  onClick,
-  ...rest
-}: Props) => {
-  const ref = useRef(null);
-  const [state, setState, download] = useImage(ref, src, srcSet);
+const Reshoot = (
+  {
+    src,
+    className,
+    alt,
+    aspectRatio,
+    blur = 20,
+    color = 'transparent',
+    placeholder = null,
+    srcSet = null,
+    target = '_self',
+    href = null,
+    messages = {
+      MANUAL: 'Not autoloaded in slow network',
+      OFFLINE: 'Browser is offline',
+      ERROR: 'Fail to load',
+    },
+    onClick,
+    ...rest
+  }: Props,
+  ref: RefObject<HTMLElement>
+) => {
+  const innerRef = useRef<HTMLElement>(null);
+  useImperativeHandle(ref, () => innerRef.current);
+  const [state, setState, download] = useImage(innerRef, src, srcSet);
   const cx = useCx(className);
 
   const children = [
@@ -77,7 +81,7 @@ const Reshoot = ({
       'button',
       assign(
         {
-          ref,
+          ref: innerRef,
           className: cx(asContainer, asButtonContainer),
           onClick: (e: SyntheticEvent<Element, MouseEvent>) => {
             e.stopPropagation();
@@ -94,15 +98,18 @@ const Reshoot = ({
   if (href) {
     return h(
       'a',
-      assign({ ref, className: cx(asContainer), target, href, onClick }, rest),
+      assign(
+        { ref: innerRef, className: cx(asContainer), target, href, onClick },
+        rest
+      ),
       ...children
     );
   }
   return h(
     'div',
-    assign({ ref, className: cx(asContainer) }, rest),
+    assign({ ref: innerRef, className: cx(asContainer) }, rest),
     ...children
   );
 };
 
-export default memo(Reshoot);
+export default memo(forwardRef(Reshoot));

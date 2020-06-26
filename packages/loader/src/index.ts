@@ -1,4 +1,4 @@
-import { loader } from 'webpack';
+import type { loader } from 'webpack';
 
 import resolveOptions from './resolveOptions';
 import extractPassThroughProperties from './extractPassThroughProperties';

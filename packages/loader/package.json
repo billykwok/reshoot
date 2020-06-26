@@ -3,7 +3,7 @@
   "description": "Webpack loader for Reshoot.",
   "version": "0.8.18",
   "main": "lib/index.js",
-  "author": "Billy Kwok <xobkwok@gmail.com>",
+  "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
     "reshoot",
@@ -36,7 +36,7 @@
     "find-cache-dir": "^3.3.1",
     "loader-utils": "^2.0.0",
     "metrohash": "^2.6.0",
-    "sharp": "^0.25.3"
+    "sharp": "^0.25.4"
   },
   "peerDependencies": {
     "webpack": "^4.43.0"

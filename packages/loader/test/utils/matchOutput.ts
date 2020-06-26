@@ -11,7 +11,7 @@ const defaultExpected = {
 };
 
 export function matchOutputAsObject(
-  expected: OutputShape,
+  expected: OutputShape | { keys?: string[] },
   actual: OutputShape
 ): void {
   const { mime, aspectRatio, hashLength, sizes, color, keys } = Object.assign(
@@ -54,7 +54,7 @@ export function matchOutputAsObject(
 }
 
 export function matchOutputAsString(
-  expected: OutputShape,
+  expected: OutputShape | { keys?: string[] },
   actual: string
 ): void {
   const object = JSON.parse(

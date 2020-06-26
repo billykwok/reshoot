@@ -6,7 +6,7 @@ import {
   identifier,
   arrayExpression,
 } from '@babel/types';
-import type { NodePath } from '@babel/core';
+import type { NodePath, PluginPass } from '@babel/core';
 
 import handle from '../../src/handle';
 
@@ -15,29 +15,29 @@ import evalFirstArgument from '../../src/evalFirstArgument';
 import evalSecondArgument from '../../src/evalSecondArgument';
 import { MacroError } from 'babel-plugin-macros';
 
-const mockFirstArg: NodePath = {
+const mockFirstArg = {
   node: stringLiteral('image.jpg'),
   evaluate: () => ({ confident: true, value: 'image.jpg' }),
-} as any;
-const mockFirstArgJson: NodePath = {
+} as NodePath;
+const mockFirstArgJson = {
   node: stringLiteral('./images.json'),
   evaluate: () => ({ confident: true, value: './images.json' }),
-} as any;
-const mockSecondArg: NodePath = {
+} as NodePath;
+const mockSecondArg = {
   node: objectExpression([
     objectProperty(stringLiteral('color'), stringLiteral('#eeff99')),
   ]),
   evaluate: () => ({ confident: true, value: { color: '#eeff99' } }),
-} as any;
+} as NodePath;
 const mockGetArguments = jest.fn(() => [mockFirstArg, mockSecondArg]);
 const mockReplaceWith = jest.fn();
-const referencePath: NodePath = {
+const referencePath = {
   parentPath: {
     ...callExpression(objectExpression([]), []),
     get: mockGetArguments,
     replaceWith: mockReplaceWith,
-  },
-} as any;
+  } as Partial<NodePath>,
+} as NodePath;
 const references = { default: [referencePath] };
 
 jest.mock('../../src/extractArguments.ts', () => ({
@@ -66,7 +66,7 @@ describe('arguments', () => {
   });
 
   test('parse invalid filename 2', () => {
-    const state = {};
+    const state = {} as PluginPass;
     const params = { references, state, babel: null };
     expect(() => handle(params)).toThrow(
       new MacroError('Failed to retrieve filename.')
@@ -74,7 +74,7 @@ describe('arguments', () => {
   });
 
   test('parse invalid filename 3', () => {
-    const state = { file: null };
+    const state = { file: null } as PluginPass;
     const params = { references, state, babel: null };
     expect(() => handle(params)).toThrow(
       new MacroError('Failed to retrieve filename.')
@@ -82,7 +82,7 @@ describe('arguments', () => {
   });
 
   test('parse invalid filename 4', () => {
-    const state = { file: { opts: null } };
+    const state = { file: { opts: null } } as PluginPass;
     const params = { references, state, babel: null };
     expect(() => handle(params)).toThrow(
       new MacroError('Failed to retrieve filename.')
@@ -90,7 +90,7 @@ describe('arguments', () => {
   });
 
   test('parse invalid filename 5', () => {
-    const state = { file: { opts: { filename: null } } };
+    const state = { file: { opts: { filename: null } } } as PluginPass;
     const params = { references, state, babel: null };
     expect(() => handle(params)).toThrow(
       new MacroError('Failed to retrieve filename.')
@@ -100,7 +100,7 @@ describe('arguments', () => {
   test('parse valid image input with both arguments', () => {
     const state = {
       file: { opts: { filename: '../../../__fixtures__/stub.js' } },
-    };
+    } as PluginPass;
     const params = { references, state, babel: null };
     handle(params);
     expect(extractArguments).toHaveBeenNthCalledWith(1, referencePath);
@@ -120,7 +120,7 @@ describe('arguments', () => {
     >).mockReturnValue([mockFirstArg]);
     const state = {
       file: { opts: { filename: '../../../__fixtures__/stub.js' } },
-    };
+    } as PluginPass;
     const params = { references, state, babel: null };
     handle(params);
     expect(extractArguments).toHaveBeenNthCalledWith(1, referencePath);
@@ -142,7 +142,7 @@ describe('arguments', () => {
     mockGetArguments.mockReturnValue([mockFirstArgJson, mockSecondArg]);
     const state = {
       file: { opts: { filename: '../../../__fixtures__/stub.js' } },
-    };
+    } as PluginPass;
     const params = { references, state, babel: null };
     handle(params);
     expect(extractArguments).toHaveBeenNthCalledWith(1, referencePath);
@@ -180,7 +180,7 @@ describe('arguments', () => {
     mockGetArguments.mockReturnValue([mockFirstArgJson]);
     const state = {
       file: { opts: { filename: '../../../__fixtures__/stub.js' } },
-    };
+    } as PluginPass;
     const params = { references, state, babel: null };
     handle(params);
     expect(extractArguments).toHaveBeenNthCalledWith(1, referencePath);

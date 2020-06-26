@@ -1,4 +1,7 @@
 {
   "extends": "dtslint/dtslint.json",
-  "include": "**/*.d.ts"
+  "include": "**/*.d.ts",
+  "rules": {
+    "no-duplicate-imports": false
+  }
 }
