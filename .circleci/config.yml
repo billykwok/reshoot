@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/node:latest
         environment:
-          SHARP_IGNORE_GLOBAL_LIBVIPS: '1'
+          SHARP_IGNORE_GLOBAL_LIBVIPS: "1"
     working_directory: ~/repo
     steps:
       - checkout
@@ -37,7 +37,7 @@ jobs:
             - node_modules
       - persist_to_workspace:
           root: ~/repo
-          paths: .
+          paths: [.]
   release:
     docker:
       - image: circleci/node:latest

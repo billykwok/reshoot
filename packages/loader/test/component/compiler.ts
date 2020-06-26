@@ -3,7 +3,10 @@ import webpack from 'webpack';
 
 import createMemfs from './createMemfs';
 
-async function compiler(fixture: string, options: any = {}) {
+async function compiler(
+  fixture: string,
+  options: Record<string, unknown> = {}
+): Promise<string> {
   const compiler = webpack({
     mode: 'production',
     context: __dirname,
@@ -21,6 +24,7 @@ async function compiler(fixture: string, options: any = {}) {
       ],
     },
   });
+
   compiler.outputFileSystem = createMemfs();
 
   return new Promise((resolve, reject) =>

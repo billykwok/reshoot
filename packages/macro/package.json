@@ -3,7 +3,7 @@
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
   "version": "0.5.10",
   "main": "lib/index.js",
-  "author": "Billy Kwok <xobkwok@gmail.com>",
+  "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
     "reshoot",
