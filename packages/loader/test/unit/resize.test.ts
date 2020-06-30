@@ -1,9 +1,9 @@
-import type { Metadata } from 'sharp';
-
 import resize from '../../src/resize';
 import Mimes from '../../src/mimes';
 import resolveDefaultOptions from '../../src/defaultOptions';
-import { Options } from '../../src/type';
+
+import type { Metadata } from 'sharp';
+import type { Options } from '../../src/type';
 import type { SharpImage } from '../../src/createSharp';
 
 const size = { width: 16, height: 9 } as Metadata;

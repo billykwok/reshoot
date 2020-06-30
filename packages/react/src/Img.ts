@@ -44,6 +44,7 @@ const Img = ({ color, placeholder, src, srcSet, alt, state, blur }: Props) => {
         src: resolvedSrc,
         srcSet: resolvedSrcSet,
         alt,
+        loading: 'lazy',
       });
 };
 

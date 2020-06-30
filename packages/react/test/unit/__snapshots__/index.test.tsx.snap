@@ -19,6 +19,7 @@ exports[`react customized options for image link 1`] = `
   <img
     alt="Test image"
     className="drphubp asqlr8n"
+    loading="lazy"
     src="placeholder.jpg"
     srcSet={null}
     style={
@@ -51,6 +52,7 @@ exports[`react customized options for normal image 1`] = `
   <img
     alt="Test image"
     className="drphubp asqlr8n"
+    loading="lazy"
     src="image.jpg"
     srcSet={null}
     style={
@@ -83,6 +85,7 @@ exports[`react parse valid input 1`] = `
   <img
     alt="Test image"
     className="drphubp asqlr8n"
+    loading="lazy"
     src="image.jpg"
     srcSet={null}
     style={
