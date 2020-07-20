@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "lib": ["dom", "dom.iterable", "webworker", "esnext"],
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "esModuleInterop": true,
+    "isolatedModules": true,
     "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "preserve"
   },
-  "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "exclude": ["node_modules"]
 }

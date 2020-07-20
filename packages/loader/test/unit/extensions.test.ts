@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import extensions from '../../src/extensions';
 
 describe('Extensions map', () => {

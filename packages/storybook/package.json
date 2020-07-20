@@ -1,0 +1,49 @@
+{
+  "name": "@reshoot/storybook",
+  "description": "Storyboard for Reshoot UI components",
+  "version": "1.0.0",
+  "private": true,
+  "main": "lib/index.js",
+  "author": "Billy Kwok <opensource@billykwok.me>",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "types": "types/index.d.ts",
+  "sideEffects": [
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "repository": "https://github.com/billykwok/reshoot",
+  "bugs": {
+    "url": "https://github.com/billykwok/reshoot/issues"
+  },
+  "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/storybook",
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "yarn clean && build-storybook -c .storybook -o build",
+    "lint": "eslint ./src/**",
+    "storybook": "start-storybook"
+  },
+  "dependencies": {
+    "@reshoot/react": "^0.6.15",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-console": "^1.2.1",
+    "@storybook/addon-docs": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@storybook/theming": "^5.3.19",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "storybook-dark-mode": "^0.6.1",
+    "storybook-readme": "^5.0.8"
+  },
+  "devDependencies": {
+    "@storybook/cli": "^5.3.19"
+  }
+}

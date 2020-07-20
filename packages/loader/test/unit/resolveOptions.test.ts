@@ -1,9 +1,10 @@
+import { describe, test, expect } from '@jest/globals';
 import { loader } from 'webpack';
 import { parseQuery, getOptions } from 'loader-utils';
-import type { OptionObject } from 'loader-utils';
-
 import resolveOptions from '../../src/resolveOptions';
 import resolveDefaultOptions from '../../src/defaultOptions';
+
+import type { OptionObject } from 'loader-utils';
 
 jest.mock('loader-utils');
 (parseQuery as jest.Mock<OptionObject>).mockReturnValue({ foo: 'baz' });

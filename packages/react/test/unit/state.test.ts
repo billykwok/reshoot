@@ -1,28 +1,24 @@
-import state from '../../src/state';
+import { describe, test, expect } from '@jest/globals';
+import * as State from '../../src/state';
 
-describe('state', () => {
-  test('correct underlying value and equality for INITIAL', () => {
-    expect(state.INITIAL).toEqual(state.INITIAL);
-    expect(state.INITIAL).toEqual('INITIAL');
-  });
-
-  test('correct underlying value and equality for LOADED', () => {
-    expect(state.LOADED).toEqual(state.LOADED);
-    expect(state.LOADED).toEqual('LOADED');
-  });
-
+describe('State', () => {
   test('correct underlying value and equality for MANUAL', () => {
-    expect(state.MANUAL).toEqual(state.MANUAL);
-    expect(state.MANUAL).toEqual('MANUAL');
+    expect(State.MANUAL).toEqual(1);
   });
 
   test('correct underlying value and equality for OFFLINE', () => {
-    expect(state.OFFLINE).toEqual(state.OFFLINE);
-    expect(state.OFFLINE).toEqual('OFFLINE');
+    expect(State.OFFLINE).toEqual(2);
   });
 
   test('correct underlying value and equality for ERROR', () => {
-    expect(state.ERROR).toEqual(state.ERROR);
-    expect(state.ERROR).toEqual('ERROR');
+    expect(State.ERROR).toEqual(3);
+  });
+
+  test('correct underlying value and equality for INITIAL', () => {
+    expect(State.INITIAL).toEqual(4);
+  });
+
+  test('correct underlying value and equality for LOADED', () => {
+    expect(State.LOADED).toEqual(5);
   });
 });

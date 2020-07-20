@@ -1,4 +1,0 @@
-{
-  "extends": "dtslint/dtslint.json",
-  "include": "**/*.d.ts"
-}

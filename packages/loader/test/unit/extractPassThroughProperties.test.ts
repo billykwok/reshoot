@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import extractPassThroughProperties from '../../src/extractPassThroughProperties';
 import resolveDefaultOptions from '../../src/defaultOptions';
 

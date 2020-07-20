@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import resolveDefaultOptions from '../../src/defaultOptions';
 
 describe('default options', () => {
@@ -9,6 +10,8 @@ describe('default options', () => {
       shape: {
         mime: 'mime',
         src: 'src',
+        width: 'width',
+        height: 'height',
         aspectRatio: 'aspectRatio',
         srcSet: 'srcSet',
         placeholder: 'placeholder',
@@ -20,7 +23,7 @@ describe('default options', () => {
       color: '#fff',
       forceFormat: false,
       placeholder: { size: 8, trimDataUrl: false },
-      aspectRatio: { type: 'heightByWidth', format: 'percent', decimal: 2 },
+      aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
       disable: true,
       cache: true,
       emitFile: true,
@@ -36,6 +39,8 @@ describe('default options', () => {
       shape: {
         mime: 'mime',
         src: 'src',
+        width: 'width',
+        height: 'height',
         aspectRatio: 'aspectRatio',
         srcSet: 'srcSet',
         placeholder: 'placeholder',
@@ -47,7 +52,7 @@ describe('default options', () => {
       color: '#fff',
       forceFormat: false,
       placeholder: { size: 8, trimDataUrl: false },
-      aspectRatio: { type: 'heightByWidth', format: 'percent', decimal: 2 },
+      aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
       disable: false,
       cache: true,
       emitFile: true,

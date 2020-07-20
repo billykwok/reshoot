@@ -1,6 +1,7 @@
 node_modules/
 coverage/
 lib/
+types/
 yarn-error.log
 build/
 *.log

@@ -1,6 +1,6 @@
+import { describe, test, expect } from '@jest/globals';
 import { loader } from 'webpack';
 import { MacroError } from 'babel-plugin-macros';
-
 import resolveMimeAndExt from '../../src/resolveMimeAndExt';
 
 describe('resolveMimeAndExt', () => {

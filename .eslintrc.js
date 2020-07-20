@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  root: true,
   env: {
     commonjs: true,
     amd: true,
@@ -17,7 +18,7 @@ module.exports = {
   },
   settings: {
     react: { version: 'detect' },
-    'import/extensions': ['.js', '.jsx', '.mjs', '.json'],
+    'import/extensions': ['.js', '.jsx', '.json'],
     'import/resolver': {
       lerna: { packages: path.resolve(__dirname, 'packages') },
       node: {
@@ -27,7 +28,14 @@ module.exports = {
       webpack: { config: {} },
     },
   },
-  plugins: ['import', 'prettier', 'react', 'react-hooks', 'jsx-a11y'],
+  plugins: [
+    'import',
+    'prettier',
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    'testing-library',
+  ],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -35,6 +43,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier',
     'prettier/react',
+    'plugin:testing-library/react',
   ],
   rules: {
     'prefer-spread': 'off',
@@ -55,6 +64,15 @@ module.exports = {
         'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
         'import/extensions': ['.ts', '.tsx'],
       },
+      plugins: [
+        '@typescript-eslint',
+        'import',
+        'prettier',
+        'react',
+        'react-hooks',
+        'jsx-a11y',
+        'testing-library',
+      ],
       extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
@@ -65,24 +83,27 @@ module.exports = {
         'plugin:prettier/recommended',
         'prettier',
         'prettier/react',
-      ],
-      plugins: [
-        '@typescript-eslint',
-        'import',
-        'prettier',
-        'react',
-        'react-hooks',
-        'jsx-a11y',
+        'plugin:testing-library/react',
       ],
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': [
           'error',
           { allowArgumentsExplicitlyTypedAsAny: true },
         ],
         '@typescript-eslint/prefer-includes': 'off',
+        'prefer-spread': 'off',
+        'react/prop-types': 'off',
+        'jsx-a11y/image-has-content': 'off',
+        'jsx-a11y/heading-has-content': 'off',
+        'jsx-a11y/anchor-has-content': 'off',
+        'react-hooks/rules-of-hooks': 'error',
+        'consistent-return': 'off',
+        'max-len': 'off',
+        'no-console': 'off',
       },
     },
   ],

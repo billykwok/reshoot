@@ -1,6 +1,6 @@
 import { loader } from 'webpack';
-
 import interpolateName from './interpolateName';
+
 import type { Options } from './type';
 
 async function emit(

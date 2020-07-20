@@ -1,0 +1,21 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs } from '@storybook/addon-knobs';
+import { addReadme } from 'storybook-readme';
+import { action } from '@storybook/addon-actions';
+import Reshoot from '@reshoot/react';
+import describe from './utils/describe';
+import Gallery from './utils/Gallery';
+
+import '@reshoot/react/lib/styles.css';
+
+<Meta
+  title="Live Demo/Use Case"
+  component={describe(Reshoot, 'Reshoot')}
+  decorators={[addReadme, withKnobs]}
+/>
+
+<Preview>
+  <Story name="Gallery">
+    <Gallery />
+  </Story>
+</Preview>

@@ -3,7 +3,9 @@ import type { OutputShape } from '../../src/type';
 const defaultExpected = {
   publicPath: '__webpack_public_path__/',
   mime: 'image/jpeg',
-  aspectRatio: 63.34,
+  width: 4774,
+  height: 3024,
+  aspectRatio: 1.5787,
   hashLength: 16,
   sizes: [480, 640, 840, 1080],
   color: '#fff',
@@ -14,11 +16,16 @@ export function matchOutputAsObject(
   expected: OutputShape | { keys?: string[] },
   actual: OutputShape
 ): void {
-  const { mime, aspectRatio, hashLength, sizes, color, keys } = Object.assign(
-    {},
-    defaultExpected,
-    expected
-  );
+  const {
+    mime,
+    width,
+    height,
+    aspectRatio,
+    hashLength,
+    sizes,
+    color,
+    keys,
+  } = Object.assign({}, defaultExpected, expected);
   const actualKeys = Object.keys(actual);
   expect(actualKeys).toHaveLength(keys.length);
   expect(actualKeys).toEqual(expect.arrayContaining(keys));
@@ -27,6 +34,12 @@ export function matchOutputAsObject(
   }
   if (keys.includes('aspectRatio')) {
     expect(actual.aspectRatio).toEqual(aspectRatio);
+  }
+  if (keys.includes('width')) {
+    expect(actual.width).toEqual(width);
+  }
+  if (keys.includes('height')) {
+    expect(actual.height).toEqual(height);
   }
   if (keys.includes('placeholder')) {
     expect(actual.placeholder).toMatch(new RegExp(`^data:${mime};base64,`));

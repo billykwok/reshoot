@@ -1,8 +1,9 @@
+import { describe, test, expect } from '@jest/globals';
 import { objectExpression } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
-import type { NodePath } from '@babel/core';
-
 import evalSecondArgument from '../../src/evalSecondArgument';
+
+import type { NodePath } from '@babel/core';
 
 describe('arguments', () => {
   test('parse valid second argument', () => {

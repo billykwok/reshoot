@@ -1,8 +1,14 @@
 {
   "name": "@reshoot/loader",
   "description": "Webpack loader for Reshoot.",
-  "version": "0.8.19",
+  "version": "1.0.0",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
@@ -14,22 +20,15 @@
     "img",
     "responsive"
   ],
-  "files": [
-    "lib"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": "https://github.com/billykwok/reshoot/packages/loader",
+  "repository": "https://github.com/billykwok/reshoot",
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },
-  "homepage": "https://github.com/billykwok/reshoot",
+  "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/loader",
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts,.tsx,.mjs,.js,.jsx",
-    "eslint": "eslint ./src/**",
-    "lint": "yarn eslint"
+    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts",
+    "lint": "eslint ./src/**"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
