@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import {
   callExpression,
   objectExpression,
@@ -6,14 +7,13 @@ import {
   identifier,
   arrayExpression,
 } from '@babel/types';
-import type { NodePath, PluginPass } from '@babel/core';
-
+import { MacroError } from 'babel-plugin-macros';
 import handle from '../../src/handle';
-
 import extractArguments from '../../src/extractArguments';
 import evalFirstArgument from '../../src/evalFirstArgument';
 import evalSecondArgument from '../../src/evalSecondArgument';
-import { MacroError } from 'babel-plugin-macros';
+
+import type { NodePath, PluginPass } from '@babel/core';
 
 const mockFirstArg = {
   node: stringLiteral('image.jpg'),
@@ -40,18 +40,30 @@ const referencePath = {
 } as NodePath;
 const references = { default: [referencePath] };
 
-jest.mock('../../src/extractArguments.ts', () => ({
-  __esModule: true,
-  default: jest.fn(() => [mockFirstArg, mockSecondArg]),
-}));
-jest.mock('../../src/evalFirstArgument.ts', () => ({
-  __esModule: true,
-  default: jest.fn(() => 'image.jpg'),
-}));
-jest.mock('../../src/evalSecondArgument.ts', () => ({
-  __esModule: true,
-  default: jest.fn(() => ({ color: '#eeff99' })),
-}));
+jest.mock(
+  '../../src/extractArguments.ts',
+  () =>
+    ({
+      __esModule: true,
+      default: jest.fn(() => [mockFirstArg, mockSecondArg]),
+    } as { __esModule: true })
+);
+jest.mock(
+  '../../src/evalFirstArgument.ts',
+  () =>
+    ({
+      __esModule: true,
+      default: jest.fn(() => 'image.jpg'),
+    } as { __esModule: true })
+);
+jest.mock(
+  '../../src/evalSecondArgument.ts',
+  () =>
+    ({
+      __esModule: true,
+      default: jest.fn(() => ({ color: '#eeff99' })),
+    } as { __esModule: true })
+);
 
 describe('arguments', () => {
   beforeEach(() => {

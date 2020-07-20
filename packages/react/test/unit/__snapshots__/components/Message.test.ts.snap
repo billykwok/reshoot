@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message tag renders error 1`] = `
+<div>
+  <svg
+    viewBox="0 0 100 100"
+  >
+    <path
+      d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+    />
+  </svg>
+  <div />
+</div>
+`;
+
+exports[`Message tag renders initial 1`] = `
+<div>
+  <svg
+    viewBox="0 0 100 100"
+  >
+    <path
+      d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+    />
+  </svg>
+  <div />
+</div>
+`;
+
+exports[`Message tag renders loaded 1`] = `
+<div>
+  <svg
+    viewBox="0 0 100 100"
+  >
+    <path
+      d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+    />
+  </svg>
+  <div />
+</div>
+`;
+
+exports[`Message tag renders manual 1`] = `
+<div>
+  <svg
+    viewBox="0 0 100 100"
+  >
+    <path
+      d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+    />
+  </svg>
+  <div>
+    Browser is offline
+  </div>
+</div>
+`;
+
+exports[`Message tag renders offline 1`] = `
+<div>
+  <svg
+    viewBox="0 0 100 100"
+  >
+    <path
+      d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+    />
+  </svg>
+  <div>
+    Fail to load
+  </div>
+</div>
+`;

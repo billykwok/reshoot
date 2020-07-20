@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import resize from '../../src/resize';
 import Mimes from '../../src/mimes';
 import resolveDefaultOptions from '../../src/defaultOptions';

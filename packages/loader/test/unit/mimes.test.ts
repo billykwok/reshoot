@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import mimes from '../../src/mimes';
 
 describe('MIME map', () => {

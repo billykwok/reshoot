@@ -9,8 +9,16 @@ import css from 'rollup-plugin-css-only';
 
 export default {
   input: 'src/index.ts',
-  output: { file: 'lib/index.js', format: 'cjs', sourcemap: false },
-  external: ['object-assign', 'react'],
+  output: {
+    dir: 'lib',
+    format: 'cjs',
+    sourcemap: false,
+    freeze: false,
+    compact: true,
+    exports: 'auto',
+  },
+  external: ['object-assign', 'react', 'linaria'],
+  treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
     linaria(),
     css({ output: 'lib/styles.css' }),
@@ -26,20 +34,22 @@ export default {
         ],
         '@babel/preset-react',
       ],
-      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
     peerDepsExternal(),
-    resolve({ extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'] }),
+    resolve({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
     replace({
       ENVIRONMENT: JSON.stringify('production'),
       'process.env.NODE_ENV': () => JSON.stringify('production'),
     }),
     commonjs({
       include: '../../node_modules/**',
-      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
     terser({
       toplevel: true,
+      mangle: { properties: { regex: /^__/ } },
+      ecma: 2015,
       compress: {
         arguments: true,
         booleans_as_integers: true,

@@ -1,0 +1,102 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import Reshoot from '@reshoot/react';
+import { withKnobs, select, boolean, number } from '@storybook/addon-knobs';
+import { addReadme } from 'storybook-readme';
+import { action } from '@storybook/addon-actions';
+import describe from './utils/describe';
+import images from './utils/images';
+
+import '@reshoot/react/lib/styles.css';
+
+<Meta
+  title="Live Demo/Component"
+  component={describe(Reshoot, 'Reshoot')}
+  decorators={[addReadme, withKnobs]}
+  parameters={{ readme: { includePropTables: [describe(Reshoot, 'Reshoot')] } }}
+/>
+
+<Preview>
+  <Story name="A Normal Image">
+    <Reshoot
+      style={{
+        width: `${number('Width', 480, {
+          range: true,
+          min: 40,
+          max: 1080,
+          step: 20,
+        })}px`,
+      }}
+      config={{ ...images[0], alt: `Test image` }}
+      onLoad={describe(
+        action('Image loaded'),
+        '() => {} /* omitted as created by @storybook-addons/action */'
+      )}
+      onError={describe(
+        action('Loading error'),
+        '() => {} /* omitted as created by @storybook-addons/action */'
+      )}
+      onClick={describe(
+        action('Clicked'),
+        '() => {} /* omitted as created by @storybook-addons/action */'
+      )}
+      _s={select(
+        'State',
+        {
+          AUTO: null,
+          MANUAL: State.MANUAL,
+          OFFLINE: State.OFFLINE,
+          ERROR: State.ERROR,
+          INITIAL: State.INITIAL,
+          LOADED: State.LOADED,
+        },
+        null
+      )}
+      _n={boolean(
+        'Native lazy loading',
+        'loading' in HTMLImageElement.prototype
+      )}
+    />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="An Error Image">
+    <Reshoot
+      style={{
+        width: `${number('Width', 480, {
+          range: true,
+          min: 40,
+          max: 1080,
+          step: 20,
+        })}px`,
+      }}
+      config={{
+        ...images[0],
+        src: images[0].src.replace('images', 'error'),
+        srcSet: images[0].srcSet.replaceAll('images', 'error'),
+        alt: `Test image`,
+      }}
+      onLoad={describe(
+        action('Image loaded'),
+        '() => {} /* omitted as created by @storybook-addons/action */'
+      )}
+      onError={describe(
+        action('Loading error'),
+        '() => {} /* omitted as created by @storybook-addons/action */'
+      )}
+      onClick={describe(
+        action('Clicked'),
+        '() => {} /* omitted as created by @storybook-addons/action */'
+      )}
+      _s={select(
+        'State',
+        { AUTO: null, MANUAL: 1, OFFLINE: 2, ERROR: 3, INITIAL: 4 },
+        null
+      )}
+      _n={boolean(
+        'Native lazy loading',
+        'loading' in HTMLImageElement.prototype
+      )}
+    />
+  </Story>
+</Preview>

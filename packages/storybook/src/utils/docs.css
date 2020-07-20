@@ -1,0 +1,114 @@
+body.dark > div#docs-root > div.sbdocs-wrapper {
+  background: #111;
+}
+
+body.dark > div#docs-root h1.sbdocs-h1 {
+  color: #ddd;
+}
+
+body.dark > div#docs-root h2.sbdocs-h2 {
+  color: #7bcdff;
+}
+
+body.dark > div#docs-root h3.sbdocs-h3 {
+  color: #ddd;
+}
+
+body.dark > div#docs-root h3.sbdocs-h3 code {
+  padding: 2px 4px;
+}
+
+body.dark > div#docs-root h4.sbdocs-h4 {
+  color: #ddd;
+}
+
+body.dark > div#docs-root h5.sbdocs-h5 {
+  color: #ddd;
+}
+
+body.dark > div#docs-root h6.sbdocs-h6 {
+  color: #ddd;
+}
+
+body.dark > div#docs-root p.sbdocs-p {
+  color: #fff;
+}
+
+body.dark > div#docs-root li.sbdocs-li {
+  color: #fff;
+}
+
+body.dark > div#docs-root code {
+  background: #333;
+  color: #eee;
+  border: none;
+  border-radius: 4px;
+}
+
+body.light > div#docs-root div.docblock-source,
+body.light > div#docs-root div.docblock-source code {
+  background: #222;
+  color: #fff;
+}
+
+body.dark > div#docs-root div.docblock-source,
+body.dark > div#docs-root div.docblock-source code {
+  background: #000;
+}
+
+div#docs-root div.docblock-source code span.token.punctuation {
+  color: #8791a2;
+}
+
+div#docs-root div.docblock-source code span.token.operator {
+  color: #8e8282;
+}
+
+div#docs-root div.docblock-source code span.token.string {
+  color: #d28635;
+}
+
+div#docs-root div.docblock-source code span.token.keyword {
+  color: #2b92ff;
+}
+
+div#docs-root div.docblock-source code span.token.boolean {
+  color: #efd935;
+}
+
+div#docs-root div.docblock-source code span.token.maybe-class-name,
+div#docs-root div.docblock-source code span.token.class-name {
+  color: #32dcbd;
+}
+
+div#docs-root div.docblock-source code span.token.function {
+  color: #00abff;
+}
+
+div#docs-root div.docblock-source code span.token.variable {
+  color: #9b55e6;
+}
+
+div#docs-root div.docblock-source code span.token.tag {
+  color: #71d04b;
+}
+
+div#docs-root div.docblock-source code span.token.attr-name {
+  color: #b97ad2;
+}
+
+div#docs-root div.docblock-source code span.token.attr-value {
+  color: #8d859a;
+}
+
+body > div#docs-root div.sbdocs-preview {
+  background: #222;
+}
+
+body.dark > div#docs-root div.sbdocs-preview > div > div:last-child,
+body.dark > div#docs-root div.sbdocs-preview > div > div:last-child > button,
+div#docs-root div.docblock-source > div:last-child,
+div#docs-root div.docblock-source > div:last-child > button {
+  background: #333;
+  color: #eee;
+}

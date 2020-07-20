@@ -34,20 +34,24 @@ export type Placeholder = {
 export type InternalOutput = {
   mime: string;
   src?: string;
-  aspectRatio?: number;
+  width?: number;
+  height?: number;
   srcSet?: string[];
+  aspectRatio?: number;
   placeholder?: string;
   color?: string;
 };
 
-export type Output = {
+export type Output = Partial<{
   mime: string;
-  src?: string;
-  aspectRatio?: number;
-  srcSet?: string;
-  placeholder?: string;
-  color?: string;
-};
+  src: string;
+  width: number;
+  height: number;
+  srcSet: string;
+  aspectRatio: number;
+  placeholder: string;
+  color: string;
+}>;
 
 export type Options = {
   name: string;

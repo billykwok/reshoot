@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reshoot aspect ratio can be overridden 1`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="--r: 0.5;"
+>
+  <div>
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <div />
+  </div>
+</button>
+`;
+
+exports[`Reshoot customized options for error image 1`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="--r: 0.8;"
+>
+  <div>
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <div />
+  </div>
+</button>
+`;
+
+exports[`Reshoot customized options for error image 2`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="--r: 0.8;"
+>
+  <div>
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <div />
+  </div>
+</button>
+`;
+
+exports[`Reshoot customized options for image link 1`] = `
+<a
+  class="ax4jui0"
+  data-testid="123"
+  href="https://example.com"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+  target="_blank"
+>
+  <img
+    alt="Test image"
+    class="a1rj2wdy"
+    decoding="async"
+    height="80"
+    loading="lazy"
+    src="placeholder.jpg"
+    style="color: rgb(255, 255, 255);"
+    width="100"
+  />
+</a>
+`;
+
+exports[`Reshoot customized options for normal image 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    class="acf3p1m"
+    decoding="async"
+    height="80"
+    loading="lazy"
+    src="image.jpg"
+    style="color: rgb(255, 255, 255);"
+    width="100"
+  />
+</div>
+`;
+
+exports[`Reshoot parse valid input 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="--r: 0.8;"
+>
+  <img
+    alt="Test image"
+    class="acf3p1m"
+    decoding="async"
+    height="80"
+    loading="lazy"
+    src="image.jpg"
+    width="100"
+  />
+</div>
+`;
+
+exports[`Reshoot server side rendering 1`] = `"<div class=\\"ax4jui0\\" style=\\"--r:0.5\\" data-testid=\\"123\\"><img class=\\"acf3p1m\\" loading=\\"lazy\\" decoding=\\"async\\" src=\\"image.jpg\\" width=\\"100\\" height=\\"80\\" alt=\\"Test image\\"/></div>"`;

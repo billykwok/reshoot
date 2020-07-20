@@ -1,5 +1,5 @@
+import { describe, test, expect } from '@jest/globals';
 import { oneLineTrim } from 'common-tags';
-
 import resolveDefaultOptions from '../../src/defaultOptions';
 import renderScript from '../../src/renderScript';
 

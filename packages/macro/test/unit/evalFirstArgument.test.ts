@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import util from 'util';
 import { stringLiteral, objectExpression } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';

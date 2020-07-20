@@ -1,8 +1,19 @@
 {
   "name": "@reshoot/react",
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
-  "version": "0.6.15",
+  "version": "1.0.0",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
@@ -14,28 +25,15 @@
     "responsive",
     "babel"
   ],
-  "files": [
-    "lib",
-    "types"
-  ],
-  "types": "types/index.d.ts",
-  "sideEffects": [
-    "*.css"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": "https://github.com/billykwok/reshoot/packages/react",
+  "repository": "https://github.com/billykwok/reshoot",
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },
-  "homepage": "https://github.com/billykwok/reshoot",
+  "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/react",
   "scripts": {
-    "clean": "rm -rf lib",
-    "build": "yarn clean && rollup -c rollup.config.js",
-    "eslint": "eslint ./src/**",
-    "dtslint": "dtslint --onlyTestTsNext --localTs ../../node_modules/typescript/lib types",
-    "lint": "yarn eslint && yarn dtslint"
+    "lint": "eslint ./src/**",
+    "clean": "rm -rf lib types",
+    "build": "yarn clean && rollup -c rollup.config.js && tsc --project tsconfig.json"
   },
   "peerDependencies": {
     "object-assign": "4.1.1",

@@ -14,5 +14,5 @@ module.exports = {
     '@babel/preset-react',
     'linaria/babel',
   ],
-  plugins: ['const-enum'],
+  plugins: [['const-enum', { transform: 'constObject' }]],
 };

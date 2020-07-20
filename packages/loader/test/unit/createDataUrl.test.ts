@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import createDataUrl from '../../src/createDataUrl';
 
 describe('createDataUrl', () => {

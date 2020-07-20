@@ -1,8 +1,17 @@
 {
   "name": "@reshoot/macro",
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
-  "version": "0.5.11",
+  "version": "1.0.0",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
@@ -15,30 +24,19 @@
     "babel-macros",
     "babel-plugin-macros"
   ],
-  "files": [
-    "lib",
-    "types"
-  ],
-  "types": "types/index.d.ts",
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": "https://github.com/billykwok/reshoot/packages/macro",
+  "repository": "https://github.com/billykwok/reshoot",
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },
-  "homepage": "https://github.com/billykwok/reshoot",
+  "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/macro",
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts,.tsx,.mjs,.js,.jsx",
-    "eslint": "eslint ./src/**",
-    "dtslint": "dtslint --onlyTestTsNext --localTs ../../node_modules/typescript/lib types",
-    "lint": "yarn eslint && yarn dtslint"
+    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts && tsc --project tsconfig.json",
+    "lint": "eslint ./src/**"
   },
   "peerDependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/types": "^7.10.3",
+    "@babel/core": "^7.10.5",
+    "@babel/types": "^7.10.5",
     "babel-plugin-macros": "^2.8.0"
   }
 }

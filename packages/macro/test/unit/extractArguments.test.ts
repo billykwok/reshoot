@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import util from 'util';
 import {
   stringLiteral,
@@ -5,9 +6,9 @@ import {
   continueStatement,
 } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
-import type { NodePath } from '@babel/core';
-
 import extractArgumentPaths from '../../src/extractArguments';
+
+import type { NodePath } from '@babel/core';
 
 function createReferencePath(argumentNodes: NodePath[]): NodePath {
   return {

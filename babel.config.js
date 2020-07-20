@@ -12,8 +12,6 @@ module.exports = {
         onlyRemoveTypeImports: true,
       },
     ],
-    '@babel/preset-react',
-    'linaria/babel',
   ],
   plugins: [
     [
@@ -25,6 +23,5 @@ module.exports = {
         useESModules: true,
       },
     ],
-    'const-enum',
   ],
 };
