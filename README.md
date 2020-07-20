@@ -1,8 +1,7 @@
-# 📸 Reshoot
+# <img src="https://raw.githubusercontent.com/billykwok/reshoot/master/logo.png" width="200" />
 
 [![Babel Macro](https://img.shields.io/badge/babel--macro-%F0%9F%8E%A3-f5da55.svg?style=flat-square)](https://github.com/kentcdodds/babel-plugin-macros)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
-[![Greenkeeper badge](https://badges.greenkeeper.io/billykwok/reshoot.svg)](https://greenkeeper.io)
 [![codecov](https://codecov.io/gh/billykwok/reshoot/branch/master/graph/badge.svg)](https://codecov.io/gh/billykwok/reshoot)
 [![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
 

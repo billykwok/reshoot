@@ -2622,7 +2622,7 @@
     react-lifecycles-compat "^3.0.4"
 
 "@reshoot/loader@file:packages/loader":
-  version "0.8.19"
+  version "1.0.0"
   dependencies:
     deepmerge "^4.2.2"
     find-cache-dir "^3.3.1"
@@ -2631,10 +2631,15 @@
     sharp "^0.25.4"
 
 "@reshoot/macro@file:packages/macro":
-  version "0.5.11"
+  version "1.0.0"
+
+"@reshoot/react@^0.6.15":
+  version "0.6.15"
+  resolved "https://registry.yarnpkg.com/@reshoot/react/-/react-0.6.15.tgz#1aded72878371d3293e260449765d3cf4f9b864e"
+  integrity sha512-wMcx/pEPPPRTW4/JzS90Eg14NZ3z+CymgtBSKvr8UDMX/+JxKEom9tU/DQS82xs9w3YugJU90jHeyk8+LePtvA==
 
 "@reshoot/react@file:packages/react":
-  version "0.6.15"
+  version "1.0.0"
 
 "@rollup/plugin-babel@^5.1.0":
   version "5.1.0"

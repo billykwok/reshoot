@@ -37,8 +37,8 @@ addParameters({
       appContentBg: '#111',
       appBorderColor: '#222',
       // appBorderRadius: 4,
-      // fontBase: '"Open Sans", sans-serif',
-      // fontCode: 'monospace',
+      fontBase: 'Inter, "Open Sans", sans-serif',
+      fontCode: '"Operator Mono", "Fira Code", monospace',
       textColor: '#eee',
       textInverseColor: '#111',
       barTextColor: '#ccc',
@@ -50,7 +50,8 @@ addParameters({
       // inputBorderRadius: 4,
       brandTitle: 'Reshoot',
       brandUrl: 'https://reshootjs.github.io',
-      // brandImage: 'https://placehold.it/350x150',
+      brandImage:
+        'https://raw.githubusercontent.com/billykwok/reshoot/master/logo.png',
     }),
     // Override the default light theme
     light: create({ base: 'light' }),
