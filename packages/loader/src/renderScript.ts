@@ -1,7 +1,7 @@
 import type { InternalOutput, Options } from './type';
 
-function serializeKey(value: string) {
-  return /^[a-zA-Z][a-zA-Z0-9]*$/gi.test(value) ? value : JSON.stringify(value);
+function serializeKey(value: string, fallback: string) {
+  return JSON.stringify(typeof value === 'string' ? value : fallback);
 }
 
 function serializePath(
@@ -21,17 +21,11 @@ function renderScript(
   return `${
     options.esModule ? 'export default ' : 'module.exports='
   }{${Object.keys(object)
-    .filter(
-      (key: string): boolean =>
-        !(key in shape) || (typeof shape[key] === 'string' && !!shape[key])
-    )
+    .filter((key: string): boolean => key in shape && !!shape[key])
     .map((key: string) => {
-      if (!(key in shape)) {
-        return `${serializeKey(key)}:${JSON.stringify(object[key])}`;
-      }
       if (key === 'src' && shape.src) {
         const serializedValue = serializePath(object.src, options.publicPath);
-        return `${serializeKey(shape.src)}:${serializedValue}`;
+        return `${serializeKey(shape.src, key)}:${serializedValue}`;
       }
       if (key === 'placeholder' && shape.placeholder) {
         const serializedValue = object.placeholder
@@ -39,7 +33,7 @@ function renderScript(
             ? JSON.stringify(object.placeholder)
             : serializePath(object.placeholder, options.publicPath)
           : JSON.stringify(null);
-        return `${serializeKey(shape.placeholder)}:${serializedValue}`;
+        return `${serializeKey(shape.placeholder, key)}:${serializedValue}`;
       }
       if (key === 'srcSet' && shape.srcSet) {
         const serializedValue = object.srcSet
@@ -49,9 +43,9 @@ function renderScript(
               .replace(/"\+","/gi, ',"')
               .replace(/"\+"/gi, '')
           : JSON.stringify(null);
-        return `${serializeKey(shape.srcSet)}:${serializedValue}`;
+        return `${serializeKey(shape.srcSet, key)}:${serializedValue}`;
       }
-      return `${serializeKey(shape[key])}:${JSON.stringify(object[key])}`;
+      return `${serializeKey(shape[key], key)}:${JSON.stringify(object[key])}`;
     })
     .join(',')}}`;
 }

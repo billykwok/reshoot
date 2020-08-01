@@ -2,8 +2,13 @@
   "name": "@reshoot/react",
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
   "version": "1.1.0",
-  "main": "lib/index.js",
-  "types": "types/index.d.ts",
+  "type": "commonjs",
+  "exports": {
+    "import": "./lib/es/index.js",
+    "require": "./lib/index.js"
+  },
+  "main": "./lib/index.js",
+  "types": "./types/index.d.ts",
   "files": [
     "lib",
     "types"
@@ -33,7 +38,7 @@
   "scripts": {
     "lint": "eslint ./src/**",
     "clean": "rm -rf lib types",
-    "build": "yarn clean && rollup -c rollup.config.js && tsc --project tsconfig.json"
+    "build": "yarn clean && rollup -c rollup.config.js && rollup -c rollup.config.js --format es --dir ./lib/es && tsc --project tsconfig.json"
   },
   "peerDependencies": {
     "object-assign": "4.1.1",

@@ -1,8 +1,17 @@
-import { addParameters, addDecorator } from '@storybook/react';
+import { addParameters } from '@storybook/react';
 import { create } from '@storybook/theming/create';
+import '@storybook/addon-console';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
-const sortChapters = ['documentation', 'overview', 'getting started'];
+const sortChapters = [
+  'documentation',
+  'overview',
+  'installation',
+  'tutorial',
+  'how it works',
+  'faqs',
+  'live demo',
+];
 
 addParameters({
   options: {

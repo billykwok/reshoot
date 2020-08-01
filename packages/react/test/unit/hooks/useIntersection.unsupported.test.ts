@@ -2,14 +2,15 @@ import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { renderHook } from '@testing-library/react-hooks';
 import { createRef } from 'react';
 import * as State from '../../../src/state';
-import noop from '../../../src/utils/noop';
 
 describe('useIntersection (IntersectionObserver unsupported)', () => {
+  const download = jest.fn();
+
   beforeEach(() => {
-    jest.doMock(
-      '../../../src/utils/supportIntersectionObserver',
-      () => ({ __esModule: true, default: false } as { __esModule: true })
-    );
+    jest.doMock('../../../src/utils/supportIntersectionObserver', () => ({
+      __esModule: true,
+      default: false,
+    }));
   });
 
   afterEach(() => {
@@ -21,14 +22,9 @@ describe('useIntersection (IntersectionObserver unsupported)', () => {
       '../../../src/hooks/useIntersection'
     );
     const { result } = renderHook(() =>
-      useIntersection(
-        createRef<HTMLImageElement>(),
-        State.INITIAL,
-        false,
-        jest.fn()
-      )
+      useIntersection(createRef<HTMLImageElement>(), State.INITIAL, download)
     );
     expect(result.error).toBeUndefined();
-    expect(useIntersection).toBe(noop);
+    expect(download).toHaveBeenCalledTimes(1);
   });
 });

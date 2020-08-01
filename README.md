@@ -23,7 +23,7 @@ By the way, this library is shipped with sensable default options so it can be c
 
 Add the following loader config to Webpack config.
 
-```javascript
+```typescript
 {
   loader: '@reshoot/loader',
   options: {

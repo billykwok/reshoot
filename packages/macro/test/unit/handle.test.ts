@@ -40,30 +40,18 @@ const referencePath = {
 } as NodePath;
 const references = { default: [referencePath] };
 
-jest.mock(
-  '../../src/extractArguments.ts',
-  () =>
-    ({
-      __esModule: true,
-      default: jest.fn(() => [mockFirstArg, mockSecondArg]),
-    } as { __esModule: true })
-);
-jest.mock(
-  '../../src/evalFirstArgument.ts',
-  () =>
-    ({
-      __esModule: true,
-      default: jest.fn(() => 'image.jpg'),
-    } as { __esModule: true })
-);
-jest.mock(
-  '../../src/evalSecondArgument.ts',
-  () =>
-    ({
-      __esModule: true,
-      default: jest.fn(() => ({ color: '#eeff99' })),
-    } as { __esModule: true })
-);
+jest.mock('../../src/extractArguments.ts', () => ({
+  __esModule: true,
+  default: jest.fn(() => [mockFirstArg, mockSecondArg]),
+}));
+jest.mock('../../src/evalFirstArgument.ts', () => ({
+  __esModule: true,
+  default: jest.fn(() => 'image.jpg'),
+}));
+jest.mock('../../src/evalSecondArgument.ts', () => ({
+  __esModule: true,
+  default: jest.fn(() => ({ color: '#eeff99' })),
+}));
 
 describe('arguments', () => {
   beforeEach(() => {

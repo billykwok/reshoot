@@ -14,5 +14,15 @@ module.exports = {
     '@babel/preset-react',
     'linaria/babel',
   ],
-  plugins: [['const-enum', { transform: 'constObject' }]],
+  plugins: [
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: { version: 3, proposals: true },
+        helpers: true,
+        regenerator: true,
+      },
+    ],
+    ['const-enum', { transform: 'constObject' }],
+  ],
 };

@@ -1,0 +1,235 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+
+import './utils/docs.css';
+
+<Meta title="Documentation/API Reference/@reshoot／loader" />
+
+# @reshoot/loader
+
+## Configuration
+
+1. Specify options in `webpack.config.js`.
+
+```typescript
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /* regex */,
+        use: [
+          {
+            loader: '@reshoot/loader',
+            options: {
+              /* options */
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+2. Specify options as query parameters in `require` call
+   > Not recommended as `@reshoot/macro` is a better alternative.
+
+```typescript
+const image = require('./image.jpg?{"name":"[contenthash:16]-[width].[ext]","shape":{"mime":true}}');
+```
+
+## Supported Format
+
+`@reshoot/loader` supports `jpg`, `png`, `webp`, `gif`, and `svg` images.
+
+If an image in other formats is imported by Webpack, `@reshoot/loader` will throws an error.
+
+## Available Options
+
+### Default Options
+
+Each option can be overridden either globally in `webpack.config.js` or locally in `require` or `reshoot`.
+
+```typescript
+const options = {
+  name:
+    process.env.NODE_ENV === 'development'
+      ? '[path][name].[ext]'
+      : '[contenthash:8]-[width].[ext]',
+  outputPath: null,
+  publicPath: null,
+  shape: {
+    mime: false,
+    src: 'src',
+    width: 'width',
+    height: 'height',
+    srcSet: 'srcSet',
+    aspectRatio: 'aspectRatio',
+    placeholder: 'placeholder',
+    color: 'color',
+  },
+  srcSet: [480, 640, 840, 1080],
+  quality: 80,
+  background: '#fff',
+  color: '#fff',
+  placeholder: { size: 8, trimDataUrl: false },
+  enforceFormat: false,
+  aspectRatio: {
+    type: 'widthByHeight',
+    format: 'ratio',
+    decimal: 4,
+  },
+  disable: process.env.NODE_ENV === 'development',
+  cache: true,
+  emitFile: true,
+  esModule: true,
+};
+```
+
+### Option Description
+
+#### Output File Name(s)
+
+Type: `name: string`  
+Default: `'[path][name].[ext]'` when `process.env.NODE_ENV === 'development'`, else `'[contenthash:8]-[width].[ext]'`  
+Name pattern of the output image files. It supports `[width]` in addition to all the placeholder supported by Webpack. To increase the speed of development build, only one image is emitted when `NODE_ENV` is `development`.
+
+#### Output Path
+
+Type: `outputPath: null | string | (filename: string) => string`  
+Default: `null`  
+The directory where output images should be emitted to. When set as `null`, the value of `outputPath` in Webpack `output` config is used. When a function is specified, the value returned by it is used as the full path of the corresponding output image. Function is only supported in global options due to the limitation of function serialization.
+
+#### Public Path
+
+Type: `publicPath: null | string | (filename: string) => string`  
+Default: `null`  
+The path where the output images are accessed on the webpage. When set as `null`, the value of `publicPath` in Webpack `output` config is used. When a function is specified, the value returned by it is used as the full public path of the corresponding output image. Function is only supported in global options due to the limitation of function serialization.
+
+#### Module Export Shape
+
+Type: `shape: { [key: string]: string | boolean }`  
+Default: See below  
+The shape of the exported object returned from `import` or `require`. If set as falsy, the key and its corresponding value will not be included in the module export object. If set as truthy, the field name in module export object is the same of the key name. If set as a string, the string will be used as the field name in module export object. For example, with the config below,
+
+```typescript
+const shape = {
+  mime: false,
+  width: 'w',
+  height: 'h',
+  srcSet: null,
+  aspectRatio: 'a',
+  placeholder: 'p',
+  color: true,
+};
+```
+
+an object like the following will be exported.
+
+```typescript
+export default {
+  src: 'dir/example/image.jpg',
+  w: 1024,
+  h: 720,
+  a: 1.68,
+  p: 'data:example-data-url',
+  color: '#fff',
+};
+```
+
+Supported keys are listed below.
+
+| Key           | Default         | Description                                                  |
+| ------------- | --------------- | ------------------------------------------------------------ |
+| `mime`        | `false`         | The mime type of source image                                |
+| `src`         | `'src'`         | The `<img />` tag src url of default output image            |
+| `width`       | `'width'`       | The intrinsic width of the default output image              |
+| `height`      | `'height'`      | The intrinsic height of the default output image             |
+| `srcSet`      | `'srcSet'`      | The `<img />` tag srcSet url list of responsive output image |
+| `aspectRatio` | `'aspectRatio'` | The aspect ratio of output images for reflow prevention      |
+| `placeholder` | `'placeholder'` | The url/data-url of LQIP                                     |
+| `color`       | `'color'`       | The color of image box before the image or LQIP is shown     |
+
+#### Widths of Responsive Images
+
+Type: `srcSet: number[]`  
+Default: `[480, 640, 840, 1080]`  
+Widths of responsive images. Input image is resized into a set of output images with widths specified in this option. The `srcSet` attribute of module export is also generated from this list. For example,
+
+```typescript
+const srcSet = [360, 640, 960];
+```
+
+results in something like
+
+```html
+<img
+  src="/images/img-full.jpg"
+  srcset="/images/img-360 360w, /images/img-640 640w, /images/img-960 960w"
+/>
+```
+
+#### Quality of Output Image
+
+Type: `quality: number`  
+Default: `80`  
+The quality of output image.
+
+#### Filling Background
+
+Type: `background: string`  
+Default: `'#fff'`  
+The color used to fill transparent background when input image is converted into a format that does not support transparency. Accept only HEX color.
+
+#### Default Preview Color
+
+Type: `color: string`  
+Default: `'#fff'`  
+The color used as the background of aspect ratio box before LQIP or final image is loaded. Accept any color format supported by CSS.
+
+#### Placeholder
+
+Type: `placeholder: { size: number, trimDataUrl: boolean }`  
+Default: `{ size: 8, trimDataUrl: false }`  
+LQIP setting where `size` is the length of the shorter side of the image, and `trimDataUrl` controls whether the initial prefix of data-url (`data:<meme>;base64,`) is omitted to slightly reduce bundle size. When `trimDataUrl` is falsy, the reconstruction of full data-url is expected to be handled in user land.
+
+#### Enforce Format
+
+Type: `enforceFormat: string | false`  
+Default: `false`  
+Enforce the output for all images to be in specific format. Support `jpg`, `png`, `webp` and `gif`. When falsy, the format of output is the same of input.
+
+#### Aspect Ratio
+
+Type: `aspectRatio: { type: string, format: string, decimal: number }`  
+Default: `{ type: 'widthByHeight', format: 'ratio', decimal: 4 }`  
+Aspect ratio value setting in module export object. Decimal controls how many digits are preserved after decimal point. Type and format options take the following values.
+
+| Type              | Description                              |
+| ----------------- | ---------------------------------------- |
+| `'widthByHeight'` | Express aspect ratio as `width / height` |
+| `'heightByWidth'` | Express aspect ratio as `height / width` |
+
+| Format      | Description                                                          |
+| ----------- | -------------------------------------------------------------------- |
+| `'ratio'`   | Express aspect ratio as ratio (`width / height` or `height / width`) |
+| `'percent'` | Express aspect ratio as percentage (`ratio * 100`)                   |
+
+#### Disable
+
+Type: `disable: boolean`  
+Whether the loader should act as a pass-through loader. Useful for reducing build time during development.
+
+#### Cache
+
+Type: `cache: boolean`  
+Whether image output should be cached. Useful for reducing build time.
+
+#### Emit File
+
+Type: `emitFile: boolean`  
+Whether to emit file. Useful for preventing the same image from being emitted twice when bundling client-side and then server-side code with Webpack.
+
+#### ES Module
+
+Type: `esModule: boolean`  
+Whether module export uses ES module or CommonJS syntax. When truthy, the returned module of `import` or `require` call is written as `export default { src: ... }`. When falsy, the result of `import` and `require` is in the form of `module.exports = { src: ... }`.

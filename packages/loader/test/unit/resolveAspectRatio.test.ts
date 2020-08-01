@@ -135,4 +135,8 @@ describe('resolveAspectRatio', () => {
       )
     ).toEqual(0.66);
   });
+
+  test('return number directly when options is a number', () => {
+    expect(resolveAspectRatio(null, 1.23)).toEqual(1.23);
+  });
 });

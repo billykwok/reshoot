@@ -62,7 +62,7 @@ export type Options = {
   quality: number;
   background: string;
   color: string;
-  forceFormat: string | false;
+  enforceFormat: string | false;
   placeholder: Placeholder;
   aspectRatio: AspectRatio;
   disable: boolean;

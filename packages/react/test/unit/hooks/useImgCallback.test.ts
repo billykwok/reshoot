@@ -30,29 +30,29 @@ describe('useImgCallback', () => {
       '../../../src/hooks/useImgCallback'
     );
     const { result } = renderHook((): [
-      () => void,
-      (event: Event | SyntheticEvent | string) => void,
       State.State,
-      Dispatch<SetStateAction<State.State>>
+      Dispatch<SetStateAction<State.State>>,
+      () => void,
+      (event: Event | SyntheticEvent | string) => void
     ] => {
       const [state, setState] = useState<State.State>(State.INITIAL);
       return [
-        ...useImgCallback(ref, src, state, setState, onLoad, onError),
         state,
         setState,
+        ...useImgCallback(ref, src, state, setState, onLoad, onError),
       ];
     });
     expect(result.error).toBeUndefined();
-    const [enhancedOnLoad, enhancedOnError] = result.current;
+    const [, , enhancedOnLoad, enhancedOnError] = result.current;
 
     act(() => enhancedOnLoad());
     expect(sessionStorage.getItem(src)).toEqual('y');
-    expect(result.current[2]).toEqual(State.LOADED);
+    expect(result.current[0]).toEqual(State.FADING);
     expect(mockUnsubscribe).toHaveBeenNthCalledWith(1, ref.current);
     expect(onLoad).toHaveBeenCalledTimes(1);
 
     act(() => enhancedOnError(new Event('onerror')));
-    expect(result.current[2]).toEqual(State.ERROR);
+    expect(result.current[0]).toEqual(State.ERROR);
     expect(mockUnsubscribe).toHaveBeenNthCalledWith(1, ref.current);
     expect(onError).toHaveBeenCalledTimes(1);
   });
