@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/storybook",
   "scripts": {
-    "clean": "rm -rf build",
+    "clean": "rm -rf ../../docs",
     "dev": "start-storybook",
-    "build": "yarn clean && build-storybook -c .storybook -o build",
+    "build": "yarn clean && build-storybook -c .storybook -o ../../docs",
     "lint": "eslint ./src/**"
   },
   "dependencies": {
