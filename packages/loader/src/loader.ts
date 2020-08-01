@@ -54,7 +54,7 @@ async function reshootLoader(
     image.metadata(),
   ]);
   const resolvePublicPath = createPublicPathResolver(options);
-  const [mime, ext] = resolveMimeAndExt(this, options.forceFormat);
+  const [mime, ext] = resolveMimeAndExt(this, options.enforceFormat);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, rawPath] = await emit(
     this,

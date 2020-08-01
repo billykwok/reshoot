@@ -1,22 +1,21 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
 import Reshoot from '@reshoot/react';
-import { withKnobs, select, boolean, number } from '@storybook/addon-knobs';
-import { addReadme } from 'storybook-readme';
+import { withKnobs, select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import describe from './utils/describe';
 import images from './utils/images';
 
 import '@reshoot/react/lib/styles.css';
+import './utils/docs.css';
 
 <Meta
   title="Live Demo/Component"
   component={describe(Reshoot, 'Reshoot')}
-  decorators={[addReadme, withKnobs]}
-  parameters={{ readme: { includePropTables: [describe(Reshoot, 'Reshoot')] } }}
+  decorators={[withKnobs]}
 />
 
 <Preview>
-  <Story name="A Normal Image">
+  <Story name="Image Accessible">
     <Reshoot
       style={{
         width: `${number('Width', 480, {
@@ -41,26 +40,15 @@ import '@reshoot/react/lib/styles.css';
       )}
       _s={select(
         'State',
-        {
-          AUTO: null,
-          MANUAL: State.MANUAL,
-          OFFLINE: State.OFFLINE,
-          ERROR: State.ERROR,
-          INITIAL: State.INITIAL,
-          LOADED: State.LOADED,
-        },
+        { AUTO: null, MANUAL: 0, OFFLINE: 1, ERROR: 2, INITIAL: 3, LOADED: 5 },
         null
-      )}
-      _n={boolean(
-        'Native lazy loading',
-        'loading' in HTMLImageElement.prototype
       )}
     />
   </Story>
 </Preview>
 
 <Preview>
-  <Story name="An Error Image">
+  <Story name="Image Inaccessible">
     <Reshoot
       style={{
         width: `${number('Width', 480, {
@@ -90,12 +78,8 @@ import '@reshoot/react/lib/styles.css';
       )}
       _s={select(
         'State',
-        { AUTO: null, MANUAL: 1, OFFLINE: 2, ERROR: 3, INITIAL: 4 },
+        { AUTO: null, MANUAL: 0, OFFLINE: 1, ERROR: 2, INITIAL: 3, LOADED: 5 },
         null
-      )}
-      _n={boolean(
-        'Native lazy loading',
-        'loading' in HTMLImageElement.prototype
       )}
     />
   </Story>

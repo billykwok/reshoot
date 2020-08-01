@@ -6,11 +6,11 @@ function resolveDefaultOptions(env: string): Options {
     name:
       env === 'development'
         ? '[path][name].[ext]'
-        : '[contenthash:16]-[width].[ext]',
+        : '[contenthash:8]-[width].[ext]',
     outputPath: null,
     publicPath: null,
     shape: {
-      mime: 'mime',
+      mime: false,
       src: 'src',
       width: 'width',
       height: 'height',
@@ -23,7 +23,7 @@ function resolveDefaultOptions(env: string): Options {
     quality: 80,
     background: '#fff',
     color: '#fff',
-    forceFormat: false,
+    enforceFormat: false,
     placeholder: { size: 8, trimDataUrl: false },
     aspectRatio: {
       type: AspectRatioType.WidthByHeight,

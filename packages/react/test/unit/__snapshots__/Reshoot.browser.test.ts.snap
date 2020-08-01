@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reshoot aspect ratio can be overridden 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.5;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    src="image.jpg"
+    srcset="image-480.jpg 480w, image-640.jpg 640w"
+    width="100"
+  />
+</div>
+`;
+
+exports[`Reshoot customized options for error image 1`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div
+    class="ajkm71e"
+  >
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+  <div
+    class="a189lnzk"
+  >
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <h6>
+      Fail to load
+    </h6>
+    <p>
+      Click to reload
+    </p>
+  </div>
+</button>
+`;
+
+exports[`Reshoot customized options for error image 2`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div
+    class="ajkm71e"
+  >
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+  <div
+    class="a189lnzk"
+  >
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <h6>
+      Fail to load
+    </h6>
+    <p>
+      Click to reload
+    </p>
+  </div>
+</button>
+`;
+
+exports[`Reshoot customized options for image link 1`] = `
+<a
+  class="ax4jui0"
+  data-testid="123"
+  href="https://example.com"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+  target="_blank"
+>
+  <img
+    alt="Test image"
+    height="80"
+    src="image.jpg"
+    srcset="image-480.jpg 480w, image-640.jpg 640w"
+    width="100"
+  />
+</a>
+`;
+
+exports[`Reshoot customized options for normal image 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    src="image.jpg"
+    srcset="image-480.jpg 480w, image-640.jpg 640w"
+    width="100"
+  />
+</div>
+`;
+
+exports[`Reshoot do not render preview when placeholder is falsy 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+</div>
+`;
+
+exports[`Reshoot render valid input correctly in state ERROR 1`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div
+    class="ajkm71e"
+  >
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+  <div
+    class="a189lnzk"
+  >
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <h6>
+      Fail to load
+    </h6>
+    <p>
+      Click to reload
+    </p>
+  </div>
+</button>
+`;
+
+exports[`Reshoot render valid input correctly in state FADING 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    src="image.jpg"
+    srcset="image-480.jpg 480w, image-640.jpg 640w"
+    width="100"
+  />
+  <div
+    class="ajkm71e a1kfl5zv"
+  >
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+</div>
+`;
+
+exports[`Reshoot render valid input correctly in state INITIAL 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div
+    class="ajkm71e"
+  >
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+</div>
+`;
+
+exports[`Reshoot render valid input correctly in state LOADED 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    src="image.jpg"
+    srcset="image-480.jpg 480w, image-640.jpg 640w"
+    width="100"
+  />
+</div>
+`;
+
+exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div
+    class="ajkm71e"
+  >
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+  <div
+    class="a189lnzk"
+  >
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <h6>
+      Not autoloaded in slow network
+    </h6>
+    <p>
+      Click to reload
+    </p>
+  </div>
+</button>
+`;
+
+exports[`Reshoot render valid input correctly in state OFFLINE 1`] = `
+<button
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div
+    class="ajkm71e"
+  >
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+  <div
+    class="a189lnzk"
+  >
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <h6>
+      Browser is offline
+    </h6>
+    <p>
+      Click to reload
+    </p>
+  </div>
+</button>
+`;

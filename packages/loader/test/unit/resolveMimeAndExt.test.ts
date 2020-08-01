@@ -4,7 +4,7 @@ import { MacroError } from 'babel-plugin-macros';
 import resolveMimeAndExt from '../../src/resolveMimeAndExt';
 
 describe('resolveMimeAndExt', () => {
-  test('with valid JPG extension and without forceFormat', () => {
+  test('with valid JPG extension and without enforceFormat', () => {
     expect(
       resolveMimeAndExt({
         resourcePath: 'some/path/image.jpg',
@@ -12,7 +12,7 @@ describe('resolveMimeAndExt', () => {
     ).toEqual(['image/jpeg', 'jpg']);
   });
 
-  test('with valid JPEG extension and without forceFormat', () => {
+  test('with valid JPEG extension and without enforceFormat', () => {
     expect(
       resolveMimeAndExt({
         resourcePath: 'some/path/image.jpeg',
@@ -20,7 +20,7 @@ describe('resolveMimeAndExt', () => {
     ).toEqual(['image/jpeg', 'jpeg']);
   });
 
-  test('with valid PNG extension and without forceFormat', () => {
+  test('with valid PNG extension and without enforceFormat', () => {
     expect(
       resolveMimeAndExt({
         resourcePath: 'some/path/image.png',
@@ -28,7 +28,7 @@ describe('resolveMimeAndExt', () => {
     ).toEqual(['image/png', 'png']);
   });
 
-  test('with valid GIF extension and without forceFormat', () => {
+  test('with valid GIF extension and without enforceFormat', () => {
     expect(
       resolveMimeAndExt({
         resourcePath: 'some/path/image.gif',
@@ -36,7 +36,7 @@ describe('resolveMimeAndExt', () => {
     ).toEqual(['image/gif', 'gif']);
   });
 
-  test('with valid WEBP extension and without forceFormat', () => {
+  test('with valid WEBP extension and without enforceFormat', () => {
     expect(
       resolveMimeAndExt({
         resourcePath: 'some/path/image.webp',
@@ -44,7 +44,7 @@ describe('resolveMimeAndExt', () => {
     ).toEqual(['image/webp', 'webp']);
   });
 
-  test('with valid SVG extension and without forceFormat', () => {
+  test('with valid SVG extension and without enforceFormat', () => {
     expect(
       resolveMimeAndExt({
         resourcePath: 'some/path/image.svg',
@@ -52,7 +52,7 @@ describe('resolveMimeAndExt', () => {
     ).toEqual(['image/svg+xml', 'svg']);
   });
 
-  test('with valid JPG extension and valid forceFormat', () => {
+  test('with valid JPG extension and valid enforceFormat', () => {
     expect(
       resolveMimeAndExt(
         { resourcePath: 'some/path/image.jpg' } as loader.LoaderContext,
@@ -61,7 +61,7 @@ describe('resolveMimeAndExt', () => {
     ).toEqual(['image/png', 'png']);
   });
 
-  test('with invalid extension and without forceFormat', () => {
+  test('with invalid extension and without enforceFormat', () => {
     expect(() =>
       resolveMimeAndExt({
         resourcePath: 'some/path/image.xyz',
@@ -69,7 +69,7 @@ describe('resolveMimeAndExt', () => {
     ).toThrow(new MacroError('Extension "xyz" is not supported.'));
   });
 
-  test('with invalid JPG extension and without forceFormat', () => {
+  test('with invalid JPG extension and without enforceFormat', () => {
     expect(() =>
       resolveMimeAndExt(
         {

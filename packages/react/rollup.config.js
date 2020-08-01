@@ -5,26 +5,32 @@ import replace from '@rollup/plugin-replace';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 import linaria from 'linaria/rollup';
-import css from 'rollup-plugin-css-only';
+import postcss from 'rollup-plugin-postcss';
+import postcssPresetEnv from 'postcss-preset-env';
 
 export default {
-  input: 'src/index.ts',
+  input: './src/index.ts',
   output: {
-    dir: 'lib',
+    dir: './lib',
     format: 'cjs',
     sourcemap: false,
     freeze: false,
     compact: true,
     exports: 'auto',
   },
-  external: ['object-assign', 'react', 'linaria'],
+  external: [/@babel\/runtime-corejs3/i, 'object-assign', 'react', 'linaria'],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
     linaria(),
-    css({ output: 'lib/styles.css' }),
+    postcss({
+      minimize: true,
+      inject: false,
+      extract: 'styles.css',
+      plugins: [postcssPresetEnv()],
+    }),
     babel({
       babelrc: false,
-      babelHelpers: 'bundled',
+      babelHelpers: 'runtime',
       exclude: '../../node_modules/**',
       presets: [
         '@babel/preset-modules',

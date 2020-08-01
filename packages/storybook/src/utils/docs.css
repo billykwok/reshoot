@@ -1,3 +1,63 @@
+div#docs-root blockquote.sbdocs-blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+div#docs-root h2.sbdocs-h2 {
+  margin-top: 2rem;
+}
+
+div#docs-root div.docblock-source {
+  margin: 1.5rem 0;
+}
+
+div#docs-root table.sbdocs-table tr th,
+div#docs-root table.sbdocs-table tr td {
+  padding: 0.125rem 0.5rem;
+}
+
+body.dark > div#docs-root table.sbdocs-table tr th,
+body.dark > div#docs-root table.sbdocs-table tr td {
+  border-color: #333;
+}
+
+div#docs-root table.sbdocs-table tr th,
+div#docs-root table.sbdocs-table tr td {
+  border-color: #e5e5e5;
+}
+
+div#docs-root table.sbdocs-table tr code {
+  padding: 3px 5px;
+}
+
+div#docs-root table.sbdocs-table tr code {
+  border: 1px solid #eeeeee;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+body.dark > div#docs-root table.sbdocs-table tr code {
+  border: 1px solid #3f3f3f;
+  background-color: #333;
+}
+
+body.dark > div#docs-root table.sbdocs-table tr {
+  background-color: #222;
+  color: #fff;
+}
+
+div#docs-root table.sbdocs-table thead tr {
+  background-color: #e5e5e5;
+}
+
+body.dark > div#docs-root table.sbdocs-table thead tr {
+  background-color: #333;
+}
+
+body.dark > div#docs-root table.sbdocs-table tr:nth-of-type(2n) {
+  background-color: #1a1a1a;
+}
+
 body.dark > div#docs-root > div.sbdocs-wrapper {
   background: #111;
 }
@@ -14,12 +74,26 @@ body.dark > div#docs-root h3.sbdocs-h3 {
   color: #ddd;
 }
 
+div#docs-root h3.sbdocs-h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 body.dark > div#docs-root h3.sbdocs-h3 code {
   padding: 2px 4px;
 }
 
 body.dark > div#docs-root h4.sbdocs-h4 {
   color: #ddd;
+}
+
+div#docs-root h4.sbdocs-h4 {
+  margin: 0;
+  margin-bottom: 0.25rem;
+}
+
+div#docs-root h4.sbdocs-h4 + p {
+  margin-top: 0;
 }
 
 body.dark > div#docs-root h5.sbdocs-h5 {
@@ -41,7 +115,7 @@ body.dark > div#docs-root li.sbdocs-li {
 body.dark > div#docs-root code {
   background: #333;
   color: #eee;
-  border: none;
+  border: 1px solid #3f3f3f;
   border-radius: 4px;
 }
 
@@ -49,6 +123,16 @@ body.light > div#docs-root div.docblock-source,
 body.light > div#docs-root div.docblock-source code {
   background: #222;
   color: #fff;
+}
+
+body.dark
+  > div#docs-root
+  div.simplebar-content-wrapper
+  > div.simplebar-content
+  > pre
+  > code {
+  background: none;
+  border: none;
 }
 
 body.dark > div#docs-root div.docblock-source,
@@ -91,6 +175,10 @@ div#docs-root div.docblock-source code span.token.variable {
 
 div#docs-root div.docblock-source code span.token.tag {
   color: #71d04b;
+}
+
+div#docs-root div.docblock-source code span.token.comment {
+  color: #19ad19;
 }
 
 div#docs-root div.docblock-source code span.token.attr-name {

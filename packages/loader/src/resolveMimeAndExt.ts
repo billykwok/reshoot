@@ -6,15 +6,15 @@ import Extensions from './extensions';
 
 function resolveMimeAndExt(
   loaderContext: loader.LoaderContext,
-  forceFormat: string | false = false
+  enforceFormat: string | false = false
 ): [Mimes, Extensions] {
   let mime: Mimes;
   let ext: Extensions;
-  if (forceFormat) {
-    if (!(forceFormat.toUpperCase() in Mimes)) {
-      throw new Error(`Format "${forceFormat}" is not supported.`);
+  if (enforceFormat) {
+    if (!(enforceFormat.toUpperCase() in Mimes)) {
+      throw new Error(`Format "${enforceFormat}" is not supported.`);
     }
-    mime = Mimes[forceFormat.toUpperCase()] as Mimes;
+    mime = Mimes[enforceFormat.toUpperCase()] as Mimes;
     ext = Extensions[mime];
   } else {
     ext = path

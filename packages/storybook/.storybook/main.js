@@ -1,5 +1,4 @@
 const path = require('path');
-const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx'],
@@ -7,7 +6,6 @@ module.exports = {
     '@storybook/addon-docs',
     '@storybook/addon-viewport/register',
     'storybook-dark-mode/register',
-    'storybook-readme/register',
     '@storybook/addon-knobs/register',
     '@storybook/addon-actions/register',
   ],
@@ -18,7 +16,7 @@ module.exports = {
     config.resolve.extensions.push('.ts', '.tsx', '.md', '.mdx');
     config.module.rules.push(
       {
-        test: /\.(ts|js)x?$/,
+        test: /\.[tj]sx?$/,
         exclude: /node_modules/,
         enforce: 'pre',
         use: [

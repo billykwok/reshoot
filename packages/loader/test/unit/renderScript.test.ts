@@ -23,12 +23,12 @@ describe('renderScript', () => {
     };
     expect(renderScript(object, { ...defaultOptions, shape }))
       .toEqual(oneLineTrim`export default {
-      src:__webpack_public_path__+"abc.jpg",
-      aspectRatio:3.14,
-      srcSet:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
-      placeholder:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      background:"#666666",
-      e:123
+      \"src\":__webpack_public_path__+"abc.jpg",
+      \"aspectRatio\":3.14,
+      \"srcSet\":__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
+      \"placeholder\":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
+      \"background\":"#666666",
+      \"e\":123
     }`);
   });
 
@@ -48,24 +48,23 @@ describe('renderScript', () => {
         shape,
       })
     ).toEqual(oneLineTrim`export default {
-      r:__webpack_public_path__+"abc.jpg",
-      a:3.14,
-      s:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
-      p:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      c:"#666666",
-      e:123
+      \"r\":__webpack_public_path__+"abc.jpg",
+      \"a\":3.14,
+      \"s\":__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
+      \"p\":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
+      \"c\":"#666666",
+      \"e\":123
     }`);
   });
 
   test('default options', () => {
     expect(renderScript(object, defaultOptions))
       .toEqual(oneLineTrim`export default {
-      src:__webpack_public_path__+"abc.jpg",
-      aspectRatio:3.14,
-      srcSet:__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
-      placeholder:"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      color:"#666666",
-      extra:123
+      \"src\":__webpack_public_path__+"abc.jpg",
+      \"aspectRatio\":3.14,
+      \"srcSet\":__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
+      \"placeholder\":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
+      \"color\":"#666666"
     }`);
   });
 });

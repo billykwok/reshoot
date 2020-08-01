@@ -1,0 +1,33 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+
+import './utils/docs.css';
+
+<Meta title="Documentation/FAQs" />
+
+# FAQs
+
+## Does build-time image generation significantly increases my build time?
+
+Yes and no. Depending on how much processing is required and how many versions of an image are needed, `@reshoot/loader` may increase your build time as much as twice the original duration. However, it also caches the output images so that the second run is almost as fast as `@reshoot/loader` is not used.
+
+## How does `@reshoot/react` load an image?
+
+On the server side, it renders a `<div />` container plus an inner `<img />` element. This ensures that the images are rendered as usual when JavaScript is disabled.
+
+On the client side, if JavaScript is enabled, three things happen upon hydration.
+
+1.  The `src` and `srcset` attributes of `<img />` are removed to prevent loading images outside viewport,
+2.  A blurred preview hovers the inner `<img />` element to provide visual clue that enhances user experience.
+3.  All `<Reshoot />` elements register a callback to an IntersectionObserver.
+
+Whenever a `<Reshoot />` element intersects with the viewport for the first time, a virtual image element is created in background to initiate the loading and decoding of the corresponding image. Once the image is loaded by the browser, the preview is faded out and removed from the DOM tree.
+
+> One caveat of the above approach is that HTML rendered on the server side is not the same as the initial DOM tree rendered on the client side. In older version of React, this results in a checksum error. In all versions of React, this forces a re-rendering of all `<Reshoot />` element that creates slight overhead to initial page load. This will be addressed by adopting React Suspense once it is shipped in the future. For now, this caveat is considered as a fare trade-off.
+
+## What browsers are supported?
+
+`@reshoot/react` makes use of CSS variable and targets ES6 browsers. Both were announced more than 5 years ago so there is no plan to support older browsers in the expense of larger bundle size and worse performance.
+
+## Do you plan to support other bundlers like Rollup, Snowpack, Pika, etc?
+
+Support for other bundlers is not in plan, but you are welcome to create a feature request to show that there is enough demand that justifies its development.

@@ -35,7 +35,7 @@ const useLoadingState = (
     }
     return INITIAL;
   });
-  return [overriddenState || _state, setState];
+  return [overriddenState === null ? _state : overriddenState, setState];
 };
 
 export default useLoadingState;

@@ -34,23 +34,23 @@ describe('intersection', () => {
   });
 
   test('should return noop if IntersectionObserver is not supported', async () => {
-    jest.doMock(
-      '../../../src/utils/supportIntersectionObserver',
-      () => ({ __esModule: true, default: false } as { __esModule: true })
-    );
+    jest.doMock('../../../src/utils/supportIntersectionObserver', () => ({
+      __esModule: true,
+      default: false,
+    }));
     const { subscribe, unsubscribe } = await import(
       '../../../src/utils/intersection'
     );
-    expect(subscribe).toBe(noop);
+    expect(subscribe(null, null)).toBe(noop);
     expect(unsubscribe).toBe(noop);
     expect(intersectionObserver.observers).toHaveLength(0);
   });
 
-  test('should handle multiple elements subscription correctly', async () => {
-    jest.doMock(
-      '../../../src/utils/supportIntersectionObserver',
-      () => ({ __esModule: true, default: true } as { __esModule: true })
-    );
+  test('should handle multiple elements subscription and unsubscription correctly', async () => {
+    jest.doMock('../../../src/utils/supportIntersectionObserver', () => ({
+      __esModule: true,
+      default: true,
+    }));
     const { subscribe, unsubscribe } = await import(
       '../../../src/utils/intersection'
     );
@@ -89,11 +89,11 @@ describe('intersection', () => {
     expect(handler2).toHaveBeenCalledTimes(2);
   });
 
-  test('should be noop if callback is called with unregistered element', async () => {
-    jest.doMock(
-      '../../../src/utils/supportIntersectionObserver',
-      () => ({ __esModule: true, default: true } as { __esModule: true })
-    );
+  test('should do nothing if unsubscribe is called with unregistered element', async () => {
+    jest.doMock('../../../src/utils/supportIntersectionObserver', () => ({
+      __esModule: true,
+      default: true,
+    }));
     const { subscribe, unsubscribe } = await import(
       '../../../src/utils/intersection'
     );
@@ -101,16 +101,28 @@ describe('intersection', () => {
 
     const [element, handler] = [document.createElement('div'), jest.fn()];
     subscribe(element, handler);
-    const [observer] = intersectionObserver.observers;
+    expect(intersectionObserver.observers).toHaveLength(1);
     intersectionObserver.simulate({ ...baseEntry, target: element });
     expect(handler).toHaveBeenCalledTimes(1);
 
-    unsubscribe(element);
+    unsubscribe(document.createElement('div'));
+    expect(intersectionObserver.observers).toHaveLength(1);
     intersectionObserver.simulate(baseEntry);
-    expect(intersectionObserver.observers).toHaveLength(0);
-    expect(handler).toHaveBeenCalledTimes(1);
+    expect(handler).toHaveBeenCalledTimes(2);
+  });
 
-    observer.callback([{ ...baseEntry, target: element }], null);
-    expect(handler).toHaveBeenCalledTimes(1);
+  test('should return noop unsubscribe if subscribe is called with null arguments', async () => {
+    jest.doMock('../../../src/utils/supportIntersectionObserver', () => ({
+      __esModule: true,
+      default: true,
+    }));
+    const { subscribe } = await import('../../../src/utils/intersection');
+    expect(intersectionObserver.observers).toHaveLength(0);
+
+    const unsubscribe = subscribe(null, jest.fn());
+    expect(intersectionObserver.observers).toHaveLength(0);
+
+    unsubscribe();
+    expect(intersectionObserver.observers).toHaveLength(0);
   });
 });

@@ -1,24 +1,17 @@
 import { forwardRef } from 'react';
 import { css } from 'linaria';
 import assign from 'object-assign';
-import { INITIAL, LOADED } from './state';
+import { INITIAL, FADING, LOADED } from './state';
 import useLoadingState from './hooks/useLoadingState';
 import useForwardableRef from './hooks/useForwardableRef';
 import useImgCallback from './hooks/useImgCallback';
 import useDownload from './hooks/useDownload';
 import useIntersection from './hooks/useIntersection';
-import Img from './components/Img';
-import Message from './components/Message';
 import cx from './utils/cx';
 import createElement from './utils/createElement';
-import SUPPORT_NATIVE_LAZY_LOADING from './utils/supportNativeLazyLoading';
+import IS_BROWSER from './utils/isBrowser';
 
-import type {
-  SyntheticEvent,
-  RefObject,
-  ForwardRefExoticComponent,
-  RefAttributes,
-} from 'react';
+import type { SyntheticEvent, RefObject } from 'react';
 import type { State } from './state';
 
 const asContainer = css`
@@ -34,6 +27,14 @@ const asContainer = css`
   button& {
     cursor: pointer;
   }
+  img {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   &::before {
     content: '';
     display: block;
@@ -41,56 +42,76 @@ const asContainer = css`
     height: 0;
     padding-bottom: calc(var(--r, 0) * 100%);
   }
+`;
+
+const asPlaceholder = css`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  transform: scale3d(1.05, 1.05, 1);
   > img {
-    display: block;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: currentColor;
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    transition: filter 0.5s ease, transform 0.5s ease;
+    filter: blur(0.5rem);
   }
-  > div {
-    display: block;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      'Helvetica Neue', Arial, sans-serif;
-    text-align: center;
-    color: #fff;
-    padding: 1rem 1.25rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 0.25rem;
-    max-width: 8rem;
-    transition: opacity 0.5s ease;
-    > svg {
-      width: 4rem;
-      height: 4rem;
-      > path {
-        stroke: #fff;
-        stroke-width: 4;
-        fill: none;
-      }
+`;
+
+const asFadeout = css`
+  animation: f 0.75s 1;
+  @keyframes f {
+    0% {
+      transform: scale3d(1.05, 1.05, 1);
+      opacity: 1;
     }
-    > div {
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-    &::after {
-      display: block;
-      font-size: 0.875rem;
-      content: 'Click to reload';
+    100% {
+      transform: none;
+      opacity: 0;
     }
   }
 `;
 
+const asMessage = css`
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  text-align: center;
+  color: #fff;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.25rem;
+  max-width: 8rem;
+  > svg {
+    width: 4rem;
+    height: 4rem;
+    > path {
+      stroke: #fff;
+      stroke-width: 4;
+      fill: none;
+    }
+  }
+  > h6 {
+    font-size: 1rem;
+    margin: 0 0 0.25rem;
+  }
+  > p {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+`;
+
+const MESSAGES: [string, string, string] = [
+  'Not autoloaded in slow network',
+  'Browser is offline',
+  'Fail to load',
+];
+
 type Props = Readonly<{
+  className?: string;
   config: Readonly<{
     src: string;
     width: number;
@@ -99,33 +120,21 @@ type Props = Readonly<{
     srcSet?: string;
     alt?: string;
     color?: string;
-    placeholder?: string;
+    placeholder?: string | false | null;
   }>;
-  className?: string;
-  imgProps?: Readonly<{ className?: string; [key: string]: unknown }>;
+  messages: Readonly<[string, string, string]>;
+  imgProps: Readonly<Record<string, unknown>>;
   onLoad?: () => void;
   onError?: (event: Event | SyntheticEvent | string) => void;
   _s?: State;
-  _n?: boolean;
   [key: string]: Readonly<unknown>;
 }>;
 
-const Reshoot = forwardRef(
-  (
-    {
-      className,
-      style,
-      config,
-      imgProps,
-      onLoad,
-      onError,
-      _s: overriddenState = null,
-      _n: nativeLazyLoading = SUPPORT_NATIVE_LAZY_LOADING,
-      ...extraProps
-    }: Props,
-    ref: RefObject<HTMLElement>
-  ) => {
-    const {
+const Reshoot = (
+  {
+    className,
+    style,
+    config: {
       src,
       width,
       height,
@@ -134,60 +143,81 @@ const Reshoot = forwardRef(
       alt,
       color,
       placeholder,
-    } = config;
+    },
+    messages = MESSAGES,
+    imgProps,
+    onLoad,
+    onError,
+    _s = null,
+    ...extraProps
+  }: Props,
+  ref: RefObject<HTMLElement>
+) => {
+  const [state, setState] = useLoadingState(_s, src);
+  const _ref = useForwardableRef<HTMLElement>(ref);
+  const callbacks = useImgCallback(_ref, src, state, setState, onLoad, onError);
+  const download = useDownload(src, srcSet, callbacks);
+  useIntersection(_ref, state, download);
+  const dimensions = { width, height };
+  const hasError = IS_BROWSER && state < INITIAL;
 
-    const [state, setState] = useLoadingState(overriddenState, src);
-    const _ref = useForwardableRef<HTMLElement>(ref);
-    const [_onLoad, _onError] = useImgCallback(
-      _ref,
-      src,
-      state,
-      setState,
-      onLoad,
-      onError
-    );
-    const download = useDownload(src, srcSet, _onLoad, _onError);
-    useIntersection(_ref, state, nativeLazyLoading, download);
-
-    const isInitialOrLoaded = state === INITIAL || state === LOADED;
-    return createElement(
-      isInitialOrLoaded ? (extraProps.href ? 'a' : 'div') : 'button',
-      assign(
-        {
-          ref: _ref,
-          className: cx(asContainer, className),
-          style: assign(
-            { color, '--r': aspectRatio ? 1 / aspectRatio : height / width },
-            style
-          ),
-        },
-        extraProps,
-        isInitialOrLoaded || {
-          onClick: () => {
-            setState(() => INITIAL);
-            download();
-          },
-        }
-      ),
-      (isInitialOrLoaded || placeholder) &&
-        createElement(
-          Img,
-          assign(
-            {
-              __options: [_onLoad, _onError, state, nativeLazyLoading] as [
-                () => void,
-                (e: Event | SyntheticEvent | string) => void,
-                State,
-                boolean
-              ],
-              __imgProps: assign({ width, height, alt }, imgProps),
-            },
-            config
-          )
+  return createElement(
+    hasError ? 'button' : extraProps.href ? 'a' : 'div',
+    assign(
+      {
+        ref: _ref,
+        className: cx(asContainer, className),
+        style: assign(
+          { color, '--r': aspectRatio ? 1 / aspectRatio : height / width },
+          style
         ),
-      isInitialOrLoaded || createElement(Message, { state: state })
-    );
-  }
-) as ForwardRefExoticComponent<Props & RefAttributes<HTMLElement>>;
+      },
+      extraProps,
+      hasError && {
+        onClick: () => {
+          setState(() => INITIAL);
+          download();
+        },
+      }
+    ),
+    createElement(
+      'img',
+      assign(
+        { alt },
+        (!IS_BROWSER || state > INITIAL) && { src, srcSet },
+        dimensions,
+        imgProps
+      )
+    ),
+    IS_BROWSER &&
+      placeholder &&
+      state !== LOADED &&
+      createElement(
+        'div',
+        {
+          className: cx(asPlaceholder, state === FADING && asFadeout),
+          onAnimationEnd: () => setState(() => LOADED),
+        },
+        createElement(
+          'img',
+          assign({ src: placeholder, alt: '', loading: 'lazy' }, dimensions)
+        )
+      ),
+    hasError &&
+      createElement(
+        'div',
+        { className: asMessage },
+        createElement(
+          'svg',
+          { viewBox: '0 0 100 100' },
+          createElement('path', {
+            d: 'M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20',
+          })
+        ),
+        createElement('h6', {}, messages[state as 0 | 1 | 2]),
+        createElement('p', {}, 'Click to reload')
+      )
+  );
+};
 
-export default Reshoot;
+export default forwardRef(Reshoot);

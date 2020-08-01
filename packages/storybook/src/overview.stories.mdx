@@ -15,7 +15,7 @@ Reshoot is a production-ready image framework for React. As a spiritual successo
 
 It is not just a library but a framework, because apart from a lightweight React component library, it is also shipped with a Webpack loader and a Babel macro that generate images in different sizes ([`srcset`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)) as well as low-quality previews ([`lqip`](https://github.com/zouhir/lqip)).
 
-Written in TypeScript, Reshoot provides type definitions out of the box. Powered by hooks and IntersectionObserver, its React runtime is only 4.5kb in size (`3kb` js and `1.5kb` css) before gzip. The built-in Babel macro also helps you override image generation setting while maintaining maximum code readability.
+Written in TypeScript, Reshoot provides type definitions out of the box. Powered by hooks and IntersectionObserver, its React runtime is only `3.9kb` in size (`2.5kb` js and `1.4kb` css) before gzip. The built-in Babel macro also helps you override image generation setting while maintaining maximum code readability and type-checkability. The project has a test coverage of over 90%.
 
 ## What is in the box
 
@@ -33,54 +33,36 @@ A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) that transp
 
 A lightweight [`React`](https://reactjs.org) component that renders lazy-loaded responsive images. It is designed to accept the output meta data of `@reshoot/loader`.
 
-## Usage
+> Despite it works the best when all 3 packages are used together, there is nothing stopping you from selectively adopt one of them to fit your use case. For example, you can use `@reshoot/loader` to generate responsive images, but build your own `<Img />` component to render the images. Or, the other way round - using `@reshoot/react` to render images that you build yourself.
 
-Add the following loader config to Webpack config.
+> Currently Reshoot assumes that you use Webpack, Babel and React. Please let know if you need support for other framework/library.
 
-```javascript
-{
-  loader: '@reshoot/loader',
-  options: {
-    name: '[contenthash:8].[ext]',
-    shape: { mime: false }
-  }
-}
-```
+## Quick Look
 
-Import `@reshoot/macro` and `@reshoot/react`.
+Here is a simplfied demonstration on how easy to use Reshoot.
+
+The code you need to write
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
-
-import Reshoot from '@reshoot/react';
 import reshoot from '@reshoot/macro';
+import Reshoot from '@reshoot/react';
 
-sessionStorage.clear();
-
-const color = '#FDDFB0';
-
-function Example({ title }) {
-  return (
-    <React.Fragment>
-      <h2 style={{ paddingLeft: 10 }}>{title}</h2>
-      <div className="grid-container">
-        <Reshoot {...reshoot('./image.jpg', { color })} />
-        <Reshoot
-          {...reshoot('./image.jpg', { color })}
-          src="image.jpg"
-          srcSet={null}
-        />
-        <Reshoot {...reshoot('./image.jpg', { color })} placeholder={false} />
-      </div>
-    </React.Fragment>
-  );
+function Example() {
+  return <Reshoot config={reshoot('./image.jpg')} />;
 }
+```
 
-render(
-  <Example title="Client-side Rendered" />,
-  document.getElementById('root')
-);
+is roughly transformed into
+
+```jsx
+import React from 'react';
+import reshoot from '@reshoot/macro';
+import Reshoot from '@reshoot/react';
+
+function Example() {
+  return <Reshoot config={reshoot('./image.jpg')} />;
+}
 ```
 
 ## Support

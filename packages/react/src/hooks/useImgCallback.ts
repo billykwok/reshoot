@@ -1,7 +1,8 @@
-import { LOADED, ERROR } from '../state';
+import { FADING, ERROR } from '../state';
 import useCallback from './useCallback';
 import { unsubscribe } from '../utils/intersection';
 import noop from '../utils/noop';
+import SUPPORT_SESSION_STORAGE from '../utils/supportSessionStorage';
 
 import type {
   RefObject,
@@ -20,13 +21,13 @@ const useImageCallback = (
   onError: (event: Event | SyntheticEvent | string) => void = noop
 ): Readonly<[() => void, (event: Event | SyntheticEvent | string) => void]> => [
   useCallback(() => {
-    if (state !== LOADED) {
+    if (state < FADING) {
       try {
-        sessionStorage.setItem(src, 'y');
+        SUPPORT_SESSION_STORAGE && sessionStorage.setItem(src, 'y');
       } catch (e) {
         // continue regardless of error
       }
-      setState(() => LOADED);
+      setState(() => FADING);
       unsubscribe(ref.current);
       onLoad();
     }

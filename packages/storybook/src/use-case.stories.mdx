@@ -1,21 +1,41 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs } from '@storybook/addon-knobs';
-import { addReadme } from 'storybook-readme';
+import { withKnobs, select, button } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Reshoot from '@reshoot/react';
 import describe from './utils/describe';
 import Gallery from './utils/Gallery';
 
 import '@reshoot/react/lib/styles.css';
+import './utils/docs.css';
 
 <Meta
   title="Live Demo/Use Case"
   component={describe(Reshoot, 'Reshoot')}
-  decorators={[addReadme, withKnobs]}
+  decorators={[withKnobs]}
 />
 
 <Preview>
-  <Story name="Gallery">
-    <Gallery />
+  <Story name="Gallery (LQIP)">
+    <Gallery
+      _s={select(
+        'State',
+        { AUTO: null, MANUAL: 0, OFFLINE: 1, ERROR: 2, INITIAL: 3, LOADED: 5 },
+        null
+      )}
+      disablePlaceholder={false}
+    />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Gallery (Color)">
+    <Gallery
+      _s={select(
+        'State',
+        { AUTO: null, MANUAL: 0, OFFLINE: 1, ERROR: 2, INITIAL: 3, LOADED: 5 },
+        null
+      )}
+      disablePlaceholder={true}
+    />
   </Story>
 </Preview>

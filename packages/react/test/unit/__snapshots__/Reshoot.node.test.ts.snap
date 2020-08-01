@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reshoot server side rendering 1`] = `"<div class=\\"ax4jui0\\" style=\\"color:#fff;--r:0.5\\" data-testid=\\"123\\"><img alt=\\"Test image\\" src=\\"image.jpg\\" width=\\"100\\" height=\\"80\\"/></div>"`;

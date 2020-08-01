@@ -8,7 +8,7 @@ describe('default options', () => {
       outputPath: null,
       publicPath: null,
       shape: {
-        mime: 'mime',
+        mime: false,
         src: 'src',
         width: 'width',
         height: 'height',
@@ -21,7 +21,7 @@ describe('default options', () => {
       quality: 80,
       background: '#fff',
       color: '#fff',
-      forceFormat: false,
+      enforceFormat: false,
       placeholder: { size: 8, trimDataUrl: false },
       aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
       disable: true,
@@ -33,11 +33,11 @@ describe('default options', () => {
 
   test('are correct in other environment', () => {
     expect(resolveDefaultOptions('production')).toEqual({
-      name: '[contenthash:16]-[width].[ext]',
+      name: '[contenthash:8]-[width].[ext]',
       outputPath: null,
       publicPath: null,
       shape: {
-        mime: 'mime',
+        mime: false,
         src: 'src',
         width: 'width',
         height: 'height',
@@ -50,7 +50,7 @@ describe('default options', () => {
       quality: 80,
       background: '#fff',
       color: '#fff',
-      forceFormat: false,
+      enforceFormat: false,
       placeholder: { size: 8, trimDataUrl: false },
       aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
       disable: false,

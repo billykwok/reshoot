@@ -6,7 +6,6 @@ describe('loaderTest', () => {
   test('Inserts name and outputs JavaScript', async () => {
     const expected = {
       keys: [
-        'mime',
         'width',
         'height',
         'aspectRatio',
