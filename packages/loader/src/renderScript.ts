@@ -21,7 +21,10 @@ function renderScript(
   return `${
     options.esModule ? 'export default ' : 'module.exports='
   }{${Object.keys(object)
-    .filter((key: string): boolean => key in shape && !!shape[key])
+    .filter(
+      (key: string): boolean =>
+        !(key in shape) || (key in shape && !!shape[key])
+    )
     .map((key: string) => {
       if (key === 'src' && shape.src) {
         const serializedValue = serializePath(object.src, options.publicPath);
