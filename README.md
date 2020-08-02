@@ -5,6 +5,8 @@
 [![codecov](https://codecov.io/gh/billykwok/reshoot/branch/master/graph/badge.svg)](https://codecov.io/gh/billykwok/reshoot)
 [![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
 
+**Official Documentation**: [https://reshootjs.github.io](https://reshootjs.github.io)
+
 Reshoot is a production-ready image framework for React. As a spiritual successor of [`react-ideal-image`](https://github.com/stereobooster/react-ideal-image) (no longer actively maintained), Reshoot makes the generation and rendering of lazy-loaded responsive images as effortless and efficient as possible.
 
 It is not just a library but a framework, because apart from a lightweight React component library, it is also shipped with a Webpack loader and a Babel macro that generate images in different sizes ([`srcset`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)) as well as low-quality previews ([`lqip`](https://github.com/zouhir/lqip)).
