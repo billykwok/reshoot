@@ -40,7 +40,16 @@ import './utils/docs.css';
       )}
       _s={select(
         'State',
-        { AUTO: null, MANUAL: 0, OFFLINE: 1, ERROR: 2, INITIAL: 3, LOADED: 5 },
+        {
+          AUTO: null,
+          MANUAL: 0,
+          OFFLINE: 1,
+          ERROR: 2,
+          HIDDEN: 3,
+          LOADING: 4,
+          FADING: 5,
+          LOADED: 6,
+        },
         null
       )}
     />
@@ -78,7 +87,16 @@ import './utils/docs.css';
       )}
       _s={select(
         'State',
-        { AUTO: null, MANUAL: 0, OFFLINE: 1, ERROR: 2, INITIAL: 3, LOADED: 5 },
+        {
+          AUTO: null,
+          MANUAL: 0,
+          OFFLINE: 1,
+          ERROR: 2,
+          HIDDEN: 3,
+          LOADING: 4,
+          FADING: 5,
+          LOADED: 6,
+        },
         null
       )}
     />

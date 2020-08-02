@@ -16,90 +16,6 @@ exports[`Reshoot aspect ratio can be overridden 1`] = `
 </div>
 `;
 
-exports[`Reshoot customized options for error image 1`] = `
-<button
-  class="ax4jui0"
-  data-testid="123"
-  style="color: rgb(255, 255, 255); --r: 0.8;"
->
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
-  <div
-    class="ajkm71e"
-  >
-    <img
-      alt=""
-      height="80"
-      loading="lazy"
-      src="data:jpeg;base64,1shfk241jkw"
-      width="100"
-    />
-  </div>
-  <div
-    class="a189lnzk"
-  >
-    <svg
-      viewBox="0 0 100 100"
-    >
-      <path
-        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
-      />
-    </svg>
-    <h6>
-      Fail to load
-    </h6>
-    <p>
-      Click to reload
-    </p>
-  </div>
-</button>
-`;
-
-exports[`Reshoot customized options for error image 2`] = `
-<button
-  class="ax4jui0"
-  data-testid="123"
-  style="color: rgb(255, 255, 255); --r: 0.8;"
->
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
-  <div
-    class="ajkm71e"
-  >
-    <img
-      alt=""
-      height="80"
-      loading="lazy"
-      src="data:jpeg;base64,1shfk241jkw"
-      width="100"
-    />
-  </div>
-  <div
-    class="a189lnzk"
-  >
-    <svg
-      viewBox="0 0 100 100"
-    >
-      <path
-        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
-      />
-    </svg>
-    <h6>
-      Fail to load
-    </h6>
-    <p>
-      Click to reload
-    </p>
-  </div>
-</button>
-`;
-
 exports[`Reshoot customized options for image link 1`] = `
 <a
   class="ax4jui0"
@@ -149,7 +65,7 @@ exports[`Reshoot do not render preview when placeholder is falsy 1`] = `
 `;
 
 exports[`Reshoot render valid input correctly in state ERROR 1`] = `
-<button
+<div
   class="ax4jui0"
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
@@ -159,9 +75,7 @@ exports[`Reshoot render valid input correctly in state ERROR 1`] = `
     height="80"
     width="100"
   />
-  <div
-    class="ajkm71e"
-  >
+  <div>
     <img
       alt=""
       height="80"
@@ -170,9 +84,7 @@ exports[`Reshoot render valid input correctly in state ERROR 1`] = `
       width="100"
     />
   </div>
-  <div
-    class="a189lnzk"
-  >
+  <button>
     <svg
       viewBox="0 0 100 100"
     >
@@ -186,8 +98,46 @@ exports[`Reshoot render valid input correctly in state ERROR 1`] = `
     <p>
       Click to reload
     </p>
+  </button>
+</div>
+`;
+
+exports[`Reshoot render valid input correctly in state ERROR 2`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div>
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
   </div>
-</button>
+  <button>
+    <svg
+      viewBox="0 0 100 100"
+    >
+      <path
+        d="M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20"
+      />
+    </svg>
+    <h6>
+      Fail to load
+    </h6>
+    <p>
+      Click to reload
+    </p>
+  </button>
+</div>
 `;
 
 exports[`Reshoot render valid input correctly in state FADING 1`] = `
@@ -204,7 +154,7 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
     width="100"
   />
   <div
-    class="ajkm71e a1kfl5zv"
+    class="ajkm71e"
   >
     <img
       alt=""
@@ -217,29 +167,12 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
 </div>
 `;
 
-exports[`Reshoot render valid input correctly in state INITIAL 1`] = `
+exports[`Reshoot render valid input correctly in state HIDDEN 1`] = `
 <div
   class="ax4jui0"
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
->
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
-  <div
-    class="ajkm71e"
-  >
-    <img
-      alt=""
-      height="80"
-      loading="lazy"
-      src="data:jpeg;base64,1shfk241jkw"
-      width="100"
-    />
-  </div>
-</div>
+/>
 `;
 
 exports[`Reshoot render valid input correctly in state LOADED 1`] = `
@@ -258,8 +191,8 @@ exports[`Reshoot render valid input correctly in state LOADED 1`] = `
 </div>
 `;
 
-exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
-<button
+exports[`Reshoot render valid input correctly in state LOADING 1`] = `
+<div
   class="ax4jui0"
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
@@ -269,9 +202,7 @@ exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
     height="80"
     width="100"
   />
-  <div
-    class="ajkm71e"
-  >
+  <div>
     <img
       alt=""
       height="80"
@@ -280,9 +211,30 @@ exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
       width="100"
     />
   </div>
-  <div
-    class="a189lnzk"
-  >
+</div>
+`;
+
+exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
+<div
+  class="ax4jui0"
+  data-testid="123"
+  style="color: rgb(255, 255, 255); --r: 0.8;"
+>
+  <img
+    alt="Test image"
+    height="80"
+    width="100"
+  />
+  <div>
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+  <button>
     <svg
       viewBox="0 0 100 100"
     >
@@ -296,12 +248,12 @@ exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
     <p>
       Click to reload
     </p>
-  </div>
-</button>
+  </button>
+</div>
 `;
 
 exports[`Reshoot render valid input correctly in state OFFLINE 1`] = `
-<button
+<div
   class="ax4jui0"
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
@@ -311,9 +263,7 @@ exports[`Reshoot render valid input correctly in state OFFLINE 1`] = `
     height="80"
     width="100"
   />
-  <div
-    class="ajkm71e"
-  >
+  <div>
     <img
       alt=""
       height="80"
@@ -322,9 +272,7 @@ exports[`Reshoot render valid input correctly in state OFFLINE 1`] = `
       width="100"
     />
   </div>
-  <div
-    class="a189lnzk"
-  >
+  <button>
     <svg
       viewBox="0 0 100 100"
     >
@@ -338,6 +286,6 @@ exports[`Reshoot render valid input correctly in state OFFLINE 1`] = `
     <p>
       Click to reload
     </p>
-  </div>
-</button>
+  </button>
+</div>
 `;

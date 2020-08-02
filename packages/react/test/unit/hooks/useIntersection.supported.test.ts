@@ -1,25 +1,32 @@
 import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { renderHook } from '@testing-library/react-hooks';
 import { createRef } from 'react';
-import * as State from '../../../src/state';
+import { HIDDEN, LOADING, LOADED } from '../../../src/state';
+
+import type { State } from '../../../src/state';
 
 describe('useIntersection (IntersectionObserver supported)', () => {
-  const subscribe = jest.fn((
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    element: Element,
-    listener: (entry: IntersectionObserverEntry) => void
-    /* eslint-enable @typescript-eslint/no-unused-vars */
-  ) => () => null);
-  const download = jest.fn(() => null);
+  const setState = jest.fn<void, [() => State]>();
+  const subscribe = jest.fn<
+    () => void,
+    [Element, (entry: IntersectionObserverEntry) => void]
+  >();
+  const isCached = jest.fn<boolean, [string]>();
+  const src = 'image.jpg';
+  const download = jest.fn<void, []>();
 
   beforeEach(() => {
     jest.doMock('../../../src/utils/supportIntersectionObserver', () => ({
       __esModule: true,
       default: true,
     }));
-    jest.doMock('../../../src/utils/intersection.ts', () => ({
+    jest.doMock('../../../src/utils/intersection', () => ({
       __esModule: true,
-      subscribe,
+      default: subscribe,
+    }));
+    jest.doMock('../../../src/utils/cache', () => ({
+      __esModule: true,
+      isCached,
     }));
   });
 
@@ -27,15 +34,32 @@ describe('useIntersection (IntersectionObserver supported)', () => {
     jest.resetAllMocks();
   });
 
-  test('should run noop in useEffect', async () => {
+  test('should call subscribe in useEffect', async () => {
     const { default: useIntersection } = await import(
       '../../../src/hooks/useIntersection'
     );
     const ref = createRef<HTMLImageElement>();
-    const state = State.INITIAL;
-    const { result } = renderHook(() => useIntersection(ref, state, download));
+    const { result } = renderHook(() =>
+      useIntersection(ref, setState, src, download)
+    );
     expect(result.error).toBeUndefined();
     expect(subscribe).toHaveBeenCalledTimes(1);
-    expect(subscribe.mock.calls[0][0]).toEqual(ref.current);
+    const [[element, handler]] = subscribe.mock.calls;
+    expect(element).toEqual(ref.current);
+
+    handler({ isIntersecting: false } as IntersectionObserverEntry);
+    expect(setState).toHaveBeenCalledTimes(1);
+    expect(setState.mock.calls[0][0]()).toEqual(HIDDEN);
+
+    isCached.mockReturnValue(false);
+    handler({ isIntersecting: true } as IntersectionObserverEntry);
+    expect(download).toHaveBeenCalledTimes(1);
+    expect(setState).toHaveBeenCalledTimes(2);
+    expect(setState.mock.calls[1][0]()).toEqual(LOADING);
+
+    isCached.mockReturnValue(true);
+    handler({ isIntersecting: true } as IntersectionObserverEntry);
+    expect(setState).toHaveBeenCalledTimes(3);
+    expect(setState.mock.calls[2][0]()).toEqual(LOADED);
   });
 });
