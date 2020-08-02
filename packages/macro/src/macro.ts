@@ -16,7 +16,7 @@ export type ImageData = Readonly<{
 
 export default createMacro(handle) as <T = ImageData>(
   path: string,
-  options: Readonly<
+  options?: Readonly<
     Partial<{
       name: string;
       outputPath: string | ((filename: string) => string);
