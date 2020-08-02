@@ -37,20 +37,6 @@ A lightweight [`React`](https://reactjs.org) component that renders lazy-loaded 
 
 Here is a simplfied demonstration on how easy to use Reshoot.
 
-The code you need to write
-
-```jsx
-import React from 'react';
-import reshoot from '@reshoot/macro';
-import Reshoot from '@reshoot/react';
-
-function Example() {
-  return <Reshoot config={reshoot('./image.jpg')} />;
-}
-```
-
-is roughly transformed into
-
 ```jsx
 import React from 'react';
 import reshoot from '@reshoot/macro';
