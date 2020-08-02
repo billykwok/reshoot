@@ -7,59 +7,7 @@
 [![License](https://badgen.net/npm/license/@reshoot/react)](https://github.com/billykwok/reshoot/blob/master/LICENSE)
 [![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
 
-A Babel macro serving as a shortcut for [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader).
-
-This loader is meant to be used with [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader) and [`@reshoot/react`](https://www.npmjs.com/package/@reshoot/react) as an all-in-one responsive image solution. Please read the main [README.md](https://github.com/billykwok/reshoot) of the Reshoot project to understand how it works before using this package.
-
-## Usage
-
-Add the following loader config to Webpack config.
-
-```typescript
-{
-  loader: '@reshoot/loader',
-  options: {
-    name: '[contenthash:8].[ext]',
-    shape: { mime: false }
-  }
-}
-```
-
-Import [`@reshoot/macro`](https://www.npmjs.com/package/@reshoot/macro) and [`@reshoot/react`](https://www.npmjs.com/package/@reshoot/react).
-
-```jsx
-import React from 'react';
-import { render } from 'react-dom';
-
-import Reshoot from '@reshoot/react';
-import reshoot from '@reshoot/macro';
-
-sessionStorage.clear();
-
-const color = '#FDDFB0';
-
-function Example({ title }) {
-  return (
-    <React.Fragment>
-      <h2 style={{ paddingLeft: 10 }}>{title}</h2>
-      <div className="grid-container">
-        <Reshoot {...reshoot('./image.jpg', { color })} />
-        <Reshoot
-          {...reshoot('./image.jpg', { color })}
-          src="image.jpg"
-          srcSet={null}
-        />
-        <Reshoot {...reshoot('./image.jpg', { color })} placeholder={false} />
-      </div>
-    </React.Fragment>
-  );
-}
-
-render(
-  <Example title="Client-side Rendered" />,
-  document.getElementById('root')
-);
-```
+Please refer to [Official Documentation](https://reshootjs.github.io).
 
 ## Support
 
