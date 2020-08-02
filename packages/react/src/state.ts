@@ -4,16 +4,19 @@ export const OFFLINE = 1;
 
 export const ERROR = 2;
 
-export const INITIAL = 3;
+export const HIDDEN = 3;
 
-export const FADING = 4;
+export const LOADING = 4;
 
-export const LOADED = 5;
+export const FADING = 5;
+
+export const LOADED = 6;
 
 export type State =
   | typeof MANUAL
   | typeof OFFLINE
   | typeof ERROR
-  | typeof INITIAL
+  | typeof HIDDEN
+  | typeof LOADING
   | typeof FADING
   | typeof LOADED;

@@ -1,9 +1,13 @@
 import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { renderHook } from '@testing-library/react-hooks';
 import { createRef } from 'react';
-import * as State from '../../../src/state';
+
+import type { State } from '../../../src/state';
 
 describe('useIntersection (IntersectionObserver unsupported)', () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const setState = jest.fn((callback: () => State): void => null);
+  const src = 'image.jpg';
   const download = jest.fn();
 
   beforeEach(() => {
@@ -22,7 +26,7 @@ describe('useIntersection (IntersectionObserver unsupported)', () => {
       '../../../src/hooks/useIntersection'
     );
     const { result } = renderHook(() =>
-      useIntersection(createRef<HTMLImageElement>(), State.INITIAL, download)
+      useIntersection(createRef<HTMLImageElement>(), setState, src, download)
     );
     expect(result.error).toBeUndefined();
     expect(download).toHaveBeenCalledTimes(1);

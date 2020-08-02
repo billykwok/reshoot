@@ -2,6 +2,8 @@ import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { renderHook, act } from '@testing-library/react-hooks';
 import useDownload from '../../../src/hooks/useDownload';
 
+import type { State } from '../../../src/state';
+
 const image = (() => {
   let originalImage: typeof Image = null;
   const created: HTMLImageElement[] = [];
@@ -30,16 +32,19 @@ const image = (() => {
 })();
 
 describe('useDownload', () => {
-  const onLoad = jest.fn();
-  const onError = jest.fn() as (event: Event) => void;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const setState = jest.fn((callback: () => State): void => null);
   const src = 'https://example.com/path/to/test.jpg';
   const srcSet =
     'https://example.com/path/to/test-100.jpg 100w, https://example.com/path/to/test-200.jpg 200w';
+  const onLoad = jest.fn();
+  const onError = jest.fn() as (event: Event) => void;
   const event = new Event('event');
 
   beforeEach(() => {
     image.mock();
   });
+
   afterEach(() => {
     image.restore();
     jest.resetAllMocks();
@@ -47,7 +52,7 @@ describe('useDownload', () => {
 
   test('should trigger onLoad via Image props when decode is not supported', () => {
     const { result } = renderHook(() =>
-      useDownload(src, srcSet, [onLoad, onError])
+      useDownload(setState, src, srcSet, onLoad, onError)
     );
     expect(result.error).toBeUndefined();
     const download = result.current;
@@ -65,7 +70,7 @@ describe('useDownload', () => {
 
   test('should trigger onError via Image props when decode is not supported', () => {
     const { result } = renderHook(() =>
-      useDownload(src, srcSet, [onLoad, onError])
+      useDownload(setState, src, srcSet, onLoad, onError)
     );
     expect(result.error).toBeUndefined();
     const download = result.current;

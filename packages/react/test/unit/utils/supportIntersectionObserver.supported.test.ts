@@ -1,4 +1,4 @@
-import { describe, test, expect } from '@jest/globals';
+import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { intersectionObserver } from '@shopify/jest-dom-mocks';
 
 describe('supportIntersectionObserver', () => {

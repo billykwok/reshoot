@@ -1,28 +1,40 @@
 import { describe, test, expect } from '@jest/globals';
-import * as State from '../../src/state';
+import {
+  MANUAL,
+  OFFLINE,
+  ERROR,
+  HIDDEN,
+  LOADING,
+  FADING,
+  LOADED,
+} from '../../src/state';
 
 describe('State', () => {
   test('correct underlying value and equality for MANUAL', () => {
-    expect(State.MANUAL).toEqual(0);
+    expect(MANUAL).toEqual(0);
   });
 
   test('correct underlying value and equality for OFFLINE', () => {
-    expect(State.OFFLINE).toEqual(1);
+    expect(OFFLINE).toEqual(1);
   });
 
   test('correct underlying value and equality for ERROR', () => {
-    expect(State.ERROR).toEqual(2);
+    expect(ERROR).toEqual(2);
   });
 
-  test('correct underlying value and equality for INITIAL', () => {
-    expect(State.INITIAL).toEqual(3);
+  test('correct underlying value and equality for HIDDEN', () => {
+    expect(HIDDEN).toEqual(3);
+  });
+
+  test('correct underlying value and equality for LOADING', () => {
+    expect(LOADING).toEqual(4);
   });
 
   test('correct underlying value and equality for FADING', () => {
-    expect(State.FADING).toEqual(4);
+    expect(FADING).toEqual(5);
   });
 
   test('correct underlying value and equality for LOADED', () => {
-    expect(State.LOADED).toEqual(5);
+    expect(LOADED).toEqual(6);
   });
 });

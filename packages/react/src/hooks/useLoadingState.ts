@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { LOADED, MANUAL, OFFLINE, INITIAL } from '../state';
+import { MANUAL, OFFLINE, LOADING, LOADED } from '../state';
 import notUndefined from '../utils/notUndefined';
-import SUPPORT_SESSION_STORAGE from '../utils/supportSessionStorage';
+import { isCached } from '../utils/cache';
 
 import type { Dispatch, SetStateAction } from 'react';
 import type { State } from '../state';
@@ -17,7 +17,7 @@ const useLoadingState = (
   src: string
 ): Readonly<[State, Dispatch<SetStateAction<State>>]> => {
   const [_state, setState] = useState<State>(() => {
-    if (SUPPORT_SESSION_STORAGE && sessionStorage.getItem(src)) {
+    if (isCached(src)) {
       return LOADED;
     }
     const n = navigator;
@@ -33,7 +33,7 @@ const useLoadingState = (
     if (support && 'onLine' in n && !n.onLine) {
       return OFFLINE;
     }
-    return INITIAL;
+    return LOADING;
   });
   return [overriddenState === null ? _state : overriddenState, setState];
 };

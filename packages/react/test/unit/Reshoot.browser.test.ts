@@ -1,7 +1,15 @@
 import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
-import { fireEvent, render, act } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { createElement, createRef } from 'react';
-import * as State from '../../src/state';
+import {
+  MANUAL,
+  OFFLINE,
+  ERROR,
+  HIDDEN,
+  LOADING,
+  FADING,
+  LOADED,
+} from '../../src/state';
 
 describe('Reshoot', () => {
   const download = jest.fn(() => null);
@@ -41,8 +49,63 @@ describe('Reshoot', () => {
     jest.resetAllMocks();
   });
 
-  test('render valid input correctly in state INITIAL', async () => {
-    useLoadingState.mockReturnValue([State.INITIAL, setState]);
+  test('render valid input correctly in state MANUAL', async () => {
+    useLoadingState.mockReturnValue([MANUAL, setState]);
+    const { default: Reshoot } = await import('../../src/Reshoot');
+    const ref = createRef<HTMLImageElement>();
+    const { getByTestId } = render(
+      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+    );
+    const dom = getByTestId('123');
+    expect(dom).toEqual(ref.current);
+    expect(dom).toMatchSnapshot();
+  });
+
+  test('render valid input correctly in state OFFLINE', async () => {
+    useLoadingState.mockReturnValue([OFFLINE, setState]);
+    const { default: Reshoot } = await import('../../src/Reshoot');
+    const ref = createRef<HTMLImageElement>();
+    const { getByTestId } = render(
+      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+    );
+    const dom = getByTestId('123');
+    expect(dom).toEqual(ref.current);
+    expect(dom).toMatchSnapshot();
+  });
+
+  test('render valid input correctly in state ERROR', async () => {
+    useLoadingState.mockReturnValue([ERROR, setState]);
+    const { default: Reshoot } = await import('../../src/Reshoot');
+    const ref = createRef<HTMLImageElement>();
+    const { getByTestId } = render(
+      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+    );
+    const dom = getByTestId('123');
+    expect(dom).toEqual(ref.current);
+    expect(dom).toMatchSnapshot();
+
+    const children = dom.getElementsByTagName('button');
+    expect(children).toHaveLength(1);
+
+    fireEvent.click(children.item(0));
+    expect(download).toHaveBeenCalledTimes(1);
+    expect(dom).toMatchSnapshot();
+  });
+
+  test('render valid input correctly in state HIDDEN', async () => {
+    useLoadingState.mockReturnValue([HIDDEN, setState]);
+    const { default: Reshoot } = await import('../../src/Reshoot');
+    const ref = createRef<HTMLImageElement>();
+    const { getByTestId } = render(
+      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+    );
+    const dom = getByTestId('123');
+    expect(dom).toEqual(ref.current);
+    expect(dom).toMatchSnapshot();
+  });
+
+  test('render valid input correctly in state LOADING', async () => {
+    useLoadingState.mockReturnValue([LOADING, setState]);
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
@@ -54,7 +117,7 @@ describe('Reshoot', () => {
   });
 
   test('render valid input correctly in state FADING', async () => {
-    useLoadingState.mockReturnValue([State.FADING, setState]);
+    useLoadingState.mockReturnValue([FADING, setState]);
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
@@ -69,11 +132,11 @@ describe('Reshoot', () => {
 
     fireEvent.animationEnd(childrens.item(0));
     expect(setState).toHaveBeenCalledTimes(1);
-    expect(setState.mock.calls[0][0]()).toEqual(State.LOADED);
+    expect(setState.mock.calls[0][0]()).toEqual(LOADED);
   });
 
   test('render valid input correctly in state LOADED', async () => {
-    useLoadingState.mockReturnValue([State.LOADED, setState]);
+    useLoadingState.mockReturnValue([LOADED, setState]);
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
@@ -83,45 +146,8 @@ describe('Reshoot', () => {
     expect(dom).toEqual(ref.current);
     expect(dom).toMatchSnapshot();
   });
-
-  test('render valid input correctly in state MANUAL', async () => {
-    useLoadingState.mockReturnValue([State.MANUAL, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
-    const ref = createRef<HTMLImageElement>();
-    const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
-    );
-    const dom = getByTestId('123');
-    expect(dom).toEqual(ref.current);
-    expect(dom).toMatchSnapshot();
-  });
-
-  test('render valid input correctly in state OFFLINE', async () => {
-    useLoadingState.mockReturnValue([State.OFFLINE, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
-    const ref = createRef<HTMLImageElement>();
-    const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
-    );
-    const dom = getByTestId('123');
-    expect(dom).toEqual(ref.current);
-    expect(dom).toMatchSnapshot();
-  });
-
-  test('render valid input correctly in state ERROR', async () => {
-    useLoadingState.mockReturnValue([State.ERROR, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
-    const ref = createRef<HTMLImageElement>();
-    const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
-    );
-    const dom = getByTestId('123');
-    expect(dom).toEqual(ref.current);
-    expect(dom).toMatchSnapshot();
-  });
-
   test('customized options for image link', async () => {
-    useLoadingState.mockReturnValue([State.LOADED, setState]);
+    useLoadingState.mockReturnValue([LOADED, setState]);
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
@@ -143,7 +169,7 @@ describe('Reshoot', () => {
   });
 
   test('do not render preview when placeholder is falsy', async () => {
-    useLoadingState.mockReturnValue([State.INITIAL, setState]);
+    useLoadingState.mockReturnValue([LOADING, setState]);
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
@@ -159,7 +185,7 @@ describe('Reshoot', () => {
   });
 
   test('customized options for normal image', async () => {
-    useLoadingState.mockReturnValue([State.LOADED, setState]);
+    useLoadingState.mockReturnValue([LOADED, setState]);
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
@@ -174,24 +200,8 @@ describe('Reshoot', () => {
     expect(dom).toMatchSnapshot();
   });
 
-  test('customized options for error image', async () => {
-    useLoadingState.mockReturnValue([State.ERROR, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
-    const ref = createRef<HTMLImageElement>();
-    const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
-    );
-    const dom = getByTestId('123');
-    expect(dom).toEqual(ref.current);
-    expect(dom).toMatchSnapshot();
-
-    act(() => dom.click());
-    expect(download).toHaveBeenCalledTimes(1);
-    expect(dom).toMatchSnapshot();
-  });
-
   test('aspect ratio can be overridden', async () => {
-    useLoadingState.mockReturnValue([State.LOADED, setState]);
+    useLoadingState.mockReturnValue([LOADED, setState]);
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
