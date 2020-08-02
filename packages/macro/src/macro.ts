@@ -37,16 +37,14 @@ export default createMacro(handle) as (
       [key: string]: unknown;
     }>
   >
-) => Readonly<
-  Partial<{
-    src: string;
-    width: number;
-    height: number;
-    aspectRatio: number;
-    srcSet: string;
-    alt: string;
-    color: string;
-    placeholder: string;
-    [key: string]: unknown;
-  }>
->;
+) => Readonly<{
+  src: string;
+  width: number;
+  height: number;
+  aspectRatio?: number;
+  srcSet?: string;
+  alt?: string;
+  color?: string;
+  placeholder?: string;
+  [key: string]: unknown;
+}>;
