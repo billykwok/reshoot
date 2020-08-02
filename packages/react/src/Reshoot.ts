@@ -138,6 +138,7 @@ const Reshoot = (
       alt,
       color,
       placeholder,
+      ...extraConfig
     },
     messages = MESSAGES,
     imgProps,
@@ -174,6 +175,7 @@ const Reshoot = (
           { alt },
           (!IS_BROWSER || state > LOADING) && { src, srcSet },
           dimensions,
+          extraConfig,
           imgProps
         )
       ),
