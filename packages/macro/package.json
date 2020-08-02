@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/macro",
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "type": "commonjs",
   "exports": {
     "require": "./lib/index.js"
