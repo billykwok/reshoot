@@ -53,7 +53,7 @@ import reshoot from '@reshoot/macro';
 export default function App() {
   return (
     <Reshoot
-      config={reshoot('./image.jpg', {
+      data={reshoot('./image.jpg', {
         name: '[contenthash:16]-[width].[ext]',
       })}
     />

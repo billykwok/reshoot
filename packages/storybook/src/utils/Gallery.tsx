@@ -15,13 +15,13 @@ const Gallery = ({
 }): JSX.Element => {
   return (
     <div className="container">
-      {images.map((config, i) => (
+      {images.map((data, i) => (
         <Reshoot
-          key={`${config.src}_${i}`}
+          key={`${data.src}_${i}`}
           className="item"
-          config={{
-            ...config,
-            placeholder: disablePlaceholder ? false : config.placeholder,
+          data={{
+            ...data,
+            placeholder: disablePlaceholder ? false : data.placeholder,
             alt: `Test image #${i}`,
           }}
           onLoad={describe(

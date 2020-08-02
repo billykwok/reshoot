@@ -105,18 +105,21 @@ const MESSAGES: [string, string, string] = [
   'Fail to load',
 ];
 
+export type ImageData = Readonly<{
+  src: string;
+  width: number;
+  height: number;
+  aspectRatio?: number;
+  srcSet?: string;
+  alt?: string;
+  color?: string;
+  placeholder?: string | false | null;
+  [key: string]: unknown;
+}>;
+
 type Props = Readonly<{
   className?: string;
-  config: Readonly<{
-    src: string;
-    width: number;
-    height: number;
-    aspectRatio?: number;
-    srcSet?: string;
-    alt?: string;
-    color?: string;
-    placeholder?: string | false | null;
-  }>;
+  data: ImageData;
   messages: Readonly<[string, string, string]>;
   imgProps: Readonly<Record<string, unknown>>;
   onLoad?: () => void;
@@ -129,7 +132,7 @@ const Reshoot = (
   {
     className,
     style,
-    config: {
+    data: {
       src,
       width,
       height,
@@ -138,7 +141,7 @@ const Reshoot = (
       alt,
       color,
       placeholder,
-      ...extraConfig
+      ...extraData
     },
     messages = MESSAGES,
     imgProps,
@@ -175,7 +178,7 @@ const Reshoot = (
           { alt },
           (!IS_BROWSER || state > LOADING) && { src, srcSet },
           dimensions,
-          extraConfig,
+          extraData,
           imgProps
         )
       ),
