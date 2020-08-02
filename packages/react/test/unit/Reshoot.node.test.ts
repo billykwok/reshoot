@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server';
 
 describe('Reshoot', () => {
   const download = jest.fn(() => Promise.resolve());
-  const baseConfig = {
+  const baseData = {
     src: 'image.jpg',
     alt: 'Test image',
     width: 100,
@@ -33,7 +33,7 @@ describe('Reshoot', () => {
     const html = renderToString(
       createElement(Reshoot, {
         'data-testid': '123',
-        config: { ...baseConfig, aspectRatio: 2 },
+        data: { ...baseData, aspectRatio: 2 },
         ref,
       })
     );

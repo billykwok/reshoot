@@ -2,7 +2,7 @@ import { createMacro } from 'babel-plugin-macros';
 
 import handle from './handle';
 
-export type ImageData = Readonly<{
+type ImageData = Readonly<{
   src: string;
   width: number;
   height: number;
@@ -10,7 +10,7 @@ export type ImageData = Readonly<{
   srcSet?: string;
   alt?: string;
   color?: string;
-  placeholder?: string;
+  placeholder?: string | false | null;
   [key: string]: unknown;
 }>;
 

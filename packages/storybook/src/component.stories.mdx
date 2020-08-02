@@ -25,7 +25,7 @@ import './utils/docs.css';
           step: 20,
         })}px`,
       }}
-      config={{ ...images[0], alt: `Test image` }}
+      data={{ ...images[0], alt: `Test image` }}
       onLoad={describe(
         action('Image loaded'),
         '() => {} /* omitted as created by @storybook-addons/action */'
@@ -67,7 +67,7 @@ import './utils/docs.css';
           step: 20,
         })}px`,
       }}
-      config={{
+      data={{
         ...images[0],
         src: images[0].src.replace('images', 'error'),
         srcSet: images[0].srcSet.replaceAll('images', 'error'),

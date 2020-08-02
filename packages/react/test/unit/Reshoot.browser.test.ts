@@ -13,7 +13,7 @@ import {
 
 describe('Reshoot', () => {
   const download = jest.fn(() => null);
-  const baseConfig = {
+  const baseData = {
     src: 'image.jpg',
     srcSet: 'image-480.jpg 480w, image-640.jpg 640w',
     alt: 'Test image',
@@ -54,7 +54,7 @@ describe('Reshoot', () => {
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+      createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
     );
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
@@ -66,7 +66,7 @@ describe('Reshoot', () => {
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+      createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
     );
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
@@ -78,7 +78,7 @@ describe('Reshoot', () => {
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+      createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
     );
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
@@ -97,7 +97,7 @@ describe('Reshoot', () => {
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+      createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
     );
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
@@ -109,7 +109,7 @@ describe('Reshoot', () => {
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+      createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
     );
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
@@ -121,7 +121,7 @@ describe('Reshoot', () => {
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+      createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
     );
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
@@ -140,7 +140,7 @@ describe('Reshoot', () => {
     const { default: Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
-      createElement(Reshoot, { 'data-testid': '123', config: baseConfig, ref })
+      createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
     );
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
@@ -153,8 +153,8 @@ describe('Reshoot', () => {
     const { getByTestId } = render(
       createElement(Reshoot, {
         'data-testid': '123',
-        config: {
-          ...baseConfig,
+        data: {
+          ...baseData,
           color: '#fff',
           placeholder: 'placeholder.jpg',
         },
@@ -175,7 +175,7 @@ describe('Reshoot', () => {
     const { getByTestId } = render(
       createElement(Reshoot, {
         'data-testid': '123',
-        config: { ...baseConfig, color: '#fff', placeholder: false },
+        data: { ...baseData, color: '#fff', placeholder: false },
         ref,
       })
     );
@@ -191,7 +191,7 @@ describe('Reshoot', () => {
     const { getByTestId } = render(
       createElement(Reshoot, {
         'data-testid': '123',
-        config: { ...baseConfig, color: '#fff' },
+        data: { ...baseData, color: '#fff' },
         ref,
       })
     );
@@ -207,7 +207,7 @@ describe('Reshoot', () => {
     const { getByTestId } = render(
       createElement(Reshoot, {
         'data-testid': '123',
-        config: { ...baseConfig, aspectRatio: 2 },
+        data: { ...baseData, aspectRatio: 2 },
         ref,
       })
     );

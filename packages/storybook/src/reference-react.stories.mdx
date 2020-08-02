@@ -8,7 +8,7 @@ import './utils/docs.css';
 
 ## Configuration
 
-`@reshoot/react` can be configured in the same way as regular React component. However, it takes two special props. The `config` props has the same shape as the image object exported with `@reshoot/loader`, and the `imgProps`.
+`@reshoot/react` can be configured in the same way as regular React component. However, it takes two special props. The `data` props has the same shape as the image object exported with `@reshoot/loader`.
 
 ```jsx
 import Reshoot from '@reshoot/react';
@@ -16,7 +16,7 @@ import Reshoot from '@reshoot/react';
 const MyImage = () => {
   return (
     <Reshoot
-      config={/* output from @reshoot/loader  */}
+      data={/* output from @reshoot/loader  */}
       imgProps={/* attributes of the inner <img /> element */}
       /* other props of the container element */
     />
@@ -32,7 +32,7 @@ Here's the full list of props accepted by the React component.
 
 ```typescript
 type Props = {
-  config: {
+  data: {
     src: string;
     width: number;
     height: number;
@@ -55,9 +55,9 @@ type Props = {
 
 ### Option Description
 
-#### Config
+#### Data
 
-Type: `config: { [key: string]: any }`  
+Type: `data: { [key: string]: any }`  
 Default: Mandatory  
 Configuration of rendering behavior. When used with `@reshoot/loader`, it should be assigned with result of `import` or `require`.
 
