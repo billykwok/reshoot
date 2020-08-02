@@ -7,7 +7,7 @@
     "require": "./lib/index.js"
   },
   "main": "./lib/index.js",
-  "types": "types/index.d.ts",
+  "types": "./types/index.d.ts",
   "files": [
     "lib",
     "types"
