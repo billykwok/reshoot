@@ -2,7 +2,19 @@ import { createMacro } from 'babel-plugin-macros';
 
 import handle from './handle';
 
-export default createMacro(handle) as (
+export type ImageData = Readonly<{
+  src: string;
+  width: number;
+  height: number;
+  aspectRatio?: number;
+  srcSet?: string;
+  alt?: string;
+  color?: string;
+  placeholder?: string;
+  [key: string]: unknown;
+}>;
+
+export default createMacro(handle) as <T = ImageData>(
   path: string,
   options: Readonly<
     Partial<{
@@ -37,14 +49,4 @@ export default createMacro(handle) as (
       [key: string]: unknown;
     }>
   >
-) => Readonly<{
-  src: string;
-  width: number;
-  height: number;
-  aspectRatio?: number;
-  srcSet?: string;
-  alt?: string;
-  color?: string;
-  placeholder?: string;
-  [key: string]: unknown;
-}>;
+) => T;

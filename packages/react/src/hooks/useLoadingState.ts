@@ -20,18 +20,19 @@ const useLoadingState = (
     if (isCached(src)) {
       return LOADED;
     }
-    const n = navigator;
-    const support = notUndefined(typeof n);
-    const connection = support && n.connection;
-    if (
-      connection &&
-      connection.effectiveType &&
-      connection.effectiveType.indexOf('2g') > -1
-    ) {
-      return MANUAL;
-    }
-    if (support && 'onLine' in n && !n.onLine) {
-      return OFFLINE;
+    if (notUndefined(typeof navigator)) {
+      const n = navigator;
+      const c = n.connection;
+      if (notUndefined(typeof c)) {
+        const et = c.effectiveType;
+        if (notUndefined(typeof et) && et.indexOf('2g') > -1) {
+          return MANUAL;
+        }
+      }
+      const onLine = n.onLine;
+      if (notUndefined(typeof onLine) && !onLine) {
+        return OFFLINE;
+      }
     }
     return LOADING;
   });
