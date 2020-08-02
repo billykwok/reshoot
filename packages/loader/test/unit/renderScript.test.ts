@@ -64,7 +64,8 @@ describe('renderScript', () => {
       \"aspectRatio\":3.14,
       \"srcSet\":__webpack_public_path__+"abc-100.jpg 100w,"+__webpack_public_path__+"abc-200.jpg 100w,"+__webpack_public_path__+"abc-300.jpg 100w",
       \"placeholder\":"data:image/jpeg;base64,/2jfjiaoshfsahgjhsgakjhgjsak",
-      \"color\":"#666666"
+      \"color\":"#666666",
+      \"extra\":123
     }`);
   });
 });
