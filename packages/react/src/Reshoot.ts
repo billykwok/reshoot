@@ -8,7 +8,7 @@ import useDownload from './hooks/useDownload';
 import useIntersection from './hooks/useIntersection';
 import cx from './utils/cx';
 import createElement from './utils/createElement';
-import { isCached } from './utils/cache';
+import { hasLoaded } from './utils/cache';
 import IS_BROWSER from './utils/isBrowser';
 
 import type { SyntheticEvent, RefObject } from 'react';
@@ -203,7 +203,7 @@ const Reshoot = (
         'button',
         {
           onClick: () => {
-            isCached(src) || download();
+            hasLoaded(src) || download();
             setState(() => LOADING);
           },
         },

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { FADING, ERROR } from '../state';
-import { cache } from '../utils/cache';
+import { cacheLoaded, cacheFailed } from '../utils/cache';
 import noop from '../utils/noop';
 
 import type { SyntheticEvent, Dispatch, SetStateAction } from 'react';
@@ -16,11 +16,12 @@ const useDownload = (
   useCallback(() => {
     const image = new Image();
     image.onload = () => {
-      cache(src);
+      cacheLoaded(src);
       setState(() => FADING);
       onLoad();
     };
     image.onerror = (event: Event | string) => {
+      cacheFailed(src);
       setState(() => ERROR);
       onError(event);
     };

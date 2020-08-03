@@ -1,6 +1,6 @@
 import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { renderHook, act } from '@testing-library/react-hooks';
-import useDownload from '../../../src/hooks/useDownload';
+import { FADING, ERROR } from '../../../src/state';
 
 import type { State } from '../../../src/state';
 
@@ -32,17 +32,23 @@ const image = (() => {
 })();
 
 describe('useDownload', () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const setState = jest.fn((callback: () => State): void => null);
+  const setState = jest.fn<void, [() => State]>();
   const src = 'https://example.com/path/to/test.jpg';
   const srcSet =
     'https://example.com/path/to/test-100.jpg 100w, https://example.com/path/to/test-200.jpg 200w';
   const onLoad = jest.fn();
   const onError = jest.fn() as (event: Event) => void;
   const event = new Event('event');
+  const cacheLoaded = jest.fn<void, [string]>();
+  const cacheFailed = jest.fn<void, [string]>();
 
   beforeEach(() => {
     image.mock();
+    jest.doMock('../../../src/utils/cache', () => ({
+      __esModule: true,
+      cacheLoaded,
+      cacheFailed,
+    }));
   });
 
   afterEach(() => {
@@ -50,7 +56,10 @@ describe('useDownload', () => {
     jest.resetAllMocks();
   });
 
-  test('should trigger onLoad via Image props when decode is not supported', () => {
+  test('should trigger onLoad via Image props when decode is not supported', async () => {
+    const { default: useDownload } = await import(
+      '../../../src/hooks/useDownload'
+    );
     const { result } = renderHook(() =>
       useDownload(setState, src, srcSet, onLoad, onError)
     );
@@ -65,10 +74,16 @@ describe('useDownload', () => {
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     act(() => images[0].onload(event));
+    expect(cacheLoaded).toHaveBeenNthCalledWith(1, src);
     expect(onLoad).toHaveBeenCalledTimes(1);
+    expect(setState).toHaveBeenCalledTimes(1);
+    expect(setState.mock.calls[0][0]()).toEqual(FADING);
   });
 
-  test('should trigger onError via Image props when decode is not supported', () => {
+  test('should trigger onError via Image props when decode is not supported', async () => {
+    const { default: useDownload } = await import(
+      '../../../src/hooks/useDownload'
+    );
     const { result } = renderHook(() =>
       useDownload(setState, src, srcSet, onLoad, onError)
     );
@@ -83,6 +98,9 @@ describe('useDownload', () => {
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     act(() => images[0].onerror(event));
+    expect(cacheFailed).toHaveBeenNthCalledWith(1, src);
     expect(onError).toHaveBeenNthCalledWith(1, event);
+    expect(setState).toHaveBeenCalledTimes(1);
+    expect(setState.mock.calls[0][0]()).toEqual(ERROR);
   });
 });

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { MANUAL, OFFLINE, LOADING, LOADED } from '../state';
+import { MANUAL, OFFLINE, ERROR, LOADING, LOADED } from '../state';
 import notUndefined from '../utils/notUndefined';
-import { isCached } from '../utils/cache';
+import { hasLoaded, hasFailed } from '../utils/cache';
 
 import type { Dispatch, SetStateAction } from 'react';
 import type { State } from '../state';
@@ -17,10 +17,11 @@ const useLoadingState = (
   src: string
 ): Readonly<[State, Dispatch<SetStateAction<State>>]> => {
   const [_state, setState] = useState<State>(() => {
-    if (isCached(src)) {
+    if (hasLoaded(src)) {
       return LOADED;
-    }
-    if (notUndefined(typeof navigator)) {
+    } else if (hasFailed(src)) {
+      return ERROR;
+    } else if (notUndefined(typeof navigator)) {
       const n = navigator;
       const c = n.connection;
       if (notUndefined(typeof c)) {
