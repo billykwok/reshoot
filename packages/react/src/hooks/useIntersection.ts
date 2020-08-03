@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { HIDDEN, LOADING, LOADED } from '../state';
+import { ERROR, HIDDEN, LOADING, LOADED } from '../state';
 import subscribe from '../utils/intersection';
-import { isCached } from '../utils/cache';
+import { hasLoaded, hasFailed } from '../utils/cache';
 import SUPPORT_INTERSECTION_OBSERVER from '../utils/supportIntersectionObserver';
 
 import type { RefObject, Dispatch, SetStateAction } from 'react';
@@ -18,8 +18,10 @@ const useIntersection = (
       SUPPORT_INTERSECTION_OBSERVER
         ? subscribe(ref.current, (entry: IntersectionObserverEntry) => {
             if (entry.isIntersecting) {
-              if (isCached(src)) {
+              if (hasLoaded(src)) {
                 setState(() => LOADED);
+              } else if (hasFailed(src)) {
+                setState(() => ERROR);
               } else {
                 setState(() => LOADING);
                 download();

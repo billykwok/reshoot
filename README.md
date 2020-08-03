@@ -11,7 +11,7 @@ Reshoot is a production-ready image framework for React. As a spiritual successo
 
 It is not just a library but a framework, because apart from a lightweight React component library, it is also shipped with a Webpack loader and a Babel macro that generate images in different sizes ([`srcset`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)) as well as low-quality previews ([`lqip`](https://github.com/zouhir/lqip)).
 
-Written in TypeScript, Reshoot provides type definitions out of the box. Powered by hooks and IntersectionObserver, its React runtime is only `3.9kb` in size (`2.5kb` js and `1.4kb` css) before gzip. The built-in Babel macro also helps you override image generation setting while maintaining maximum code readability and type-checkability. The project has a test coverage of over 90%.
+Written in TypeScript, Reshoot provides type definitions out of the box. Powered by hooks and IntersectionObserver, its React runtime is only `4.4kb` in size (`3kb` js and `1.4kb` css) before gzip and `2.5kb` after gzip. The built-in Babel macro also helps you override image generation setting while maintaining maximum code readability and type-checkability. The project has a test coverage of over 90%.
 
 ## What is in the box
 

@@ -1,16 +1,25 @@
 import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { connection } from '@shopify/jest-dom-mocks';
-import { MANUAL, OFFLINE, ERROR, LOADING, LOADED } from '../../../src/state';
+import {
+  MANUAL,
+  OFFLINE,
+  ERROR,
+  HIDDEN,
+  LOADING,
+  LOADED,
+} from '../../../src/state';
 
 describe('useLoadingState', () => {
   const src = 'path/to/test.jpg';
-  const isCached = jest.fn();
+  const hasLoaded = jest.fn<boolean, [string]>(() => false);
+  const hasFailed = jest.fn<boolean, [string]>(() => false);
 
   beforeEach(() => {
     jest.doMock('../../../src/utils/cache', () => ({
       __esModule: true,
-      isCached,
+      hasLoaded,
+      hasFailed,
     }));
   });
 
@@ -33,13 +42,24 @@ describe('useLoadingState', () => {
   });
 
   test('return LOADED if image src is present in cache', async () => {
-    isCached.mockReturnValue(true);
+    hasLoaded.mockReturnValue(true);
     const { default: useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
     const { result } = renderHook(() => useLoadingState(null, src));
     expect(result.error).toBeUndefined();
     expect(result.current[0]).toEqual(LOADED);
+  });
+
+  test('return ERROR if image loading failed in the last download attempt', async () => {
+    hasLoaded.mockReturnValue(false);
+    hasFailed.mockReturnValue(true);
+    const { default: useLoadingState } = await import(
+      '../../../src/hooks/useLoadingState'
+    );
+    const { result } = renderHook(() => useLoadingState(null, src));
+    expect(result.error).toBeUndefined();
+    expect(result.current[0]).toEqual(ERROR);
   });
 
   test('return MANUAL if network connection is too slow', async () => {
@@ -68,8 +88,8 @@ describe('useLoadingState', () => {
     const { default: useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(ERROR, src));
+    const { result } = renderHook(() => useLoadingState(HIDDEN, src));
     expect(result.error).toBeUndefined();
-    expect(result.current[0]).toEqual(ERROR);
+    expect(result.current[0]).toEqual(HIDDEN);
   });
 });
