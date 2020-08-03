@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/react",
   "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "type": "commonjs",
   "exports": {
     "import": "./lib/es/index.js",
