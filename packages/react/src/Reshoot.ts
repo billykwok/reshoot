@@ -172,16 +172,10 @@ const Reshoot = (
       },
       extraProps
     ),
-    state !== HIDDEN &&
+    (!IS_BROWSER || state > LOADING) &&
       createElement(
         'img',
-        assign(
-          { alt },
-          (!IS_BROWSER || state > LOADING) && { src, srcSet },
-          dimensions,
-          extraData,
-          imgProps
-        )
+        assign({ alt, src, srcSet }, dimensions, extraData, imgProps)
       ),
     IS_BROWSER &&
       placeholder &&
