@@ -17,7 +17,7 @@ const useIntersection = (
     () =>
       SUPPORT_INTERSECTION_OBSERVER
         ? subscribe(ref.current, (entry: IntersectionObserverEntry) => {
-            if (entry.isIntersecting) {
+            if (entry.intersectionRatio > 0) {
               if (hasLoaded(src)) {
                 setState(() => LOADED);
               } else if (hasFailed(src)) {

@@ -172,7 +172,17 @@ exports[`Reshoot render valid input correctly in state HIDDEN 1`] = `
   class="ax4jui0"
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
-/>
+>
+  <div>
+    <img
+      alt=""
+      height="80"
+      loading="lazy"
+      src="data:jpeg;base64,1shfk241jkw"
+      width="100"
+    />
+  </div>
+</div>
 `;
 
 exports[`Reshoot render valid input correctly in state LOADED 1`] = `

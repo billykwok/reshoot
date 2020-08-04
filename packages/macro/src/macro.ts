@@ -6,6 +6,7 @@ type ImageData = Readonly<{
   src: string;
   width: number;
   height: number;
+  mime?: string;
   aspectRatio?: number;
   srcSet?: string;
   alt?: string;

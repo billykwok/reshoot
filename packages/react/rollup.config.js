@@ -62,6 +62,7 @@ export default {
         hoist_funs: true,
         passes: 3,
         toplevel: true,
+        pure_funcs: ['console.info', 'console.debug', 'console.warn'],
       },
     }),
   ],

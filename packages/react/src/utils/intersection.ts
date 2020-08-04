@@ -10,7 +10,7 @@ const subscribe = ((): Subscribe => {
     const handlers = new WeakMap<Element, Handler>();
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => handlers.get(e.target)(e)),
-      { rootMargin: '-5% 0%' }
+      { rootMargin: '25% 0% 60%' }
     );
     return (element: Element, handler: Handler) => {
       if (element && !handlers.has(element)) {
