@@ -8,7 +8,7 @@ import useDownload from './hooks/useDownload';
 import useIntersection from './hooks/useIntersection';
 import cx from './utils/cx';
 import createElement from './utils/createElement';
-import { hasLoaded } from './utils/cache';
+import { hasLoaded, hasFailed } from './utils/cache';
 import IS_BROWSER from './utils/isBrowser';
 
 import type { SyntheticEvent, RefObject } from 'react';
@@ -109,6 +109,7 @@ export type ImageData = Readonly<{
   src: string;
   width: number;
   height: number;
+  mime?: string;
   aspectRatio?: number;
   srcSet?: string;
   alt?: string;
@@ -184,7 +185,7 @@ const Reshoot = (
       ),
     IS_BROWSER &&
       placeholder &&
-      state !== HIDDEN &&
+      (state !== HIDDEN || !hasLoaded(src)) &&
       state !== LOADED &&
       createElement(
         'div',
@@ -198,7 +199,7 @@ const Reshoot = (
         )
       ),
     IS_BROWSER &&
-      state < HIDDEN &&
+      (state < HIDDEN || (state === HIDDEN && hasFailed(src))) &&
       createElement(
         'button',
         {
@@ -214,7 +215,7 @@ const Reshoot = (
             d: 'M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20',
           })
         ),
-        createElement('h6', {}, messages[state as 0 | 1 | 2]),
+        createElement('h6', {}, messages[Math.min(state, 2) as 0 | 1 | 2]),
         createElement('p', {}, 'Click to reload')
       )
   );

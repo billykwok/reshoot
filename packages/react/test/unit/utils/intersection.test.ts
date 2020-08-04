@@ -62,9 +62,9 @@ describe('intersection', () => {
     const unsubscribe2 = subscribe(element2, handler2);
     expect(intersectionObserver.observers).toHaveLength(2);
     const [observer1, observer2] = intersectionObserver.observers;
-    expect(observer1.options).toEqual({ rootMargin: '-5% 0%' });
+    expect(observer1.options).toEqual({ rootMargin: '25% 0% 60%' });
     expect(observer1.target).toEqual(element1);
-    expect(observer2.options).toEqual({ rootMargin: '-5% 0%' });
+    expect(observer2.options).toEqual({ rootMargin: '25% 0% 60%' });
     expect(observer2.target).toEqual(element2);
 
     intersectionObserver.simulate({ ...baseEntry, target: element1 });
