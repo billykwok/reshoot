@@ -43,7 +43,7 @@ import reshoot from '@reshoot/macro';
 import Reshoot from '@reshoot/react';
 
 function Example() {
-  return <Reshoot config={reshoot('./image.jpg')} />;
+  return <Reshoot data={reshoot('./image.jpg')} />;
 }
 ```
 
