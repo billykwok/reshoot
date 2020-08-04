@@ -4,17 +4,8 @@
   "version": "1.2.10",
   "private": true,
   "type": "commonjs",
-  "main": "lib/index.js",
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
-  "files": [
-    "lib",
-    "types"
-  ],
-  "types": "types/index.d.ts",
-  "sideEffects": [
-    "*.css"
-  ],
   "publishConfig": {
     "access": "restricted"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@reshoot/react",
-  "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
+  "description": "A React component that lazily renders responsive images with LQIPs",
   "version": "1.2.8",
   "type": "commonjs",
   "exports": {

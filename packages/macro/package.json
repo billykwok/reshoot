@@ -1,6 +1,6 @@
 {
   "name": "@reshoot/macro",
-  "description": "All-in-one responsive image processing library with webpage loader, babel macro and React component",
+  "description": "Babel macro for @reshoot/loader",
   "version": "1.1.8",
   "type": "commonjs",
   "exports": {
@@ -43,6 +43,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.11.0",
+    "@reshoot/loader": "*",
     "babel-plugin-macros": "^2.8.0"
   }
 }
