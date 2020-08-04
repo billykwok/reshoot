@@ -55,13 +55,7 @@ exports[`Reshoot do not render preview when placeholder is falsy 1`] = `
   class="ax4jui0"
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
->
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
-</div>
+/>
 `;
 
 exports[`Reshoot render valid input correctly in state ERROR 1`] = `
@@ -70,11 +64,6 @@ exports[`Reshoot render valid input correctly in state ERROR 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
   <div>
     <img
       alt=""
@@ -108,11 +97,6 @@ exports[`Reshoot render valid input correctly in state ERROR 2`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
   <div>
     <img
       alt=""
@@ -207,11 +191,6 @@ exports[`Reshoot render valid input correctly in state LOADING 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
   <div>
     <img
       alt=""
@@ -230,11 +209,6 @@ exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
   <div>
     <img
       alt=""
@@ -268,11 +242,6 @@ exports[`Reshoot render valid input correctly in state OFFLINE 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    alt="Test image"
-    height="80"
-    width="100"
-  />
   <div>
     <img
       alt=""
