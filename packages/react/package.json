@@ -41,7 +41,7 @@
     "build": "yarn clean && rollup -c rollup.config.js && rollup -c rollup.config.js --format es --dir ./lib/es && tsc --project tsconfig.json"
   },
   "peerDependencies": {
-    "@babel/runtime-corejs3": "^7.11.1",
+    "@babel/runtime-corejs3": "^7.11.2",
     "object-assign": "4.1.1",
     "react": "^16.13.1"
   }
