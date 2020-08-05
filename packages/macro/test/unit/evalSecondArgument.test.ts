@@ -20,7 +20,7 @@ describe('arguments', () => {
       evaluate: () => ({ confident: false, value: {} }),
     } as NodePath;
     expect(() => evalSecondArgument(nodePath)).toThrow(
-      new MacroError('Failed to evaluate the second argument {}.')
+      new MacroError('Failed to evaluate the second argument {}')
     );
   });
 });

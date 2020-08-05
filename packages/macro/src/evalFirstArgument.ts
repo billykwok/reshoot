@@ -1,13 +1,13 @@
 import { MacroError } from 'babel-plugin-macros';
-import type { NodePath } from '@babel/core';
-
 import inspect from './inspect';
+
+import type { NodePath } from '@babel/core';
 
 function evalFirstArgument(argPath: NodePath): string {
   const evaluation = argPath.evaluate();
   if (!evaluation.confident) {
     throw new MacroError(
-      `Failed to evaluate the first argument ${inspect(argPath.node)}.`
+      `Failed to evaluate the first argument ${inspect(argPath.node)}`
     );
   }
 
@@ -15,7 +15,7 @@ function evalFirstArgument(argPath: NodePath): string {
     throw new MacroError(
       `The first argument must be evaluated into a string, but got ${inspect(
         evaluation.value
-      )}.`
+      )}`
     );
   }
 

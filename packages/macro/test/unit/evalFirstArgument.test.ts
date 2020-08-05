@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals';
-import util from 'util';
+import { inspect } from 'util';
 import { stringLiteral, objectExpression } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
 import type { NodePath } from '@babel/core';
@@ -24,7 +24,7 @@ describe('arguments', () => {
     } as NodePath;
     expect(() => evalFirstArgument(nodePath)).toThrow(
       new MacroError(
-        `The first argument must be evaluated into a string, but got {}.`
+        `The first argument must be evaluated into a string, but got {}`
       )
     );
   });
@@ -38,12 +38,12 @@ describe('arguments', () => {
     } as NodePath;
     expect(() => evalFirstArgument(nodePath)).toThrow(
       new MacroError(
-        `Failed to evaluate the first argument ${util.inspect(
+        `Failed to evaluate the first argument ${inspect(
           stringPath,
           false,
           null,
           true
-        )}.`
+        )}`
       )
     );
   });

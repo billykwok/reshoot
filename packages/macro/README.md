@@ -4,7 +4,7 @@
 [![download](https://badgen.net/npm/dm/@reshoot/macro)](https://www.npmjs.com/package/@reshoot/macro)
 [![Babel Macro](https://img.shields.io/badge/babel--macro-%F0%9F%8E%A3-f5da55.svg?style=flat-square)](https://github.com/kentcdodds/babel-plugin-macros)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
-[![License](https://badgen.net/npm/license/@reshoot/react)](https://github.com/billykwok/reshoot/blob/master/LICENSE)
+[![License](https://badgen.net/npm/license/@reshoot/macro)](https://github.com/billykwok/reshoot/blob/master/LICENSE)
 [![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
 
 Please refer to [Official Documentation](https://reshootjs.github.io).

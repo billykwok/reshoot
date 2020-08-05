@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals';
-import util from 'util';
+import { inspect } from 'util';
 import {
   stringLiteral,
   objectExpression,
@@ -36,7 +36,7 @@ describe('arguments', () => {
   test('parse input that is not a function call', () => {
     const referencePath = { parentPath: { type: 'Expression' } } as NodePath;
     expect(() => extractArgumentPaths(referencePath)).toThrow(
-      new MacroError('Please use it as a function.')
+      new MacroError('Please use it as a function')
     );
   });
 
@@ -50,12 +50,12 @@ describe('arguments', () => {
     ]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
       new MacroError(
-        `The first argument must be an expression, but got ${util.inspect(
+        `The first argument must be an expression, but got ${inspect(
           nonExpression,
           false,
           null,
           true
-        )}.`
+        )}`
       )
     );
   });
@@ -69,12 +69,12 @@ describe('arguments', () => {
     ]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
       new MacroError(
-        `The second argument must be an expression, but got ${util.inspect(
+        `The second argument must be an expression, but got ${inspect(
           nonExpression,
           false,
           null,
           true
-        )}.`
+        )}`
       )
     );
   });
@@ -87,14 +87,14 @@ describe('arguments', () => {
       { node: objectExpression([]) } as NodePath,
     ]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
-      new MacroError('Expect 1 or 2 arguments, but got 3.')
+      new MacroError('Expect 1 or 2 arguments, but got 3')
     );
   });
 
   test('parse zero arguments', () => {
     const referencePath = createReferencePath([]);
     expect(() => extractArgumentPaths(referencePath)).toThrow(
-      new MacroError('Expect 1 or 2 arguments, but got 0.')
+      new MacroError('Expect 1 or 2 arguments, but got 0')
     );
   });
 });
