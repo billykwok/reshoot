@@ -23,7 +23,7 @@ A [`webpack-loader`](https://webpack.js.org/loaders) that emits low-quality imag
 
 ### `@reshoot/macro`
 
-A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) that transpile `reshoot('image.jpg', { a: 1, b: 2 })` into `require('image.jpg!@reshoot/loader?a=1&b=2')`.
+A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) that transpiles `reshoot('image.jpg', { a: 1, b: 2 })` into `require('image.jpg!@reshoot/loader?a=1&b=2')`.
 
 ### `@reshoot/react`
 

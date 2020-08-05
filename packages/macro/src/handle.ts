@@ -1,17 +1,17 @@
 import path from 'path';
 import { MacroError } from 'babel-plugin-macros';
 import { arrayExpression } from '@babel/types';
-import type { MacroParams } from 'babel-plugin-macros';
-
 import extractArguments from './extractArguments';
 import evalFirstArgument from './evalFirstArgument';
 import evalSecondArgument from './evalSecondArgument';
 import requireExpression from './requireExpression';
 
+import type { MacroParams } from 'babel-plugin-macros';
+
 function handle({ references, state }: MacroParams): void {
   const filename = state?.file?.opts?.filename;
   if (!filename) {
-    throw new MacroError('Failed to retrieve filename.');
+    throw new MacroError('Failed to retrieve filename');
   }
 
   references.default.forEach((referencePath) => {
