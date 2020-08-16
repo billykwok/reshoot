@@ -16,11 +16,6 @@ div#docs-root table.sbdocs-table tr td {
   padding: 0.125rem 0.5rem;
 }
 
-body.dark > div#docs-root table.sbdocs-table tr th,
-body.dark > div#docs-root table.sbdocs-table tr td {
-  border-color: #333;
-}
-
 div#docs-root table.sbdocs-table tr th,
 div#docs-root table.sbdocs-table tr td {
   border-color: #e5e5e5;
@@ -36,55 +31,13 @@ div#docs-root table.sbdocs-table tr code {
   border-radius: 3px;
 }
 
-body.dark > div#docs-root table.sbdocs-table tr code {
-  border: 1px solid #3f3f3f;
-  background-color: #333;
-}
-
-body.dark > div#docs-root table.sbdocs-table tr {
-  background-color: #222;
-  color: #fff;
-}
-
 div#docs-root table.sbdocs-table thead tr {
   background-color: #e5e5e5;
-}
-
-body.dark > div#docs-root table.sbdocs-table thead tr {
-  background-color: #333;
-}
-
-body.dark > div#docs-root table.sbdocs-table tr:nth-of-type(2n) {
-  background-color: #1a1a1a;
-}
-
-body.dark > div#docs-root > div.sbdocs-wrapper {
-  background: #111;
-}
-
-body.dark > div#docs-root h1.sbdocs-h1 {
-  color: #ddd;
-}
-
-body.dark > div#docs-root h2.sbdocs-h2 {
-  color: #7bcdff;
-}
-
-body.dark > div#docs-root h3.sbdocs-h3 {
-  color: #ddd;
 }
 
 div#docs-root h3.sbdocs-h3 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-body.dark > div#docs-root h3.sbdocs-h3 code {
-  padding: 2px 4px;
-}
-
-body.dark > div#docs-root h4.sbdocs-h4 {
-  color: #ddd;
 }
 
 div#docs-root h4.sbdocs-h4 {
@@ -96,52 +49,23 @@ div#docs-root h4.sbdocs-h4 + p {
   margin-top: 0;
 }
 
-body.dark > div#docs-root h5.sbdocs-h5 {
-  color: #ddd;
-}
-
-body.dark > div#docs-root h6.sbdocs-h6 {
-  color: #ddd;
-}
-
-body.dark > div#docs-root p.sbdocs-p {
-  color: #fff;
-}
-
-body.dark > div#docs-root li.sbdocs-li {
-  color: #fff;
-}
-
-body.dark > div#docs-root code {
-  background: #333;
-  color: #eee;
-  border: 1px solid #3f3f3f;
-  border-radius: 4px;
-}
-
-body.dark > div#docs-root pre > code {
+div#docs-root pre > code {
   border: none;
 }
 
-body.light > div#docs-root div.docblock-source,
-body.light > div#docs-root div.docblock-source code {
-  background: #222;
+div#docs-root div.docblock-source,
+div#docs-root div.docblock-source code {
+  background: #151515;
   color: #fff;
 }
 
-body.dark
-  > div#docs-root
+div#docs-root
   div.simplebar-content-wrapper
   > div.simplebar-content
   > pre
   > code {
   background: none;
   border: none;
-}
-
-body.dark > div#docs-root div.docblock-source,
-body.dark > div#docs-root div.docblock-source code {
-  background: #000;
 }
 
 div#docs-root div.docblock-source code span.token.punctuation {
@@ -197,8 +121,6 @@ body > div#docs-root div.sbdocs-preview {
   background: #222;
 }
 
-body.dark > div#docs-root div.sbdocs-preview > div > div:last-child,
-body.dark > div#docs-root div.sbdocs-preview > div > div:last-child > button,
 div#docs-root div.docblock-source > div:last-child,
 div#docs-root div.docblock-source > div:last-child > button {
   background: #333;

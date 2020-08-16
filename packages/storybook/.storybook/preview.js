@@ -33,42 +33,10 @@ addParameters({
         : a[1].id.localeCompare(b[1].id, undefined, { numeric: true });
     },
   },
-  darkMode: {
-    current: 'dark',
-    darkClass: 'dark',
-    lightClass: 'light',
-    stylePreview: true,
-    dark: create({
-      base: 'dark',
-      colorPrimary: 'red',
-      colorSecondary: '#007aff',
-      appBg: '#000',
-      appContentBg: '#111',
-      appBorderColor: '#222',
-      // appBorderRadius: 4,
-      fontBase: 'Inter, "Open Sans", sans-serif',
-      fontCode: '"Operator Mono", "Fira Code", monospace',
-      textColor: '#eee',
-      textInverseColor: '#111',
-      barTextColor: '#ccc',
-      barSelectedColor: '#007aff',
-      barBg: '#111',
-      inputBg: '#000',
-      inputBorder: '#000',
-      inputTextColor: '#eee',
-      // inputBorderRadius: 4,
-      brandTitle: 'Reshoot',
-      brandUrl: 'https://reshootjs.github.io',
-      brandImage:
-        'https://raw.githubusercontent.com/billykwok/reshoot/master/logo.png',
-    }),
-    // Override the default light theme
-    light: create({ base: 'light' }),
-  },
 
-  docs: { container: DocsContainer, page: DocsPage },
+  docs: { container: DocsContainer, page: DocsPage, inlineStories: true },
   backgrounds: {
-    default: 'light',
+    default: null,
     values: [
       { name: 'light', value: '#f5f5f5' },
       { name: 'dark', value: '#050505' },
