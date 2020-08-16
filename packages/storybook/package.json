@@ -32,8 +32,7 @@
     "@storybook/react": "^6.0.10",
     "@storybook/theming": "^6.0.10",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "storybook-dark-mode": "^1.0.0"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@storybook/cli": "^6.0.10"

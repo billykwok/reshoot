@@ -4,11 +4,10 @@ module.exports = {
   stories: ['../src/**/*.stories.mdx'],
   addons: [
     '@storybook/addon-docs',
-    '@storybook/addon-viewport/register',
-    'storybook-dark-mode/register',
+    '@storybook/addon-viewport',
     '@storybook/addon-backgrounds',
     '@storybook/addon-controls',
-    '@storybook/addon-actions/register',
+    '@storybook/addon-actions',
   ],
   typescript: {
     check: false,
@@ -24,12 +23,6 @@ module.exports = {
     const localModules = path.resolve(__dirname, '../../../packages');
     config.resolve.modules.unshift(localModules);
     config.resolve.alias['@reshoot'] = localModules;
-    config.resolve.extensions.push('.ts', '.tsx', '.md', '.mdx');
-    config.module.rules.push({
-      test: /\.md$/,
-      exclude: /node_modules/,
-      loader: 'markdown-loader',
-    });
     return config;
   },
 };
