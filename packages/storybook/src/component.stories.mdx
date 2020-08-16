@@ -1,7 +1,6 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
-import Reshoot from '@reshoot/react';
-import { withKnobs, select, number } from '@storybook/addon-knobs';
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
+import Reshoot from '@reshoot/react';
 import describe from './utils/describe';
 import images from './utils/images';
 
@@ -10,95 +9,74 @@ import './utils/docs.css';
 
 <Meta
   title="Live Demo/Component"
-  component={describe(Reshoot, 'Reshoot')}
-  decorators={[withKnobs]}
+  parameters={{
+    layout: 'padded',
+    previewTabs: { 'storybook/docs/panel': { disable: true, hidden: true } },
+  }}
 />
 
-<Preview>
-  <Story name="Image Accessible">
-    <Reshoot
-      style={{
-        width: `${number('Width', 480, {
-          range: true,
-          min: 40,
-          max: 1080,
-          step: 20,
-        })}px`,
-      }}
-      data={{ ...images[0], alt: `Test image` }}
-      onLoad={describe(
-        action('Image loaded'),
-        '() => {} /* omitted as created by @storybook-addons/action */'
-      )}
-      onError={describe(
-        action('Loading error'),
-        '() => {} /* omitted as created by @storybook-addons/action */'
-      )}
-      onClick={describe(
-        action('Clicked'),
-        '() => {} /* omitted as created by @storybook-addons/action */'
-      )}
-      _s={select(
-        'State',
-        {
-          AUTO: null,
-          MANUAL: 0,
-          OFFLINE: 1,
-          ERROR: 2,
-          HIDDEN: 3,
-          LOADING: 4,
-          FADING: 5,
-          LOADED: 6,
-        },
-        null
-      )}
-    />
-  </Story>
-</Preview>
+export const Template = ({ width, state, mockInvalidUrl, ...args }) => (
+  <Reshoot
+    style={{ width: `${width}px` }}
+    data={{
+      ...images[0],
+      alt: `Test image`,
+      ...(mockInvalidUrl ? { src: 'error', srcSet: 'error' } : {}),
+    }}
+    _s={state}
+    onLoad={describe(
+      action('Image loaded'),
+      '() => {} /* omitted as created by @storybook-addons/action */'
+    )}
+    onError={describe(
+      action('Loading error'),
+      '() => {} /* omitted as created by @storybook-addons/action */'
+    )}
+    onClick={describe(
+      action('Clicked'),
+      '() => {} /* omitted as created by @storybook-addons/action */'
+    )}
+    {...args}
+  />
+);
 
-<Preview>
-  <Story name="Image Inaccessible">
-    <Reshoot
-      style={{
-        width: `${number('Width', 480, {
-          range: true,
-          min: 40,
-          max: 1080,
-          step: 20,
-        })}px`,
-      }}
-      data={{
-        ...images[0],
-        src: images[0].src.replace('images', 'error'),
-        srcSet: images[0].srcSet.replaceAll('images', 'error'),
-        alt: `Test image`,
-      }}
-      onLoad={describe(
-        action('Image loaded'),
-        '() => {} /* omitted as created by @storybook-addons/action */'
-      )}
-      onError={describe(
-        action('Loading error'),
-        '() => {} /* omitted as created by @storybook-addons/action */'
-      )}
-      onClick={describe(
-        action('Clicked'),
-        '() => {} /* omitted as created by @storybook-addons/action */'
-      )}
-      _s={select(
-        'State',
-        {
-          AUTO: null,
-          MANUAL: 0,
-          OFFLINE: 1,
-          ERROR: 2,
-          HIDDEN: 3,
-          LOADING: 4,
-          FADING: 5,
-          LOADED: 6,
-        },
-        null
-      )}
-    />
+export const argTypes = {
+  width: {
+    name: 'Width',
+    control: { type: 'range', min: 40, max: 1080, step: 20 },
+  },
+  state: {
+    name: 'State',
+    control: {
+      type: 'select',
+      options: {
+        AUTO: null,
+        MANUAL: 0,
+        OFFLINE: 1,
+        ERROR: 2,
+        HIDDEN: 3,
+        LOADING: 4,
+        FADING: 5,
+        LOADED: 6,
+      },
+    },
+  },
+  mockInvalidUrl: { table: { disable: true } },
+};
+
+<Canvas>
+  <Story
+    name="Image (Good URL)"
+    args={{ width: 480, state: null, mockInvalidUrl: false }}
+    argTypes={argTypes}
+  >
+    {Template.bind({})}
   </Story>
-</Preview>
+  <Story
+    name="Image (Bad URL)"
+    args={{ width: 480, state: null, mockInvalidUrl: true }}
+    argTypes={argTypes}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

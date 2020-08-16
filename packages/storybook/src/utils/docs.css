@@ -119,6 +119,10 @@ body.dark > div#docs-root code {
   border-radius: 4px;
 }
 
+body.dark > div#docs-root pre > code {
+  border: none;
+}
+
 body.light > div#docs-root div.docblock-source,
 body.light > div#docs-root div.docblock-source code {
   background: #222;
