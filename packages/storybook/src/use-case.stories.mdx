@@ -1,5 +1,4 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, button } from '@storybook/addon-knobs';
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
 import Reshoot from '@reshoot/react';
 import describe from './utils/describe';
@@ -10,50 +9,49 @@ import './utils/docs.css';
 
 <Meta
   title="Live Demo/Use Case"
-  component={describe(Reshoot, 'Reshoot')}
-  decorators={[withKnobs]}
+  parameters={{
+    layout: 'padded',
+    previewTabs: { 'storybook/docs/panel': { disable: true, hidden: true } },
+  }}
 />
 
-<Preview>
-  <Story name="Gallery (LQIP)">
-    <Gallery
-      _s={select(
-        'State',
-        {
-          AUTO: null,
-          MANUAL: 0,
-          OFFLINE: 1,
-          ERROR: 2,
-          HIDDEN: 3,
-          LOADING: 4,
-          FADING: 5,
-          LOADED: 6,
-        },
-        null
-      )}
-      disablePlaceholder={false}
-    />
-  </Story>
-</Preview>
+export const Template = ({ state, ...args }) => (
+  <Gallery _s={state} {...args} />
+);
 
-<Preview>
-  <Story name="Gallery (Color)">
-    <Gallery
-      _s={select(
-        'State',
-        {
-          AUTO: null,
-          MANUAL: 0,
-          OFFLINE: 1,
-          ERROR: 2,
-          HIDDEN: 3,
-          LOADING: 4,
-          FADING: 5,
-          LOADED: 6,
-        },
-        null
-      )}
-      disablePlaceholder={true}
-    />
+export const argTypes = {
+  state: {
+    name: 'State',
+    control: {
+      type: 'select',
+      options: {
+        AUTO: null,
+        MANUAL: 0,
+        OFFLINE: 1,
+        ERROR: 2,
+        HIDDEN: 3,
+        LOADING: 4,
+        FADING: 5,
+        LOADED: 6,
+      },
+    },
+  },
+  disablePlaceholder: { table: { disable: true } },
+};
+
+<Canvas>
+  <Story
+    name="Gallery (LQIP)"
+    args={{ state: null, disablePlaceholder: false }}
+    argTypes={argTypes}
+  >
+    {Template.bind()}
   </Story>
-</Preview>
+  <Story
+    name="Gallery (Color)"
+    args={{ state: null, disablePlaceholder: true }}
+    argTypes={argTypes}
+  >
+    {Template.bind()}
+  </Story>
+</Canvas>
