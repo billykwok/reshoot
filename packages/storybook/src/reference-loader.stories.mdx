@@ -61,7 +61,6 @@ const options = {
   outputPath: null,
   publicPath: null,
   shape: ({
-    type,
     src,
     width,
     height,
@@ -71,7 +70,6 @@ const options = {
     color,
     sources,
   }) => ({
-    type,
     src,
     width,
     height,
@@ -122,7 +120,7 @@ The path where the output images are accessed on the webpage. When set as `null`
 #### Module Export Shape
 
 Type: `shape: (output: Output) => any`  
-Default: See below  
+Default: A function returning all fields in `Output` except `type`  
 A function that builds the exported object returned from `import` or `require`. `Output` has the following type.
 
 ```typescript
