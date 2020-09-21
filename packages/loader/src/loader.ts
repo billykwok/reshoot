@@ -46,7 +46,7 @@ async function reshootLoader(
   const [mime, ext] = resolveMimeAndExt(this, options.enforceFormat);
   const isSvgOrGif = options.enforceFormat
     ? options.enforceFormat === Mime.SVG || options.enforceFormat === Mime.GIF
-    : false;
+    : mime === Mime.SVG || mime === Mime.GIF;
   const [writeImage, writeStats] = createOutputWriter(this, hash, options);
 
   const image = loadImage(content);
