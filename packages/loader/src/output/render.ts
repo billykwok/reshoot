@@ -13,6 +13,9 @@ function transformSrc(value: string): Stringifiable<string> {
 }
 
 function transformPlaceholder(value: string): Stringifiable<string> | string {
+  if (!value) {
+    return JSON.stringify(null);
+  }
   return isDataUrl(value)
     ? value
     : createStringifiable(

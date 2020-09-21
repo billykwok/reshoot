@@ -1,12 +1,19 @@
-import { describe, test, expect } from '@jest/globals';
-import computeHash from '../../../src/util/hash';
+import { describe, beforeAll, test, expect } from '@jest/globals';
 import options from '../../../src/config/defaultOptions';
 import { Mime } from '../../../src/type';
 
 describe('hash', () => {
   const devMode = 'development';
 
-  test('should hash null', () => {
+  beforeAll(() => {
+    jest.doMock('../../../package.json', () => ({
+      __esModule: true,
+      version: '1.1.1',
+    }));
+  });
+
+  test('should hash null', async () => {
+    const { default: computeHash } = await import('../../../src/util/hash');
     expect(
       computeHash(
         'content123',
@@ -18,10 +25,11 @@ describe('hash', () => {
           placeholder: null,
         })
       )
-    ).toEqual('14fe0998f0b7fcac');
+    ).toEqual('387b48cf14f12d1b');
   });
 
-  test('should change when color changes', () => {
+  test('should change when color changes', async () => {
+    const { default: computeHash } = await import('../../../src/util/hash');
     expect(
       computeHash(
         'content123',
@@ -35,7 +43,8 @@ describe('hash', () => {
     );
   });
 
-  test('should change when enforceFormat changes', () => {
+  test('should change when enforceFormat changes', async () => {
+    const { default: computeHash } = await import('../../../src/util/hash');
     expect(
       computeHash(
         'content123',
@@ -53,7 +62,8 @@ describe('hash', () => {
     );
   });
 
-  test('should change when mode changes', () => {
+  test('should change when mode changes', async () => {
+    const { default: computeHash } = await import('../../../src/util/hash');
     const prodMode = 'production';
     expect(
       computeHash(
@@ -68,7 +78,8 @@ describe('hash', () => {
     );
   });
 
-  test('should change when content changes', () => {
+  test('should change when content changes', async () => {
+    const { default: computeHash } = await import('../../../src/util/hash');
     expect(
       computeHash(
         'content123',
