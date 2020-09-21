@@ -43,6 +43,7 @@ type Props = {
     srcSet?: string;
     color?: string;
     placeholder?: string | false | null;
+    sources?: { type: string; src: string; srcSet?: string }[];
   };
   messages?: [string, string, string];
   imgProps?: {
@@ -64,15 +65,16 @@ Type: `data: { [key: string]: any }`
 Default: Mandatory  
 Configuration of rendering behavior. When used with `@reshoot/loader`, it should be assigned with result of `import` or `require`.
 
-| Key           | Default          | Description                                                |
-| ------------- | ---------------- | ---------------------------------------------------------- |
-| `src`         | Mandatory        | The src url of default image                               |
-| `width`       | Mandatory        | The intrinsic width of default image                       |
-| `height`      | Mandatory        | The intrinsic height of default image                      |
-| `srcSet`      | `null`           | The `<img />` tag `srcSet` attribute for responsive images |
-| `aspectRatio` | `width / height` | The aspect ratio of image for aspect ratio box             |
-| `placeholder` | `'placeholder'`  | The url/data-url of LQIP                                   |
-| `color`       | `'transparent'`  | The color of image box before the image or LQIP is shown.  |
+| Key           | Default          | Description                                                          |
+| ------------- | ---------------- | -------------------------------------------------------------------- |
+| `src`         | Mandatory        | The src url of default image                                         |
+| `width`       | Mandatory        | The intrinsic width of default image                                 |
+| `height`      | Mandatory        | The intrinsic height of default image                                |
+| `srcSet`      | `null`           | The `<img />` tag `srcSet` attribute for responsive images           |
+| `aspectRatio` | `width / height` | The aspect ratio of image for aspect ratio box                       |
+| `placeholder` | `'placeholder'`  | The url/data-url of LQIP                                             |
+| `color`       | `'transparent'`  | The color of image box before the image or LQIP is shown             |
+| `sources`     | `[]`             | Alternative sources used in browsers supporting better image formats |
 
 #### Error Messages
 

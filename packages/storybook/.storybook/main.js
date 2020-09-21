@@ -19,7 +19,7 @@ module.exports = {
         prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
   },
-  webpackFinal: async (config) => {
+  webpackFinal: (config) => {
     const localModules = path.resolve(__dirname, '../../../packages');
     config.resolve.modules.unshift(localModules);
     config.resolve.alias['@reshoot'] = localModules;

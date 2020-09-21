@@ -16,7 +16,6 @@ describe('Reshoot', () => {
   const baseData = {
     src: 'image.jpg',
     srcSet: 'image-480.jpg 480w, image-640.jpg 640w',
-    alt: 'Test image',
     width: 100,
     height: 80,
     color: '#fff',
@@ -24,7 +23,7 @@ describe('Reshoot', () => {
   };
   const useLoadingState = jest.fn();
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  const setState = jest.fn((callback: () => number): void => {});
+  const setState = jest.fn((_: () => number): void => {});
 
   beforeEach(() => {
     jest.doMock('../../src/utils/isBrowser', () => ({

@@ -3,15 +3,15 @@ import { createMacro } from 'babel-plugin-macros';
 import handle from './handle';
 
 type ImageData = Readonly<{
+  type: string;
   src: string;
+  srcSet: string;
+  sources: Readonly<{ type: string; src: string; srcSet: string }>[];
   width: number;
   height: number;
-  mime?: string;
-  aspectRatio?: number;
-  srcSet?: string;
-  alt?: string;
-  color?: string;
-  placeholder?: string | false | null;
+  aspectRatio: number;
+  color: string;
+  placeholder: string;
   [key: string]: unknown;
 }>;
 
@@ -22,28 +22,19 @@ export default createMacro(handle) as <T = ImageData>(
       name: string;
       outputPath: string | ((filename: string) => string);
       publicPath: string | ((filename: string) => string);
-      shape: {
-        mime: string | boolean;
-        src: string | boolean;
-        width: string | boolean;
-        height: string | boolean;
-        srcSet: string | boolean;
-        aspectRatio: string | boolean;
-        placeholder: string | boolean;
-        color: string | boolean;
-      };
       srcSet: number[];
+      sources: 'image/webp'[];
       quality: number;
       background: string;
       color: string;
-      enforceFormat: string | false;
-      placeholder: { size: number; trimDataUrl: boolean };
+      enforceFormat: 'image/jpeg' | 'image/png' | 'image/webp';
+      placeholder: { size: number; quality: number; trimDataUrl: boolean };
       aspectRatio: {
         type: 'widthByHeight' | 'heightByWidth';
         format: 'ratio' | 'percent';
         decimal: number;
       };
-      disable: boolean;
+      fastMode: boolean;
       cache: boolean;
       emitFile: boolean;
       esModule: boolean;

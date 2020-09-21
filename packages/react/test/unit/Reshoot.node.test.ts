@@ -4,13 +4,7 @@ import { renderToString } from 'react-dom/server';
 
 describe('Reshoot', () => {
   const download = jest.fn(() => Promise.resolve());
-  const baseData = {
-    src: 'image.jpg',
-    alt: 'Test image',
-    width: 100,
-    height: 80,
-    color: '#fff',
-  };
+  const baseData = { src: 'image.jpg', width: 100, height: 80, color: '#fff' };
 
   beforeEach(() => {
     jest.doMock('../../src/utils/isBrowser', () => ({
@@ -34,6 +28,7 @@ describe('Reshoot', () => {
       createElement(Reshoot, {
         'data-testid': '123',
         data: { ...baseData, aspectRatio: 2 },
+        imgProps: { alt: 'Test image' },
         ref,
       })
     );

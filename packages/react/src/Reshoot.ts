@@ -106,16 +106,15 @@ const MESSAGES: [string, string, string] = [
 ];
 
 export type ImageData = Readonly<{
+  sources?: Readonly<{ type: string; src: string; srcSet?: string }>[];
   src: string;
+  srcSet?: string;
   width: number;
   height: number;
-  mime?: string;
+  type?: string;
   aspectRatio?: number;
-  srcSet?: string;
-  alt?: string;
   color?: string;
-  placeholder?: string | false | null;
-  [key: string]: unknown;
+  placeholder?: string;
 }>;
 
 type Props = Readonly<{
@@ -134,15 +133,14 @@ const Reshoot = (
     className,
     style,
     data: {
+      sources,
       src,
+      srcSet,
       width,
       height,
       aspectRatio,
-      srcSet,
-      alt,
       color,
       placeholder,
-      ...extraData
     },
     messages = MESSAGES,
     imgProps,
@@ -172,11 +170,16 @@ const Reshoot = (
       },
       extraProps
     ),
-    (!IS_BROWSER || state > LOADING) &&
-      createElement(
-        'img',
-        assign({ alt, src, srcSet }, dimensions, extraData, imgProps)
-      ),
+    !IS_BROWSER || state > LOADING
+      ? sources && sources.length
+        ? createElement(
+            'picture',
+            {},
+            ...sources.map((source) => createElement('source', source)),
+            createElement('img', assign({ src, srcSet }, dimensions, imgProps))
+          )
+        : createElement('img', assign({ src, srcSet }, dimensions, imgProps))
+      : null,
     IS_BROWSER &&
       placeholder &&
       (state !== HIDDEN || !hasLoaded(src)) &&

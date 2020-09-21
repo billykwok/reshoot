@@ -37,7 +37,7 @@ module.exports = {
    > Not recommended as `@reshoot/macro` is a better alternative.
 
 ```typescript
-const image = require('./image.jpg?{"name":"[contenthash:16]-[width].[ext]","shape":{"mime":true}}');
+const image = require('./image.jpg?{"name":"[contenthash:16]-[width].[ext]"');
 ```
 
 ## Supported Format
@@ -60,16 +60,27 @@ const options = {
       : '[contenthash:8]-[width].[ext]',
   outputPath: null,
   publicPath: null,
-  shape: {
-    mime: false,
-    src: 'src',
-    width: 'width',
-    height: 'height',
-    srcSet: 'srcSet',
-    aspectRatio: 'aspectRatio',
-    placeholder: 'placeholder',
-    color: 'color',
-  },
+  shape: ({
+    type,
+    src,
+    width,
+    height,
+    srcSet,
+    aspectRatio,
+    placeholder,
+    color,
+    sources,
+  }) => ({
+    type,
+    src,
+    width,
+    height,
+    srcSet,
+    aspectRatio,
+    placeholder,
+    color,
+    sources,
+  }),
   srcSet: [480, 640, 840, 1080],
   quality: 80,
   background: '#fff',
@@ -81,7 +92,7 @@ const options = {
     format: 'ratio',
     decimal: 4,
   },
-  disable: process.env.NODE_ENV === 'development',
+  fastMode: process.env.NODE_ENV === 'development',
   cache: true,
   emitFile: true,
   esModule: true,
@@ -99,58 +110,81 @@ Name pattern of the output image files. It supports `[width]` in addition to all
 #### Output Path
 
 Type: `outputPath: null | string | (filename: string) => string`  
-Default: `null`  
-The directory where output images should be emitted to. When set as `null`, the value of `outputPath` in Webpack `output` config is used. When a function is specified, the value returned by it is used as the full path of the corresponding output image. Function is only supported in global options due to the limitation of function serialization.
+Default: `"/images"`  
+The directory where output images should be emitted to. When set as `null`, the value of `outputPath` in Webpack `output` config is used. When a function is specified, the value returned by it is used as the path of the corresponding output image. Function is only supported in global options due to the limitation of function serialization.
 
 #### Public Path
 
 Type: `publicPath: null | string | (filename: string) => string`  
 Default: `null`  
-The path where the output images are accessed on the webpage. When set as `null`, the value of `publicPath` in Webpack `output` config is used. When a function is specified, the value returned by it is used as the full public path of the corresponding output image. Function is only supported in global options due to the limitation of function serialization.
+The path where the output images are accessed on the webpage. When set as `null`, the value of `outputPath` is used. When a function is specified, the value returned by it is used as the public path of the corresponding output image. Function is only supported in global options due to the limitation of function serialization.
 
 #### Module Export Shape
 
-Type: `shape: { [key: string]: string | boolean }`  
+Type: `shape: (output: Output) => any`  
 Default: See below  
-The shape of the exported object returned from `import` or `require`. If set as falsy, the key and its corresponding value will not be included in the module export object. If set as truthy, the field name in module export object is the same of the key name. If set as a string, the string will be used as the field name in module export object. For example, with the config below,
+A function that builds the exported object returned from `import` or `require`. `Output` has the following type.
 
 ```typescript
-const shape = {
-  mime: false,
-  width: 'w',
-  height: 'h',
-  srcSet: null,
-  aspectRatio: 'a',
-  placeholder: 'p',
-  color: true,
+type Output = {
+  type: string; // The mime type of source image
+  src: string; // The `<img />` tag src url of default output image
+  width: number; // The intrinsic width of the default output image
+  height: number; // The intrinsic height of the default output image
+  srcSet: string[]; // The `<img />` tag srcSet url list of responsive output image
+  aspectRatio: number; // The aspect ratio of output images for reflow prevention
+  placeholder: string; // The url/data-url of LQIP
+  color: string; // The color of image box before the image or LQIP is shown
+  sources: { type: string; src: string; srcSet: string[] }[]; // Alternative sources used in browsers supporting better image formats
 };
+```
+
+For example, with the config below,
+
+```typescript
+const shape = ({
+  type,
+  src,
+  width,
+  height,
+  srcSet,
+  aspectRatio,
+  placeholder,
+  color,
+  sources,
+}) => ({
+  w: width,
+  h: height,
+  a: aspectRatio,
+  p: placeholder,
+  c: color,
+  sources: [...sources, { type, src, srcSet }],
+});
 ```
 
 an object like the following will be exported.
 
 ```typescript
 export default {
-  src: 'dir/example/image.jpg',
   w: 1024,
   h: 720,
   a: 1.68,
   p: 'data:example-data-url',
-  color: '#fff',
+  c: '#fff',
+  sources: [
+    {
+      type: 'image/webp',
+      src: 'dir/example/image.webp',
+      srcSet: 'dir/example/image-480.webp 480w',
+    },
+    {
+      type: 'image/jpeg',
+      src: 'dir/example/image.jpg',
+      srcSet: 'dir/example/image-480.jpg 480w',
+    },
+  ],
 };
 ```
-
-Supported keys are listed below.
-
-| Key           | Default         | Description                                                  |
-| ------------- | --------------- | ------------------------------------------------------------ |
-| `mime`        | `false`         | The mime type of source image                                |
-| `src`         | `'src'`         | The `<img />` tag src url of default output image            |
-| `width`       | `'width'`       | The intrinsic width of the default output image              |
-| `height`      | `'height'`      | The intrinsic height of the default output image             |
-| `srcSet`      | `'srcSet'`      | The `<img />` tag srcSet url list of responsive output image |
-| `aspectRatio` | `'aspectRatio'` | The aspect ratio of output images for reflow prevention      |
-| `placeholder` | `'placeholder'` | The url/data-url of LQIP                                     |
-| `color`       | `'color'`       | The color of image box before the image or LQIP is shown     |
 
 #### Widths of Responsive Images
 
@@ -217,9 +251,9 @@ Aspect ratio value setting in module export object. Decimal controls how many di
 | `'ratio'`   | Express aspect ratio as ratio (`width / height` or `height / width`) |
 | `'percent'` | Express aspect ratio as percentage (`ratio * 100`)                   |
 
-#### Disable
+#### Fast Mode
 
-Type: `disable: boolean`  
+Type: `fastMode: boolean`  
 Whether the loader should act as a pass-through loader. Useful for reducing build time during development.
 
 #### Cache
