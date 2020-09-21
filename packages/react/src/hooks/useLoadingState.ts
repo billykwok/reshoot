@@ -6,7 +6,7 @@ import { hasLoaded, hasFailed } from '../utils/cache';
 import type { Dispatch, SetStateAction } from 'react';
 import type { State } from '../state';
 
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare global {
   interface Navigator {
     connection: { effectiveType: string };

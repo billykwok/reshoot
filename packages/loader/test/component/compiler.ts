@@ -1,9 +1,10 @@
 import path from 'path';
 import webpack from 'webpack';
 
-import createMemfs from './createMemfs';
+import type { OutputFileSystem } from 'webpack';
 
-async function compiler(
+async function compile(
+  outputFileSystem: OutputFileSystem,
   fixture: string,
   options: Record<string, unknown> = {}
 ): Promise<string> {
@@ -25,22 +26,22 @@ async function compiler(
     },
   });
 
-  compiler.outputFileSystem = createMemfs();
+  compiler.outputFileSystem = outputFileSystem;
 
   return new Promise((resolve, reject) =>
     compiler.run((err, stats) => {
       if (err) {
-        console.error(err);
         reject(err);
       } else if (stats.hasErrors()) {
-        console.error(stats.toJson().errors);
         reject(stats.toJson().errors);
       } else {
-        if (stats.hasWarnings()) console.warn(stats.toJson().warnings);
+        if (stats.hasWarnings()) {
+          console.warn(stats.toJson().warnings);
+        }
         resolve(stats.toJson().modules[0].source);
       }
     })
   );
 }
 
-export default compiler;
+export default compile;

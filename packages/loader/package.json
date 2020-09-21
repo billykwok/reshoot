@@ -35,13 +35,17 @@
     "lint": "eslint ./src/**"
   },
   "dependencies": {
+    "ajv": "6.12.5",
+    "ajv-keywords": "3.5.2",
+    "color": "3.1.2",
     "deepmerge": "^4.2.2",
+    "fast-memoize": "^2.5.2",
     "find-cache-dir": "^3.3.1",
     "loader-utils": "^2.0.0",
     "metrohash": "^2.6.0",
-    "sharp": "^0.26.0"
+    "sharp": "^0.26.1"
   },
   "peerDependencies": {
-    "webpack": "^4.44.1"
+    "webpack": "^4.44.2"
   }
 }

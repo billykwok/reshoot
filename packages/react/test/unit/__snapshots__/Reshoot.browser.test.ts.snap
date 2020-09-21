@@ -7,7 +7,6 @@ exports[`Reshoot aspect ratio can be overridden 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.5;"
 >
   <img
-    alt="Test image"
     height="80"
     src="image.jpg"
     srcset="image-480.jpg 480w, image-640.jpg 640w"
@@ -25,7 +24,6 @@ exports[`Reshoot customized options for image link 1`] = `
   target="_blank"
 >
   <img
-    alt="Test image"
     height="80"
     src="image.jpg"
     srcset="image-480.jpg 480w, image-640.jpg 640w"
@@ -41,7 +39,6 @@ exports[`Reshoot customized options for normal image 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
   <img
-    alt="Test image"
     height="80"
     src="image.jpg"
     srcset="image-480.jpg 480w, image-640.jpg 640w"
@@ -131,7 +128,6 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
   <img
-    alt="Test image"
     height="80"
     src="image.jpg"
     srcset="image-480.jpg 480w, image-640.jpg 640w"
@@ -176,7 +172,6 @@ exports[`Reshoot render valid input correctly in state LOADED 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
   <img
-    alt="Test image"
     height="80"
     src="image.jpg"
     srcset="image-480.jpg 480w, image-640.jpg 640w"

@@ -26,10 +26,10 @@ function handle({ references, state }: MacroParams): void {
       );
     }
 
-    const images = require(path.join(
-      path.dirname(filename),
-      firstArg
-    )) as Array<{ src: string; [key: string]: any }>;
+    const images = require(path.join(path.dirname(filename), firstArg)) as {
+      src: string;
+      [key: string]: unknown;
+    }[];
     referencePath.parentPath.replaceWith(
       arrayExpression(
         images.map(({ src, ...rest }) =>
