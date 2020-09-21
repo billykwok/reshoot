@@ -9,7 +9,7 @@
     "clean": "rm -rf node_modules/.cache/@reshoot",
     "build": "lerna run --parallel --no-private build",
     "lint": "lerna run --parallel --no-private lint",
-    "test": "yarn clean && yarn workspace @reshoot/macro run build && jest --maxWorkers=4",
+    "test": "yarn clean && yarn workspace @reshoot/macro run build && jest",
     "commit": "commit",
     "release": "lerna publish --yes --no-changelog",
     "storybook:dev": "yarn workspace @reshoot/storybook run dev",
