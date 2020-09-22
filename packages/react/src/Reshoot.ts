@@ -120,8 +120,9 @@ export type ImageData = Readonly<{
 type Props = Readonly<{
   className?: string;
   data: ImageData;
-  messages: Readonly<[string, string, string]>;
-  imgProps: Readonly<Record<string, unknown>>;
+  messages?: Readonly<[string, string, string]>;
+  imgProps?: Readonly<Record<string, unknown>>;
+  alt?: string;
   onLoad?: () => void;
   onError?: (event: Event | SyntheticEvent | string) => void;
   _s?: State;
@@ -142,6 +143,7 @@ const Reshoot = (
       color,
       placeholder,
     },
+    alt,
     messages = MESSAGES,
     imgProps,
     onLoad,
@@ -155,7 +157,6 @@ const Reshoot = (
   const _ref = useForwardableRef<HTMLElement>(ref);
   const download = useDownload(setState, src, srcSet, onLoad, onError);
   useIntersection(_ref, setState, src, download);
-  const dimensions = { width, height };
 
   return createElement(
     extraProps.href ? 'a' : 'div',
@@ -176,9 +177,15 @@ const Reshoot = (
             'picture',
             {},
             ...sources.map((source) => createElement('source', source)),
-            createElement('img', assign({ src, srcSet }, dimensions, imgProps))
+            createElement(
+              'img',
+              assign({ src, srcSet, alt, width, height }, imgProps)
+            )
           )
-        : createElement('img', assign({ src, srcSet }, dimensions, imgProps))
+        : createElement(
+            'img',
+            assign({ src, srcSet, alt, width, height }, imgProps)
+          )
       : null,
     IS_BROWSER &&
       placeholder &&
@@ -190,10 +197,13 @@ const Reshoot = (
           { onAnimationEnd: () => setState(() => LOADED) },
           state === FADING && { className: asFadeout }
         ),
-        createElement(
-          'img',
-          assign({ src: placeholder, alt: '', loading: 'lazy' }, dimensions)
-        )
+        createElement('img', {
+          src: placeholder,
+          alt: '',
+          loading: 'lazy',
+          width,
+          height,
+        })
       ),
     IS_BROWSER &&
       (state < HIDDEN || (state === HIDDEN && hasFailed(src))) &&
