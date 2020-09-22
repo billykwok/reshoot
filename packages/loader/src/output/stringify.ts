@@ -22,14 +22,13 @@ export function stringify(field: Field): string {
       }
       if (Array.isArray(field)) {
         return `[${field
-          .map((el) => stringify(el))
-          .filter((el) => typeof el !== 'undefined')
+          .filter((v) => typeof v !== 'undefined' && v !== null)
+          .map((v) => stringify(v))
           .join()}]`;
       }
       return `{${Object.entries(field)
-        .map(([k, v]) => [k, stringify(v)])
-        .filter(([, v]) => typeof v !== 'undefined')
-        .map(([k, v]) => `${JSON.stringify(k)}:${v}`)
+        .filter(([, v]) => typeof v !== 'undefined' && v !== null)
+        .map(([k, v]) => `${JSON.stringify(k)}:${stringify(v)}`)
         .join()}}`;
     }
   }
