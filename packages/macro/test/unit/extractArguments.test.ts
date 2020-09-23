@@ -34,7 +34,9 @@ describe('arguments', () => {
   });
 
   test('parse input that is not a function call', () => {
-    const referencePath = { parentPath: { type: 'Expression' } } as NodePath;
+    const referencePath = ({
+      parentPath: { type: 'Expression' },
+    } as unknown) as NodePath;
     expect(() => extractArgumentPaths(referencePath)).toThrow(
       new MacroError('Please use it as a function')
     );

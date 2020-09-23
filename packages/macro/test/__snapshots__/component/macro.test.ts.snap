@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`macros evaluate import path 1`] = `
+"var images = [{
+  \\"others\\": 1,
+  \\"data\\": require(\\"../../../../__fixtures__/image-1.jpg?{\\\\\\"color\\\\\\":\\\\\\"red\\\\\\"}\\")
+}, {
+  \\"others\\": 2,
+  \\"data\\": require(\\"../../../../__fixtures__/image-2.png?{\\\\\\"color\\\\\\":\\\\\\"blue\\\\\\"}\\")
+}, {
+  \\"others\\": 3,
+  \\"data\\": require(\\"../../../../__fixtures__/image-3.webp?{\\\\\\"color\\\\\\":\\\\\\"yellow\\\\\\"}\\")
+}, {
+  \\"others\\": 4,
+  \\"data\\": require(\\"../../../../__fixtures__/image-4.gif?{\\\\\\"color\\\\\\":\\\\\\"#ddeeaa\\\\\\"}\\")
+}, {
+  \\"others\\": 5,
+  \\"data\\": require(\\"../../../../__fixtures__/image-5.svg\\")
+}];"
+`;
+
+exports[`macros evaluate template literal: var filename = 'test-image.jpg';
+var path = "some/directory/".concat(filename);
+
+var image = require("some/directory/test-image.jpg?{\\"key\\":\\"irrelevant\\"}"); 1`] = `
+"var filename = 'test-image.jpg';
+var path = \\"some/directory/\\".concat(filename);
+
+var image = require(\\"some/directory/test-image.jpg?{\\\\\\"key\\\\\\":\\\\\\"irrelevant\\\\\\"}\\");"
+`;

@@ -1,11 +1,18 @@
 import path from 'path';
 import { MacroError } from 'babel-plugin-macros';
-import { arrayExpression } from '@babel/types';
+import { parseExpression } from '@babel/parser';
+import {
+  arrayExpression,
+  objectExpression,
+  objectProperty,
+  stringLiteral,
+} from '@babel/types';
 import extractArguments from './extractArguments';
 import evalFirstArgument from './evalFirstArgument';
 import evalSecondArgument from './evalSecondArgument';
 import requireExpression from './requireExpression';
 
+import type { ObjectExpression } from '@babel/types';
 import type { MacroParams } from 'babel-plugin-macros';
 
 function handle({ references, state }: MacroParams): void {
@@ -32,11 +39,52 @@ function handle({ references, state }: MacroParams): void {
     }[];
     referencePath.parentPath.replaceWith(
       arrayExpression(
-        images.map(({ src, ...rest }) =>
-          requireExpression(path.join(path.dirname(firstArg), src), {
-            ...options,
-            ...rest,
-          })
+        images.map(
+          ({
+            src,
+            name,
+            sources,
+            enforceFormat,
+            srcSet,
+            quality,
+            background,
+            color,
+            placeholder,
+            aspectRatio,
+            /* eslint-disable @typescript-eslint/no-unused-vars */
+            outputPath,
+            publicPath,
+            shape,
+            fastMode,
+            cache,
+            emitFile,
+            esModule,
+            data,
+            /* eslint-enable @typescript-eslint/no-unused-vars */
+            ...rest
+          }) => {
+            const requireCall = requireExpression(
+              path.join(path.dirname(firstArg), src),
+              {
+                name,
+                sources,
+                enforceFormat,
+                srcSet,
+                quality,
+                background,
+                color,
+                placeholder,
+                aspectRatio,
+              }
+            );
+            return objectExpression(
+              (!rest || Object.keys(rest).length
+                ? (parseExpression(JSON.stringify(rest)) as ObjectExpression)
+                    .properties
+                : []
+              ).concat(objectProperty(stringLiteral('data'), requireCall))
+            );
+          }
         )
       )
     );

@@ -5,7 +5,6 @@ import {
   stringLiteral,
   objectProperty,
   identifier,
-  arrayExpression,
 } from '@babel/types';
 import { MacroError } from 'babel-plugin-macros';
 import handle from '../../src/handle';
@@ -137,26 +136,8 @@ describe('arguments', () => {
     } as PluginPass;
     const params = { references, state, babel: null };
     handle(params);
-    expect(mockReplaceWith).toHaveBeenNthCalledWith(
-      1,
-      arrayExpression([
-        callExpression(identifier('require'), [
-          stringLiteral('image-1.jpg?{"color":"red","others":1}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-2.png?{"color":"blue","others":2}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-3.webp?{"color":"yellow","others":3}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-4.gif?{"color":"#ddeeaa","others":4}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-5.svg?{"color":"#eeff99","others":5}'),
-        ]),
-      ])
-    );
+    expect(mockReplaceWith.mock.calls).toHaveLength(1);
+    expect(mockReplaceWith.mock.calls[0]).toMatchSnapshot();
   });
 
   test('parse valid json input with only one argument', () => {
@@ -168,25 +149,7 @@ describe('arguments', () => {
     } as PluginPass;
     const params = { references, state, babel: null };
     handle(params);
-    expect(mockReplaceWith).toHaveBeenNthCalledWith(
-      1,
-      arrayExpression([
-        callExpression(identifier('require'), [
-          stringLiteral('image-1.jpg?{"color":"red","others":1}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-2.png?{"color":"blue","others":2}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-3.webp?{"color":"yellow","others":3}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-4.gif?{"color":"#ddeeaa","others":4}'),
-        ]),
-        callExpression(identifier('require'), [
-          stringLiteral('image-5.svg?{"others":5}'),
-        ]),
-      ])
-    );
+    expect(mockReplaceWith.mock.calls).toHaveLength(1);
+    expect(mockReplaceWith.mock.calls[0]).toMatchSnapshot();
   });
 });

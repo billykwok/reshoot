@@ -55,7 +55,7 @@ describe('macros', () => {
       `,
       babelConfig
     );
-    expect(tranformed.code.trim()).toEqual(
+    expect(tranformed.code.trim()).toMatchSnapshot(
       'var filename = \'test-image.jpg\';\nvar path = "some/directory/".concat(filename);\n\nvar image = require("some/directory/test-image.jpg?{\\"key\\":\\"irrelevant\\"}");'
     );
   });
@@ -68,8 +68,6 @@ describe('macros', () => {
       `,
       babelConfig
     );
-    expect(tranformed.code.trim()).toEqual(
-      'var images = [require("../../../../__fixtures__/image-1.jpg?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"red\\",\\"others\\":1}"), require("../../../../__fixtures__/image-2.png?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"blue\\",\\"others\\":2}"), require("../../../../__fixtures__/image-3.webp?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"yellow\\",\\"others\\":3}"), require("../../../../__fixtures__/image-4.gif?{\\"key\\":\\"irrelevant\\",\\"color\\":\\"#ddeeaa\\",\\"others\\":4}"), require("../../../../__fixtures__/image-5.svg?{\\"key\\":\\"irrelevant\\",\\"others\\":5}")];'
-    );
+    expect(tranformed.code.trim()).toMatchSnapshot();
   });
 });
