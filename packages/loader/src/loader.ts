@@ -68,7 +68,7 @@ async function reshootLoader(
       ? resolveAspectRatio(metadata, options.aspectRatio)
       : null,
     placeholder: null,
-    color: options.color ? 'transparent' : null,
+    color: options.color || 'transparent',
     sources: [],
   };
 
