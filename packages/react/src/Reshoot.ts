@@ -134,7 +134,7 @@ const Reshoot = (
     className,
     style,
     data: {
-      sources,
+      sources = [],
       src,
       srcSet,
       width,
@@ -172,20 +172,15 @@ const Reshoot = (
       extraProps
     ),
     !IS_BROWSER || state > LOADING
-      ? sources && sources.length
-        ? createElement(
-            'picture',
-            {},
-            ...sources.map((source) => createElement('source', source)),
-            createElement(
-              'img',
-              assign({ src, srcSet, alt, width, height }, imgProps)
-            )
-          )
-        : createElement(
+      ? createElement(
+          'picture',
+          {},
+          ...sources.map((source) => createElement('source', source)),
+          createElement(
             'img',
             assign({ src, srcSet, alt, width, height }, imgProps)
           )
+        )
       : null,
     IS_BROWSER &&
       placeholder &&

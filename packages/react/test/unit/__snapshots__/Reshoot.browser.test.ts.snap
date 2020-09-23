@@ -6,12 +6,14 @@ exports[`Reshoot aspect ratio can be overridden 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.5;"
 >
-  <img
-    height="80"
-    src="image.jpg"
-    srcset="image-480.jpg 480w, image-640.jpg 640w"
-    width="100"
-  />
+  <picture>
+    <img
+      height="80"
+      src="image.jpg"
+      srcset="image-480.jpg 480w, image-640.jpg 640w"
+      width="100"
+    />
+  </picture>
 </div>
 `;
 
@@ -23,12 +25,14 @@ exports[`Reshoot customized options for image link 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.8;"
   target="_blank"
 >
-  <img
-    height="80"
-    src="image.jpg"
-    srcset="image-480.jpg 480w, image-640.jpg 640w"
-    width="100"
-  />
+  <picture>
+    <img
+      height="80"
+      src="image.jpg"
+      srcset="image-480.jpg 480w, image-640.jpg 640w"
+      width="100"
+    />
+  </picture>
 </a>
 `;
 
@@ -38,12 +42,14 @@ exports[`Reshoot customized options for normal image 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    height="80"
-    src="image.jpg"
-    srcset="image-480.jpg 480w, image-640.jpg 640w"
-    width="100"
-  />
+  <picture>
+    <img
+      height="80"
+      src="image.jpg"
+      srcset="image-480.jpg 480w, image-640.jpg 640w"
+      width="100"
+    />
+  </picture>
 </div>
 `;
 
@@ -127,12 +133,14 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    height="80"
-    src="image.jpg"
-    srcset="image-480.jpg 480w, image-640.jpg 640w"
-    width="100"
-  />
+  <picture>
+    <img
+      height="80"
+      src="image.jpg"
+      srcset="image-480.jpg 480w, image-640.jpg 640w"
+      width="100"
+    />
+  </picture>
   <div
     class="ajkm71e"
   >
@@ -171,12 +179,14 @@ exports[`Reshoot render valid input correctly in state LOADED 1`] = `
   data-testid="123"
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
-  <img
-    height="80"
-    src="image.jpg"
-    srcset="image-480.jpg 480w, image-640.jpg 640w"
-    width="100"
-  />
+  <picture>
+    <img
+      height="80"
+      src="image.jpg"
+      srcset="image-480.jpg 480w, image-640.jpg 640w"
+      width="100"
+    />
+  </picture>
 </div>
 `;
 
