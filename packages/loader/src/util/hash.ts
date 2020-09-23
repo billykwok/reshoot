@@ -35,17 +35,19 @@ function makeOptionsHashable(options: SerializableOptions) {
     DELIMITER_1 +
     options.name +
     DELIMITER_1 +
-    options.sources.join() +
+    options.alternativeFormats.join() +
     DELIMITER_1 +
-    options.srcSet.join() +
+    options.alternativeWidths.join() +
+    DELIMITER_1 +
+    (options.defaultFormat ? options.defaultFormat.toString() : NULL) +
+    DELIMITER_1 +
+    (options.defaultWidth ? makeNumberHashable(options.defaultWidth) : NULL) +
     DELIMITER_1 +
     makeNumberHashable(options.quality) +
     DELIMITER_1 +
     (options.background ? options.background : NULL) +
     DELIMITER_1 +
     (options.color ? options.color : NULL) +
-    DELIMITER_1 +
-    (options.enforceFormat ? options.enforceFormat.toString() : NULL) +
     DELIMITER_1 +
     (options.placeholder
       ? makeNumberHashable(options.placeholder.size) +

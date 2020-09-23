@@ -30,7 +30,7 @@ describe('createError', () => {
         },
       ])
     ).toEqual(
-      '@reshoot/loader options are not valid:\n1. options: something wrong happened\n2. property1: something wrong happened, but got "actualData1"\n3. property2: something wrong happened, but got "actualData2"'
+      '@reshoot/loader options are not valid:\n1. options: something wrong happened, but got undefined\n2. property1: something wrong happened, but got "actualData1"\n3. property2: something wrong happened, but got "actualData2"'
     );
   });
 });

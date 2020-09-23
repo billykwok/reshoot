@@ -43,17 +43,20 @@ async function reshootLoader(
     }
   }
 
-  const [mime, ext] = resolveMimeAndExt(this, options.enforceFormat);
-  const isSvgOrGif = options.enforceFormat
-    ? options.enforceFormat === Mime.SVG || options.enforceFormat === Mime.GIF
+  const [mime, ext] = resolveMimeAndExt(this, options.defaultFormat);
+  const isSvgOrGif = options.defaultFormat
+    ? options.defaultFormat === Mime.SVG || options.defaultFormat === Mime.GIF
     : mime === Mime.SVG || mime === Mime.GIF;
   const [writeImage, writeStats] = createOutputWriter(this, hash, options);
 
   const image = loadImage(content);
   const metadata = await image.metadata();
+  const defaultWidth = Math.min(options.defaultWidth || 0, metadata.width);
   const [rawPath, awaitable] = writeImage(
-    metadata.width,
-    isSvgOrGif ? Promise.resolve(content) : resize(image, 0, mime, options),
+    isSvgOrGif ? metadata.width : defaultWidth,
+    isSvgOrGif
+      ? Promise.resolve(content)
+      : resize(image, defaultWidth, mime, options),
     ext
   );
   awaitables.push(awaitable);
@@ -89,13 +92,15 @@ async function reshootLoader(
     internalOutput.color = await resolveColor(image, options);
   }
 
-  const isAlternativeFormatsEnabled = options.sources && options.sources.length;
+  const isAlternativeFormatsEnabled =
+    options.alternativeFormats && options.alternativeFormats.length;
   if (
     !isSvgOrGif &&
-    ((options.srcSet && options.srcSet.length) || isAlternativeFormatsEnabled)
+    ((options.alternativeWidths && options.alternativeWidths.length) ||
+      isAlternativeFormatsEnabled)
   ) {
-    const widths = options.srcSet
-      .filter((width) => width < metadata.width)
+    const widths = options.alternativeWidths
+      .filter((width) => width < metadata.width && width !== defaultWidth)
       .sort((a, b) => a - b);
 
     for (const width of widths) {
@@ -109,11 +114,11 @@ async function reshootLoader(
     }
 
     if (isAlternativeFormatsEnabled) {
-      for (const type of options.sources) {
+      for (const type of options.alternativeFormats) {
         const extension = Extension[type];
         const [src, awaitable] = writeImage(
-          metadata.width,
-          resize(image, 0, type, options),
+          defaultWidth,
+          resize(image, defaultWidth, type, options),
           extension
         );
         awaitables.push(awaitable);

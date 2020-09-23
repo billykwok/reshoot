@@ -4,14 +4,14 @@ import { Mime, Extension } from '../type';
 
 function resolveMimeAndExt(
   ctx: Pick<loader.LoaderContext, 'resourcePath'>,
-  enforceFormat: Mime = null
+  defaultFormat: Mime = null
 ): [Mime, Extension] {
-  if (enforceFormat) {
-    const ext = Extension[enforceFormat];
+  if (defaultFormat) {
+    const ext = Extension[defaultFormat];
     if (!ext) {
-      throw new Error(`Format "${enforceFormat}" is not supported.`);
+      throw new Error(`Format "${defaultFormat}" is not supported.`);
     }
-    return [enforceFormat, Extension[enforceFormat]];
+    return [defaultFormat, Extension[defaultFormat]];
   }
   const ext = path.extname(ctx.resourcePath).replace(/\./, '') as Extension;
   const mime = Mime[ext.toUpperCase()] as Mime;

@@ -79,12 +79,14 @@ const options = {
     color,
     sources,
   }),
-  srcSet: [480, 640, 840, 1080],
+  alternativeWidths: [480, 640, 840, 1080],
+  alternativeFormats: ['image/webp'],
+  defaultFormat: false,
+  defaultWidth: 720,
   quality: 80,
   background: '#fff',
   color: '#fff',
-  placeholder: { size: 8, trimDataUrl: false },
-  enforceFormat: false,
+  placeholder: { size: 8, quality: 10, trimDataUrl: false },
   aspectRatio: {
     type: 'widthByHeight',
     format: 'ratio',
@@ -186,12 +188,12 @@ export default {
 
 #### Widths of Responsive Images
 
-Type: `srcSet: number[]`  
+Type: `alternativeWidths: number[]`  
 Default: `[480, 640, 840, 1080]`  
 Widths of responsive images. Input image is resized into a set of output images with widths specified in this option. The `srcSet` attribute of module export is also generated from this list. For example,
 
 ```typescript
-const srcSet = [360, 640, 960];
+const alternativeWidths = [360, 640, 960];
 ```
 
 results in something like
@@ -227,11 +229,17 @@ Type: `placeholder: { size: number, trimDataUrl: boolean }`
 Default: `{ size: 8, trimDataUrl: false }`  
 LQIP setting where `size` is the length of the shorter side of the image, and `trimDataUrl` controls whether the initial prefix of data-url (`data:<meme>;base64,`) is omitted to slightly reduce bundle size. When `trimDataUrl` is falsy, the reconstruction of full data-url is expected to be handled in user land.
 
-#### Enforce Format
+#### Default Format
 
-Type: `enforceFormat: string | false`  
+Type: `defaultFormat: string | false`  
 Default: `false`  
 Enforce the output for all images to be in specific format. Support `jpg`, `png`, `webp` and `gif`. When falsy, the format of output is the same of input.
+
+#### Default Width
+
+Type: `defaultWidth: number | false`  
+Default: `720`  
+Max width of the fallback image.
 
 #### Aspect Ratio
 

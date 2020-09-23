@@ -20,12 +20,12 @@ describe('hash', () => {
         Object.assign({ mode: devMode }, options(devMode), {
           background: null,
           color: null,
-          enforceFormat: null,
+          defaultFormat: null,
           aspectRatio: null,
           placeholder: null,
         })
       )
-    ).toEqual('387b48cf14f12d1b');
+    ).toEqual('9ff1ba7af8921944');
   });
 
   test('should change when color changes', async () => {
@@ -43,20 +43,20 @@ describe('hash', () => {
     );
   });
 
-  test('should change when enforceFormat changes', async () => {
+  test('should change when defaultFormat changes', async () => {
     const { default: computeHash } = await import('../../../src/util/hash');
     expect(
       computeHash(
         'content123',
         Object.assign({ mode: devMode }, options(devMode), {
-          enforceFormat: null,
+          defaultFormat: null,
         })
       )
     ).not.toEqual(
       computeHash(
         'content123',
         Object.assign({ mode: devMode }, options(devMode), {
-          enforceFormat: Mime.JPEG,
+          defaultFormat: Mime.JPEG,
         })
       )
     );

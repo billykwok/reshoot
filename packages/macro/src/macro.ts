@@ -22,12 +22,13 @@ export default createMacro(handle) as <T = ImageData>(
       name: string;
       outputPath: string | ((filename: string) => string);
       publicPath: string | ((filename: string) => string);
-      srcSet: number[];
       alternativeFormats: 'image/webp'[];
+      alternativeWidths: number[];
+      defaultFormat: 'image/jpeg' | 'image/png' | 'image/webp';
+      defaultWidth: number;
       quality: number;
       background: string;
       color: string;
-      enforceFormat: 'image/jpeg' | 'image/png' | 'image/webp';
       placeholder: { size: number; quality: number; trimDataUrl: boolean };
       aspectRatio: {
         type: 'widthByHeight' | 'heightByWidth';

@@ -25,48 +25,50 @@ describe('resolveOptions', () => {
 
   test('with config in both', async () => {
     parseQuery.mockReturnValue({ color: '#888' });
-    getOptions.mockReturnValue({ color: '#000', enforceFormat: Mime.JPEG });
+    getOptions.mockReturnValue({ color: '#000', defaultFormat: Mime.JPEG });
     const { default: resolveOptions } = await import(
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      sources: [Mime.WEBP],
       aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
       background: '#fff',
       cache: true,
       color: '#888',
       emitFile: true,
-      enforceFormat: Mime.JPEG,
+      alternativeFormats: [Mime.WEBP],
+      alternativeWidths: [480, 640, 840, 1080],
+      defaultFormat: Mime.JPEG,
+      defaultWidth: 720,
       esModule: true,
       fastMode: true,
       mode: 'development',
       name: '[path][name].[ext]',
       placeholder: { quality: 10, size: 8, trimDataUrl: false },
       quality: 80,
-      srcSet: [480, 640, 840, 1080],
     });
   });
 
   test('with config in file config only', async () => {
-    getOptions.mockReturnValue({ color: '#000', enforceFormat: Mime.JPEG });
+    getOptions.mockReturnValue({ color: '#000', defaultFormat: Mime.JPEG });
     const { default: resolveOptions } = await import(
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      sources: [Mime.WEBP],
       aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
       background: '#fff',
       cache: true,
       color: '#000',
       emitFile: true,
-      enforceFormat: Mime.JPEG,
+      alternativeFormats: [Mime.WEBP],
+      alternativeWidths: [480, 640, 840, 1080],
+      defaultFormat: Mime.JPEG,
+      defaultWidth: 720,
       esModule: true,
       fastMode: true,
       mode: 'development',
       name: '[path][name].[ext]',
       placeholder: { quality: 10, size: 8, trimDataUrl: false },
       quality: 80,
-      srcSet: [480, 640, 840, 1080],
     });
   });
 
@@ -76,20 +78,21 @@ describe('resolveOptions', () => {
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      sources: [Mime.WEBP],
       aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
       background: '#fff',
       cache: true,
       color: '#888',
       emitFile: true,
-      enforceFormat: null,
+      alternativeFormats: [Mime.WEBP],
+      alternativeWidths: [480, 640, 840, 1080],
+      defaultFormat: null,
+      defaultWidth: 720,
       esModule: true,
       fastMode: true,
       mode: 'development',
       name: '[path][name].[ext]',
       placeholder: { quality: 10, size: 8, trimDataUrl: false },
       quality: 80,
-      srcSet: [480, 640, 840, 1080],
     });
   });
 });
