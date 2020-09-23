@@ -10,9 +10,9 @@ function requireExpression(
     string,
     unknown
   >;
-  const queryString = Object.keys(mergedOptions).length
-    ? `?${JSON.stringify(mergedOptions)}`
-    : '';
+
+  const serialized = JSON.stringify(mergedOptions);
+  const queryString = serialized === '{}' ? '' : `?${serialized}`;
   return callExpression(identifier('require'), [
     stringLiteral(`${path}${queryString}`),
   ]);
