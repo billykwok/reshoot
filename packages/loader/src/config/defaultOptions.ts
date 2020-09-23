@@ -5,7 +5,7 @@ import type { Options } from '../type';
 function defaultOptions(name: string, fastMode: boolean): Options {
   return {
     name,
-    outputPath: '/images',
+    outputPath: null,
     publicPath: null,
     shape: ({
       src,

@@ -38,7 +38,7 @@ describe('Basic component test for @reshoot/loader', () => {
     const actual1 = await compile(
       memfs,
       '../../../../__fixtures__/test-image.jpg',
-      { cache: true }
+      { outputPath: '/images/', cache: true }
     );
     const images1 = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
@@ -63,7 +63,7 @@ describe('Basic component test for @reshoot/loader', () => {
     const actual2 = await compile(
       memfs,
       '../../../../__fixtures__/test-image.jpg',
-      { cache: true }
+      { outputPath: '/images/', cache: true }
     );
     const images2 = await memfs.promises.readdir(
       path.resolve(__dirname, './images')

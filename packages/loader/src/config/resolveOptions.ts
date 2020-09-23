@@ -16,9 +16,7 @@ function resolveOptions(ctx: loader.LoaderContext): ResolvedOptions {
   const outputPath = createOutputPathResolver(options.outputPath);
   return Object.assign({ mode: ctx.mode }, options, {
     outputPath,
-    publicPath: options.publicPath
-      ? createPublicPathResolver(options.publicPath)
-      : outputPath,
+    publicPath: createPublicPathResolver(options.publicPath),
     placeholder: Object.assign(
       {},
       defaultOptions.placeholder,

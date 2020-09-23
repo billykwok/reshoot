@@ -23,11 +23,11 @@ const validate = ajv.compile({
       description: 'Name pattern of the output image files',
     },
     outputPath: {
-      instanceof: ['String', 'Function'],
+      anyOf: [{ type: 'null' }, { instanceof: ['String', 'Function'] }],
       description: 'The directory where output images should be emitted to',
     },
     publicPath: {
-      instanceof: ['String', 'Function'],
+      anyOf: [{ type: 'null' }, { instanceof: ['String', 'Function'] }],
       description:
         'The path where the output images are accessed on the webpage',
     },

@@ -6,7 +6,7 @@ describe('default options', () => {
   test('should return correct options in development environment', () => {
     expect(resolveDefaultOptions('development')).toMatchObject({
       name: '[path][name].[ext]',
-      outputPath: '/images',
+      outputPath: null,
       publicPath: null,
       srcSet: [480, 640, 840, 1080],
       quality: 80,
@@ -26,7 +26,7 @@ describe('default options', () => {
   test('should return correct options in other environment', () => {
     expect(resolveDefaultOptions('production')).toMatchObject({
       name: '[contenthash:8]-[width].[ext]',
-      outputPath: '/images',
+      outputPath: null,
       publicPath: null,
       srcSet: [480, 640, 840, 1080],
       quality: 80,

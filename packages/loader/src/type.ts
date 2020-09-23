@@ -69,14 +69,14 @@ export type ShapeArgument = {
   src: string;
   width: number;
   height: number;
-  srcSet: Stringifiable<string[]>;
+  srcSet: Stringifiable<[string, number][]>;
   aspectRatio: number;
   placeholder: string;
   color: string;
   sources: {
     type: string;
     src: string;
-    srcSet: Stringifiable<string[]>;
+    srcSet: Stringifiable<[string, number][]>;
   }[];
 };
 

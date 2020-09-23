@@ -1,42 +1,54 @@
 import { isDataUrl } from '../util/dataUrl';
 import { createStringifiable, stringify } from './stringify';
 
-import type { Result, Options, Stringifiable } from '../type';
+import type { Result, Stringifiable, ResolvedOptions } from '../type';
 
 const WEBPACK_PUBLIC_PATH_PREFIX = '__webpack_public_path__+';
 
-function transformSrc(value: string): Stringifiable<string> {
-  return createStringifiable(
-    value,
-    () => WEBPACK_PUBLIC_PATH_PREFIX + JSON.stringify(value)
+function transformSrc(
+  value: string,
+  options: ResolvedOptions
+): Stringifiable<string> {
+  return createStringifiable(value, () =>
+    options.publicPath
+      ? JSON.stringify(options.publicPath(value))
+      : WEBPACK_PUBLIC_PATH_PREFIX + JSON.stringify(value)
   );
 }
 
-function transformPlaceholder(value: string): Stringifiable<string> | string {
+function transformPlaceholder(
+  value: string,
+  options: ResolvedOptions
+): Stringifiable<string> | string {
   if (!value) {
     return JSON.stringify(null);
   }
   return isDataUrl(value)
     ? value
-    : createStringifiable(
-        value,
-        () => WEBPACK_PUBLIC_PATH_PREFIX + JSON.stringify(value)
+    : createStringifiable(value, () =>
+        options.publicPath
+          ? JSON.stringify(options.publicPath(value))
+          : WEBPACK_PUBLIC_PATH_PREFIX + JSON.stringify(value)
       );
 }
 
-const SRCSET_DELIMITER = ',"+';
-const SRCSET_SUFFIX = '"';
-const SRCSET_EMPTY = '""';
-
-function transformSrcSet(value: [string, number][]): Stringifiable<string[]> {
-  const srcSet = value.map(([path, width]) => `${path} ${width}w`);
-  return createStringifiable(srcSet, () =>
-    srcSet.length
-      ? srcSet
-          .map((it) => WEBPACK_PUBLIC_PATH_PREFIX + SRCSET_SUFFIX + it)
-          .join(SRCSET_DELIMITER)
-          .concat(SRCSET_SUFFIX)
-      : SRCSET_EMPTY
+function transformSrcSet(
+  value: [string, number][],
+  options: ResolvedOptions
+): Stringifiable<[string, number][]> {
+  return createStringifiable(value, () =>
+    options.publicPath || !value.length
+      ? JSON.stringify(
+          value
+            .map(([path, width]) => `${options.publicPath(path)} ${width}w`)
+            .join(',')
+        )
+      : value
+          .map(
+            ([path, width]) => WEBPACK_PUBLIC_PATH_PREFIX + `"${path} ${width}w`
+          )
+          .join(',"+')
+          .concat('"')
   );
 }
 
@@ -45,19 +57,19 @@ const COMMON_JS_EXPORT = 'module.exports=';
 
 function render(
   { src, srcSet, placeholder, sources, ...internalOutput }: Result,
-  options: Options
+  options: ResolvedOptions
 ): string {
   return (
     (options.esModule ? ES6_EXPORT : COMMON_JS_EXPORT) +
     stringify(
       options.shape({
-        src: transformSrc(src),
-        srcSet: transformSrcSet(srcSet),
-        placeholder: transformPlaceholder(placeholder),
+        src: transformSrc(src, options),
+        srcSet: transformSrcSet(srcSet, options),
+        placeholder: transformPlaceholder(placeholder, options),
         sources: sources.map(({ type, src, srcSet }) => ({
           type,
-          src: transformSrc(src),
-          srcSet: transformSrcSet(srcSet),
+          src: transformSrc(src, options),
+          srcSet: transformSrcSet(srcSet, options),
         })),
         ...internalOutput,
       })
