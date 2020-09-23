@@ -47,14 +47,14 @@ describe('Basic component test for @reshoot/loader', () => {
       expect.arrayContaining([
         'tEsThAsH-480.jpg',
         'tEsThAsH-640.jpg',
+        'tEsThAsH-720.jpg',
         'tEsThAsH-840.jpg',
         'tEsThAsH-1080.jpg',
-        'tEsThAsH-4774.jpg',
         'tEsThAsH-480.webp',
         'tEsThAsH-640.webp',
+        'tEsThAsH-720.webp',
         'tEsThAsH-840.webp',
         'tEsThAsH-1080.webp',
-        'tEsThAsH-4774.webp',
       ])
     );
     expect(images1).toHaveLength(10);
@@ -72,14 +72,14 @@ describe('Basic component test for @reshoot/loader', () => {
       expect.arrayContaining([
         'tEsThAsH-480.jpg',
         'tEsThAsH-640.jpg',
+        'tEsThAsH-720.jpg',
         'tEsThAsH-840.jpg',
         'tEsThAsH-1080.jpg',
-        'tEsThAsH-4774.jpg',
         'tEsThAsH-480.webp',
         'tEsThAsH-640.webp',
+        'tEsThAsH-720.webp',
         'tEsThAsH-840.webp',
         'tEsThAsH-1080.webp',
-        'tEsThAsH-4774.webp',
       ])
     );
     expect(images2).toHaveLength(10);

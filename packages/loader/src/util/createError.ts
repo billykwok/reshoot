@@ -6,9 +6,9 @@ function createError(errors: ErrorObject[]): string {
     errors
       .map(({ dataPath, message, data }, i) => {
         const property = dataPath ? /^\.(.*)/gi.exec(dataPath)[1] : 'options';
-        return `${i + 1}. ${property}: ${message}${
-          dataPath ? `, but got ${JSON.stringify(data)}` : ''
-        }`;
+        return `${i + 1}. ${property}: ${message}, but got ${JSON.stringify(
+          data
+        )}`;
       })
       .join('\n')
   );

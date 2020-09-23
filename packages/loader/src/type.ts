@@ -93,11 +93,12 @@ interface BaseOptions {
   esModule: boolean;
   shape: (output: ShapeArgument) => Field;
   quality: number;
-  srcSet: number[];
-  sources: Mime[];
+  alternativeFormats: Mime[];
+  alternativeWidths: number[];
+  defaultFormat: Mime;
+  defaultWidth: number;
   background: string;
   color: string;
-  enforceFormat: Mime;
   placeholder: Placeholder;
   aspectRatio: AspectRatio;
 }

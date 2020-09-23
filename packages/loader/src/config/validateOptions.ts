@@ -36,21 +36,25 @@ const validate = ajv.compile({
       description:
         'A function returning the shape of the exported object returned from import or require',
     },
-    sources: {
+    alternativeFormats: {
       type: 'array',
       description: 'Alternative more efficient images for supported browsers',
       items: { type: 'string', enum: [Mime.WEBP] },
       uniqueItems: true,
     },
-    enforceFormat: {
-      type: ['string', 'null'],
-      description: 'Enforce the output for all images to be in specific format',
-    },
-    srcSet: {
+    alternativeWidths: {
       type: 'array',
       description: 'Widths of responsive images',
       items: { type: 'number' },
       uniqueItems: true,
+    },
+    defaultFormat: {
+      type: ['string', 'null'],
+      description: 'Enforce the output for all images to be in specific format',
+    },
+    defaultWidth: {
+      type: ['number', 'null'],
+      description: 'Max width of the fallback image',
     },
     quality: {
       type: 'number',
