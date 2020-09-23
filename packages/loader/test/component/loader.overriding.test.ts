@@ -23,6 +23,7 @@ describe('Overriding component test for @reshoot/loader', () => {
       memfs,
       '../../../../__fixtures__/test-image.jpg',
       {
+        outputPath: '/images/',
         cache: false,
         shape: ({ type, src, srcSet, sources, ...output }: ShapeArgument) => ({
           ...output,

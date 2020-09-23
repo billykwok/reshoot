@@ -6,7 +6,7 @@ type ImageData = Readonly<{
   type: string;
   src: string;
   srcSet: string;
-  sources: Readonly<{ type: string; src: string; srcSet: string }>[];
+  alternativeFormats: Readonly<{ type: string; src: string; srcSet: string }>[];
   width: number;
   height: number;
   aspectRatio: number;
@@ -23,7 +23,7 @@ export default createMacro(handle) as <T = ImageData>(
       outputPath: string | ((filename: string) => string);
       publicPath: string | ((filename: string) => string);
       srcSet: number[];
-      sources: 'image/webp'[];
+      alternativeFormats: 'image/webp'[];
       quality: number;
       background: string;
       color: string;

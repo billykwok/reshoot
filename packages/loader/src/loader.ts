@@ -99,13 +99,13 @@ async function reshootLoader(
       .sort((a, b) => a - b);
 
     for (const width of widths) {
-      const [path, awaitable] = writeImage(
+      const [srcSet, awaitable] = writeImage(
         width,
         resize(image, width, mime, options),
         ext
       );
       awaitables.push(awaitable);
-      internalOutput.srcSet.push([path, width]);
+      internalOutput.srcSet.push([srcSet, width]);
     }
 
     if (isAlternativeFormatsEnabled) {

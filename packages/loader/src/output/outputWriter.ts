@@ -49,23 +49,22 @@ function createOutputWriter(
       ext: string
     ) {
       const filename = interpolate(ctx, name, { width, hash, ext });
-      const publicPath = options.publicPath(filename);
       if (emitFile) {
         if (cache) {
           filenames.push(filename);
           return [
-            publicPath,
+            filename,
             cacheAndOutputImage(ctx, filename, content, options),
           ];
         }
-        return [publicPath, outputImage(ctx, filename, content, options)];
+        return [filename, outputImage(ctx, filename, content, options)];
       }
-      return [publicPath, NULL_PROMISE];
+      return [filename, NULL_PROMISE];
     },
     async function writeStats(internalOutput: Result) {
       const output = render(internalOutput, options);
       if (cache) {
-        if (!options.fastMode && filenames.length === 0) {
+        if (filenames.length === 0) {
           ctx.emitWarning(new Error(`Caching ${hash} without files`));
         }
         await outputJson(resolveCachePath(ctx.mode, `${hash}.json`), {

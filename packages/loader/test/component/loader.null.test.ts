@@ -20,7 +20,7 @@ describe('Null component test for @reshoot/loader', () => {
     const actual = await compile(
       memfs,
       '../../../../__fixtures__/test-image.jpg',
-      { cache: false, color: null, placeholder: null }
+      { outputPath: '/images/', cache: false, color: null, placeholder: null }
     );
     const images = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
@@ -49,7 +49,12 @@ describe('Null component test for @reshoot/loader', () => {
     const actual = await compile(
       memfs,
       '../../../../__fixtures__/test-image.jpg',
-      { cache: false, placeholder: null, aspectRatio: null }
+      {
+        outputPath: '/images/',
+        cache: false,
+        placeholder: null,
+        aspectRatio: null,
+      }
     );
     const images = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
@@ -78,7 +83,7 @@ describe('Null component test for @reshoot/loader', () => {
     const actual = await compile(
       memfs,
       '../../../../__fixtures__/test-image.jpg',
-      { cache: false, srcSet: [], sources: [] }
+      { outputPath: '/images/', cache: false, srcSet: [], sources: [] }
     );
     const images = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
