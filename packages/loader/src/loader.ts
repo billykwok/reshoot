@@ -72,6 +72,14 @@ async function reshootLoader(
     sources: [],
   };
 
+  if (options.placeholder) {
+    internalOutput.placeholder = await resolvePlaceholder(
+      image,
+      internalOutput.color,
+      options
+    );
+  }
+
   if (options.fastMode) {
     awaitables.unshift(writeStats(internalOutput));
     return callback(null, (await Promise.all(awaitables))[0]);
@@ -79,14 +87,6 @@ async function reshootLoader(
 
   if (!options.color) {
     internalOutput.color = await resolveColor(image, options);
-  }
-
-  if (options.placeholder) {
-    internalOutput.placeholder = await resolvePlaceholder(
-      image,
-      internalOutput.color,
-      options
-    );
   }
 
   const isAlternativeFormatsEnabled = options.sources && options.sources.length;
