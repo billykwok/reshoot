@@ -2529,7 +2529,7 @@
     react-lifecycles-compat "^3.0.4"
 
 "@reshoot/loader@file:packages/loader":
-  version "1.2.4"
+  version "1.3.0"
   dependencies:
     ajv "6.12.5"
     ajv-keywords "3.5.2"
@@ -2542,12 +2542,12 @@
     sharp "^0.26.1"
 
 "@reshoot/macro@file:packages/macro":
-  version "1.2.0"
+  version "1.4.0"
   dependencies:
     "@babel/types" "^7.11.5"
 
 "@reshoot/react@file:packages/react":
-  version "1.3.0"
+  version "1.4.0"
 
 "@rollup/plugin-babel@^5.2.1":
   version "5.2.1"
@@ -2689,10 +2689,10 @@
     react "^16.8.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addon-console@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-console/-/addon-console-1.2.1.tgz#f338401661b4636118b13839848061e996d4e104"
-  integrity sha512-2iDbDTipWonvRpIqLLntfhCGvawFFvoG1xyErpyL7K/HRdQ1zzIvR1Qm83S7TK8Vg+RzZWm4wcDbxx7WOsFCNg==
+"@storybook/addon-console@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-console/-/addon-console-1.2.2.tgz#018cd712e1ed6eee1a7eae57c3d96f1fbbedc191"
+  integrity sha512-aTuYoz1Fit9PAhy0VDTjQ5rovRz5a+DgPRIaA5cktkiA9Y0ikK/cu525DDZLTh7oNMOt0fmRYyYPtknTMyeXrQ==
   dependencies:
     global "^4.3.2"
 
