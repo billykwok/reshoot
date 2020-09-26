@@ -40,7 +40,7 @@ Here is a simplfied demonstration on how easy to use Reshoot.
 ```jsx
 import React from 'react';
 import reshoot from '@reshoot/macro';
-import Reshoot from '@reshoot/react';
+import { Reshoot } from '@reshoot/react';
 
 function Example() {
   return <Reshoot data={reshoot('./image.jpg')} />;

@@ -64,8 +64,8 @@ function createOutputWriter(
     async function writeStats(internalOutput: Result) {
       const output = render(internalOutput, options);
       if (cache) {
-        if (!options.fastMode && filenames.length === 0) {
-          ctx.emitWarning(new Error(`Caching ${hash} without files`));
+        if (emitFile && !options.fastMode && filenames.length === 0) {
+          ctx.emitWarning(new Error(`Caching ${hash} without filenames`));
         }
         await outputJson(resolveCachePath(ctx.mode, `${hash}.json`), {
           output,

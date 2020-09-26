@@ -21,7 +21,7 @@ function transformPlaceholder(
   options: ResolvedOptions
 ): Stringifiable<string> | string {
   if (!value) {
-    return JSON.stringify(null);
+    return null;
   }
   return isDataUrl(value)
     ? value
@@ -36,6 +36,9 @@ function transformSrcSet(
   value: [string, number][],
   options: ResolvedOptions
 ): Stringifiable<[string, number][]> {
+  if (!value.length) {
+    return null;
+  }
   return createStringifiable(value, () =>
     options.publicPath || !value.length
       ? JSON.stringify(

@@ -1,6 +1,6 @@
 import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
-import Reshoot from '@reshoot/react';
+import { Reshoot } from '@reshoot/react';
 import describe from './utils/describe';
 import images from './utils/images';
 
@@ -20,9 +20,9 @@ export const Template = ({ width, state, mockInvalidUrl, ...args }) => (
     style={{ width: `${width}px` }}
     data={{
       ...images[0],
-      alt: `Test image`,
       ...(mockInvalidUrl ? { src: 'error', srcSet: 'error' } : {}),
     }}
+    alt="Test image"
     _s={state}
     onLoad={describe(
       action('Image loaded'),

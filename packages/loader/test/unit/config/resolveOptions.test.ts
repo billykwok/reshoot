@@ -1,5 +1,5 @@
 import { describe, beforeAll, afterEach, test, expect } from '@jest/globals';
-import { Mime } from '../../../src/type';
+import { AspectRatioFormat, AspectRatioType, Mime } from '../../../src/type';
 
 import type { loader } from 'webpack';
 
@@ -12,11 +12,7 @@ describe('resolveOptions', () => {
   } as loader.LoaderContext;
 
   beforeAll(() => {
-    jest.doMock('loader-utils', () => ({
-      __esModule: true,
-      parseQuery,
-      getOptions,
-    }));
+    jest.doMock('loader-utils', () => ({ parseQuery, getOptions }));
   });
 
   afterEach(() => {
@@ -30,7 +26,11 @@ describe('resolveOptions', () => {
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
+      aspectRatio: {
+        type: AspectRatioType.HeightByWidth,
+        format: AspectRatioFormat.Ratio,
+        decimal: 4,
+      },
       background: '#fff',
       cache: true,
       color: '#888',
@@ -54,7 +54,11 @@ describe('resolveOptions', () => {
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
+      aspectRatio: {
+        type: AspectRatioType.HeightByWidth,
+        format: AspectRatioFormat.Ratio,
+        decimal: 4,
+      },
       background: '#fff',
       cache: true,
       color: '#000',
@@ -78,7 +82,11 @@ describe('resolveOptions', () => {
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
+      aspectRatio: {
+        type: AspectRatioType.HeightByWidth,
+        format: AspectRatioFormat.Ratio,
+        decimal: 4,
+      },
       background: '#fff',
       cache: true,
       color: '#888',

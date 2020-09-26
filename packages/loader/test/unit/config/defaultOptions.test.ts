@@ -1,6 +1,6 @@
 import { describe, test, expect } from '@jest/globals';
 import resolveDefaultOptions from '../../../src/config/defaultOptions';
-import { Mime } from '../../../src/type';
+import { AspectRatioFormat, AspectRatioType, Mime } from '../../../src/type';
 
 describe('default options', () => {
   test('should return correct options in development environment', () => {
@@ -16,7 +16,11 @@ describe('default options', () => {
       defaultFormat: null,
       defaultWidth: 720,
       placeholder: { size: 8, quality: 10, trimDataUrl: false },
-      aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
+      aspectRatio: {
+        type: AspectRatioType.HeightByWidth,
+        format: AspectRatioFormat.Ratio,
+        decimal: 4,
+      },
       fastMode: true,
       cache: true,
       emitFile: true,
@@ -37,7 +41,11 @@ describe('default options', () => {
       defaultFormat: null,
       defaultWidth: 720,
       placeholder: { size: 8, quality: 10, trimDataUrl: false },
-      aspectRatio: { type: 'widthByHeight', format: 'ratio', decimal: 4 },
+      aspectRatio: {
+        type: AspectRatioType.HeightByWidth,
+        format: AspectRatioFormat.Ratio,
+        decimal: 4,
+      },
       fastMode: false,
       cache: true,
       emitFile: true,

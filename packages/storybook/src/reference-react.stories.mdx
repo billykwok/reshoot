@@ -14,7 +14,7 @@ import './utils/docs.css';
 `@reshoot/react` can be configured in the same way as regular React component. However, it takes two special props. The `data` props has the same shape as the image object exported with `@reshoot/loader`.
 
 ```jsx
-import Reshoot from '@reshoot/react';
+import { Reshoot } from '@reshoot/react';
 
 const MyImage = () => {
   return (
@@ -45,6 +45,8 @@ type Props = {
     placeholder?: string | false | null;
     sources?: { type: string; src: string; srcSet?: string }[];
   };
+  sizes: string;
+  alt: string;
   messages?: [string, string, string];
   imgProps?: {
     className?: string;
@@ -75,6 +77,18 @@ Configuration of rendering behavior. When used with `@reshoot/loader`, it should
 | `placeholder` | `'placeholder'`  | The url/data-url of LQIP                                             |
 | `color`       | `'transparent'`  | The color of image box before the image or LQIP is shown             |
 | `sources`     | `[]`             | Alternative sources used in browsers supporting better image formats |
+
+#### Sizes
+
+Type: `sizes: string`  
+Default: `undefined`  
+The `sizes` attribute to be applied to all `<source />` and `<img />`.
+
+#### Alternative Text
+
+Type: `alt: [string, string, string]`  
+Default: `undefined`  
+Alternative text to be shown when the image cannot be loaded.
 
 #### Error Messages
 

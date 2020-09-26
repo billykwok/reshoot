@@ -35,7 +35,7 @@ function defaultOptions(name: string, fastMode: boolean): Options {
     color: null,
     placeholder: { size: 8, quality: 10, trimDataUrl: false },
     aspectRatio: {
-      type: AspectRatioType.WidthByHeight,
+      type: AspectRatioType.HeightByWidth,
       format: AspectRatioFormat.Ratio,
       decimal: 4,
     },
