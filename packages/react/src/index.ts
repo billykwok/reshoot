@@ -1,3 +1,3 @@
-export { default } from './Reshoot';
+export { Reshoot } from './Reshoot';
 
 export type { ImageData } from './Reshoot';

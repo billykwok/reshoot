@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Reshoot from '@reshoot/react';
+import { Reshoot } from '@reshoot/react';
 import describe from './describe';
 import images from './images';
 
@@ -21,9 +21,9 @@ const Gallery = ({
           className="item"
           data={{
             ...data,
-            placeholder: disablePlaceholder ? false : data.placeholder,
-            alt: `Test image #${i}`,
+            placeholder: disablePlaceholder ? null : data.placeholder,
           }}
+          alt={`Test image #${i}`}
           onLoad={describe(
             action('Image loaded'),
             '() => {} /* omitted as created by @storybook-addons/action */'

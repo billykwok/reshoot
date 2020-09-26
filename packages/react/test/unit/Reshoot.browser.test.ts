@@ -50,7 +50,7 @@ describe('Reshoot', () => {
 
   test('render valid input correctly in state MANUAL', async () => {
     useLoadingState.mockReturnValue([MANUAL, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
@@ -62,7 +62,7 @@ describe('Reshoot', () => {
 
   test('render valid input correctly in state OFFLINE', async () => {
     useLoadingState.mockReturnValue([OFFLINE, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
@@ -74,7 +74,7 @@ describe('Reshoot', () => {
 
   test('render valid input correctly in state ERROR', async () => {
     useLoadingState.mockReturnValue([ERROR, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
@@ -93,7 +93,7 @@ describe('Reshoot', () => {
 
   test('render valid input correctly in state HIDDEN', async () => {
     useLoadingState.mockReturnValue([HIDDEN, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
@@ -105,7 +105,7 @@ describe('Reshoot', () => {
 
   test('render valid input correctly in state LOADING', async () => {
     useLoadingState.mockReturnValue([LOADING, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
@@ -117,7 +117,7 @@ describe('Reshoot', () => {
 
   test('render valid input correctly in state FADING', async () => {
     useLoadingState.mockReturnValue([FADING, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
@@ -136,7 +136,7 @@ describe('Reshoot', () => {
 
   test('render valid input correctly in state LOADED', async () => {
     useLoadingState.mockReturnValue([LOADED, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, { 'data-testid': '123', data: baseData, ref })
@@ -147,7 +147,7 @@ describe('Reshoot', () => {
   });
   test('customized options for image link', async () => {
     useLoadingState.mockReturnValue([LOADED, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, {
@@ -169,7 +169,7 @@ describe('Reshoot', () => {
 
   test('do not render preview when placeholder is falsy', async () => {
     useLoadingState.mockReturnValue([LOADING, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, {
@@ -185,7 +185,7 @@ describe('Reshoot', () => {
 
   test('customized options for normal image', async () => {
     useLoadingState.mockReturnValue([LOADED, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, {
@@ -201,12 +201,12 @@ describe('Reshoot', () => {
 
   test('aspect ratio can be overridden', async () => {
     useLoadingState.mockReturnValue([LOADED, setState]);
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const { getByTestId } = render(
       createElement(Reshoot, {
         'data-testid': '123',
-        data: { ...baseData, aspectRatio: 2 },
+        data: { ...baseData, aspectRatio: 0.5 },
         ref,
       })
     );

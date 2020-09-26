@@ -11,7 +11,12 @@ import createElement from './utils/createElement';
 import { hasLoaded, hasFailed } from './utils/cache';
 import IS_BROWSER from './utils/isBrowser';
 
-import type { SyntheticEvent, RefObject } from 'react';
+import type {
+  HTMLAttributes,
+  AnchorHTMLAttributes,
+  SyntheticEvent,
+  RefObject,
+} from 'react';
 import type { State } from './state';
 
 const asContainer = css`
@@ -105,8 +110,8 @@ const MESSAGES: [string, string, string] = [
   'Fail to load',
 ];
 
-export type ImageData = Readonly<{
-  sources?: Readonly<{ type: string; src: string; srcSet?: string }>[];
+export type ImageData = {
+  sources?: { type: string; src: string; srcSet?: string }[];
   src: string;
   srcSet?: string;
   width: number;
@@ -115,26 +120,27 @@ export type ImageData = Readonly<{
   aspectRatio?: number;
   color?: string;
   placeholder?: string;
-}>;
+};
 
-type Props = Readonly<{
+type Props = {
   className?: string;
   data: ImageData;
-  messages?: Readonly<[string, string, string]>;
-  imgProps?: Readonly<Record<string, unknown>>;
+  messages?: [string, string, string];
+  imgProps?: Record<string, unknown>;
+  sizes?: string;
   alt?: string;
   onLoad?: () => void;
   onError?: (event: Event | SyntheticEvent | string) => void;
   _s?: State;
-  [key: string]: Readonly<unknown>;
-}>;
+} & HTMLAttributes<HTMLDivElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const Reshoot = (
+export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
   {
     className,
     style,
     data: {
-      sources = [],
+      sources,
       src,
       srcSet,
       width,
@@ -143,6 +149,7 @@ const Reshoot = (
       color,
       placeholder,
     },
+    sizes,
     alt,
     messages = MESSAGES,
     imgProps,
@@ -152,7 +159,7 @@ const Reshoot = (
     ...extraProps
   }: Props,
   ref: RefObject<HTMLElement>
-) => {
+) {
   const [state, setState] = useLoadingState(_s, src);
   const _ref = useForwardableRef<HTMLElement>(ref);
   const download = useDownload(setState, src, srcSet, onLoad, onError);
@@ -164,10 +171,7 @@ const Reshoot = (
       {
         ref: _ref,
         className: cx(asContainer, className),
-        style: assign(
-          { color, '--r': aspectRatio ? 1 / aspectRatio : height / width },
-          style
-        ),
+        style: assign({ color, '--r': aspectRatio || height / width }, style),
       },
       extraProps
     ),
@@ -175,10 +179,14 @@ const Reshoot = (
       ? createElement(
           'picture',
           {},
-          ...sources.map((source) => createElement('source', source)),
+          sources
+            ? sources.map((source) =>
+                createElement('source', assign({ sizes }, source))
+              )
+            : null,
           createElement(
             'img',
-            assign({ src, srcSet, alt, width, height }, imgProps)
+            assign({ src, srcSet, sizes, alt, width, height }, imgProps)
           )
         )
       : null,
@@ -195,6 +203,7 @@ const Reshoot = (
         createElement('img', {
           src: placeholder,
           alt: '',
+          decoding: 'sync',
           loading: 'lazy',
           width,
           height,
@@ -221,6 +230,4 @@ const Reshoot = (
         createElement('p', {}, 'Click to reload')
       )
   );
-};
-
-export default forwardRef(Reshoot);
+});

@@ -22,7 +22,7 @@ describe('Reshoot', () => {
   });
 
   test('server side rendering', async () => {
-    const { default: Reshoot } = await import('../../src/Reshoot');
+    const { Reshoot } = await import('../../src/Reshoot');
     const ref = createRef<HTMLImageElement>();
     const html = renderToString(
       createElement(Reshoot, {

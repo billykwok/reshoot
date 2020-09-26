@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/node:latest
         environment:
-          SHARP_IGNORE_GLOBAL_LIBVIPS: '1'
+          SHARP_IGNORE_GLOBAL_LIBVIPS: "1"
     working_directory: ~/repo
     steps:
       - checkout
@@ -61,6 +61,9 @@ workflows:
     jobs:
       - test
       - release:
+          context:
+            - GitHub
+            - NPM
           requires:
             - test
           filters:
