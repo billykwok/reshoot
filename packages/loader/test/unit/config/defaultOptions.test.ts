@@ -12,9 +12,9 @@ describe('default options', () => {
       background: '#fff',
       color: true,
       alternativeFormats: [Mime.WEBP],
-      alternativeWidths: [480, 640, 840, 1080],
+      alternativeWidths: [480, 800, 1120, 1440],
       defaultFormat: null,
-      defaultWidth: 840,
+      defaultWidth: 1120,
       placeholder: { size: 8, quality: 10, trimDataUrl: false },
       aspectRatio: {
         type: AspectRatioType.HeightByWidth,
@@ -37,9 +37,9 @@ describe('default options', () => {
       background: '#fff',
       color: true,
       alternativeFormats: [Mime.WEBP],
-      alternativeWidths: [480, 640, 840, 1080],
+      alternativeWidths: [480, 800, 1120, 1440],
       defaultFormat: null,
-      defaultWidth: 840,
+      defaultWidth: 1120,
       placeholder: { size: 8, quality: 10, trimDataUrl: false },
       aspectRatio: {
         type: AspectRatioType.HeightByWidth,
