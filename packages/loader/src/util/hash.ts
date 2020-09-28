@@ -47,7 +47,11 @@ function makeOptionsHashable(options: SerializableOptions) {
     DELIMITER_1 +
     (options.background ? options.background : NULL) +
     DELIMITER_1 +
-    (options.color ? options.color : NULL) +
+    (typeof options.color === 'boolean'
+      ? makeBooleanHashable(true)
+      : options.color
+      ? options.color
+      : NULL) +
     DELIMITER_1 +
     (options.placeholder
       ? makeNumberHashable(options.placeholder.size) +

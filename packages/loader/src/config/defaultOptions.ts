@@ -32,7 +32,7 @@ function defaultOptions(name: string, fastMode: boolean): Options {
     defaultWidth: 640,
     quality: 80,
     background: '#fff',
-    color: null,
+    color: true,
     placeholder: { size: 8, quality: 10, trimDataUrl: false },
     aspectRatio: {
       type: AspectRatioType.HeightByWidth,

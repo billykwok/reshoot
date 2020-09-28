@@ -67,7 +67,7 @@ const validate = ajv.compile({
         'The color used to fill transparent background when input image is converted into a format that does not support transparency',
     },
     color: {
-      type: ['string', 'null'],
+      type: ['string', 'boolean', 'null'],
       description:
         'The color used as the background of aspect ratio box before placeholder or final image is loaded',
     },

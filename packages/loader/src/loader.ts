@@ -75,12 +75,15 @@ async function reshootLoader(
       ? resolveAspectRatio(metadata, options.aspectRatio)
       : null,
     placeholder: null,
-    color: options.color,
+    color:
+      typeof options.color === 'boolean' || options.color === null
+        ? null
+        : options.color,
     sources: [],
   };
 
   if (!isSvg) {
-    if (!options.color) {
+    if (options.color === true) {
       internalOutput.color = await resolveColor(image, options);
     }
     if (options.placeholder) {

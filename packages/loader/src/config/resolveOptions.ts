@@ -17,18 +17,24 @@ function resolveOptions(ctx: loader.LoaderContext): ResolvedOptions {
   return Object.assign({ mode: ctx.mode }, options, {
     outputPath,
     publicPath: createPublicPathResolver(options.publicPath),
-    placeholder: Object.assign(
-      {},
-      defaultOptions.placeholder,
-      fileOptions.placeholder,
-      queryOptions.placeholder
-    ),
-    aspectRatio: Object.assign(
-      {},
-      defaultOptions.aspectRatio,
-      fileOptions.aspectRatio,
-      queryOptions.aspectRatio
-    ),
+    placeholder:
+      queryOptions.placeholder === null
+        ? null
+        : Object.assign(
+            {},
+            defaultOptions.placeholder,
+            fileOptions.placeholder,
+            queryOptions.placeholder
+          ),
+    aspectRatio:
+      queryOptions.aspectRatio === null
+        ? null
+        : Object.assign(
+            {},
+            defaultOptions.aspectRatio,
+            fileOptions.aspectRatio,
+            queryOptions.aspectRatio
+          ),
   });
 }
 
