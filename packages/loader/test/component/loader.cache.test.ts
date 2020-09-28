@@ -50,13 +50,13 @@ describe('Basic component test for @reshoot/loader', () => {
     expect(images1).toEqual(
       expect.arrayContaining([
         'tEsThAsH-480.jpg',
-        'tEsThAsH-640.jpg',
-        'tEsThAsH-840.jpg',
-        'tEsThAsH-1080.jpg',
+        'tEsThAsH-800.jpg',
+        'tEsThAsH-1120.jpg',
+        'tEsThAsH-1440.jpg',
         'tEsThAsH-480.webp',
-        'tEsThAsH-640.webp',
-        'tEsThAsH-840.webp',
-        'tEsThAsH-1080.webp',
+        'tEsThAsH-800.webp',
+        'tEsThAsH-1120.webp',
+        'tEsThAsH-1440.webp',
       ])
     );
     expect(images1).toHaveLength(8);
@@ -75,13 +75,13 @@ describe('Basic component test for @reshoot/loader', () => {
       expect.arrayContaining([
         'stats.json',
         '480.jpg',
-        '640.jpg',
-        '840.jpg',
-        '1080.jpg',
+        '800.jpg',
+        '1120.jpg',
+        '1440.jpg',
         '480.webp',
-        '640.webp',
-        '840.webp',
-        '1080.webp',
+        '800.webp',
+        '1120.webp',
+        '1440.webp',
       ])
     );
 
@@ -96,13 +96,13 @@ describe('Basic component test for @reshoot/loader', () => {
     expect(images2).toEqual(
       expect.arrayContaining([
         'tEsThAsH-480.jpg',
-        'tEsThAsH-640.jpg',
-        'tEsThAsH-840.jpg',
-        'tEsThAsH-1080.jpg',
+        'tEsThAsH-800.jpg',
+        'tEsThAsH-1120.jpg',
+        'tEsThAsH-1440.jpg',
         'tEsThAsH-480.webp',
-        'tEsThAsH-640.webp',
-        'tEsThAsH-840.webp',
-        'tEsThAsH-1080.webp',
+        'tEsThAsH-800.webp',
+        'tEsThAsH-1120.webp',
+        'tEsThAsH-1440.webp',
       ])
     );
     expect(images2).toHaveLength(8);
