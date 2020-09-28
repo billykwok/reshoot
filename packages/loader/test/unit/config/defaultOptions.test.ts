@@ -5,7 +5,7 @@ import { AspectRatioFormat, AspectRatioType, Mime } from '../../../src/type';
 describe('default options', () => {
   test('should return correct options in development environment', () => {
     expect(resolveDefaultOptions('development')).toMatchObject({
-      name: '[path][name].[ext]',
+      name: '[path][name]-[width].[ext]',
       outputPath: null,
       publicPath: null,
       quality: 80,
