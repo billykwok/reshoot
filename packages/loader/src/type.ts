@@ -90,7 +90,7 @@ interface BaseOptions {
   defaultFormat: Mime;
   defaultWidth: number;
   background: string;
-  color: string;
+  color: string | boolean;
   placeholder: Placeholder;
   aspectRatio: AspectRatio;
 }
