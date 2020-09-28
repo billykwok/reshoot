@@ -42,7 +42,7 @@ describe('resolveOptions', () => {
       esModule: true,
       fastMode: true,
       mode: 'development',
-      name: '[path][name].[ext]',
+      name: '[path][name]-[width].[ext]',
       placeholder: { quality: 10, size: 8, trimDataUrl: false },
       quality: 80,
     });
@@ -70,7 +70,7 @@ describe('resolveOptions', () => {
       esModule: true,
       fastMode: true,
       mode: 'development',
-      name: '[path][name].[ext]',
+      name: '[path][name]-[width].[ext]',
       placeholder: { quality: 10, size: 8, trimDataUrl: false },
       quality: 80,
     });
@@ -98,7 +98,7 @@ describe('resolveOptions', () => {
       esModule: true,
       fastMode: true,
       mode: 'development',
-      name: '[path][name].[ext]',
+      name: '[path][name]-[width].[ext]',
       placeholder: { quality: 10, size: 8, trimDataUrl: false },
       quality: 80,
     });

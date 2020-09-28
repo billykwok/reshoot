@@ -46,7 +46,7 @@ function defaultOptions(name: string, fastMode: boolean): Options {
   };
 }
 
-const DEFAULT_OPTIONS_DEV = defaultOptions('[path][name].[ext]', true);
+const DEFAULT_OPTIONS_DEV = defaultOptions('[path][name]-[width].[ext]', true);
 
 const DEFAULT_OPTIONS_OTHER = defaultOptions(
   '[contenthash:8]-[width].[ext]',
