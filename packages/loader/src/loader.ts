@@ -116,7 +116,7 @@ async function reshootLoader(
     }
 
     if (options.alternativeFormats && options.alternativeFormats.length) {
-      for (const type of options.alternativeFormats) {
+      for (const type of options.alternativeFormats.filter((f) => f !== mime)) {
         const extension = Extension[type];
         const srcSet: [string, number][] = [];
         for (const width of widths.concat(defaultWidth)) {

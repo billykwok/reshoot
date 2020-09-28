@@ -14,7 +14,7 @@ describe('default options', () => {
       alternativeFormats: [Mime.WEBP],
       alternativeWidths: [480, 640, 840, 1080],
       defaultFormat: null,
-      defaultWidth: 640,
+      defaultWidth: 840,
       placeholder: { size: 8, quality: 10, trimDataUrl: false },
       aspectRatio: {
         type: AspectRatioType.HeightByWidth,
@@ -39,7 +39,7 @@ describe('default options', () => {
       alternativeFormats: [Mime.WEBP],
       alternativeWidths: [480, 640, 840, 1080],
       defaultFormat: null,
-      defaultWidth: 640,
+      defaultWidth: 840,
       placeholder: { size: 8, quality: 10, trimDataUrl: false },
       aspectRatio: {
         type: AspectRatioType.HeightByWidth,
