@@ -89,7 +89,7 @@ describe('Null component test for @reshoot/loader', () => {
     const images = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
     );
-    expect(images).toEqual(['tEsThAsH-640.jpg']);
+    expect(images).toEqual(['tEsThAsH-840.jpg']);
     expect(actual).toMatchSnapshot();
     memfs.reset();
   }, 30000);
