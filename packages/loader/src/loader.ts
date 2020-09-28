@@ -36,7 +36,7 @@ async function reshootLoader(
     const { filenames = [], output = null } = await readCacheStats(mode, hash);
     if (options.emitFile && filenames.length && output) {
       for (const filename of filenames) {
-        awaitables.push(emitFromCache(this, filename, options));
+        awaitables.push(emitFromCache(this, hash, filename, options));
       }
       await Promise.all(awaitables);
       return callback(null, output);
@@ -44,9 +44,13 @@ async function reshootLoader(
   }
 
   const [mime, ext] = resolveMimeAndExt(this, options.defaultFormat);
-  const isSvgOrGif = options.defaultFormat
-    ? options.defaultFormat === Mime.SVG || options.defaultFormat === Mime.GIF
-    : mime === Mime.SVG || mime === Mime.GIF;
+  const isSvg = options.defaultFormat
+    ? options.defaultFormat === Mime.SVG
+    : mime === Mime.SVG;
+  const isGif = options.defaultFormat
+    ? options.defaultFormat === Mime.GIF
+    : mime === Mime.GIF;
+  const isSvgOrGif = isSvg || isGif;
   const [writeImage, writeStats] = createOutputWriter(this, hash, options);
 
   const image = loadImage(content);
@@ -71,34 +75,29 @@ async function reshootLoader(
       ? resolveAspectRatio(metadata, options.aspectRatio)
       : null,
     placeholder: null,
-    color: options.color || 'transparent',
+    color: options.color,
     sources: [],
   };
 
-  if (!options.color) {
-    internalOutput.color = await resolveColor(image, options);
+  if (!isSvg) {
+    if (!options.color) {
+      internalOutput.color = await resolveColor(image, options);
+    }
+    if (options.placeholder) {
+      internalOutput.placeholder = await resolvePlaceholder(
+        image,
+        internalOutput.color,
+        options
+      );
+    }
   }
 
-  if (options.placeholder) {
-    internalOutput.placeholder = await resolvePlaceholder(
-      image,
-      internalOutput.color,
-      options
-    );
-  }
-
-  if (options.fastMode) {
+  if (isSvgOrGif || options.fastMode) {
     awaitables.unshift(writeStats(internalOutput));
     return callback(null, (await Promise.all(awaitables))[0]);
   }
 
-  const isAlternativeFormatsEnabled =
-    options.alternativeFormats && options.alternativeFormats.length;
-  if (
-    !isSvgOrGif &&
-    ((options.alternativeWidths && options.alternativeWidths.length) ||
-      isAlternativeFormatsEnabled)
-  ) {
+  if (options.alternativeWidths && options.alternativeWidths.length) {
     const widths = options.alternativeWidths
       .filter((width) => width < metadata.width && width !== defaultWidth)
       .sort((a, b) => a - b);
@@ -113,18 +112,11 @@ async function reshootLoader(
       internalOutput.srcSet.push([srcSet, width]);
     }
 
-    if (isAlternativeFormatsEnabled) {
+    if (options.alternativeFormats && options.alternativeFormats.length) {
       for (const type of options.alternativeFormats) {
         const extension = Extension[type];
-        const [src, awaitable] = writeImage(
-          defaultWidth,
-          resize(image, defaultWidth, type, options),
-          extension
-        );
-        awaitables.push(awaitable);
-
         const srcSet: [string, number][] = [];
-        for (const width of widths) {
+        for (const width of widths.concat(defaultWidth)) {
           const [path, awaitable] = writeImage(
             width,
             resize(image, width, type, options),
@@ -134,7 +126,7 @@ async function reshootLoader(
           srcSet.push([path, width]);
         }
 
-        internalOutput.sources.push({ type, src, srcSet });
+        internalOutput.sources.push({ type, srcSet });
       }
     }
   }

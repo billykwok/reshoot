@@ -1,7 +1,9 @@
+import path from 'path';
 import { outputFile, outputJson } from 'fs-extra';
 import resolveCachePath from './resolveCachePath';
 import interpolate from './interpolate';
 import render from './render';
+import version from '../util/version';
 
 import type { loader } from 'webpack';
 import type { Result, ResolvedOptions, CacheEntry } from '../type';
@@ -17,12 +19,13 @@ async function outputImage(
 
 async function cacheAndOutputImage(
   ctx: loader.LoaderContext,
+  cacheName: string,
   filename: string,
   content: Promise<Buffer | string>,
-  { mode, outputPath }: ResolvedOptions
+  { outputPath }: ResolvedOptions
 ): Promise<void> {
   const data = await content;
-  outputFile(resolveCachePath(mode, filename), data);
+  outputFile(resolveCachePath(cacheName), data);
   ctx.emitFile(outputPath(filename), data, null);
 }
 
@@ -41,7 +44,8 @@ function createOutputWriter(
   (internalOutput: Result) => Promise<string>
 ] {
   const { name, emitFile, cache } = options;
-  const filenames = [];
+  const filenames: string[] = [];
+  const cacheDir = path.join(version, ctx.mode, hash);
   return [
     function writeImage(
       width: number,
@@ -51,10 +55,12 @@ function createOutputWriter(
       const filename = interpolate(ctx, name, { width, hash, ext });
       if (emitFile) {
         if (cache) {
-          filenames.push(filename);
+          const cacheName = `${width}.${ext}`;
+          filenames.push(cacheName);
+          const cachePath = path.join(cacheDir, cacheName);
           return [
             filename,
-            cacheAndOutputImage(ctx, filename, content, options),
+            cacheAndOutputImage(ctx, cachePath, filename, content, options),
           ];
         }
         return [filename, outputImage(ctx, filename, content, options)];
@@ -64,10 +70,10 @@ function createOutputWriter(
     async function writeStats(internalOutput: Result) {
       const output = render(internalOutput, options);
       if (cache) {
-        if (emitFile && !options.fastMode && filenames.length === 0) {
+        if (emitFile && !options.fastMode && filenames.length < 1) {
           ctx.emitWarning(new Error(`Caching ${hash} without filenames`));
         }
-        await outputJson(resolveCachePath(ctx.mode, `${hash}.json`), {
+        await outputJson(resolveCachePath(cacheDir, 'stats.json'), {
           output,
           filenames,
         } as CacheEntry);

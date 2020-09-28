@@ -32,7 +32,10 @@ describe('emitFromCache', () => {
 
   test('should create function for string', async () => {
     const { emitFromCache } = await import('../../../src/output/cache');
-    await emitFromCache({ emitFile }, 'abc.jpg', { mode: 'mode', outputPath });
+    await emitFromCache({ emitFile }, 'hAsH', 'abc.jpg', {
+      mode: 'mode',
+      outputPath,
+    });
     expect(emitFile).toHaveBeenCalledTimes(1);
     expect(emitFile).toHaveBeenCalledWith('output/abc.jpg', buffer, null);
   });

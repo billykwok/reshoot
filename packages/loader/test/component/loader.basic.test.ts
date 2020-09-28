@@ -29,17 +29,15 @@ describe('Basic component test for @reshoot/loader', () => {
       expect.arrayContaining([
         'tEsThAsH-480.jpg',
         'tEsThAsH-640.jpg',
-        'tEsThAsH-720.jpg',
         'tEsThAsH-840.jpg',
         'tEsThAsH-1080.jpg',
         'tEsThAsH-480.webp',
         'tEsThAsH-640.webp',
-        'tEsThAsH-720.webp',
         'tEsThAsH-840.webp',
         'tEsThAsH-1080.webp',
       ])
     );
-    expect(images).toHaveLength(10);
+    expect(images).toHaveLength(8);
     expect(actual).toMatchSnapshot();
     memfs.reset();
   }, 30000);

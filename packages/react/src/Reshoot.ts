@@ -111,7 +111,7 @@ const MESSAGES: [string, string, string] = [
 ];
 
 export type ImageData = {
-  sources?: { type: string; src: string; srcSet?: string }[];
+  sources?: { type: string; srcSet: string }[];
   src: string;
   srcSet?: string;
   width: number;
@@ -132,8 +132,7 @@ type Props = {
   onLoad?: () => void;
   onError?: (event: Event | SyntheticEvent | string) => void;
   _s?: State;
-} & HTMLAttributes<HTMLDivElement> &
-  AnchorHTMLAttributes<HTMLAnchorElement>;
+} & (HTMLAttributes<HTMLDivElement> | AnchorHTMLAttributes<HTMLAnchorElement>);
 
 export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
   {
@@ -166,7 +165,7 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
   useIntersection(_ref, setState, src, download);
 
   return createElement(
-    extraProps.href ? 'a' : 'div',
+    'href' in extraProps && extraProps.href ? 'a' : 'div',
     assign(
       {
         ref: _ref,

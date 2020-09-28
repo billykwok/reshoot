@@ -1,5 +1,5 @@
 import { MetroHash64 } from 'metrohash';
-import { version } from '../../package.json';
+import version from './version';
 
 import type { AspectRatio, ResolvedOptions } from '../type';
 

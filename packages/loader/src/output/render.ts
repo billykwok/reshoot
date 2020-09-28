@@ -69,11 +69,12 @@ function render(
         src: transformSrc(src, options),
         srcSet: transformSrcSet(srcSet, options),
         placeholder: transformPlaceholder(placeholder, options),
-        sources: sources.map(({ type, src, srcSet }) => ({
-          type,
-          src: transformSrc(src, options),
-          srcSet: transformSrcSet(srcSet, options),
-        })),
+        sources: sources.length
+          ? sources.map(({ type, srcSet }) => ({
+              type,
+              srcSet: transformSrcSet(srcSet, options),
+            }))
+          : null,
         ...internalOutput,
       })
     ) +
