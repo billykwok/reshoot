@@ -57,11 +57,7 @@ export interface Result {
   aspectRatio: number;
   placeholder: string;
   color: string;
-  sources: {
-    type: string;
-    src: string;
-    srcSet: [string, number][];
-  }[];
+  sources: { type: string; srcSet: [string, number][] }[];
 }
 
 export type ShapeArgument = {
@@ -73,11 +69,7 @@ export type ShapeArgument = {
   aspectRatio: number;
   placeholder: string;
   color: string;
-  sources: {
-    type: string;
-    src: string;
-    srcSet: Stringifiable<[string, number][]>;
-  }[];
+  sources: { type: string; srcSet: Stringifiable<[string, number][]> }[];
 };
 
 export interface CacheEntry {

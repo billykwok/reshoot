@@ -8,6 +8,10 @@ describe('Basic component test for @reshoot/loader', () => {
   beforeAll(() => {
     jest.doMock('metrohash', mockMetroHash('tEsThAsH'));
     jest.doMock('../../src/util/base64', mockBase64('data/of=someimage'));
+    jest.doMock('../../src/util/version', () => ({
+      __esModule: true,
+      default: '1.2.3',
+    }));
   });
 
   afterAll((done) => {
@@ -47,18 +51,39 @@ describe('Basic component test for @reshoot/loader', () => {
       expect.arrayContaining([
         'tEsThAsH-480.jpg',
         'tEsThAsH-640.jpg',
-        'tEsThAsH-720.jpg',
         'tEsThAsH-840.jpg',
         'tEsThAsH-1080.jpg',
         'tEsThAsH-480.webp',
         'tEsThAsH-640.webp',
-        'tEsThAsH-720.webp',
         'tEsThAsH-840.webp',
         'tEsThAsH-1080.webp',
       ])
     );
-    expect(images1).toHaveLength(10);
+    expect(images1).toHaveLength(8);
     expect(actual1).toMatchSnapshot();
+
+    const cachePath = path.resolve(
+      __dirname,
+      '../../../../node_modules/.cache/@reshoot/loader/1.2.3/production/tEsThAsH'
+    );
+    const cachedOutput = await memfs.promises.readFile(
+      path.join(cachePath, 'stats.json')
+    );
+    expect(cachedOutput.toString()).toMatchSnapshot();
+    const cachedFiles = await memfs.promises.readdir(cachePath);
+    expect(cachedFiles).toEqual(
+      expect.arrayContaining([
+        'stats.json',
+        '480.jpg',
+        '640.jpg',
+        '840.jpg',
+        '1080.jpg',
+        '480.webp',
+        '640.webp',
+        '840.webp',
+        '1080.webp',
+      ])
+    );
 
     const actual2 = await compile(
       memfs,
@@ -72,17 +97,15 @@ describe('Basic component test for @reshoot/loader', () => {
       expect.arrayContaining([
         'tEsThAsH-480.jpg',
         'tEsThAsH-640.jpg',
-        'tEsThAsH-720.jpg',
         'tEsThAsH-840.jpg',
         'tEsThAsH-1080.jpg',
         'tEsThAsH-480.webp',
         'tEsThAsH-640.webp',
-        'tEsThAsH-720.webp',
         'tEsThAsH-840.webp',
         'tEsThAsH-1080.webp',
       ])
     );
-    expect(images2).toHaveLength(10);
+    expect(images2).toHaveLength(8);
     expect(actual2).toMatchSnapshot();
     memfs.reset();
   }, 30000);

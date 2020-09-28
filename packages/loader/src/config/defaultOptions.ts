@@ -29,7 +29,7 @@ function defaultOptions(name: string, fastMode: boolean): Options {
     alternativeFormats: [Mime.WEBP],
     alternativeWidths: [480, 640, 840, 1080],
     defaultFormat: null,
-    defaultWidth: 720,
+    defaultWidth: 640,
     quality: 80,
     background: '#fff',
     color: null,

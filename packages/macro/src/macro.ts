@@ -6,7 +6,7 @@ type ImageData = Readonly<{
   type: string;
   src: string;
   srcSet: string;
-  alternativeFormats: Readonly<{ type: string; src: string; srcSet: string }>[];
+  sources: Readonly<{ type: string; srcSet: string }>[];
   width: number;
   height: number;
   aspectRatio: number;
