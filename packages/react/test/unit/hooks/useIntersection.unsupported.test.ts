@@ -1,16 +1,11 @@
-import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
+import { describe, beforeAll, afterEach, test, expect } from '@jest/globals';
 import { renderHook } from '@testing-library/react-hooks';
 import { createRef } from 'react';
 
-import type { State } from '../../../src/state';
-
 describe('useIntersection (IntersectionObserver unsupported)', () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const setState = jest.fn((callback: () => State): void => null);
-  const src = 'image.jpg';
-  const download = jest.fn();
+  const loadImage = jest.fn<void, []>();
 
-  beforeEach(() => {
+  beforeAll(() => {
     jest.doMock('../../../src/utils/supportIntersectionObserver', () => ({
       __esModule: true,
       default: false,
@@ -22,13 +17,15 @@ describe('useIntersection (IntersectionObserver unsupported)', () => {
   });
 
   test('should be noop if IntersectionObserver is not supported', async () => {
-    const { default: useIntersection } = await import(
+    const { useIntersection } = await import(
       '../../../src/hooks/useIntersection'
     );
-    const { result } = renderHook(() =>
-      useIntersection(createRef<HTMLImageElement>(), setState, src, download)
-    );
-    expect(result.error).toBeUndefined();
-    expect(download).toHaveBeenCalledTimes(1);
+    const ref = createRef<HTMLElement>();
+    const {
+      result: { error, current: innerRef },
+    } = renderHook(() => useIntersection(ref, loadImage));
+    expect(error).toBeUndefined();
+    expect(innerRef).toEqual(ref);
+    expect(loadImage).toHaveBeenCalledTimes(1);
   });
 });

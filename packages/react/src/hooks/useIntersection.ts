@@ -1,37 +1,33 @@
-import { useEffect } from 'react';
-import { ERROR, HIDDEN, LOADING, LOADED } from '../state';
-import subscribe from '../utils/intersection';
-import { hasLoaded, hasFailed } from '../utils/cache';
+import { useRef, useImperativeHandle, useCallback, useEffect } from 'react';
+import { subscribe, unsubscribe } from '../utils/intersection';
 import SUPPORT_INTERSECTION_OBSERVER from '../utils/supportIntersectionObserver';
 
-import type { RefObject, Dispatch, SetStateAction } from 'react';
-import type { State } from '../state';
+import type { Ref, MutableRefObject, RefCallback } from 'react';
 
-const useIntersection = (
-  ref: RefObject<Element>,
-  setState: Dispatch<SetStateAction<State>>,
-  src: string,
-  download: () => void
-): void =>
-  useEffect(
-    () =>
-      SUPPORT_INTERSECTION_OBSERVER
-        ? subscribe(ref.current, (entry: IntersectionObserverEntry) => {
-            if (entry.intersectionRatio > 0) {
-              if (hasLoaded(src)) {
-                setState(() => LOADED);
-              } else if (hasFailed(src)) {
-                setState(() => ERROR);
-              } else {
-                setState(() => LOADING);
-                download();
-              }
-            } else {
-              setState(() => HIDDEN);
-            }
-          })
-        : download(),
-    [ref]
-  );
-
-export default useIntersection;
+export const useIntersection = (
+  ref: MutableRefObject<HTMLElement>,
+  loadImage: () => void
+): Ref<HTMLElement> => {
+  /* eslint-disable react-hooks/rules-of-hooks */
+  if (SUPPORT_INTERSECTION_OBSERVER) {
+    const innerRef = useRef<HTMLElement>(null);
+    useImperativeHandle(ref, () => innerRef.current);
+    return useCallback<RefCallback<HTMLElement>>((newRef: HTMLElement) => {
+      const oldRef = innerRef.current;
+      if (oldRef) {
+        unsubscribe(oldRef);
+      }
+      if (newRef) {
+        subscribe(
+          newRef,
+          (entry: IntersectionObserverEntry) =>
+            entry.intersectionRatio > 0 && loadImage()
+        );
+      }
+      innerRef.current = newRef;
+    }, []);
+  }
+  useEffect(loadImage, []);
+  return ref;
+  /* eslint-enable react-hooks/rules-of-hooks */
+};

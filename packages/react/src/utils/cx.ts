@@ -1,4 +1,2 @@
-const cx = (...classNames: unknown[]): string =>
+export const cx = (...classNames: unknown[]): string =>
   classNames.filter((className) => className).join(' ');
-
-export default cx;

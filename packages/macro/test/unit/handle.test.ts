@@ -1,4 +1,4 @@
-import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
+import { describe, beforeAll, afterEach, test, expect } from '@jest/globals';
 import {
   callExpression,
   objectExpression,
@@ -40,7 +40,7 @@ describe('arguments', () => {
   const evalFirstArgument = jest.fn(() => 'image.jpg');
   const evalSecondArgument = jest.fn(() => ({ color: '#eeff99' }));
 
-  beforeEach(() => {
+  beforeAll(() => {
     jest.doMock('../../src/extractArguments.ts', () => ({
       __esModule: true,
       default: extractArguments,

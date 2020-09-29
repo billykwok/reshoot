@@ -1,12 +1,12 @@
-import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
+import { describe, beforeAll, afterEach, test, expect } from '@jest/globals';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { connection } from '@shopify/jest-dom-mocks';
 import {
   MANUAL,
   OFFLINE,
   ERROR,
-  HIDDEN,
   LOADING,
+  FADING,
   LOADED,
 } from '../../../src/state';
 
@@ -15,12 +15,8 @@ describe('useLoadingState', () => {
   const hasLoaded = jest.fn<boolean, [string]>(() => false);
   const hasFailed = jest.fn<boolean, [string]>(() => false);
 
-  beforeEach(() => {
-    jest.doMock('../../../src/utils/cache', () => ({
-      __esModule: true,
-      hasLoaded,
-      hasFailed,
-    }));
+  beforeAll(() => {
+    jest.doMock('../../../src/utils/cache', () => ({ hasLoaded, hasFailed }));
   });
 
   afterEach(() => {
@@ -28,7 +24,7 @@ describe('useLoadingState', () => {
   });
 
   test('return LOADING by default and can be updated with setState', async () => {
-    const { default: useLoadingState } = await import(
+    const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
     const { result } = renderHook(() => useLoadingState(null, src));
@@ -43,7 +39,7 @@ describe('useLoadingState', () => {
 
   test('return LOADED if image src is present in cache', async () => {
     hasLoaded.mockReturnValue(true);
-    const { default: useLoadingState } = await import(
+    const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
     const { result } = renderHook(() => useLoadingState(null, src));
@@ -54,7 +50,7 @@ describe('useLoadingState', () => {
   test('return ERROR if image loading failed in the last download attempt', async () => {
     hasLoaded.mockReturnValue(false);
     hasFailed.mockReturnValue(true);
-    const { default: useLoadingState } = await import(
+    const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
     const { result } = renderHook(() => useLoadingState(null, src));
@@ -64,7 +60,7 @@ describe('useLoadingState', () => {
 
   test('return MANUAL if network connection is too slow', async () => {
     connection.mock({ effectiveType: '2g' });
-    const { default: useLoadingState } = await import(
+    const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
     const { result } = renderHook(() => useLoadingState(null, src));
@@ -75,7 +71,7 @@ describe('useLoadingState', () => {
 
   test('return OFFLINE if navigator.onLine is false', async () => {
     jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(false);
-    const { default: useLoadingState } = await import(
+    const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
     const { result } = renderHook(() => useLoadingState(null, src));
@@ -85,11 +81,11 @@ describe('useLoadingState', () => {
   });
 
   test('state can be overridden with non-null first argument', async () => {
-    const { default: useLoadingState } = await import(
+    const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(HIDDEN, src));
+    const { result } = renderHook(() => useLoadingState(FADING, src));
     expect(result.error).toBeUndefined();
-    expect(result.current[0]).toEqual(HIDDEN);
+    expect(result.current[0]).toEqual(FADING);
   });
 });

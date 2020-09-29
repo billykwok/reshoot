@@ -13,10 +13,10 @@ declare global {
   }
 }
 
-const useLoadingState = (
+export const useLoadingState = (
   overriddenState: State,
   src: string
-): Readonly<[State, Dispatch<SetStateAction<State>>]> => {
+): [State, Dispatch<SetStateAction<State>>] => {
   const [_state, setState] = useState<State>(() => {
     if (hasLoaded(src)) {
       return LOADED;
@@ -40,5 +40,3 @@ const useLoadingState = (
   });
   return [overriddenState === null ? _state : overriddenState, setState];
 };
-
-export default useLoadingState;

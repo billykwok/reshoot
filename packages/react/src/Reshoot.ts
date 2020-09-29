@@ -1,14 +1,14 @@
 import { forwardRef } from 'react';
 import { css } from 'linaria';
 import assign from 'object-assign';
-import { HIDDEN, LOADING, FADING, LOADED } from './state';
-import useLoadingState from './hooks/useLoadingState';
-import useForwardableRef from './hooks/useForwardableRef';
-import useDownload from './hooks/useDownload';
-import useIntersection from './hooks/useIntersection';
-import cx from './utils/cx';
+import { LOADING, FADING, LOADED } from './state';
+import { useLoadingState } from './hooks/useLoadingState';
+import { useDownload } from './hooks/useDownload';
+import { useLoadImage } from './hooks/useLoadImage';
+import { useIntersection } from './hooks/useIntersection';
+import { cx } from './utils/cx';
 import createElement from './utils/createElement';
-import { hasLoaded, hasFailed } from './utils/cache';
+import { hasLoaded } from './utils/cache';
 import IS_BROWSER from './utils/isBrowser';
 
 import type {
@@ -16,6 +16,7 @@ import type {
   AnchorHTMLAttributes,
   SyntheticEvent,
   RefObject,
+  MouseEvent,
 } from 'react';
 import type { State } from './state';
 
@@ -160,38 +161,37 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
   ref: RefObject<HTMLElement>
 ) {
   const [state, setState] = useLoadingState(_s, src);
-  const _ref = useForwardableRef<HTMLElement>(ref);
   const download = useDownload(setState, src, srcSet, onLoad, onError);
-  useIntersection(_ref, setState, src, download);
+  const loadImage = useLoadImage(setState, src, download);
+  const innerRef = useIntersection(ref, loadImage);
 
   return createElement(
     'href' in extraProps && extraProps.href ? 'a' : 'div',
     assign(
       {
-        ref: _ref,
+        ref: innerRef,
         className: cx(asContainer, className),
         style: assign({ color, '--r': aspectRatio || height / width }, style),
       },
       extraProps
     ),
     !IS_BROWSER || state > LOADING
-      ? createElement(
-          'picture',
-          {},
-          sources
-            ? sources.map((source) =>
-                createElement('source', assign({ sizes }, source))
-              )
-            : null,
+      ? createElement('picture', {}, [
+          ...sources.map((source) =>
+            createElement('source', assign({ key: source.type, sizes }, source))
+          ),
           createElement(
             'img',
-            assign({ src, srcSet, sizes, alt, width, height }, imgProps)
-          )
-        )
+            assign(
+              { key: 'fallback', src, srcSet, sizes, alt, width, height },
+              imgProps
+            )
+          ),
+        ])
       : null,
     IS_BROWSER &&
       placeholder &&
-      (state !== HIDDEN || !hasLoaded(src)) &&
+      !hasLoaded(src) &&
       state !== LOADED &&
       createElement(
         'div',
@@ -209,13 +209,14 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
         })
       ),
     IS_BROWSER &&
-      (state < HIDDEN || (state === HIDDEN && hasFailed(src))) &&
+      state < LOADING &&
       createElement(
         'button',
         {
-          onClick: () => {
-            hasLoaded(src) || download();
+          onClick: (e: MouseEvent) => {
+            e.preventDefault();
             setState(() => LOADING);
+            hasLoaded(src) || download();
           },
         },
         createElement(

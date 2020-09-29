@@ -1,4 +1,11 @@
-import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
+import {
+  describe,
+  beforeAll,
+  beforeEach,
+  afterEach,
+  test,
+  expect,
+} from '@jest/globals';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { FADING, ERROR } from '../../../src/state';
 
@@ -42,13 +49,15 @@ describe('useDownload', () => {
   const cacheLoaded = jest.fn<void, [string]>();
   const cacheFailed = jest.fn<void, [string]>();
 
-  beforeEach(() => {
-    image.mock();
+  beforeAll(() => {
     jest.doMock('../../../src/utils/cache', () => ({
-      __esModule: true,
       cacheLoaded,
       cacheFailed,
     }));
+  });
+
+  beforeEach(() => {
+    image.mock();
   });
 
   afterEach(() => {
@@ -57,9 +66,7 @@ describe('useDownload', () => {
   });
 
   test('should trigger onLoad via Image props when decode is not supported', async () => {
-    const { default: useDownload } = await import(
-      '../../../src/hooks/useDownload'
-    );
+    const { useDownload } = await import('../../../src/hooks/useDownload');
     const { result } = renderHook(() =>
       useDownload(setState, src, srcSet, onLoad, onError)
     );
@@ -81,9 +88,7 @@ describe('useDownload', () => {
   });
 
   test('should trigger onError via Image props when decode is not supported', async () => {
-    const { default: useDownload } = await import(
-      '../../../src/hooks/useDownload'
-    );
+    const { useDownload } = await import('../../../src/hooks/useDownload');
     const { result } = renderHook(() =>
       useDownload(setState, src, srcSet, onLoad, onError)
     );
