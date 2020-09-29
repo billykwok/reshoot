@@ -1,6 +1,5 @@
 import { describe, beforeEach, afterEach, test, expect } from '@jest/globals';
 import { intersectionObserver } from '@shopify/jest-dom-mocks';
-import noop from '../../../src/utils/noop';
 
 describe('intersection', () => {
   const baseDomRect: DOMRectReadOnly = {
@@ -38,10 +37,8 @@ describe('intersection', () => {
       __esModule: true,
       default: false,
     }));
-    const { default: subscribe } = await import(
-      '../../../src/utils/intersection'
-    );
-    expect(subscribe(null, null)).toBe(noop);
+    const { subscribe } = await import('../../../src/utils/intersection');
+    subscribe(null, null);
     expect(intersectionObserver.observers).toHaveLength(0);
   });
 
@@ -50,16 +47,16 @@ describe('intersection', () => {
       __esModule: true,
       default: true,
     }));
-    const { default: subscribe } = await import(
+    const { subscribe, unsubscribe } = await import(
       '../../../src/utils/intersection'
     );
     expect(intersectionObserver.observers).toHaveLength(0);
 
     const [element1, handler1] = [document.createElement('div'), jest.fn()];
     const [element2, handler2] = [document.createElement('div'), jest.fn()];
-    const unsubscribe1 = subscribe(element1, handler1);
+    subscribe(element1, handler1);
     expect(intersectionObserver.observers).toHaveLength(1);
-    const unsubscribe2 = subscribe(element2, handler2);
+    subscribe(element2, handler2);
     expect(intersectionObserver.observers).toHaveLength(2);
     const [observer1, observer2] = intersectionObserver.observers;
     expect(observer1.options).toEqual({ rootMargin: '25% 0% 60%' });
@@ -75,13 +72,13 @@ describe('intersection', () => {
     expect(handler1).toHaveBeenCalledTimes(2);
     expect(handler2).toHaveBeenCalledTimes(1);
 
-    unsubscribe1();
+    unsubscribe(element1);
     intersectionObserver.simulate(baseEntry);
     expect(intersectionObserver.observers).toHaveLength(1);
     expect(handler1).toHaveBeenCalledTimes(2);
     expect(handler2).toHaveBeenCalledTimes(2);
 
-    unsubscribe2();
+    unsubscribe(element2);
     intersectionObserver.simulate(baseEntry);
     expect(intersectionObserver.observers).toHaveLength(0);
     expect(handler1).toHaveBeenCalledTimes(2);
@@ -93,15 +90,15 @@ describe('intersection', () => {
       __esModule: true,
       default: true,
     }));
-    const { default: subscribe } = await import(
+    const { subscribe, unsubscribe } = await import(
       '../../../src/utils/intersection'
     );
     expect(intersectionObserver.observers).toHaveLength(0);
 
-    const unsubscribe = subscribe(null, jest.fn());
+    subscribe(null, jest.fn());
     expect(intersectionObserver.observers).toHaveLength(0);
 
-    unsubscribe();
+    unsubscribe(null);
     expect(intersectionObserver.observers).toHaveLength(0);
   });
 });

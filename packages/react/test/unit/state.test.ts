@@ -3,7 +3,6 @@ import {
   MANUAL,
   OFFLINE,
   ERROR,
-  HIDDEN,
   LOADING,
   FADING,
   LOADED,
@@ -22,19 +21,15 @@ describe('State', () => {
     expect(ERROR).toEqual(2);
   });
 
-  test('correct underlying value and equality for HIDDEN', () => {
-    expect(HIDDEN).toEqual(3);
-  });
-
   test('correct underlying value and equality for LOADING', () => {
-    expect(LOADING).toEqual(4);
+    expect(LOADING).toEqual(3);
   });
 
   test('correct underlying value and equality for FADING', () => {
-    expect(FADING).toEqual(5);
+    expect(FADING).toEqual(4);
   });
 
   test('correct underlying value and equality for LOADED', () => {
-    expect(LOADED).toEqual(6);
+    expect(LOADED).toEqual(5);
   });
 });

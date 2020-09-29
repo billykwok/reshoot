@@ -6,7 +6,7 @@ import noop from '../utils/noop';
 import type { SyntheticEvent, Dispatch, SetStateAction } from 'react';
 import type { State } from '../state';
 
-const useDownload = (
+export const useDownload = (
   setState: Dispatch<SetStateAction<State>>,
   src: string,
   srcSet: string | false,
@@ -30,5 +30,3 @@ const useDownload = (
     }
     image.src = src;
   }, []);
-
-export default useDownload;

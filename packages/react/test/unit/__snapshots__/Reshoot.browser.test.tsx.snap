@@ -7,6 +7,10 @@ exports[`Reshoot aspect ratio can be overridden 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.5;"
 >
   <picture>
+    <source
+      srcset="image-480.webp 480w, image-640.webp 640w"
+      type="image/webp"
+    />
     <img
       height="80"
       src="image.jpg"
@@ -26,6 +30,10 @@ exports[`Reshoot customized options for image link 1`] = `
   target="_blank"
 >
   <picture>
+    <source
+      srcset="image-480.webp 480w, image-640.webp 640w"
+      type="image/webp"
+    />
     <img
       height="80"
       src="image.jpg"
@@ -43,6 +51,10 @@ exports[`Reshoot customized options for normal image 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
   <picture>
+    <source
+      srcset="image-480.webp 480w, image-640.webp 640w"
+      type="image/webp"
+    />
     <img
       height="80"
       src="image.jpg"
@@ -136,6 +148,10 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
   <picture>
+    <source
+      srcset="image-480.webp 480w, image-640.webp 640w"
+      type="image/webp"
+    />
     <img
       height="80"
       src="image.jpg"
@@ -158,25 +174,6 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
 </div>
 `;
 
-exports[`Reshoot render valid input correctly in state HIDDEN 1`] = `
-<div
-  class="ax4jui0"
-  data-testid="123"
-  style="color: rgb(255, 255, 255); --r: 0.8;"
->
-  <div>
-    <img
-      alt=""
-      decoding="sync"
-      height="80"
-      loading="lazy"
-      src="data:jpeg;base64,1shfk241jkw"
-      width="100"
-    />
-  </div>
-</div>
-`;
-
 exports[`Reshoot render valid input correctly in state LOADED 1`] = `
 <div
   class="ax4jui0"
@@ -184,6 +181,10 @@ exports[`Reshoot render valid input correctly in state LOADED 1`] = `
   style="color: rgb(255, 255, 255); --r: 0.8;"
 >
   <picture>
+    <source
+      srcset="image-480.webp 480w, image-640.webp 640w"
+      type="image/webp"
+    />
     <img
       height="80"
       src="image.jpg"
