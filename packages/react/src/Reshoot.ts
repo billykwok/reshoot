@@ -176,18 +176,17 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
       extraProps
     ),
     !IS_BROWSER || state > LOADING
-      ? createElement('picture', {}, [
-          ...sources.map((source) =>
+      ? createElement(
+          'picture',
+          {},
+          (sources || []).map((source) =>
             createElement('source', assign({ key: source.type, sizes }, source))
           ),
           createElement(
             'img',
-            assign(
-              { key: 'fallback', src, srcSet, sizes, alt, width, height },
-              imgProps
-            )
-          ),
-        ])
+            assign({ src, srcSet, sizes, alt, width, height }, imgProps)
+          )
+        )
       : null,
     IS_BROWSER &&
       placeholder &&
