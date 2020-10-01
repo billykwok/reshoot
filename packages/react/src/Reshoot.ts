@@ -95,11 +95,9 @@ const asFadeout = css`
   animation: f 0.75s 1;
   @keyframes f {
     0% {
-      transform: scale3d(1.05, 1.05, 1);
       opacity: 1;
     }
     100% {
-      transform: none;
       opacity: 0;
     }
   }
@@ -190,14 +188,13 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
       : null,
     IS_BROWSER &&
       placeholder &&
-      !hasLoaded(src) &&
-      state !== LOADED &&
+      state < LOADED &&
       createElement(
         'div',
-        assign(
-          { onAnimationEnd: () => setState(() => LOADED) },
-          state === FADING && { className: asFadeout }
-        ),
+        {
+          className: state === FADING ? asFadeout : null,
+          onAnimationEnd: () => setState(() => LOADED),
+        },
         createElement('img', {
           src: placeholder,
           alt: '',
