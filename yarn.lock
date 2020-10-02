@@ -2546,7 +2546,7 @@
     "@babel/types" "^7.11.5"
 
 "@reshoot/react@file:packages/react":
-  version "1.6.4"
+  version "1.6.5"
 
 "@rollup/plugin-babel@^5.2.1":
   version "5.2.1"
@@ -4189,10 +4189,10 @@ acorn-walk@^7.0.0, acorn-walk@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-7.2.0.tgz#0de889a601203909b0fbe07b8938dc21d2e967bc"
   integrity sha512-OPdCF6GsMIP+Az+aWfAAOEt2/+iVDKE7oy6lJ098aoe59oAmK76qV6Gw60SbZ8jHuG2wH058GF4pLFbYamYrVA==
 
-acorn@8.0.2, acorn@^6.4.1, acorn@^7.1.0, acorn@^7.1.1, acorn@^7.4.0:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.0.2.tgz#f7503a253311d4af42332bc188d5713edb2e030a"
-  integrity sha512-t0Dw7AOyeKs4nez4dhzkBDHB28ICo1pxk3UFsLfsCHOkLW+CwbAZJPMa0vBbq0Mqsslhb7n/7H4qB5txaVQ4ew==
+acorn@8.0.3, acorn@^6.4.1, acorn@^7.1.0, acorn@^7.1.1, acorn@^7.4.0:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.0.3.tgz#68e78e53da020414420282428f1a4afd2075c2dc"
+  integrity sha512-uRMbCU3bM1L697KISxvkd9TA2zASoGFDODzFFdQR4qNpPffj6ZMdp5J4ffXUXR9G0PVPsN0enEkCrvssCkoPsw==
 
 address@1.1.2, address@^1.0.1:
   version "1.1.2"

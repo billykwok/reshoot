@@ -8,6 +8,7 @@ import { useIntersection } from './hooks/useIntersection';
 import { cx } from './utils/cx';
 import { createElement, useCallback, assign } from './utils/mini';
 import { cacheFailed, cacheLoaded } from './utils/cache';
+import noop from './utils/noop';
 import IS_BROWSER from './utils/isBrowser';
 
 import type {
@@ -15,7 +16,6 @@ import type {
   AnchorHTMLAttributes,
   SyntheticEvent,
   RefObject,
-  MouseEvent,
 } from 'react';
 import type { State } from './state';
 
@@ -150,8 +150,8 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
     alt,
     messages = MESSAGES,
     imgProps,
-    onLoad: _onLoad,
-    onError: _onError,
+    onLoad: _onLoad = noop,
+    onError: _onError = noop,
     _s = null,
     ...extraProps
   }: Props,
@@ -233,12 +233,7 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
       state < LOADING &&
       createElement(
         'button',
-        {
-          onClick: (e: MouseEvent) => {
-            e.preventDefault();
-            setState(() => LOADING);
-          },
-        },
+        { onClick: () => setState(() => LOADING) },
         createElement(
           'svg',
           { viewBox: '0 0 100 100' },
