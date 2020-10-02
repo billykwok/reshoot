@@ -8,7 +8,6 @@ module.exports = {
         allExtensions: true,
         allowNamespaces: true,
         allowDeclareFields: true,
-        onlyRemoveTypeImports: true,
       },
     ],
     '@babel/preset-react',
@@ -17,11 +16,7 @@ module.exports = {
   plugins: [
     [
       '@babel/plugin-transform-runtime',
-      {
-        corejs: { version: 3, proposals: true },
-        helpers: true,
-        regenerator: true,
-      },
+      { corejs: { version: 3, proposals: true }, helpers: true },
     ],
     ['const-enum', { transform: 'constObject' }],
   ],

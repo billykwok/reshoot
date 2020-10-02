@@ -15,7 +15,6 @@ const sortChapters = [
 
 addParameters({
   options: {
-    showRoots: true,
     storySort: (a, b) => {
       const x = a[1].kind.toLowerCase();
       const y = b[1].kind.toLowerCase();

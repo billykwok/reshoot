@@ -1,14 +1,13 @@
 import { forwardRef } from 'react';
 import { css } from 'linaria';
-import assign from 'object-assign';
-import { LOADING, FADING, LOADED } from './state';
+import { LOADING, FADING, LOADED, ERROR } from './state';
+import { useKey } from './hooks/useKey';
 import { useLoadingState } from './hooks/useLoadingState';
-import { useDownload } from './hooks/useDownload';
-import { useLoadImage } from './hooks/useLoadImage';
+import { useShowImage } from './hooks/useShowImage';
 import { useIntersection } from './hooks/useIntersection';
 import { cx } from './utils/cx';
-import createElement from './utils/createElement';
-import { hasLoaded } from './utils/cache';
+import { createElement, useCallback, assign } from './utils/mini';
+import { cacheFailed, cacheLoaded } from './utils/cache';
 import IS_BROWSER from './utils/isBrowser';
 
 import type {
@@ -129,7 +128,7 @@ type Props = {
   sizes?: string;
   alt?: string;
   onLoad?: () => void;
-  onError?: (event: Event | SyntheticEvent | string) => void;
+  onError?: (event: SyntheticEvent) => void;
   _s?: State;
 } & (HTMLAttributes<HTMLDivElement> | AnchorHTMLAttributes<HTMLAnchorElement>);
 
@@ -138,7 +137,7 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
     className,
     style,
     data: {
-      sources,
+      sources = [],
       src,
       srcSet,
       width,
@@ -151,17 +150,30 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
     alt,
     messages = MESSAGES,
     imgProps,
-    onLoad,
-    onError,
+    onLoad: _onLoad,
+    onError: _onError,
     _s = null,
     ...extraProps
   }: Props,
   ref: RefObject<HTMLElement>
 ) {
-  const [state, setState] = useLoadingState(_s, src);
-  const download = useDownload(setState, src, srcSet, onLoad, onError);
-  const loadImage = useLoadImage(setState, src, download);
+  const key = useKey(src, srcSet, sources);
+  const [state, setState] = useLoadingState(key, _s);
+  const loadImage = useShowImage(key, setState);
   const innerRef = useIntersection(ref, loadImage);
+  const onLoad = useCallback(() => {
+    cacheLoaded(key);
+    setState((state) => (state < LOADED ? FADING : LOADED));
+    _onLoad();
+  }, [key]);
+  const onError = useCallback(
+    (event: SyntheticEvent) => {
+      cacheFailed(key);
+      setState(() => ERROR);
+      _onError(event);
+    },
+    [key]
+  );
 
   return createElement(
     'href' in extraProps && extraProps.href ? 'a' : 'div',
@@ -173,16 +185,30 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
       },
       extraProps
     ),
-    !IS_BROWSER || state > LOADING
+    !IS_BROWSER || state > ERROR
       ? createElement(
           'picture',
           {},
-          (sources || []).map((source) =>
+          sources.map((source) =>
             createElement('source', assign({ key: source.type, sizes }, source))
           ),
           createElement(
             'img',
-            assign({ src, srcSet, sizes, alt, width, height }, imgProps)
+            assign(
+              {
+                src,
+                srcSet,
+                sizes,
+                alt,
+                width,
+                height,
+                loading: 'lazy',
+                crossOrigin: '',
+                onLoad,
+                onError,
+              },
+              imgProps
+            )
           )
         )
       : null,
@@ -191,14 +217,13 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
       state < LOADED &&
       createElement(
         'div',
-        {
-          className: state === FADING ? asFadeout : null,
+        state > ERROR && {
+          className: asFadeout,
           onAnimationEnd: () => setState(() => LOADED),
         },
         createElement('img', {
           src: placeholder,
           alt: '',
-          decoding: 'sync',
           loading: 'lazy',
           width,
           height,
@@ -212,7 +237,6 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
           onClick: (e: MouseEvent) => {
             e.preventDefault();
             setState(() => LOADING);
-            hasLoaded(src) || download();
           },
         },
         createElement(
@@ -222,7 +246,7 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
             d: 'M79.4 56a30 30 0 1 1-1.7-17.5m2-19v20h-20',
           })
         ),
-        createElement('h6', {}, messages[Math.min(state, 2) as 0 | 1 | 2]),
+        createElement('h6', {}, messages[state as 0 | 1 | 2]),
         createElement('p', {}, 'Click to reload')
       )
   );
