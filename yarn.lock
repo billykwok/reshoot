@@ -2541,12 +2541,12 @@
     sharp "^0.26.1"
 
 "@reshoot/macro@file:packages/macro":
-  version "1.7.1"
+  version "1.7.2"
   dependencies:
     "@babel/types" "^7.11.5"
 
 "@reshoot/react@file:packages/react":
-  version "1.6.1"
+  version "1.6.4"
 
 "@rollup/plugin-babel@^5.2.1":
   version "5.2.1"
@@ -3700,10 +3700,18 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.9.49":
+"@types/react@*":
   version "16.9.49"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.49.tgz#09db021cf8089aba0cdb12a49f8021a69cce4872"
   integrity sha512-DtLFjSj0OYAdVLBbyjhuV9CdGVHCkHn2R+xr3XkBvK2rS1Y1tkc14XSGjYgm5Fjjr90AxH9tiSzc1pCFMGO06g==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^3.0.2"
+
+"@types/react@^16.9.50":
+  version "16.9.50"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.50.tgz#cb5f2c22d42de33ca1f5efc6a0959feb784a3a2d"
+  integrity sha512-kPx5YsNnKDJejTk1P+lqThwxN2PczrocwsvqXnjvVvKpFescoY62ZiM3TV7dH1T8lFhlHZF+PE5xUyimUwqEGA==
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -4932,10 +4940,10 @@ babel-plugin-syntax-jsx@^6.18.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
   integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
-babel-plugin-tester@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-9.2.0.tgz#7169f99678419b9c6754bcc5e3a44eb4a11cdff3"
-  integrity sha512-HCbgmxOJXCcJ8hMk4ek6Ehfv0Ye7D7EpglNP8bh2gmRZnLPkKSJF+ufvypur/F38N3bEWWHYX4QfdnfLyql2DQ==
+babel-plugin-tester@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-10.0.0.tgz#7ece63c50ee76cc4b486f99d6a2a4cf78c836fe5"
+  integrity sha512-RHlDIUtfdlFvUXHTWroyL3iz9OZnPYgcaDIUrp4ejXrzSClRx3ldJlhaOauvblJqZEPb/7HR32gLZT45lgOXFg==
   dependencies:
     "@types/babel-plugin-tester" "^9.0.0"
     lodash.mergewith "^4.6.2"
