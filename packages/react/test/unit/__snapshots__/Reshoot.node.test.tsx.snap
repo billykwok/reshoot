@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Reshoot server side rendering 1`] = `"<div class=\\"ax4jui0\\" style=\\"color:#fff;--r:2\\" data-testid=\\"123\\"><picture><source type=\\"image/webp\\" srcSet=\\"image-480.webp 480w, image-640.webp 640w\\"/><img src=\\"image.jpg\\" alt=\\"Test image\\" width=\\"100\\" height=\\"80\\"/></picture></div>"`;
+exports[`Reshoot server side rendering 1`] = `"<div class=\\"ax4jui0\\" style=\\"color:#fff;--r:2\\" data-testid=\\"123\\"><picture><source type=\\"image/webp\\" srcSet=\\"image-480.webp 480w, image-640.webp 640w\\"/><img src=\\"image.jpg\\" alt=\\"Test image\\" width=\\"100\\" height=\\"80\\" loading=\\"lazy\\" crossorigin=\\"\\"/></picture></div>"`;

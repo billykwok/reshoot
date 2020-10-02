@@ -11,7 +11,6 @@ import {
 } from '../../src/state';
 
 describe('Reshoot', () => {
-  const download = jest.fn();
   const baseData = {
     sources: [
       {
@@ -36,9 +35,6 @@ describe('Reshoot', () => {
       default: true,
     }));
     jest.doMock('../../src/hooks/useLoadingState', () => ({ useLoadingState }));
-    jest.doMock('../../src/hooks/useDownload', () => ({
-      useDownload: () => download,
-    }));
     jest.doMock('../../src/utils/cache', () => ({
       hasLoaded: () => false,
       hasFailed: () => false,
@@ -80,7 +76,6 @@ describe('Reshoot', () => {
     const { getByTestId } = render(
       <Reshoot data-testid="123" data={baseData} ref={ref} />
     );
-    expect(download).toHaveBeenCalledTimes(1);
     const dom = getByTestId('123');
     expect(dom).toEqual(ref.current);
     expect(dom).toMatchSnapshot();
@@ -89,7 +84,6 @@ describe('Reshoot', () => {
     expect(children).toHaveLength(1);
 
     fireEvent.click(children.item(0));
-    expect(download).toHaveBeenCalledTimes(2);
     expect(dom).toMatchSnapshot();
   });
 
@@ -112,7 +106,6 @@ describe('Reshoot', () => {
     const { getByTestId } = render(
       <Reshoot data-testid="123" data={baseData} ref={ref} />
     );
-    expect(download).toHaveBeenCalledTimes(1);
     expect(setState).toHaveBeenCalledTimes(1);
     expect(setState.mock.calls[0][0]()).toEqual(LOADING);
     const dom = getByTestId('123');

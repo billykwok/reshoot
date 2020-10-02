@@ -16,7 +16,6 @@ const images = [
     sources: [
       {
         type: 'image/webp',
-        src: toSrc('1594653804388-0ad4242b28c2', 'webp'),
         srcSet: toSrcSet('1594653804388-0ad4242b28c2', 'webp'),
       },
     ],
@@ -32,7 +31,6 @@ const images = [
     sources: [
       {
         type: 'image/webp',
-        src: toSrc('1593889392960-817de7c25771', 'webp'),
         srcSet: toSrcSet('1593889392960-817de7c25771', 'webp'),
       },
     ],
@@ -48,7 +46,6 @@ const images = [
     sources: [
       {
         type: 'image/webp',
-        src: toSrc('1594418569593-bdfdcf47a2cf', 'webp'),
         srcSet: toSrcSet('1594418569593-bdfdcf47a2cf', 'webp'),
       },
     ],
@@ -64,7 +61,6 @@ const images = [
     sources: [
       {
         type: 'image/webp',
-        src: toSrc('1593959072487-3c17618454aa', 'webp'),
         srcSet: toSrcSet('1593959072487-3c17618454aa', 'webp'),
       },
     ],
@@ -80,7 +76,6 @@ const images = [
     sources: [
       {
         type: 'image/webp',
-        src: toSrc('1531279550271-23c2a77a765c', 'webp'),
         srcSet: toSrcSet('1531279550271-23c2a77a765c', 'webp'),
       },
     ],
@@ -96,7 +91,6 @@ const images = [
     sources: [
       {
         type: 'image/webp',
-        src: toSrc('1594725224909-0e66d59ed0f1', 'webp'),
         srcSet: toSrcSet('1594725224909-0e66d59ed0f1', 'webp'),
       },
     ],
@@ -112,7 +106,6 @@ const images = [
     sources: [
       {
         type: 'image/webp',
-        src: toSrc('1594559414091-2a75d7c73a68', 'webp'),
         srcSet: toSrcSet('1594559414091-2a75d7c73a68', 'webp'),
       },
     ],

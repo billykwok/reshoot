@@ -14,13 +14,13 @@ declare global {
 }
 
 export const useLoadingState = (
-  overriddenState: State,
-  src: string
+  key: string,
+  overriddenState: State
 ): [State, Dispatch<SetStateAction<State>>] => {
   const [_state, setState] = useState<State>(() => {
-    if (hasLoaded(src)) {
+    if (hasLoaded(key)) {
       return LOADED;
-    } else if (hasFailed(src)) {
+    } else if (hasFailed(key)) {
       return ERROR;
     } else if (notUndefined(typeof navigator)) {
       const n = navigator;

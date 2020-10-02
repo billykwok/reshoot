@@ -11,7 +11,7 @@ import {
 } from '../../../src/state';
 
 describe('useLoadingState', () => {
-  const src = 'path/to/test.jpg';
+  const key = 'path/to/test.jpg';
   const hasLoaded = jest.fn<boolean, [string]>(() => false);
   const hasFailed = jest.fn<boolean, [string]>(() => false);
 
@@ -27,7 +27,7 @@ describe('useLoadingState', () => {
     const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(null, src));
+    const { result } = renderHook(() => useLoadingState(key, null));
     expect(result.error).toBeUndefined();
     const [state1, setState] = result.current;
     expect(state1).toEqual(LOADING);
@@ -42,7 +42,7 @@ describe('useLoadingState', () => {
     const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(null, src));
+    const { result } = renderHook(() => useLoadingState(key, null));
     expect(result.error).toBeUndefined();
     expect(result.current[0]).toEqual(LOADED);
   });
@@ -53,7 +53,7 @@ describe('useLoadingState', () => {
     const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(null, src));
+    const { result } = renderHook(() => useLoadingState(key, null));
     expect(result.error).toBeUndefined();
     expect(result.current[0]).toEqual(ERROR);
   });
@@ -63,7 +63,7 @@ describe('useLoadingState', () => {
     const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(null, src));
+    const { result } = renderHook(() => useLoadingState(key, null));
     expect(result.error).toBeUndefined();
     expect(result.current[0]).toEqual(MANUAL);
     connection.restore();
@@ -74,7 +74,7 @@ describe('useLoadingState', () => {
     const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(null, src));
+    const { result } = renderHook(() => useLoadingState(key, null));
     expect(result.error).toBeUndefined();
     expect(result.current[0]).toEqual(OFFLINE);
     jest.restoreAllMocks();
@@ -84,7 +84,7 @@ describe('useLoadingState', () => {
     const { useLoadingState } = await import(
       '../../../src/hooks/useLoadingState'
     );
-    const { result } = renderHook(() => useLoadingState(FADING, src));
+    const { result } = renderHook(() => useLoadingState(key, FADING));
     expect(result.error).toBeUndefined();
     expect(result.current[0]).toEqual(FADING);
   });

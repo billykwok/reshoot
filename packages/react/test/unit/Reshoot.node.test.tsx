@@ -3,7 +3,6 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 describe('Reshoot', () => {
-  const download = jest.fn(() => Promise.resolve());
   const baseData = {
     sources: [
       {
@@ -21,9 +20,6 @@ describe('Reshoot', () => {
     jest.doMock('../../src/utils/isBrowser', () => ({
       __esModule: true,
       default: false,
-    }));
-    jest.doMock('../../src/hooks/useDownload', () => ({
-      useDownload: () => download,
     }));
   });
 
