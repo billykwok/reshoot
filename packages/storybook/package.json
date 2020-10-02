@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/storybook",
   "description": "Storyboard for Reshoot UI components",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "private": true,
   "type": "commonjs",
   "author": "Billy Kwok <opensource@billykwok.me>",
