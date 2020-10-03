@@ -3,9 +3,9 @@ import createPublicPathResolver from '../../../src/config/createPublicPathResolv
 
 describe('createPublicPathResolver', () => {
   test('should create function for string', () => {
-    const resolvePublicPath = createPublicPathResolver('public');
+    const resolvePublicPath = createPublicPathResolver('/public/');
     expect(resolvePublicPath).toBeInstanceOf(Function);
-    expect(resolvePublicPath('file.ext')).toEqual('public/file.ext');
+    expect(resolvePublicPath('file.ext')).toEqual('/public/file.ext');
   });
 
   test('should function as-is', () => {
