@@ -38,8 +38,8 @@ function createOutputWriter(
 ): [
   (
     width: number,
-    content: Promise<Buffer | string>,
-    ext: string
+    ext: string,
+    content: Promise<Buffer | string>
   ) => [string, Promise<void>],
   (internalOutput: Result) => Promise<string>
 ] {
@@ -49,11 +49,11 @@ function createOutputWriter(
   return [
     function writeImage(
       width: number,
-      content: Promise<Buffer | string>,
-      ext: string
+      ext: string,
+      content: Promise<Buffer | string> = null
     ) {
       const filename = interpolate(ctx, name, { width, hash, ext });
-      if (emitFile) {
+      if (content !== null) {
         if (cache) {
           const cacheName = `${width}.${ext}`;
           filenames.push(cacheName);
@@ -69,8 +69,8 @@ function createOutputWriter(
     },
     async function writeStats(internalOutput: Result) {
       const output = render(internalOutput, options);
-      if (cache) {
-        if (emitFile && !options.fastMode && filenames.length < 1) {
+      if (cache && emitFile) {
+        if (!options.fastMode && filenames.length < 1) {
           ctx.emitWarning(new Error(`Caching ${hash} without filenames`));
         }
         await outputJson(resolveCachePath(cacheDir, 'stats.json'), {
