@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/react",
   "description": "A React component that lazily renders responsive images with LQIPs",
-  "version": "1.6.6",
+  "version": "1.7.0",
   "type": "commonjs",
   "exports": {
     "import": "./lib/es/index.js",
