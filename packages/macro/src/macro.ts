@@ -3,6 +3,7 @@ import { createMacro } from 'babel-plugin-macros';
 import handle from './handle';
 
 type ImageData = Readonly<{
+  id: string;
   type: string;
   src: string;
   srcSet: string;

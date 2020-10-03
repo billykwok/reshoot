@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 import { css } from 'linaria';
 import { LOADING, FADING, LOADED, ERROR } from './state';
-import { useKey } from './hooks/useKey';
 import { useLoadingState } from './hooks/useLoadingState';
 import { useShowImage } from './hooks/useShowImage';
 import { useIntersection } from './hooks/useIntersection';
@@ -109,6 +108,7 @@ const MESSAGES: [string, string, string] = [
 ];
 
 export type ImageData = {
+  id?: string;
   sources?: { type: string; srcSet: string }[];
   src: string;
   srcSet?: string;
@@ -137,6 +137,7 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
     className,
     style,
     data: {
+      id,
       sources = [],
       src,
       srcSet,
@@ -157,22 +158,21 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
   }: Props,
   ref: RefObject<HTMLElement>
 ) {
-  const key = useKey(src, srcSet, sources);
-  const [state, setState] = useLoadingState(key, _s);
-  const loadImage = useShowImage(key, setState);
+  const [state, setState] = useLoadingState(id, _s);
+  const loadImage = useShowImage(id, setState);
   const innerRef = useIntersection(ref, loadImage);
   const onLoad = useCallback(() => {
-    cacheLoaded(key);
+    cacheLoaded(id);
     setState((state) => (state < LOADED ? FADING : LOADED));
     _onLoad();
-  }, [key]);
+  }, [id]);
   const onError = useCallback(
     (event: SyntheticEvent) => {
-      cacheFailed(key);
+      cacheFailed(id);
       setState(() => ERROR);
       _onError(event);
     },
-    [key]
+    [id]
   );
 
   return createElement(

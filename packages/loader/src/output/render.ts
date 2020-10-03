@@ -1,3 +1,4 @@
+import { MetroHash64 } from 'metrohash';
 import { isDataUrl } from '../util/dataUrl';
 import { createStringifiable, stringify } from './stringify';
 
@@ -66,6 +67,11 @@ function render(
     (options.esModule ? ES6_EXPORT : COMMON_JS_EXPORT) +
     stringify(
       options.shape({
+        id: new MetroHash64()
+          .update(src)
+          .update(srcSet.map(([path, width]) => `${path}${width}`).join())
+          .update(sources.map((source) => source.srcSet).join())
+          .digest(),
         src: transformSrc(src, options),
         srcSet: transformSrcSet(srcSet, options),
         placeholder: transformPlaceholder(placeholder, options),
