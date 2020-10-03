@@ -61,6 +61,7 @@ export interface Result {
 }
 
 export type ShapeArgument = {
+  id: string;
   type: string;
   src: string;
   width: number;
