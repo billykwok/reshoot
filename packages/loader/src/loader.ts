@@ -34,11 +34,13 @@ async function reshootLoader(
   if (options.cache) {
     const { mode } = options;
     const { filenames = [], output = null } = await readCacheStats(mode, hash);
-    if (options.emitFile && filenames.length && output) {
-      for (const filename of filenames) {
-        awaitables.push(emitFromCache(this, hash, filename, options));
+    if (output) {
+      if (options.emitFile && filenames.length) {
+        for (const filename of filenames) {
+          awaitables.push(emitFromCache(this, hash, filename, options));
+        }
+        await Promise.all(awaitables);
       }
-      await Promise.all(awaitables);
       return callback(null, output);
     }
   }
@@ -58,10 +60,12 @@ async function reshootLoader(
   const defaultWidth = Math.min(options.defaultWidth || 0, metadata.width);
   const [rawPath, awaitable] = writeImage(
     isSvgOrGif ? metadata.width : defaultWidth,
+    ext,
     isSvgOrGif
       ? Promise.resolve(content)
-      : resize(image, defaultWidth, mime, options),
-    ext
+      : options.emitFile
+      ? resize(image, defaultWidth, mime, options)
+      : null
   );
   awaitables.push(awaitable);
 
@@ -108,8 +112,8 @@ async function reshootLoader(
     for (const width of widths) {
       const [srcSet, awaitable] = writeImage(
         width,
-        resize(image, width, mime, options),
-        ext
+        ext,
+        options.emitFile ? resize(image, width, mime, options) : null
       );
       awaitables.push(awaitable);
       internalOutput.srcSet.push([srcSet, width]);
@@ -122,8 +126,8 @@ async function reshootLoader(
         for (const width of widths.concat(defaultWidth)) {
           const [path, awaitable] = writeImage(
             width,
-            resize(image, width, type, options),
-            extension
+            extension,
+            options.emitFile ? resize(image, width, type, options) : null
           );
           awaitables.push(awaitable);
           srcSet.push([path, width]);
