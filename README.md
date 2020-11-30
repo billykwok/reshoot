@@ -1,9 +1,9 @@
-# <img src="https://raw.githubusercontent.com/billykwok/reshoot/master/logo.png" width="200" />
+# <img src="https://raw.githubusercontent.com/billykwok/reshoot/main/logo.png" width="200" />
 
 [![Babel Macro](https://img.shields.io/badge/babel--macro-%F0%9F%8E%A3-f5da55.svg?style=flat-square)](https://github.com/kentcdodds/babel-plugin-macros)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
-[![codecov](https://codecov.io/gh/billykwok/reshoot/branch/master/graph/badge.svg)](https://codecov.io/gh/billykwok/reshoot)
-[![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/master.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/master)
+[![codecov](https://codecov.io/gh/billykwok/reshoot/branch/main/graph/badge.svg)](https://codecov.io/gh/billykwok/reshoot)
+[![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/main.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/main)
 
 **Official Documentation**: [https://reshootjs.github.io](https://reshootjs.github.io)
 
@@ -57,7 +57,7 @@ Please voice your opinion and report bugs in the [issues](https://github.com/bil
 
 ## Contributing
 
-You are more than welcome to add more functionalities, improve documentation, fix bugs, and anything you think is needed. The build step is pretty self-explanatory. Please refer to [`package.json`](https://github.com/billykwok/reshoot/blob/master/package.json).
+You are more than welcome to add more functionalities, improve documentation, fix bugs, and anything you think is needed. The build step is pretty self-explanatory. Please refer to [`package.json`](https://github.com/billykwok/reshoot/blob/main/package.json).
 
 ## License
 

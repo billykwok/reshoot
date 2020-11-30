@@ -14,7 +14,6 @@ exports[`Reshoot aspect ratio can be overridden 1`] = `
     <img
       crossorigin=""
       height="80"
-      loading="lazy"
       src="image.jpg"
       srcset="image-480.jpg 480w, image-640.jpg 640w"
       width="100"
@@ -39,7 +38,6 @@ exports[`Reshoot customized options for image link 1`] = `
     <img
       crossorigin=""
       height="80"
-      loading="lazy"
       src="image.jpg"
       srcset="image-480.jpg 480w, image-640.jpg 640w"
       width="100"
@@ -62,7 +60,6 @@ exports[`Reshoot customized options for normal image 1`] = `
     <img
       crossorigin=""
       height="80"
-      loading="lazy"
       src="image.jpg"
       srcset="image-480.jpg 480w, image-640.jpg 640w"
       width="100"
@@ -85,7 +82,6 @@ exports[`Reshoot do not render preview when placeholder is falsy 1`] = `
     <img
       crossorigin=""
       height="80"
-      loading="lazy"
       src="image.jpg"
       srcset="image-480.jpg 480w, image-640.jpg 640w"
       width="100"
@@ -104,7 +100,6 @@ exports[`Reshoot render valid input correctly in state ERROR 1`] = `
     <img
       alt=""
       height="80"
-      loading="lazy"
       src="data:jpeg;base64,1shfk241jkw"
       width="100"
     />
@@ -137,7 +132,6 @@ exports[`Reshoot render valid input correctly in state ERROR 2`] = `
     <img
       alt=""
       height="80"
-      loading="lazy"
       src="data:jpeg;base64,1shfk241jkw"
       width="100"
     />
@@ -174,7 +168,6 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
     <img
       crossorigin=""
       height="80"
-      loading="lazy"
       src="image.jpg"
       srcset="image-480.jpg 480w, image-640.jpg 640w"
       width="100"
@@ -186,7 +179,6 @@ exports[`Reshoot render valid input correctly in state FADING 1`] = `
     <img
       alt=""
       height="80"
-      loading="lazy"
       src="data:jpeg;base64,1shfk241jkw"
       width="100"
     />
@@ -208,7 +200,6 @@ exports[`Reshoot render valid input correctly in state LOADED 1`] = `
     <img
       crossorigin=""
       height="80"
-      loading="lazy"
       src="image.jpg"
       srcset="image-480.jpg 480w, image-640.jpg 640w"
       width="100"
@@ -231,7 +222,6 @@ exports[`Reshoot render valid input correctly in state LOADING 1`] = `
     <img
       crossorigin=""
       height="80"
-      loading="lazy"
       src="image.jpg"
       srcset="image-480.jpg 480w, image-640.jpg 640w"
       width="100"
@@ -243,7 +233,6 @@ exports[`Reshoot render valid input correctly in state LOADING 1`] = `
     <img
       alt=""
       height="80"
-      loading="lazy"
       src="data:jpeg;base64,1shfk241jkw"
       width="100"
     />
@@ -261,7 +250,6 @@ exports[`Reshoot render valid input correctly in state MANUAL 1`] = `
     <img
       alt=""
       height="80"
-      loading="lazy"
       src="data:jpeg;base64,1shfk241jkw"
       width="100"
     />
@@ -294,7 +282,6 @@ exports[`Reshoot render valid input correctly in state OFFLINE 1`] = `
     <img
       alt=""
       height="80"
-      loading="lazy"
       src="data:jpeg;base64,1shfk241jkw"
       width="100"
     />

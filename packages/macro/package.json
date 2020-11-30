@@ -32,18 +32,18 @@
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },
-  "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/macro",
+  "homepage": "https://github.com/billykwok/reshoot/tree/main/packages/macro",
   "scripts": {
     "clean": "rm -rf lib",
     "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts && tsc --project tsconfig.json",
     "lint": "eslint ./src/**"
   },
   "dependencies": {
-    "@babel/types": "^7.11.5"
+    "@babel/types": "^7.12.7"
   },
   "peerDependencies": {
-    "@babel/core": "^7.11.6",
-    "@reshoot/loader": "^1.6.7",
-    "babel-plugin-macros": "^2.8.0"
+    "@babel/core": "^7.12.9",
+    "@reshoot/loader": "^1.7.0",
+    "babel-plugin-macros": "^3.0.0"
   }
 }

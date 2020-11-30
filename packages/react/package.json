@@ -34,15 +34,15 @@
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },
-  "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/react",
+  "homepage": "https://github.com/billykwok/reshoot/tree/main/packages/react",
   "scripts": {
     "lint": "eslint ./src/**",
     "clean": "rm -rf lib types",
     "build": "yarn clean && rollup -c rollup.config.js && rollup -c rollup.config.js --format es --dir ./lib/es && tsc --project tsconfig.json"
   },
   "peerDependencies": {
-    "@babel/runtime-corejs3": "^7.11.2",
+    "@babel/runtime-corejs3": "^7.12.5",
     "object-assign": "4.1.1",
-    "react": "^16.13.1"
+    "react": "^17.0.1"
   }
 }

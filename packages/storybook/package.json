@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/billykwok/reshoot/issues"
   },
-  "homepage": "https://github.com/billykwok/reshoot/tree/master/packages/storybook",
+  "homepage": "https://github.com/billykwok/reshoot/tree/main/packages/storybook",
   "scripts": {
     "clean": "rm -rf ../../docs",
     "dev": "start-storybook",
@@ -22,19 +22,19 @@
   },
   "dependencies": {
     "@reshoot/react": "file:../react",
-    "@storybook/addon-actions": "^6.0.22",
-    "@storybook/addon-backgrounds": "^6.0.22",
+    "@storybook/addon-actions": "^6.1.9",
+    "@storybook/addon-backgrounds": "^6.1.9",
     "@storybook/addon-console": "^1.2.2",
-    "@storybook/addon-controls": "^6.0.22",
-    "@storybook/addon-docs": "^6.0.22",
-    "@storybook/addon-viewport": "^6.0.22",
-    "@storybook/addons": "6.0.22",
-    "@storybook/react": "^6.0.22",
-    "@storybook/theming": "^6.0.22",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@storybook/addon-controls": "^6.1.9",
+    "@storybook/addon-docs": "^6.1.9",
+    "@storybook/addon-viewport": "^6.1.9",
+    "@storybook/addons": "6.1.9",
+    "@storybook/react": "^6.1.9",
+    "@storybook/theming": "^6.1.9",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@storybook/cli": "^6.0.22"
+    "@storybook/cli": "^6.1.9"
   }
 }

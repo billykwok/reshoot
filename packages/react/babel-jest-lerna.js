@@ -12,7 +12,7 @@ module.exports = require('babel-jest').createTransformer({
         onlyRemoveTypeImports: true,
       },
     ],
-    '@babel/preset-react',
+    ['@babel/preset-react', { runtime: 'automatic', useBuiltIns: true }],
     'linaria/babel',
   ],
   plugins: [

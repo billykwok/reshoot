@@ -48,6 +48,8 @@ module.exports = {
   rules: {
     'prefer-spread': 'off',
     'react/prop-types': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
     'jsx-a11y/image-has-content': 'off',
     'jsx-a11y/heading-has-content': 'off',
     'jsx-a11y/anchor-has-content': 'off',
@@ -97,6 +99,8 @@ module.exports = {
         '@typescript-eslint/prefer-includes': 'off',
         'prefer-spread': 'off',
         'react/prop-types': 'off',
+        'react/jsx-uses-react': 'off',
+        'react/react-in-jsx-scope': 'off',
         'jsx-a11y/image-has-content': 'off',
         'jsx-a11y/heading-has-content': 'off',
         'jsx-a11y/anchor-has-content': 'off',

@@ -9,6 +9,6 @@ addons.setConfig({
     brandTitle: 'Reshoot',
     brandUrl: 'https://reshootjs.github.io',
     brandImage:
-      'https://raw.githubusercontent.com/billykwok/reshoot/master/logo.png',
+      'https://raw.githubusercontent.com/billykwok/reshoot/main/logo.png',
   }),
 });
