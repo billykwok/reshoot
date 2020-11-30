@@ -202,7 +202,6 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
                 alt,
                 width,
                 height,
-                loading: 'lazy',
                 crossOrigin: '',
                 onLoad,
                 onError,
@@ -224,7 +223,6 @@ export const Reshoot = forwardRef<HTMLElement, Props>(function Reshoot(
         createElement('img', {
           src: placeholder,
           alt: '',
-          loading: 'lazy',
           width,
           height,
         })

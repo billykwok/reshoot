@@ -8,9 +8,10 @@ module.exports = {
         allExtensions: true,
         allowNamespaces: true,
         allowDeclareFields: true,
+        onlyRemoveTypeImports: true,
       },
     ],
-    '@babel/preset-react',
+    ['@babel/preset-react', { runtime: 'automatic', useBuiltIns: true }],
     'linaria/babel',
   ],
   plugins: [
