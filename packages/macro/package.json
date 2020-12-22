@@ -39,11 +39,11 @@
     "lint": "eslint ./src/**"
   },
   "dependencies": {
-    "@babel/types": "^7.12.7"
+    "@babel/types": "^7.12.11"
   },
   "peerDependencies": {
-    "@babel/core": "^7.12.9",
-    "@reshoot/loader": "^1.7.0",
-    "babel-plugin-macros": "^3.0.0"
+    "@babel/core": "^7.12.10",
+    "@reshoot/loader": "^1.7.1",
+    "babel-plugin-macros": "^3.0.1"
   }
 }
