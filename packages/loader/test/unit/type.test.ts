@@ -4,6 +4,7 @@ import { Mime, Extension } from '../../src/type';
 describe('type', () => {
   test('mime is of the right shape', () => {
     expect(Mime).toEqual({
+      AVIF: 'image/avif',
       JPG: 'image/jpeg',
       JPEG: 'image/jpeg',
       PNG: 'image/png',
@@ -15,6 +16,7 @@ describe('type', () => {
 
   test('extension is of the right shape', () => {
     expect(Extension).toEqual({
+      'image/avif': 'avif',
       'image/jpeg': 'jpg',
       'image/png': 'png',
       'image/gif': 'gif',

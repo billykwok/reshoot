@@ -47,19 +47,22 @@ describe('Basic component test for @reshoot/loader', () => {
     const images1 = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
     );
-    expect(images1).toEqual(
-      expect.arrayContaining([
-        'tEsThAsH-480.jpg',
-        'tEsThAsH-800.jpg',
-        'tEsThAsH-1120.jpg',
-        'tEsThAsH-1440.jpg',
-        'tEsThAsH-480.webp',
-        'tEsThAsH-800.webp',
-        'tEsThAsH-1120.webp',
-        'tEsThAsH-1440.webp',
-      ])
-    );
-    expect(images1).toHaveLength(8);
+    const expectedFilenames = [
+      'tEsThAsH-480.avif',
+      'tEsThAsH-800.avif',
+      'tEsThAsH-1120.avif',
+      'tEsThAsH-1440.avif',
+      'tEsThAsH-480.webp',
+      'tEsThAsH-800.webp',
+      'tEsThAsH-1120.webp',
+      'tEsThAsH-1440.webp',
+      'tEsThAsH-480.jpg',
+      'tEsThAsH-800.jpg',
+      'tEsThAsH-1120.jpg',
+      'tEsThAsH-1440.jpg',
+    ];
+    expect(images1).toEqual(expect.arrayContaining(expectedFilenames));
+    expect(images1).toHaveLength(expectedFilenames.length);
     expect(actual1).toMatchSnapshot();
 
     const cachePath = path.resolve(
@@ -93,20 +96,23 @@ describe('Basic component test for @reshoot/loader', () => {
     const images2 = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
     );
-    expect(images2).toEqual(
-      expect.arrayContaining([
-        'tEsThAsH-480.jpg',
-        'tEsThAsH-800.jpg',
-        'tEsThAsH-1120.jpg',
-        'tEsThAsH-1440.jpg',
-        'tEsThAsH-480.webp',
-        'tEsThAsH-800.webp',
-        'tEsThAsH-1120.webp',
-        'tEsThAsH-1440.webp',
-      ])
-    );
-    expect(images2).toHaveLength(8);
+    const expectedFilenames2 = [
+      'tEsThAsH-480.avif',
+      'tEsThAsH-800.avif',
+      'tEsThAsH-1120.avif',
+      'tEsThAsH-1440.avif',
+      'tEsThAsH-480.webp',
+      'tEsThAsH-800.webp',
+      'tEsThAsH-1120.webp',
+      'tEsThAsH-1440.webp',
+      'tEsThAsH-480.jpg',
+      'tEsThAsH-800.jpg',
+      'tEsThAsH-1120.jpg',
+      'tEsThAsH-1440.jpg',
+    ];
+    expect(images2).toEqual(expect.arrayContaining(expectedFilenames2));
+    expect(images2).toHaveLength(expectedFilenames2.length);
     expect(actual2).toMatchSnapshot();
     memfs.reset();
-  }, 30000);
+  }, 120000);
 });
