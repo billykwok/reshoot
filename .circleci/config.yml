@@ -27,7 +27,7 @@ jobs:
           command: yarn build
       - run:
           name: Test packages
-          command: yarn test
+          command: yarn test --runInBand
       - run:
           name: Upload coverage
           command: yarn codecov

@@ -80,7 +80,7 @@ const options = {
     sources,
   }),
   alternativeWidths: [480, 800, 1120, 1440],
-  alternativeFormats: ['image/webp'],
+  alternativeFormats: ['image/avif', 'image/webp'],
   defaultFormat: false,
   defaultWidth: 640,
   quality: 80,
@@ -173,6 +173,11 @@ export default {
   c: '#fff',
   sources: [
     {
+      type: 'image/avif',
+      src: 'dir/example/image.avif',
+      srcSet: 'dir/example/image-480.avif 480w',
+    },
+    {
       type: 'image/webp',
       src: 'dir/example/image.webp',
       srcSet: 'dir/example/image-480.webp 480w',
@@ -203,6 +208,41 @@ results in something like
   src="/images/img-full.jpg"
   srcset="/images/img-360 360w, /images/img-640 640w, /images/img-960 960w"
 />
+```
+
+#### Alternative Formats
+
+Type: `alternativeFormats: string[]`  
+Default: `['image/avif', 'image/webp']`  
+Alternative formats such as AVIF and WEBP. When specified, a series of source objects would be included in the output. For example,
+
+```typescript
+const alternativeFormats = ['image/avif', 'image/webp'];
+```
+
+results in something like
+
+```javascript
+{
+  sources: [
+    {
+      type: 'image/avif',
+      src: 'dir/example/image.avif',
+      srcSet: 'dir/example/image-480.avif 480w',
+    },
+    {
+      type: 'image/webp',
+      src: 'dir/example/image.webp',
+      srcSet: 'dir/example/image-480.webp 480w',
+    },
+    // default format as a fallback
+    {
+      type: 'image/jpeg',
+      src: 'dir/example/image.jpg',
+      srcSet: 'dir/example/image-480.jpg 480w',
+    },
+  ],
+}
 ```
 
 #### Quality of Output Image

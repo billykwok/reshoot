@@ -1,11 +1,8 @@
 import { describe, beforeAll, afterAll, test, expect } from '@jest/globals';
 import path from 'path';
-import SegfaultHandler from 'segfault-handler';
 import compile from './compiler';
 import createMemfs from './createMemfs';
 import { mockBase64, mockMetroHash } from './mock';
-
-SegfaultHandler.registerHandler('crash.basic.log');
 
 describe('Basic component test for @reshoot/loader', () => {
   beforeAll(() => {
