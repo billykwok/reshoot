@@ -1,13 +1,10 @@
 import { describe, beforeAll, afterAll, test, expect } from '@jest/globals';
 import path from 'path';
-import SegfaultHandler from 'segfault-handler';
 import compile from './compiler';
 import createMemfs from './createMemfs';
 import { mockBase64, mockMetroHash } from './mock';
 
 import type { ShapeArgument } from '../../src/type';
-
-SegfaultHandler.registerHandler('crash.overriding.log');
 
 describe('Overriding component test for @reshoot/loader', () => {
   beforeAll(() => {
