@@ -4,6 +4,7 @@ export enum Mime {
   PNG = 'image/png',
   GIF = 'image/gif',
   WEBP = 'image/webp',
+  AVIF = 'image/avif',
   SVG = 'image/svg+xml',
 }
 
@@ -12,6 +13,7 @@ export enum Extension {
   'image/png' = 'png',
   'image/gif' = 'gif',
   'image/webp' = 'webp',
+  'image/avif' = 'avif',
   'image/svg+xml' = 'svg',
 }
 

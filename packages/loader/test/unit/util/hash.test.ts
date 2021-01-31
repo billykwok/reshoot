@@ -25,7 +25,7 @@ describe('hash', () => {
           placeholder: null,
         })
       )
-    ).toEqual('3141be8c51080f7b');
+    ).toEqual('95d585de13b72b23');
   });
 
   test('should change when color changes', async () => {

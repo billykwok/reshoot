@@ -6,6 +6,7 @@ jobs:
       - image: circleci/node:latest
         environment:
           SHARP_IGNORE_GLOBAL_LIBVIPS: "1"
+          NODE_OPTIONS: "--max_old_space_size=4096"
     working_directory: ~/repo
     steps:
       - checkout
@@ -26,7 +27,7 @@ jobs:
           command: yarn build
       - run:
           name: Test packages
-          command: yarn test
+          command: yarn test --runInBand
       - run:
           name: Upload coverage
           command: yarn codecov

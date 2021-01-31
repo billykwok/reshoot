@@ -25,22 +25,25 @@ describe('Basic component test for @reshoot/loader', () => {
     const images = await memfs.promises.readdir(
       path.resolve(__dirname, './images')
     );
-    expect(images).toEqual(
-      expect.arrayContaining([
-        'tEsThAsH-480.jpg',
-        'tEsThAsH-800.jpg',
-        'tEsThAsH-1120.jpg',
-        'tEsThAsH-1440.jpg',
-        'tEsThAsH-480.webp',
-        'tEsThAsH-800.webp',
-        'tEsThAsH-1120.webp',
-        'tEsThAsH-1440.webp',
-      ])
-    );
-    expect(images).toHaveLength(8);
+    const expectedFilenames = [
+      'tEsThAsH-480.avif',
+      'tEsThAsH-800.avif',
+      'tEsThAsH-1120.avif',
+      'tEsThAsH-1440.avif',
+      'tEsThAsH-480.webp',
+      'tEsThAsH-800.webp',
+      'tEsThAsH-1120.webp',
+      'tEsThAsH-1440.webp',
+      'tEsThAsH-480.jpg',
+      'tEsThAsH-800.jpg',
+      'tEsThAsH-1120.jpg',
+      'tEsThAsH-1440.jpg',
+    ];
+    expect(images).toEqual(expect.arrayContaining(expectedFilenames));
+    expect(images).toHaveLength(expectedFilenames.length);
     expect(actual).toMatchSnapshot();
     memfs.reset();
-  }, 30000);
+  }, 120000);
 
   test('should emit error with invalid options', async () => {
     const memfs = createMemfs();
@@ -51,5 +54,5 @@ describe('Basic component test for @reshoot/loader', () => {
     await expect(actual).rejects.toThrowErrorMatchingSnapshot();
     expect(memfs.existsSync(path.resolve(__dirname, './images'))).toBe(false);
     memfs.reset();
-  }, 30000);
+  }, 120000);
 });

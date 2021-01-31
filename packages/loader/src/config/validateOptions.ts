@@ -39,7 +39,7 @@ const validate = ajv.compile({
     alternativeFormats: {
       type: 'array',
       description: 'Alternative more efficient images for supported browsers',
-      items: { type: 'string', enum: [Mime.WEBP] },
+      items: { type: 'string', enum: [Mime.WEBP, Mime.AVIF] },
       uniqueItems: true,
     },
     alternativeWidths: {
