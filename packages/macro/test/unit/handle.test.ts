@@ -67,11 +67,9 @@ describe('arguments', () => {
   });
 
   test('parse invalid filename 2', () => {
-    const state = {} as PluginPass;
-    const params = { references, state, babel: null };
-    expect(() => handle(params)).toThrow(
-      new MacroError('Failed to retrieve filename')
-    );
+    expect(() =>
+      handle({ references, state: {} as PluginPass, babel: null })
+    ).toThrow(new MacroError('Failed to retrieve filename'));
   });
 
   test('parse invalid filename 3', () => {
@@ -107,7 +105,7 @@ describe('arguments', () => {
     expect(mockReplaceWith).toHaveBeenNthCalledWith(
       1,
       callExpression(identifier('require'), [
-        stringLiteral('image.jpg?{"color":"#eeff99"}'),
+        stringLiteral('image.jpg?color=%23eeff99'),
       ])
     );
   });
@@ -122,7 +120,7 @@ describe('arguments', () => {
     expect(mockReplaceWith).toHaveBeenNthCalledWith(
       1,
       callExpression(identifier('require'), [
-        stringLiteral('image.jpg?{"color":"#eeff99"}'),
+        stringLiteral('image.jpg?color=%23eeff99'),
       ])
     );
   });

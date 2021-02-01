@@ -10,8 +10,9 @@ import {
 import extractArguments from './extractArguments';
 import evalFirstArgument from './evalFirstArgument';
 import evalSecondArgument from './evalSecondArgument';
-import requireExpression from './requireExpression';
+import { requireExpression } from './requireExpression';
 
+import type { ParsedUrlQueryInput } from 'querystring';
 import type { ObjectExpression } from '@babel/types';
 import type { MacroParams } from 'babel-plugin-macros';
 
@@ -33,15 +34,16 @@ function handle({ references, state }: MacroParams): void {
       );
     }
 
-    const images = require(path.join(path.dirname(filename), firstArg)) as {
-      src: string;
-      [key: string]: unknown;
-    }[];
+    const images = require(path.join(
+      path.dirname(filename),
+      firstArg
+    )) as (ParsedUrlQueryInput & { src: string })[];
     referencePath.parentPath.replaceWith(
       arrayExpression(
-        images.map(
-          ({
+        images.map((image) => {
+          const {
             src,
+            /* eslint-disable @typescript-eslint/no-unused-vars */
             name,
             alternativeFormats,
             alternativeWidths,
@@ -52,7 +54,6 @@ function handle({ references, state }: MacroParams): void {
             color,
             placeholder,
             aspectRatio,
-            /* eslint-disable @typescript-eslint/no-unused-vars */
             outputPath,
             publicPath,
             shape,
@@ -63,31 +64,50 @@ function handle({ references, state }: MacroParams): void {
             data,
             /* eslint-enable @typescript-eslint/no-unused-vars */
             ...rest
-          }) => {
-            const requireCall = requireExpression(
-              path.join(path.dirname(firstArg), src),
-              {
-                name,
-                alternativeFormats,
-                alternativeWidths,
-                defaultFormat,
-                defaultWidth,
-                quality,
-                background,
-                color,
-                placeholder,
-                aspectRatio,
-              }
-            );
-            return objectExpression(
-              (!rest || Object.keys(rest).length
-                ? (parseExpression(JSON.stringify(rest)) as ObjectExpression)
-                    .properties
-                : []
-              ).concat(objectProperty(stringLiteral('data'), requireCall))
-            );
+          } = image;
+          const options: ParsedUrlQueryInput = {};
+          if ('name' in image) {
+            options.name = image.name;
           }
-        )
+          if ('alternativeFormats' in image) {
+            options.alternativeFormats = image.alternativeFormats;
+          }
+          if ('alternativeWidths' in image) {
+            options.alternativeWidths = image.alternativeWidths;
+          }
+          if ('defaultFormat' in image) {
+            options.defaultFormat = image.defaultFormat;
+          }
+          if ('defaultWidth' in image) {
+            options.defaultWidth = image.defaultWidth;
+          }
+          if ('quality' in image) {
+            options.quality = image.quality;
+          }
+          if ('background' in image) {
+            options.background = image.background;
+          }
+          if ('color' in image) {
+            options.color = image.color;
+          }
+          if ('placeholder' in image) {
+            options.placeholder = image.placeholder;
+          }
+          if ('aspectRatio' in image) {
+            options.aspectRatio = image.aspectRatio;
+          }
+          const requireCall = requireExpression(
+            path.join(path.dirname(firstArg), src),
+            options
+          );
+          return objectExpression(
+            (!rest || Object.keys(rest).length
+              ? (parseExpression(JSON.stringify(rest)) as ObjectExpression)
+                  .properties
+              : []
+            ).concat(objectProperty(stringLiteral('data'), requireCall))
+          );
+        })
       )
     );
   });

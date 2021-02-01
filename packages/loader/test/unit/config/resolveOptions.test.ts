@@ -1,15 +1,15 @@
 import { describe, beforeAll, afterEach, test, expect } from '@jest/globals';
 import { AspectRatioFormat, AspectRatioType, Mime } from '../../../src/type';
 
-import type { loader } from 'webpack';
+import type { LoaderContext } from '../../../src/type';
 
 describe('resolveOptions', () => {
   const parseQuery = jest.fn();
   const getOptions = jest.fn();
   const ctx = {
     mode: 'development',
-    resourceQuery: '?color=#888',
-  } as loader.LoaderContext;
+    resourceQuery: '?color=%23888',
+  } as LoaderContext;
 
   beforeAll(() => {
     jest.doMock('loader-utils', () => ({ parseQuery, getOptions }));
@@ -26,11 +26,9 @@ describe('resolveOptions', () => {
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      aspectRatio: {
-        type: AspectRatioType.HeightByWidth,
-        format: AspectRatioFormat.Ratio,
-        decimal: 4,
-      },
+      aspectRatioType: AspectRatioType.HeightByWidth,
+      aspectRatioFormat: AspectRatioFormat.Ratio,
+      aspectRatioDecimal: 4,
       background: '#fff',
       cache: true,
       color: '#888',
@@ -43,7 +41,9 @@ describe('resolveOptions', () => {
       fastMode: true,
       mode: 'development',
       name: '[path][name]-[width].[ext]',
-      placeholder: { quality: 10, size: 8, trimDataUrl: false },
+      placeholderQuality: 10,
+      placeholderSize: 8,
+      placeholderTrimDataUrl: false,
       quality: 80,
     });
   });
@@ -54,11 +54,9 @@ describe('resolveOptions', () => {
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      aspectRatio: {
-        type: AspectRatioType.HeightByWidth,
-        format: AspectRatioFormat.Ratio,
-        decimal: 4,
-      },
+      aspectRatioType: AspectRatioType.HeightByWidth,
+      aspectRatioFormat: AspectRatioFormat.Ratio,
+      aspectRatioDecimal: 4,
       background: '#fff',
       cache: true,
       color: '#000',
@@ -71,7 +69,9 @@ describe('resolveOptions', () => {
       fastMode: true,
       mode: 'development',
       name: '[path][name]-[width].[ext]',
-      placeholder: { quality: 10, size: 8, trimDataUrl: false },
+      placeholderQuality: 10,
+      placeholderSize: 8,
+      placeholderTrimDataUrl: false,
       quality: 80,
     });
   });
@@ -82,11 +82,9 @@ describe('resolveOptions', () => {
       '../../../src/config/resolveOptions'
     );
     expect(resolveOptions(ctx)).toMatchObject({
-      aspectRatio: {
-        type: AspectRatioType.HeightByWidth,
-        format: AspectRatioFormat.Ratio,
-        decimal: 4,
-      },
+      aspectRatioType: AspectRatioType.HeightByWidth,
+      aspectRatioFormat: AspectRatioFormat.Ratio,
+      aspectRatioDecimal: 4,
       background: '#fff',
       cache: true,
       color: '#888',
@@ -99,7 +97,9 @@ describe('resolveOptions', () => {
       fastMode: true,
       mode: 'development',
       name: '[path][name]-[width].[ext]',
-      placeholder: { quality: 10, size: 8, trimDataUrl: false },
+      placeholderQuality: 10,
+      placeholderSize: 8,
+      placeholderTrimDataUrl: false,
       quality: 80,
     });
   });

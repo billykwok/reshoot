@@ -2,8 +2,7 @@ import { readFile, readJson } from 'fs-extra';
 import resolveCachePath from './resolveCachePath';
 import version from '../util/version';
 
-import type { loader } from 'webpack';
-import type { CacheEntry, ResolvedOptions } from '../type';
+import type { CacheEntry, LoaderContext, ResolvedOptions } from '../type';
 
 export async function readCacheStats(
   mode: string,
@@ -19,7 +18,7 @@ export async function readCacheStats(
 }
 
 export async function emitFromCache(
-  ctx: Pick<loader.LoaderContext, 'emitFile'>,
+  ctx: LoaderContext,
   hash: string,
   filename: string,
   { mode, outputPath }: Pick<ResolvedOptions, 'mode' | 'outputPath'>

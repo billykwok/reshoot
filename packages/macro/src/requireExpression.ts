@@ -1,21 +1,17 @@
+import querystring from 'querystring';
 import { callExpression, identifier, stringLiteral } from '@babel/types';
 
+import type { ParsedUrlQueryInput } from 'querystring';
 import type { CallExpression } from '@babel/types';
 
-function requireExpression(
+export function requireExpression(
   path: string,
-  ...options: Array<Record<string, unknown>>
+  ...options: ParsedUrlQueryInput[]
 ): CallExpression {
-  const mergedOptions = Object.assign({}, ...options) as Record<
-    string,
-    unknown
-  >;
-
-  const serialized = JSON.stringify(mergedOptions);
-  const queryString = serialized === '{}' ? '' : `?${serialized}`;
+  const mergedOptions = Object.assign({}, ...options) as ParsedUrlQueryInput;
+  const serialized = querystring.stringify(mergedOptions);
+  const queryString = serialized === '' ? '' : `?${serialized}`;
   return callExpression(identifier('require'), [
     stringLiteral(`${path}${queryString}`),
   ]);
 }
-
-export default requireExpression;

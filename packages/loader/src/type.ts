@@ -27,18 +27,6 @@ export enum AspectRatioFormat {
   Ratio = 'ratio',
 }
 
-export interface AspectRatio {
-  type: AspectRatioType;
-  format: AspectRatioFormat;
-  decimal: number;
-}
-
-export interface Placeholder {
-  size: number;
-  quality: number;
-  trimDataUrl: boolean;
-}
-
 export type Stringifiable<T> = T & { stringify: () => string };
 
 export type Field =
@@ -50,7 +38,23 @@ export type Field =
   | { [key: string]: Field }
   | Field[];
 
+export interface LoaderContext {
+  rootContext: string;
+  mode: string;
+  resourcePath: string;
+  resourceQuery: string;
+  cacheable: (value: boolean) => void;
+  async: () => (error: Error, output?: any) => void;
+  emitFile: (
+    filename: string,
+    content: string | Buffer,
+    sourceMap?: string
+  ) => void;
+  emitWarning: (error: string | Error) => void;
+}
+
 export interface Result {
+  id: string;
   type: string;
   src: string;
   width: number;
@@ -94,8 +98,12 @@ interface BaseOptions {
   defaultWidth: number;
   background: string;
   color: string | boolean;
-  placeholder: Placeholder;
-  aspectRatio: AspectRatio;
+  placeholderSize: number;
+  placeholderQuality: number;
+  placeholderTrimDataUrl: boolean;
+  aspectRatioType: AspectRatioType;
+  aspectRatioFormat: AspectRatioFormat;
+  aspectRatioDecimal: number;
 }
 
 export interface Options extends BaseOptions {

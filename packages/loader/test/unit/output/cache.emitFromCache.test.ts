@@ -8,6 +8,8 @@ import {
 } from '@jest/globals';
 import path from 'path';
 
+import type { LoaderContext } from '../../../src/type';
+
 describe('emitFromCache', () => {
   const buffer = Buffer.from([0]);
   const emitFile = jest.fn(() => Promise.resolve());
@@ -32,10 +34,12 @@ describe('emitFromCache', () => {
 
   test('should create function for string', async () => {
     const { emitFromCache } = await import('../../../src/output/cache');
-    await emitFromCache({ emitFile }, 'hAsH', 'abc.jpg', {
-      mode: 'mode',
-      outputPath,
-    });
+    await emitFromCache(
+      ({ emitFile } as unknown) as LoaderContext,
+      'hAsH',
+      'abc.jpg',
+      { mode: 'mode', outputPath }
+    );
     expect(emitFile).toHaveBeenCalledTimes(1);
     expect(emitFile).toHaveBeenCalledWith('output/abc.jpg', buffer, null);
   });

@@ -1,11 +1,11 @@
 import { interpolateName } from 'loader-utils';
 
-import type { loader } from 'webpack';
+import type { LoaderContext } from '../type';
 
 const regex = /\[(?:metrohash(?:64|128)?:)?(?:hash|contenthash)(?::hex)?(?::(\d+))?\]/gi;
 
 function interpolate(
-  ctx: loader.LoaderContext,
+  ctx: LoaderContext,
   name: string,
   { hash, width, ext }: { hash: string; width: number; ext: string }
 ): string {

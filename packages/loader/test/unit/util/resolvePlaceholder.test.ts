@@ -12,9 +12,9 @@ import create1x1Image from './create1x1Image';
 describe('resolvePlaceholder', () => {
   const resolvedColor = '#fff';
   const background = '#123';
-  const size = 4;
-  const quality = 9;
-  const trimDataUrl = true;
+  const placeholderSize = 4;
+  const placeholderQuality = 9;
+  const placeholderTrimDataUrl = true;
   const resized = create1x1Image(4, 3, 2);
   const dataUrl = 'data/url';
   const resize = jest.fn(() => resized);
@@ -47,16 +47,18 @@ describe('resolvePlaceholder', () => {
     const input = create1x1Image();
     const placeholder = await resolvePlaceholder(input, resolvedColor, {
       background,
-      placeholder: { size, quality, trimDataUrl },
+      placeholderSize,
+      placeholderQuality,
+      placeholderTrimDataUrl,
     });
     expect(placeholder).toEqual(dataUrl);
     expect(resize).toHaveBeenCalledTimes(1);
-    expect(resize).toHaveBeenCalledWith(input, size, Mime.JPEG, {
+    expect(resize).toHaveBeenCalledWith(input, placeholderSize, Mime.JPEG, {
       background: resolvedColor,
-      quality,
+      placeholderQuality,
     });
     expect(createDataUrl).toHaveBeenCalledTimes(1);
-    expect(createDataUrl).toHaveBeenCalledWith(resized, trimDataUrl);
+    expect(createDataUrl).toHaveBeenCalledWith(resized, placeholderTrimDataUrl);
   });
 
   test('should resize with background color', async () => {
@@ -67,15 +69,17 @@ describe('resolvePlaceholder', () => {
     const input = create1x1Image();
     const placeholder = await resolvePlaceholder(input, 'transparent', {
       background,
-      placeholder: { size, quality, trimDataUrl },
+      placeholderSize,
+      placeholderQuality,
+      placeholderTrimDataUrl,
     });
     expect(placeholder).toEqual(dataUrl);
     expect(resize).toHaveBeenCalledTimes(1);
-    expect(resize).toHaveBeenCalledWith(input, size, Mime.JPEG, {
+    expect(resize).toHaveBeenCalledWith(input, placeholderSize, Mime.JPEG, {
       background,
-      quality,
+      placeholderQuality,
     });
     expect(createDataUrl).toHaveBeenCalledTimes(1);
-    expect(createDataUrl).toHaveBeenCalledWith(resized, trimDataUrl);
+    expect(createDataUrl).toHaveBeenCalledWith(resized, placeholderTrimDataUrl);
   });
 });

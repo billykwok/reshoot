@@ -1,5 +1,6 @@
 import { describe, beforeAll, test, expect } from '@jest/globals';
-import webpack from 'webpack';
+
+import type { LoaderContext } from '../../../src/type';
 
 describe('interpolate', () => {
   const interpolatedName = 'interpolatedName';
@@ -15,7 +16,7 @@ describe('interpolate', () => {
     );
     const ctx = ({
       rootContext: jest.fn(),
-    } as unknown) as webpack.loader.LoaderContext;
+    } as unknown) as LoaderContext;
     const name = 'file-[width]-[hash].[ext]';
     const hash = 'hash56789012345678';
     const width = 123;

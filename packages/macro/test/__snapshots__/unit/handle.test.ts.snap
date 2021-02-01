@@ -96,7 +96,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-1.jpg?{\\"color\\":\\"red\\"}",
+                  "value": "image-1.jpg?color=red",
                 },
               ],
               "callee": Object {
@@ -201,7 +201,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-2.png?{\\"color\\":\\"blue\\"}",
+                  "value": "image-2.png?color=blue",
                 },
               ],
               "callee": Object {
@@ -306,7 +306,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-3.webp?{\\"color\\":\\"yellow\\"}",
+                  "value": "image-3.webp?color=yellow",
                 },
               ],
               "callee": Object {
@@ -411,7 +411,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-4.gif?{\\"color\\":\\"#ddeeaa\\"}",
+                  "value": "image-4.gif?color=%23ddeeaa",
                 },
               ],
               "callee": Object {
@@ -631,7 +631,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-1.jpg?{\\"color\\":\\"red\\"}",
+                  "value": "image-1.jpg?color=red",
                 },
               ],
               "callee": Object {
@@ -736,7 +736,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-2.png?{\\"color\\":\\"blue\\"}",
+                  "value": "image-2.png?color=blue",
                 },
               ],
               "callee": Object {
@@ -841,7 +841,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-3.webp?{\\"color\\":\\"yellow\\"}",
+                  "value": "image-3.webp?color=yellow",
                 },
               ],
               "callee": Object {
@@ -946,7 +946,7 @@ Array [
               "arguments": Array [
                 Object {
                   "type": "StringLiteral",
-                  "value": "image-4.gif?{\\"color\\":\\"#ddeeaa\\"}",
+                  "value": "image-4.gif?color=%23ddeeaa",
                 },
               ],
               "callee": Object {

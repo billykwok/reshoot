@@ -2,11 +2,12 @@
   "name": "@reshoot/react",
   "description": "A React component that lazily renders responsive images with LQIPs",
   "version": "1.7.1",
-  "type": "commonjs",
+  "type": "module",
   "exports": {
     "import": "./lib/es/index.js",
     "require": "./lib/index.js"
   },
+  "module": "./lib/es/index.js",
   "main": "./lib/index.js",
   "types": "./types/index.d.ts",
   "files": [
@@ -41,7 +42,7 @@
     "build": "yarn clean && rollup -c rollup.config.js && rollup -c rollup.config.js --format es --dir ./lib/es && tsc --project tsconfig.json"
   },
   "peerDependencies": {
-    "@babel/runtime-corejs3": "^7.12.5",
+    "@babel/runtime-corejs3": "^7.12.13",
     "object-assign": "4.1.1",
     "react": "^17.0.1"
   }

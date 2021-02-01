@@ -86,12 +86,12 @@ const options = {
   quality: 80,
   background: '#fff',
   color: '#fff',
-  placeholder: { size: 8, quality: 10, trimDataUrl: false },
-  aspectRatio: {
-    type: 'widthByHeight',
-    format: 'ratio',
-    decimal: 4,
-  },
+  placeholderSize: 8,
+  placeholderQuality: 10,
+  placeholderTrimDataUrl: false,
+  aspectRatioType: 'widthByHeight',
+  aspectRatioFormat: 'ratio',
+  aspectRatioDecimal: 4,
   fastMode: process.env.NODE_ENV === 'development',
   cache: true,
   emitFile: true,
@@ -263,11 +263,23 @@ Type: `color: string`
 Default: `'#fff'`  
 The color used as the background of aspect ratio box before LQIP or final image is loaded. Accept any color format supported by CSS.
 
-#### Placeholder
+#### Placeholder Size
 
 Type: `placeholder: { size: number, trimDataUrl: boolean }`  
 Default: `{ size: 8, trimDataUrl: false }`  
-LQIP setting where `size` is the length of the shorter side of the image, and `trimDataUrl` controls whether the initial prefix of data-url (`data:<meme>;base64,`) is omitted to slightly reduce bundle size. When `trimDataUrl` is falsy, the reconstruction of full data-url is expected to be handled in user land.
+The length of the shorter side of the LQIP image.
+
+#### Placeholder Quality
+
+Type: `placeholderQuality: number`  
+Default: `10`  
+The quality of the LQIP image.
+
+#### Trim Data Url from Placeholder
+
+Type: `placeholderTrimDataUrl: boolean`  
+Default: `false`  
+Whether the initial prefix of data-url (`data:<meme>;base64,`) is omitted to slightly reduce bundle size. When `trimDataUrl` is falsy, the reconstruction of full data-url is expected to be handled in user land.
 
 #### Default Format
 
@@ -281,21 +293,33 @@ Type: `defaultWidth: number | false`
 Default: `640`  
 Max width of the fallback image.
 
-#### Aspect Ratio
+#### Aspect Ratio Type
 
-Type: `aspectRatio: { type: string, format: string, decimal: number }`  
-Default: `{ type: 'heightByWidth', format: 'ratio', decimal: 4 }`  
-Aspect ratio value setting in module export object. Decimal controls how many digits are preserved after decimal point. Type and format options take the following values.
+Type: `aspectRatioType: string`  
+Default: `'heightByWidth'`  
+Type of aspect ratio value in module export object.
 
 | Type              | Description                              |
 | ----------------- | ---------------------------------------- |
 | `'widthByHeight'` | Express aspect ratio as `width / height` |
 | `'heightByWidth'` | Express aspect ratio as `height / width` |
 
+#### Aspect Ratio Format
+
+Type: `aspectRatioFormat: string`  
+Default: `'ratio'`  
+Format of aspect ratio value in module export object.
+
 | Format      | Description                                                          |
 | ----------- | -------------------------------------------------------------------- |
 | `'ratio'`   | Express aspect ratio as ratio (`width / height` or `height / width`) |
 | `'percent'` | Express aspect ratio as percentage (`ratio * 100`)                   |
+
+#### Aspect Ratio Decimal
+
+Type: `aspectRatioDecimal: number`  
+Default: `4`  
+The number of digits of aspect ratio preserved after decimal point.
 
 #### Fast Mode
 

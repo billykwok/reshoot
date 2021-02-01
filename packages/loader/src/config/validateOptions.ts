@@ -1,13 +1,9 @@
 import Ajv from 'ajv';
 import addKeywordPresets from 'ajv-keywords';
+import { AspectRatioType, AspectRatioFormat, Mime } from '../type';
 
 import type { ErrorObject } from 'ajv';
-import {
-  AspectRatioType,
-  AspectRatioFormat,
-  Mime,
-  ResolvedOptions,
-} from '../type';
+import type { ResolvedOptions } from '../type';
 
 const ajv = addKeywordPresets(
   new Ajv({ allErrors: true, verbose: true, $data: true })
@@ -39,7 +35,7 @@ const validate = ajv.compile({
     alternativeFormats: {
       type: 'array',
       description: 'Alternative more efficient images for supported browsers',
-      items: { type: 'string', enum: [Mime.WEBP, Mime.AVIF] },
+      items: { type: 'string', enum: [Mime.AVIF, Mime.WEBP] },
       uniqueItems: true,
     },
     alternativeWidths: {
@@ -71,51 +67,38 @@ const validate = ajv.compile({
       description:
         'The color used as the background of aspect ratio box before placeholder or final image is loaded',
     },
-    placeholder: {
-      type: ['object', 'null'],
-      description: 'LQIP placeholder setting',
-      properties: {
-        size: {
-          type: 'number',
-          description: 'The wide of placeholder',
-          exclusiveMinimum: 1,
-        },
-        quality: {
-          type: 'number',
-          description: 'The quality of placeholder',
-          range: [1, 100],
-        },
-        trimDataUrl: {
-          type: 'boolean',
-          description: 'Whether to trim the initial prefix of data-url',
-        },
-      },
-      allRequired: true,
-      additionalProperties: false,
+    placeholderSize: {
+      type: ['number', 'null'],
+      description: 'The wide of placeholder',
+      exclusiveMinimum: 1,
     },
-    aspectRatio: {
-      type: ['object', 'null'],
-      description: 'Aspect ratio value setting in module export object',
-      properties: {
-        type: {
-          type: 'string',
-          description:
-            'Express aspect ratio as width / height or height / width',
-          enum: [AspectRatioType.HeightByWidth, AspectRatioType.WidthByHeight],
-        },
-        format: {
-          type: 'string',
-          description: 'Express aspect ratio as ratio or percentage',
-          enum: [AspectRatioFormat.Ratio, AspectRatioFormat.Percent],
-        },
-        decimal: {
-          type: 'number',
-          description: 'Number of digits preserved after decimal point',
-          range: [1, 10],
-        },
-      },
-      allRequired: true,
-      additionalProperties: false,
+    placeholderQuality: {
+      type: ['number', 'null'],
+      description: 'The quality of placeholder',
+      range: [1, 100],
+    },
+    placeholderTrimDataUrl: {
+      type: ['boolean', 'null'],
+      description: 'Whether to trim the initial prefix of data-url',
+    },
+    aspectRatioType: {
+      type: ['string', 'null'],
+      description: 'Express aspect ratio as width / height or height / width',
+      enum: [
+        AspectRatioType.HeightByWidth,
+        AspectRatioType.WidthByHeight,
+        null,
+      ],
+    },
+    aspectRatioFormat: {
+      type: ['string', 'null'],
+      description: 'Express aspect ratio as ratio or percentage',
+      enum: [AspectRatioFormat.Ratio, AspectRatioFormat.Percent, null],
+    },
+    aspectRatioDecimal: {
+      type: ['number', 'null'],
+      description: 'Number of digits preserved after decimal point',
+      range: [1, 10],
     },
     fastMode: {
       type: 'boolean',

@@ -5,19 +5,28 @@ import { Mime } from '../type';
 import type { Sharp } from 'sharp';
 import type { ResolvedOptions } from '../type';
 
-type Options = Pick<ResolvedOptions, 'background' | 'placeholder'>;
-
 async function resolvePlaceholder(
   image: Sharp,
   resolvedColor: string,
-  { background, placeholder }: Options
+  {
+    background,
+    placeholderSize,
+    placeholderQuality,
+    placeholderTrimDataUrl,
+  }: Pick<
+    ResolvedOptions,
+    | 'background'
+    | 'placeholderSize'
+    | 'placeholderQuality'
+    | 'placeholderTrimDataUrl'
+  >
 ): Promise<string> {
   return createDataUrl(
-    await resize(image, placeholder.size, Mime.JPEG, {
+    await resize(image, placeholderSize, Mime.JPEG, {
       background: resolvedColor === 'transparent' ? background : resolvedColor,
-      quality: placeholder.quality,
+      placeholderQuality,
     }),
-    placeholder.trimDataUrl
+    placeholderTrimDataUrl
   );
 }
 

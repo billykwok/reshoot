@@ -1,12 +1,13 @@
 import { MacroError } from 'babel-plugin-macros';
 import { inspect } from 'util';
 
+import type { ParsedUrlQueryInput } from 'querystring';
 import type { NodePath } from '@babel/core';
 
-function evalSecondArgument(argPath: NodePath): Record<string, unknown> {
+function evalSecondArgument(argPath: NodePath): ParsedUrlQueryInput {
   const { confident, value } = argPath.evaluate() as {
     confident: boolean;
-    value: Record<string, unknown>;
+    value: ParsedUrlQueryInput;
   };
 
   if (!confident) {
