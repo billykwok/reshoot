@@ -66,6 +66,7 @@ const validate = ajv.compile({
       type: ['string', 'boolean', 'null'],
       description:
         'The color used as the background of aspect ratio box before placeholder or final image is loaded',
+      allowUnionTypes: true,
     },
     placeholderSize: {
       type: ['number', 'null'],

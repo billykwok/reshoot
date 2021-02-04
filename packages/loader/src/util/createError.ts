@@ -5,7 +5,18 @@ function createError(errors: ErrorObject[]): string {
     '@reshoot/loader options are not valid:\n' +
     errors
       .map(({ dataPath, message, data }, i) => {
-        const property = dataPath ? /^\.(.*)/gi.exec(dataPath)[1] : 'options';
+        if (!dataPath) {
+          return `${i + 1}. options: ${message}, but got ${JSON.stringify(
+            data
+          )}`;
+        }
+        const regexResult = /^\.(.*)/gi.exec(dataPath);
+        if (!regexResult) {
+          return `${i + 1}. options: ${message}, but got ${JSON.stringify(
+            data
+          )}`;
+        }
+        const property = regexResult[1];
         return `${i + 1}. ${property}: ${message}, but got ${JSON.stringify(
           data
         )}`;
