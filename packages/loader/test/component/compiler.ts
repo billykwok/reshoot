@@ -1,10 +1,12 @@
 import path from 'path';
-import webpack from 'webpack';
+import webpack, { Compiler } from 'webpack';
 
-import type { OutputFileSystem } from 'webpack';
+const statsOptions = {
+  source: true,
+};
 
 async function compile(
-  outputFileSystem: OutputFileSystem,
+  outputFileSystem: Compiler['outputFileSystem'],
   fixture: string,
   options: Record<string, unknown> = {}
 ): Promise<string> {
@@ -14,6 +16,14 @@ async function compile(
     entry: `./${fixture}`,
     output: { path: path.resolve(__dirname), filename: 'bundle.js' },
     performance: { hints: false },
+    stats: {
+      preset: 'normal',
+      chunks: false,
+      assets: false,
+      runtimeModules: false,
+      dependentModules: false,
+      ...statsOptions,
+    },
     module: {
       rules: [
         {
@@ -33,12 +43,15 @@ async function compile(
       if (err) {
         reject(err);
       } else if (stats.hasErrors()) {
-        reject(stats.toJson().errors);
+        reject((stats.toJson() as { errors: string[] }).errors);
       } else {
         if (stats.hasWarnings()) {
-          console.warn(stats.toJson().warnings);
+          console.warn((stats.toJson() as { warnings: string[] }).warnings);
         }
-        resolve(stats.toJson().modules[0].source);
+        resolve(
+          (stats.toJson(statsOptions) as { modules: { source: string }[] })
+            .modules[0].source
+        );
       }
     })
   );

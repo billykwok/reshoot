@@ -11,6 +11,7 @@ const toSrcSet = (photoId: string, format = 'jpg') =>
 
 const images = [
   {
+    id: '1594653804388-0ad4242b28c2',
     src: toSrc('1594653804388-0ad4242b28c2') + '&w=540',
     srcSet: toSrcSet('1594653804388-0ad4242b28c2'),
     sources: [
@@ -26,6 +27,7 @@ const images = [
     color: '#162836',
   },
   {
+    id: '1593889392960-817de7c25771',
     src: toSrc('1593889392960-817de7c25771'),
     srcSet: toSrcSet('1593889392960-817de7c25771'),
     sources: [
@@ -41,6 +43,7 @@ const images = [
     color: '#818986',
   },
   {
+    id: '1594418569593-bdfdcf47a2cf',
     src: toSrc('1594418569593-bdfdcf47a2cf'),
     srcSet: toSrcSet('1594418569593-bdfdcf47a2cf'),
     sources: [
@@ -56,6 +59,7 @@ const images = [
     color: '#3e3708',
   },
   {
+    id: '1593959072487-3c17618454aa',
     src: toSrc('1593959072487-3c17618454aa'),
     srcSet: toSrcSet('1593959072487-3c17618454aa'),
     sources: [
@@ -71,6 +75,7 @@ const images = [
     color: '#86645c',
   },
   {
+    id: '1531279550271-23c2a77a765c',
     src: toSrc('1531279550271-23c2a77a765c'),
     srcSet: toSrcSet('1531279550271-23c2a77a765c'),
     sources: [
@@ -86,6 +91,7 @@ const images = [
     color: '#081e26',
   },
   {
+    id: '1594725224909-0e66d59ed0f1',
     src: toSrc('1594725224909-0e66d59ed0f1'),
     srcSet: toSrcSet('1594725224909-0e66d59ed0f1'),
     sources: [
@@ -101,6 +107,7 @@ const images = [
     color: '#202835',
   },
   {
+    id: '1594559414091-2a75d7c73a68',
     src: toSrc('1594559414091-2a75d7c73a68'),
     srcSet: toSrcSet('1594559414091-2a75d7c73a68'),
     sources: [

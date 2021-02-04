@@ -1,9 +1,10 @@
 import path from 'path';
-import { loader } from 'webpack';
 import { Mime, Extension } from '../type';
 
+import type { LoaderContext } from '../type';
+
 function resolveMimeAndExt(
-  ctx: Pick<loader.LoaderContext, 'resourcePath'>,
+  ctx: Pick<LoaderContext, 'resourcePath'>,
   defaultFormat: Mime = null
 ): [Mime, Extension] {
   if (defaultFormat) {

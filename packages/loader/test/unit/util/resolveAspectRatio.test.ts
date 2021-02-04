@@ -8,9 +8,9 @@ describe('resolveAspectRatio', () => {
       resolveAspectRatio(
         { width: 5, height: 5 },
         {
-          decimal: 10,
-          format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.WidthByHeight,
+          aspectRatioDecimal: 10,
+          aspectRatioFormat: AspectRatioFormat.Ratio,
+          aspectRatioType: AspectRatioType.WidthByHeight,
         }
       )
     ).toEqual(1);
@@ -21,9 +21,9 @@ describe('resolveAspectRatio', () => {
       resolveAspectRatio(
         { width: 3, height: 2 },
         {
-          decimal: 2,
-          format: AspectRatioFormat.Percent,
-          type: AspectRatioType.WidthByHeight,
+          aspectRatioDecimal: 2,
+          aspectRatioFormat: AspectRatioFormat.Percent,
+          aspectRatioType: AspectRatioType.WidthByHeight,
         }
       )
     ).toEqual(150);
@@ -34,9 +34,9 @@ describe('resolveAspectRatio', () => {
       resolveAspectRatio(
         { width: 3, height: 2 },
         {
-          decimal: 2,
-          format: AspectRatioFormat.Percent,
-          type: AspectRatioType.HeightByWidth,
+          aspectRatioDecimal: 2,
+          aspectRatioFormat: AspectRatioFormat.Percent,
+          aspectRatioType: AspectRatioType.HeightByWidth,
         }
       )
     ).toEqual(66.66);
@@ -47,9 +47,9 @@ describe('resolveAspectRatio', () => {
       resolveAspectRatio(
         { width: 3, height: 2 },
         {
-          decimal: 2,
-          format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.WidthByHeight,
+          aspectRatioDecimal: 2,
+          aspectRatioFormat: AspectRatioFormat.Ratio,
+          aspectRatioType: AspectRatioType.WidthByHeight,
         }
       )
     ).toEqual(1.5);
@@ -60,9 +60,9 @@ describe('resolveAspectRatio', () => {
       resolveAspectRatio(
         { width: 3, height: 2 },
         {
-          decimal: 2,
-          format: AspectRatioFormat.Ratio,
-          type: AspectRatioType.HeightByWidth,
+          aspectRatioDecimal: 2,
+          aspectRatioFormat: AspectRatioFormat.Ratio,
+          aspectRatioType: AspectRatioType.HeightByWidth,
         }
       )
     ).toEqual(0.66);

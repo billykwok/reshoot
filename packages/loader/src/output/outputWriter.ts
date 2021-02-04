@@ -5,11 +5,15 @@ import interpolate from './interpolate';
 import render from './render';
 import version from '../util/version';
 
-import type { loader } from 'webpack';
-import type { Result, ResolvedOptions, CacheEntry } from '../type';
+import type {
+  LoaderContext,
+  Result,
+  ResolvedOptions,
+  CacheEntry,
+} from '../type';
 
 async function outputImage(
-  ctx: loader.LoaderContext,
+  ctx: LoaderContext,
   filename: string,
   content: Promise<Buffer | string>,
   { outputPath }: ResolvedOptions
@@ -18,7 +22,7 @@ async function outputImage(
 }
 
 async function cacheAndOutputImage(
-  ctx: loader.LoaderContext,
+  ctx: LoaderContext,
   cacheName: string,
   filename: string,
   content: Promise<Buffer | string>,
@@ -32,7 +36,7 @@ async function cacheAndOutputImage(
 const NULL_PROMISE = Promise.resolve(null);
 
 function createOutputWriter(
-  ctx: loader.LoaderContext,
+  ctx: LoaderContext,
   hash: string,
   options: ResolvedOptions
 ): [

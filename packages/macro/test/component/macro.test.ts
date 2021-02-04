@@ -41,7 +41,7 @@ describe('macros', () => {
       babelConfig
     );
     expect(tranformed.code.trim()).toEqual(
-      'var image = require("some/directory/test-image.jpg?{\\"key\\":\\"irrelevant\\"}");'
+      'var image = require("some/directory/test-image.jpg?key=irrelevant");'
     );
   });
 
@@ -56,7 +56,7 @@ describe('macros', () => {
       babelConfig
     );
     expect(tranformed.code.trim()).toMatchSnapshot(
-      'var filename = \'test-image.jpg\';\nvar path = "some/directory/".concat(filename);\n\nvar image = require("some/directory/test-image.jpg?{\\"key\\":\\"irrelevant\\"}");'
+      'var filename = \'test-image.jpg\';\nvar path = "some/directory/".concat(filename);\n\nvar image = require("some/directory/test-image.jpg?key=irrelevant");'
     );
   });
 

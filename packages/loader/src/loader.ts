@@ -10,13 +10,12 @@ import computeHash from './util/hash';
 import { emitFromCache, readCacheStats } from './output/cache';
 import createOutputWriter from './output/outputWriter';
 import createError from './util/createError';
-import { Mime, Extension } from './type';
+import { Mime, Extension, LoaderContext } from './type';
 
-import type { loader } from 'webpack';
 import type { Result } from './type';
 
 async function reshootLoader(
-  this: loader.LoaderContext,
+  this: LoaderContext,
   content: Buffer | string
 ): Promise<void> {
   this.cacheable(true);
@@ -70,14 +69,18 @@ async function reshootLoader(
   awaitables.push(awaitable);
 
   const internalOutput: Result = {
+    id: hash,
     type: mime,
     src: rawPath,
     srcSet: [],
     width: metadata.width,
     height: metadata.height,
-    aspectRatio: options.aspectRatio
-      ? resolveAspectRatio(metadata, options.aspectRatio)
-      : null,
+    aspectRatio:
+      options.aspectRatioType !== null &&
+      options.aspectRatioFormat !== null &&
+      options.aspectRatioDecimal !== null
+        ? resolveAspectRatio(metadata, options)
+        : null,
     placeholder: null,
     color:
       typeof options.color === 'boolean' || options.color === null
@@ -90,7 +93,11 @@ async function reshootLoader(
     if (options.color === true) {
       internalOutput.color = await resolveColor(image, options);
     }
-    if (options.placeholder) {
+    if (
+      options.placeholderSize !== null &&
+      options.placeholderQuality !== null &&
+      options.placeholderTrimDataUrl !== null
+    ) {
       internalOutput.placeholder = await resolvePlaceholder(
         image,
         internalOutput.color,

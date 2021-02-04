@@ -1,14 +1,21 @@
 import { AspectRatioFormat, AspectRatioType } from '../type';
 
-import type { AspectRatio } from '../type';
+import type { ResolvedOptions } from '../type';
 
 function resolveAspectRatio(
   { width, height }: { width?: number; height?: number },
-  { type, format, decimal }: AspectRatio
+  {
+    aspectRatioType,
+    aspectRatioFormat,
+    aspectRatioDecimal,
+  }: Pick<
+    ResolvedOptions,
+    'aspectRatioType' | 'aspectRatioFormat' | 'aspectRatioDecimal'
+  >
 ): number {
-  const scale = format === AspectRatioFormat.Percent ? 100 : 1;
-  const rounder = 10 ** decimal;
-  switch (type) {
+  const scale = aspectRatioFormat === AspectRatioFormat.Percent ? 100 : 1;
+  const rounder = 10 ** aspectRatioDecimal;
+  switch (aspectRatioType) {
     case AspectRatioType.WidthByHeight:
       return Math.floor((width / height) * scale * rounder) / rounder;
     case AspectRatioType.HeightByWidth:
