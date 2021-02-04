@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/loader",
   "description": "Webpack loader for generating responsive images and LQIPs",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "type": "commonjs",
   "exports": {
     "require": "./lib/index.js"
