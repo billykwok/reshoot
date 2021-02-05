@@ -106,6 +106,27 @@ interface BaseOptions {
   aspectRatioDecimal: number;
 }
 
+export interface QueryOptions {
+  name?: string;
+  fastMode?: string;
+  cache?: string;
+  emitFile?: string;
+  esModule?: string;
+  quality?: string;
+  alternativeFormats?: Mime[];
+  alternativeWidths?: string[];
+  defaultFormat?: Mime;
+  defaultWidth?: string;
+  background?: string;
+  color?: string;
+  placeholderSize?: string;
+  placeholderQuality?: string;
+  placeholderTrimDataUrl?: string;
+  aspectRatioType?: AspectRatioType;
+  aspectRatioFormat?: AspectRatioFormat;
+  aspectRatioDecimal?: string;
+}
+
 export interface Options extends BaseOptions {
   outputPath: string | ((path: string) => string);
   publicPath: string | ((filename: string) => string);
