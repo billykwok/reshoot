@@ -55,7 +55,7 @@ describe('resolvePlaceholder', () => {
     expect(resize).toHaveBeenCalledTimes(1);
     expect(resize).toHaveBeenCalledWith(input, placeholderSize, Mime.JPEG, {
       background: resolvedColor,
-      placeholderQuality,
+      quality: placeholderQuality,
     });
     expect(createDataUrl).toHaveBeenCalledTimes(1);
     expect(createDataUrl).toHaveBeenCalledWith(resized, placeholderTrimDataUrl);
@@ -77,7 +77,7 @@ describe('resolvePlaceholder', () => {
     expect(resize).toHaveBeenCalledTimes(1);
     expect(resize).toHaveBeenCalledWith(input, placeholderSize, Mime.JPEG, {
       background,
-      placeholderQuality,
+      quality: placeholderQuality,
     });
     expect(createDataUrl).toHaveBeenCalledTimes(1);
     expect(createDataUrl).toHaveBeenCalledWith(resized, placeholderTrimDataUrl);

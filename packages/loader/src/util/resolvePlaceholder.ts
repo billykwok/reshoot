@@ -24,7 +24,7 @@ async function resolvePlaceholder(
   return createDataUrl(
     await resize(image, placeholderSize, Mime.JPEG, {
       background: resolvedColor === 'transparent' ? background : resolvedColor,
-      placeholderQuality,
+      quality: placeholderQuality,
     }),
     placeholderTrimDataUrl
   );

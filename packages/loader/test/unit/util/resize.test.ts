@@ -26,7 +26,7 @@ type Image = {
 describe('resize', () => {
   const buffer = Buffer.from([0]);
   const background = '#fff';
-  const placeholderQuality = 80;
+  const quality = 80;
   const image = {
     clone: jest.fn<Image, []>(() => image),
     resize: jest.fn<Image, [ResizeOptions?]>(() => image),
@@ -46,7 +46,7 @@ describe('resize', () => {
   test('should resize JPEG', async () => {
     const resized = await resize((image as unknown) as Sharp, 2, Mime.JPEG, {
       background,
-      placeholderQuality,
+      quality,
     });
     expect(image.clone).toHaveBeenCalledTimes(1);
     expect(image.resize).toHaveBeenCalledTimes(1);
@@ -60,14 +60,14 @@ describe('resize', () => {
       withoutEnlargement: true,
     });
     expect(image.flatten).toHaveBeenCalledWith({ background });
-    expect(image.jpeg).toHaveBeenCalledWith({ quality: placeholderQuality });
+    expect(image.jpeg).toHaveBeenCalledWith({ quality });
     expect(resized).toEqual(buffer);
   });
 
   test('should resize JPG', async () => {
     const resized = await resize((image as unknown) as Sharp, 2, Mime.JPG, {
       background,
-      placeholderQuality,
+      quality,
     });
     expect(image.clone).toHaveBeenCalledTimes(1);
     expect(image.resize).toHaveBeenCalledTimes(1);
@@ -81,14 +81,14 @@ describe('resize', () => {
       withoutEnlargement: true,
     });
     expect(image.flatten).toHaveBeenCalledWith({ background });
-    expect(image.jpeg).toHaveBeenCalledWith({ quality: placeholderQuality });
+    expect(image.jpeg).toHaveBeenCalledWith({ quality });
     expect(resized).toEqual(buffer);
   });
 
   test('should resize JPEG without flattening', async () => {
     const resized = await resize((image as unknown) as Sharp, 2, Mime.JPEG, {
       background: null,
-      placeholderQuality,
+      quality,
     });
     expect(image.clone).toHaveBeenCalledTimes(1);
     expect(image.resize).toHaveBeenCalledTimes(1);
@@ -102,14 +102,14 @@ describe('resize', () => {
       withoutEnlargement: true,
     });
     expect(image.flatten).toHaveBeenCalledWith(false);
-    expect(image.jpeg).toHaveBeenCalledWith({ quality: placeholderQuality });
+    expect(image.jpeg).toHaveBeenCalledWith({ quality });
     expect(resized).toEqual(buffer);
   });
 
   test('should resize JPG without flattening', async () => {
     const resized = await resize((image as unknown) as Sharp, 2, Mime.JPG, {
       background: null,
-      placeholderQuality,
+      quality,
     });
     expect(image.clone).toHaveBeenCalledTimes(1);
     expect(image.resize).toHaveBeenCalledTimes(1);
@@ -123,14 +123,14 @@ describe('resize', () => {
       withoutEnlargement: true,
     });
     expect(image.flatten).toHaveBeenCalledWith(false);
-    expect(image.jpeg).toHaveBeenCalledWith({ quality: placeholderQuality });
+    expect(image.jpeg).toHaveBeenCalledWith({ quality });
     expect(resized).toEqual(buffer);
   });
 
   test('should resize PNG', async () => {
     const resized = await resize((image as unknown) as Sharp, 2, Mime.PNG, {
       background,
-      placeholderQuality,
+      quality,
     });
     expect(image.clone).toHaveBeenCalledTimes(1);
     expect(image.resize).toHaveBeenCalledTimes(1);
@@ -143,14 +143,14 @@ describe('resize', () => {
       width: 16,
       withoutEnlargement: true,
     });
-    expect(image.png).toHaveBeenCalledWith({ quality: placeholderQuality });
+    expect(image.png).toHaveBeenCalledWith({ quality });
     expect(resized).toEqual(buffer);
   });
 
   test('should resize WEBP', async () => {
     const resized = await resize((image as unknown) as Sharp, 2, Mime.WEBP, {
       background,
-      placeholderQuality,
+      quality,
     });
     expect(image.clone).toHaveBeenCalledTimes(1);
     expect(image.resize).toHaveBeenCalledTimes(1);
@@ -163,17 +163,14 @@ describe('resize', () => {
       width: 16,
       withoutEnlargement: true,
     });
-    expect(image.webp).toHaveBeenCalledWith({
-      quality: placeholderQuality,
-      reductionEffort: 6,
-    });
+    expect(image.webp).toHaveBeenCalledWith({ quality, reductionEffort: 6 });
     expect(resized).toEqual(buffer);
   });
 
   test('should resize AVIF', async () => {
     const resized = await resize((image as unknown) as Sharp, 2, Mime.AVIF, {
       background,
-      placeholderQuality,
+      quality,
     });
     expect(image.clone).toHaveBeenCalledTimes(1);
     expect(image.resize).toHaveBeenCalledTimes(1);
@@ -186,7 +183,7 @@ describe('resize', () => {
       width: 16,
       withoutEnlargement: true,
     });
-    expect(image.avif).toHaveBeenCalledWith({ quality: placeholderQuality });
+    expect(image.avif).toHaveBeenCalledWith({ quality });
     expect(resized).toEqual(buffer);
   });
 
@@ -194,7 +191,7 @@ describe('resize', () => {
     await expect(
       resize((image as unknown) as Sharp, 2, Mime.GIF, {
         background,
-        placeholderQuality,
+        quality,
       })
     ).rejects.toEqual(new Error(`Unsupported MIME type "${Mime.GIF}"`));
   });
@@ -203,7 +200,7 @@ describe('resize', () => {
     await expect(
       resize((image as unknown) as Sharp, 2, Mime.SVG, {
         background,
-        placeholderQuality,
+        quality,
       })
     ).rejects.toEqual(new Error(`Unsupported MIME type "${Mime.SVG}"`));
   });
