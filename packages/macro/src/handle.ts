@@ -52,8 +52,12 @@ function handle({ references, state }: MacroParams): void {
             quality,
             background,
             color,
-            placeholder,
-            aspectRatio,
+            placeholderSize,
+            placeholderQuality,
+            placeholderTrimDataUrl,
+            aspectRatioType,
+            aspectRatioFormat,
+            aspectRatioDecimal,
             outputPath,
             publicPath,
             shape,
@@ -90,11 +94,23 @@ function handle({ references, state }: MacroParams): void {
           if ('color' in image) {
             options.color = image.color;
           }
-          if ('placeholder' in image) {
-            options.placeholder = image.placeholder;
+          if ('placeholderSize' in image) {
+            options.placeholderSize = image.placeholderSize;
           }
-          if ('aspectRatio' in image) {
-            options.aspectRatio = image.aspectRatio;
+          if ('placeholderQuality' in image) {
+            options.placeholderQuality = image.placeholderQuality;
+          }
+          if ('placeholderTrimDataUrl' in image) {
+            options.placeholderTrimDataUrl = image.placeholderTrimDataUrl;
+          }
+          if ('aspectRatioType' in image) {
+            options.aspectRatioType = image.aspectRatioType;
+          }
+          if ('aspectRatioFormat' in image) {
+            options.aspectRatioFormat = image.aspectRatioFormat;
+          }
+          if ('aspectRatioDecimal' in image) {
+            options.aspectRatioDecimal = image.aspectRatioDecimal;
           }
           const requireCall = requireExpression(
             path.join(path.dirname(firstArg), src),
