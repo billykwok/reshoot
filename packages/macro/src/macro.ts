@@ -30,12 +30,12 @@ export default createMacro(handle) as <T = ImageData>(
       quality: number;
       background: string;
       color: string;
-      placeholder: { size: number; quality: number; trimDataUrl: boolean };
-      aspectRatio: {
-        type: 'widthByHeight' | 'heightByWidth';
-        format: 'ratio' | 'percent';
-        decimal: number;
-      };
+      placeholderSize: number;
+      placeholderQuality: number;
+      placeholderTrimDataUrl: boolean;
+      aspectRatioType: 'widthByHeight' | 'heightByWidth';
+      aspectRatioFormat: 'ratio' | 'percent';
+      aspectRatioDecimal: number;
       fastMode: boolean;
       cache: boolean;
       emitFile: boolean;
