@@ -10,6 +10,14 @@ import type {
   ResolvedOptions,
 } from '../type';
 
+function isDefined(params: Record<string, unknown>, key: string): boolean {
+  if (!(key in params)) {
+    return false;
+  }
+  const value = params[key];
+  return typeof value !== 'undefined' && value !== null && value !== '';
+}
+
 function resolveOptions(ctx: LoaderContext): ResolvedOptions {
   const defaultOptions = resolveDefaultOptions(ctx.mode);
   const fileOptions = (getOptions(ctx) as Partial<Options>) || {};
@@ -18,91 +26,70 @@ function resolveOptions(ctx: LoaderContext): ResolvedOptions {
     : {}) as QueryOptions;
   const queryOptions: Partial<Options> = {};
   if (queryParams) {
-    if ('name' in queryParams && queryParams.name !== null) {
+    if (isDefined(queryParams, 'name')) {
       queryOptions.name = queryParams.name;
     }
-    if ('fastMode' in queryParams && queryParams.fastMode !== null) {
+    if (isDefined(queryParams, 'fastMode')) {
       queryOptions.fastMode = queryParams.fastMode === 'true';
     }
-    if ('cache' in queryParams && queryParams.cache !== null) {
+    if (isDefined(queryParams, 'cache')) {
       queryOptions.cache = queryParams.cache === 'true';
     }
-    if ('emitFile' in queryParams && queryParams.emitFile !== null) {
+    if (isDefined(queryParams, 'emitFile')) {
       queryOptions.emitFile = queryParams.emitFile === 'true';
     }
-    if ('esModule' in queryParams && queryParams.esModule !== null) {
+    if (isDefined(queryParams, 'esModule')) {
       queryOptions.esModule = queryParams.esModule === 'true';
     }
-    if ('quality' in queryParams && queryParams.quality !== null) {
+    if (isDefined(queryParams, 'quality')) {
       queryOptions.quality = parseInt(queryParams.quality);
     }
-    if (
-      'alternativeFormats' in queryParams &&
-      queryParams.alternativeFormats !== null
-    ) {
+    if (isDefined(queryParams, 'alternativeFormats')) {
       queryOptions.alternativeFormats = queryParams.alternativeFormats;
     }
     if (
-      'alternativeWidths' in queryParams &&
-      queryParams.alternativeWidths !== null
+      isDefined(queryParams, 'alternativeWidths') &&
+      Array.isArray(queryParams.alternativeWidths)
     ) {
       queryOptions.alternativeWidths = queryParams.alternativeWidths.map((w) =>
         parseInt(w)
       );
     }
-    if ('defaultFormat' in queryParams && queryParams.defaultFormat !== null) {
+    if (isDefined(queryParams, 'defaultFormat')) {
       queryOptions.defaultFormat = queryParams.defaultFormat;
     }
-    if ('defaultWidth' in queryParams && queryParams.defaultWidth !== null) {
+    if (isDefined(queryParams, 'defaultWidth')) {
       queryOptions.defaultWidth = parseInt(queryParams.defaultWidth);
     }
-    if ('background' in queryParams && queryParams.background !== null) {
+    if (isDefined(queryParams, 'background')) {
       queryOptions.background = queryParams.background;
     }
-    if ('color' in queryParams && queryParams.color !== null) {
+    if (isDefined(queryParams, 'color')) {
       if (queryParams.color.startsWith('#')) {
         queryOptions.color = queryParams.color;
       } else {
         queryOptions.color = queryParams.color === 'true';
       }
     }
-    if (
-      'placeholderSize' in queryParams &&
-      queryParams.placeholderSize !== null
-    ) {
+    if (isDefined(queryParams, 'placeholderSize')) {
       queryOptions.placeholderSize = parseInt(queryParams.placeholderSize);
     }
-    if (
-      'placeholderQuality' in queryParams &&
-      queryParams.placeholderQuality !== null
-    ) {
+    if (isDefined(queryParams, 'placeholderQuality')) {
       queryOptions.placeholderQuality = parseInt(
         queryParams.placeholderQuality
       );
     }
-    if (
-      'placeholderTrimDataUrl' in queryParams &&
-      queryParams.placeholderTrimDataUrl !== null
-    ) {
+    if (isDefined(queryParams, 'placeholderTrimDataUrl')) {
       queryOptions.placeholderTrimDataUrl =
         queryParams.placeholderTrimDataUrl === 'true';
     }
-    if (
-      'aspectRatioType' in queryParams &&
-      queryParams.aspectRatioType !== null
-    ) {
+    if (isDefined(queryParams, 'aspectRatioType')) {
       queryOptions.aspectRatioType = queryParams.aspectRatioType;
     }
-    if (
-      'aspectRatioFormat' in queryParams &&
-      queryParams.aspectRatioFormat !== null
-    ) {
+    if (isDefined(queryParams, 'aspectRatioFormat')) {
       queryOptions.aspectRatioFormat = queryParams.aspectRatioFormat;
     }
-    if (
-      'aspectRatioDecimal' in queryParams &&
-      queryParams.aspectRatioDecimal !== null
-    ) {
+    if (isDefined(queryParams, 'aspectRatioDecimal')) {
       queryOptions.aspectRatioDecimal = parseInt(
         queryParams.aspectRatioDecimal
       );

@@ -4,8 +4,12 @@
   "version": "1.8.0",
   "type": "module",
   "exports": {
-    "import": "./lib/es/index.js",
-    "require": "./lib/index.js"
+    "./css": "./lib/styles.css",
+    ".": {
+      "import": "./lib/es/index.js",
+      "require": "./lib/index.js",
+      "types": "./types/index.d.ts"
+    }
   },
   "module": "./lib/es/index.js",
   "main": "./lib/index.js",

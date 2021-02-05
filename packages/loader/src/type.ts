@@ -125,6 +125,7 @@ export interface QueryOptions {
   aspectRatioType?: AspectRatioType;
   aspectRatioFormat?: AspectRatioFormat;
   aspectRatioDecimal?: string;
+  [key: string]: unknown;
 }
 
 export interface Options extends BaseOptions {
