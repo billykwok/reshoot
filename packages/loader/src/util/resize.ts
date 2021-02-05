@@ -7,10 +7,7 @@ function resize(
   image: Sharp,
   width: number,
   mime: Mime,
-  {
-    background,
-    placeholderQuality,
-  }: Pick<ResolvedOptions, 'background' | 'placeholderQuality'>
+  { background, quality }: Pick<ResolvedOptions, 'background' | 'quality'>
 ): Promise<Buffer> {
   const resized = width
     ? image.clone().resize({
@@ -25,16 +22,14 @@ function resize(
     case Mime.JPEG:
       return resized
         .flatten(background ? { background } : false)
-        .jpeg({ quality: placeholderQuality })
+        .jpeg({ quality })
         .toBuffer();
     case Mime.PNG:
-      return resized.png({ quality: placeholderQuality }).toBuffer();
+      return resized.png({ quality }).toBuffer();
     case Mime.WEBP:
-      return resized
-        .webp({ quality: placeholderQuality, reductionEffort: 6 })
-        .toBuffer();
+      return resized.webp({ quality, reductionEffort: 6 }).toBuffer();
     case Mime.AVIF:
-      return resized.avif({ quality: placeholderQuality }).toBuffer();
+      return resized.avif({ quality }).toBuffer();
   }
   return Promise.reject(new Error(`Unsupported MIME type "${mime}"`));
 }
