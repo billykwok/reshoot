@@ -16,7 +16,9 @@ import type { Result } from './type';
 
 async function reshootLoader(
   this: LoaderContext,
-  content: Buffer | string
+  content: Buffer | string,
+  sourceMap: any,
+  meta: any
 ): Promise<void> {
   this.cacheable(true);
   const callback = this.async();
@@ -40,7 +42,7 @@ async function reshootLoader(
         }
         await Promise.all(awaitables);
       }
-      return callback(null, output);
+      return callback(null, output, sourceMap, meta);
     }
   }
 
@@ -108,7 +110,7 @@ async function reshootLoader(
 
   if (isSvgOrGif || options.fastMode) {
     awaitables.unshift(writeStats(internalOutput));
-    return callback(null, (await Promise.all(awaitables))[0]);
+    return callback(null, (await Promise.all(awaitables))[0], sourceMap, meta);
   }
 
   if (options.alternativeWidths && options.alternativeWidths.length) {
@@ -146,7 +148,7 @@ async function reshootLoader(
   }
 
   awaitables.unshift(writeStats(internalOutput));
-  return callback(null, (await Promise.all(awaitables))[0]);
+  return callback(null, (await Promise.all(awaitables))[0], sourceMap, meta);
 }
 
 export default reshootLoader;

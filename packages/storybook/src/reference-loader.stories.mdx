@@ -79,7 +79,7 @@ const options = {
     color,
     sources,
   }),
-  alternativeWidths: [480, 800, 1120, 1440],
+  alternativeWidths: [640, 1120, 1440],
   alternativeFormats: ['image/avif', 'image/webp'],
   defaultFormat: false,
   defaultWidth: 640,
@@ -194,7 +194,7 @@ export default {
 #### Widths of Responsive Images
 
 Type: `alternativeWidths: number[]`  
-Default: `[480, 800, 1120, 1440]`  
+Default: `[640, 1120, 1440]`  
 Widths of responsive images. Input image is resized into a set of output images with widths specified in this option. The `srcSet` attribute of module export is also generated from this list. For example,
 
 ```typescript

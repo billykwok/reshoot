@@ -22,14 +22,18 @@ function resize(
     case Mime.JPEG:
       return resized
         .flatten(background ? { background } : false)
-        .jpeg({ quality })
+        .jpeg(quality ? { quality } : {})
         .toBuffer();
     case Mime.PNG:
-      return resized.png({ quality }).toBuffer();
+      return resized.png(quality ? { quality } : {}).toBuffer();
     case Mime.WEBP:
-      return resized.webp({ quality, reductionEffort: 6 }).toBuffer();
+      return resized
+        .webp(
+          quality ? { quality, reductionEffort: 6 } : { reductionEffort: 6 }
+        )
+        .toBuffer();
     case Mime.AVIF:
-      return resized.avif({ quality }).toBuffer();
+      return resized.avif(quality ? { quality } : {}).toBuffer();
   }
   return Promise.reject(new Error(`Unsupported MIME type "${mime}"`));
 }

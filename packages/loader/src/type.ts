@@ -44,7 +44,12 @@ export interface LoaderContext {
   resourcePath: string;
   resourceQuery: string;
   cacheable: (value: boolean) => void;
-  async: () => (error: Error, output?: any) => void;
+  async: () => (
+    error: Error,
+    output?: any,
+    sourceMap?: any,
+    meta?: any
+  ) => void;
   emitFile: (
     filename: string,
     content: string | Buffer,

@@ -48,16 +48,13 @@ describe('Basic component test for @reshoot/loader', () => {
       path.resolve(__dirname, './images')
     );
     const expectedFilenames = [
-      'tEsThAsH-480.avif',
-      'tEsThAsH-800.avif',
+      'tEsThAsH-640.avif',
       'tEsThAsH-1120.avif',
       'tEsThAsH-1440.avif',
-      'tEsThAsH-480.webp',
-      'tEsThAsH-800.webp',
+      'tEsThAsH-640.webp',
       'tEsThAsH-1120.webp',
       'tEsThAsH-1440.webp',
-      'tEsThAsH-480.jpg',
-      'tEsThAsH-800.jpg',
+      'tEsThAsH-640.jpg',
       'tEsThAsH-1120.jpg',
       'tEsThAsH-1440.jpg',
     ];
@@ -77,12 +74,10 @@ describe('Basic component test for @reshoot/loader', () => {
     expect(cachedFiles).toEqual(
       expect.arrayContaining([
         'stats.json',
-        '480.jpg',
-        '800.jpg',
+        '640.jpg',
         '1120.jpg',
         '1440.jpg',
-        '480.webp',
-        '800.webp',
+        '640.webp',
         '1120.webp',
         '1440.webp',
       ])
@@ -97,16 +92,13 @@ describe('Basic component test for @reshoot/loader', () => {
       path.resolve(__dirname, './images')
     );
     const expectedFilenames2 = [
-      'tEsThAsH-480.avif',
-      'tEsThAsH-800.avif',
+      'tEsThAsH-640.avif',
       'tEsThAsH-1120.avif',
       'tEsThAsH-1440.avif',
-      'tEsThAsH-480.webp',
-      'tEsThAsH-800.webp',
+      'tEsThAsH-640.webp',
       'tEsThAsH-1120.webp',
       'tEsThAsH-1440.webp',
-      'tEsThAsH-480.jpg',
-      'tEsThAsH-800.jpg',
+      'tEsThAsH-640.jpg',
       'tEsThAsH-1120.jpg',
       'tEsThAsH-1440.jpg',
     ];

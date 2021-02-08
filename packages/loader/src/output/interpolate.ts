@@ -16,7 +16,7 @@ function interpolate(
   if (result && result.length) {
     filename = filename.replace(
       regex,
-      hash.substring(0, parseInt(result[1] || '16'))
+      hash.substring(0, Math.min(16, parseInt(result[1] || '16')))
     );
   }
   return interpolateName(ctx, filename, {
