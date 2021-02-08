@@ -10,12 +10,23 @@ import type {
   ResolvedOptions,
 } from '../type';
 
-function isDefined(params: Record<string, unknown>, key: string): boolean {
+function isDefinedAndNotEmpty(
+  params: Record<string, unknown>,
+  key: string
+): boolean {
   if (!(key in params)) {
     return false;
   }
   const value = params[key];
   return typeof value !== 'undefined' && value !== null && value !== '';
+}
+
+function isDefined(params: Record<string, unknown>, key: string): boolean {
+  if (!(key in params)) {
+    return false;
+  }
+  const value = params[key];
+  return typeof value !== 'undefined' && value !== null;
 }
 
 function resolveOptions(ctx: LoaderContext): ResolvedOptions {
@@ -26,25 +37,26 @@ function resolveOptions(ctx: LoaderContext): ResolvedOptions {
     : {}) as QueryOptions;
   const queryOptions: Partial<Options> = {};
   if (queryParams) {
-    if (isDefined(queryParams, 'name')) {
+    if (isDefinedAndNotEmpty(queryParams, 'name')) {
       queryOptions.name = queryParams.name;
     }
-    if (isDefined(queryParams, 'fastMode')) {
+    if (isDefinedAndNotEmpty(queryParams, 'fastMode')) {
       queryOptions.fastMode = queryParams.fastMode === 'true';
     }
-    if (isDefined(queryParams, 'cache')) {
+    if (isDefinedAndNotEmpty(queryParams, 'cache')) {
       queryOptions.cache = queryParams.cache === 'true';
     }
-    if (isDefined(queryParams, 'emitFile')) {
+    if (isDefinedAndNotEmpty(queryParams, 'emitFile')) {
       queryOptions.emitFile = queryParams.emitFile === 'true';
     }
-    if (isDefined(queryParams, 'esModule')) {
+    if (isDefinedAndNotEmpty(queryParams, 'esModule')) {
       queryOptions.esModule = queryParams.esModule === 'true';
     }
     if (isDefined(queryParams, 'quality')) {
-      queryOptions.quality = parseInt(queryParams.quality);
+      queryOptions.quality =
+        queryParams.quality === '' ? null : parseInt(queryParams.quality);
     }
-    if (isDefined(queryParams, 'alternativeFormats')) {
+    if (isDefinedAndNotEmpty(queryParams, 'alternativeFormats')) {
       queryOptions.alternativeFormats = queryParams.alternativeFormats;
     }
     if (
@@ -55,41 +67,46 @@ function resolveOptions(ctx: LoaderContext): ResolvedOptions {
         parseInt(w)
       );
     }
-    if (isDefined(queryParams, 'defaultFormat')) {
+    if (isDefinedAndNotEmpty(queryParams, 'defaultFormat')) {
       queryOptions.defaultFormat = queryParams.defaultFormat;
     }
-    if (isDefined(queryParams, 'defaultWidth')) {
+    if (isDefinedAndNotEmpty(queryParams, 'defaultWidth')) {
       queryOptions.defaultWidth = parseInt(queryParams.defaultWidth);
     }
     if (isDefined(queryParams, 'background')) {
-      queryOptions.background = queryParams.background;
+      queryOptions.background =
+        queryParams.background === '' ? null : queryParams.background;
     }
-    if (isDefined(queryParams, 'color')) {
-      if (queryParams.color.startsWith('#')) {
-        queryOptions.color = queryParams.color;
+    if (isDefinedAndNotEmpty(queryParams, 'color')) {
+      if (queryParams.color === 'true') {
+        queryOptions.color = true;
+      } else if (queryParams.color === 'false') {
+        queryOptions.color = false;
+      } else if (queryParams.color === '') {
+        queryOptions.color = null;
       } else {
-        queryOptions.color = queryParams.color === 'true';
+        queryOptions.color = queryParams.color;
       }
     }
-    if (isDefined(queryParams, 'placeholderSize')) {
+    if (isDefinedAndNotEmpty(queryParams, 'placeholderSize')) {
       queryOptions.placeholderSize = parseInt(queryParams.placeholderSize);
     }
-    if (isDefined(queryParams, 'placeholderQuality')) {
+    if (isDefinedAndNotEmpty(queryParams, 'placeholderQuality')) {
       queryOptions.placeholderQuality = parseInt(
         queryParams.placeholderQuality
       );
     }
-    if (isDefined(queryParams, 'placeholderTrimDataUrl')) {
+    if (isDefinedAndNotEmpty(queryParams, 'placeholderTrimDataUrl')) {
       queryOptions.placeholderTrimDataUrl =
         queryParams.placeholderTrimDataUrl === 'true';
     }
-    if (isDefined(queryParams, 'aspectRatioType')) {
+    if (isDefinedAndNotEmpty(queryParams, 'aspectRatioType')) {
       queryOptions.aspectRatioType = queryParams.aspectRatioType;
     }
-    if (isDefined(queryParams, 'aspectRatioFormat')) {
+    if (isDefinedAndNotEmpty(queryParams, 'aspectRatioFormat')) {
       queryOptions.aspectRatioFormat = queryParams.aspectRatioFormat;
     }
-    if (isDefined(queryParams, 'aspectRatioDecimal')) {
+    if (isDefinedAndNotEmpty(queryParams, 'aspectRatioDecimal')) {
       queryOptions.aspectRatioDecimal = parseInt(
         queryParams.aspectRatioDecimal
       );

@@ -1,15 +1,13 @@
 import path from 'path';
 import webpack, { Compiler } from 'webpack';
 
-const statsOptions = {
-  source: true,
-};
+const statsOptions = { source: true };
 
 async function compile(
   outputFileSystem: Compiler['outputFileSystem'],
   fixture: string,
   options: Record<string, unknown> = {}
-): Promise<string> {
+): Promise<string | Buffer> {
   const compiler = webpack({
     mode: 'production',
     context: __dirname,
@@ -43,15 +41,12 @@ async function compile(
       if (err) {
         reject(err);
       } else if (stats.hasErrors()) {
-        reject((stats.toJson() as { errors: string[] }).errors);
+        reject(stats.toJson().errors);
       } else {
         if (stats.hasWarnings()) {
-          console.warn((stats.toJson() as { warnings: string[] }).warnings);
+          console.warn(stats.toJson().warnings);
         }
-        resolve(
-          (stats.toJson(statsOptions) as { modules: { source: string }[] })
-            .modules[0].source
-        );
+        resolve(stats.toJson(statsOptions).modules[0].source);
       }
     })
   );

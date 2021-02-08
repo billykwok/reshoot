@@ -29,7 +29,7 @@ function defaultOptions(name: string, fastMode: boolean): Options {
       sources,
     }),
     alternativeFormats: [Mime.AVIF, Mime.WEBP],
-    alternativeWidths: [480, 800, 1120, 1440],
+    alternativeWidths: [640, 1120, 1440],
     defaultFormat: null,
     defaultWidth: 1120,
     quality: 80,

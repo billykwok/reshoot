@@ -43,7 +43,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.12.13",
-    "@reshoot/loader": "^1.9.1",
+    "@reshoot/loader": "latest",
     "babel-plugin-macros": "^3.0.1"
   }
 }
