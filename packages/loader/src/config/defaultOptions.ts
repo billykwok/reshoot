@@ -44,7 +44,7 @@ function defaultOptions(name: string, fastMode: boolean): Options {
     fastMode,
     cache: true,
     emitFile: true,
-    esModule: true,
+    esModule: false,
   };
 }
 

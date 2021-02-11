@@ -112,16 +112,20 @@ function handle({ references, state }: MacroParams): void {
           if ('aspectRatioDecimal' in image) {
             options.aspectRatioDecimal = image.aspectRatioDecimal;
           }
-          const requireCall = requireExpression(
-            path.join(path.dirname(firstArg), src),
-            options
-          );
           return objectExpression(
             (!rest || Object.keys(rest).length
               ? (parseExpression(JSON.stringify(rest)) as ObjectExpression)
                   .properties
               : []
-            ).concat(objectProperty(stringLiteral('data'), requireCall))
+            ).concat(
+              objectProperty(
+                stringLiteral('data'),
+                requireExpression(
+                  path.join(path.dirname(firstArg), src),
+                  options
+                )
+              )
+            )
           );
         })
       )
