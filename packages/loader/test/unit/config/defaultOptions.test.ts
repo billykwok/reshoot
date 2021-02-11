@@ -24,7 +24,7 @@ describe('default options', () => {
       fastMode: true,
       cache: true,
       emitFile: true,
-      esModule: true,
+      esModule: false,
     });
   });
 
@@ -49,7 +49,7 @@ describe('default options', () => {
       fastMode: false,
       cache: true,
       emitFile: true,
-      esModule: true,
+      esModule: false,
     });
   });
 });
