@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/macro",
   "description": "Babel macro for @reshoot/loader",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "type": "commonjs",
   "exports": {
     "require": "./lib/index.js"
