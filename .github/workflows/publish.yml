@@ -17,7 +17,7 @@ jobs:
   publish:
     name: Publish
     if: >
-      github.event.pull_request.merged == true && github.event.pull_request.title == 'chore: update versions'
+      github.event.workflow_dispatch || (github.event.pull_request.merged == true && github.event.pull_request.title == 'chore: update versions')
     env:
         TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
         TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
