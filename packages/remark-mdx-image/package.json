@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/remark-mdx-image",
   "description": "MDX integration for Reshoot",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "type": "module",
   "exports": {
     "import": "./lib/es/index.mjs",

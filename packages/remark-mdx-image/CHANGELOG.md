@@ -1,5 +1,11 @@
 # @reshoot/remark-mdx-image
 
+## 2.0.3
+
+### Patch Changes
+
+- 7492d4c: fix: fix rollup exports
+
 ## 2.0.2
 
 ### Patch Changes
