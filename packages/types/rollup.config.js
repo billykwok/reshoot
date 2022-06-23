@@ -47,7 +47,6 @@ export default {
       ecma: 2015,
       compress: {
         arguments: true,
-        booleans_as_integers: true,
         hoist_funs: true,
         passes: 3,
         toplevel: true,
