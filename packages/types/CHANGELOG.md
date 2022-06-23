@@ -1,5 +1,11 @@
 # @reshoot/types
 
+## 2.0.2
+
+### Patch Changes
+
+- 66e5ac9: fix: do not use integer as boolean in terser
+
 ## 2.0.1
 
 ### Patch Changes
