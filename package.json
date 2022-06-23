@@ -17,7 +17,7 @@
     "build": "turbo run build",
     "test": "turbo run test lint",
     "lint": "turbo run lint",
-    "version": "changeset version && pnpm install",
+    "version": "changeset version && pnpm install --no-frozen-lockfile",
     "publish": "changeset publish"
   },
   "workspaces": [

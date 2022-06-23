@@ -45,4 +45,9 @@ export async function extractMeta(
   };
 }
 
-export { AspectRatioFormat, AspectRatioType } from '@reshoot/types';
+export {
+  AspectRatioFormat,
+  AspectRatioType,
+  type CoreImageMeta,
+  type CoreOptions,
+} from '@reshoot/types';

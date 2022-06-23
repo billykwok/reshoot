@@ -83,4 +83,6 @@ export const raw = true;
 
 export { AspectRatioFormat, AspectRatioType } from '@reshoot/types';
 
+export type { LoaderImageMeta, LoaderOptions } from './types';
+
 export default reshootLoader;
