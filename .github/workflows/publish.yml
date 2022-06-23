@@ -1,6 +1,8 @@
 name: Publish
 
 on:
+  workflow_dispatch:
+    branches: [main]
   pull_request:
     types: [closed]
     branches: [main]
@@ -16,6 +18,9 @@ jobs:
     name: Publish
     if: >
       github.event.pull_request.merged == true && github.event.pull_request.title == 'chore: update versions'
+    env:
+        TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+        TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
