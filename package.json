@@ -1,8 +1,8 @@
 {
   "name": "reshoot",
   "description": "All-in-one responsive image processing framework",
+  "version": "0.0.0",
   "type": "module",
-  "private": true,
   "pm": "pnpm@7.3.0",
   "engines": {
     "node": ">=18",

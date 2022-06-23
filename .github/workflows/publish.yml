@@ -62,10 +62,10 @@ jobs:
       - name: Publish to npm
         uses: changesets/action@v1
         with:
-          version: pnpm changeset version
+          version: pnpm run version
           commit: "chore: update versions"
           title: "chore: update versions"
-          publish: pnpm changeset publish
+          publish: pnpm run publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
