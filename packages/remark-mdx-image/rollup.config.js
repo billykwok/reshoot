@@ -16,7 +16,7 @@ export default {
       generatedCode: 'es2015',
       freeze: false,
       compact: true,
-      exports: 'named',
+      exports: 'default',
     },
     {
       dir: 'lib/es',
@@ -26,7 +26,7 @@ export default {
       generatedCode: 'es2015',
       freeze: false,
       compact: true,
-      exports: 'named',
+      exports: 'default',
     },
   ],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
