@@ -1,5 +1,11 @@
 # @reshoot/react
 
+## 2.0.2
+
+### Patch Changes
+
+- 510a7da: fix: fix incorrect extensions in package.json
+
 ## 2.0.1
 
 ### Patch Changes
