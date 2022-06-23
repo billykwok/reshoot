@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/react",
   "description": "React integration for Reshoot",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "exports": {
     "./css": "./lib/styles.css",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7",
-    "@reshoot/types": "workspace:^2.0.0",
+    "@reshoot/types": "workspace:^2.0.1",
     "react": "^17 || ^18",
     "use-lifecycle-ref": "^1.0.4"
   },

@@ -1,5 +1,11 @@
 # @reshoot/types
 
+## 2.0.1
+
+### Patch Changes
+
+- 226a185: fix: add node version restriction and fix rollup config
+
 ## 2.0.0
 
 ### Major Changes

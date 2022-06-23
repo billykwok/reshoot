@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/loader",
   "description": "Webpack loader integration for Reshoot",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "type": "module",
   "exports": {
     "import": "./lib/es/index.mjs",
@@ -34,8 +34,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
   },
   "dependencies": {
-    "@reshoot/core": "workspace:^2.1.0",
-    "@reshoot/types": "workspace:^2.0.0",
+    "@reshoot/core": "workspace:^2.1.1",
+    "@reshoot/types": "workspace:^2.0.1",
     "@babel/runtime-corejs3": "^7",
     "json5": "^2.2.1",
     "loader-utils": "^3.2.0"
