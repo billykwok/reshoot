@@ -13,10 +13,10 @@ env:
 jobs:
   version:
     name: Version
-    runs-on: ubuntu-latest
     env:
         TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
         TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -61,7 +61,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           directory: ./packages/core/coverage
-          flags: '@reshoot/core'
+          flags: core
           fail_ci_if_error: true
           verbose: true
 
@@ -69,7 +69,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           directory: ./packages/loader/coverage
-          flags: '@reshoot/loader'
+          flags: loader
           fail_ci_if_error: true
           verbose: true
 
@@ -77,7 +77,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           directory: ./packages/macro/coverage
-          flags: '@reshoot/macro'
+          flags: macro
           fail_ci_if_error: true
           verbose: true
 
@@ -85,7 +85,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           directory: ./packages/react/coverage
-          flags: '@reshoot/react'
+          flags: react
           fail_ci_if_error: true
           verbose: true
 
@@ -93,7 +93,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           directory: ./packages/remark-mdx-image/coverage
-          flags: '@reshoot/image'
+          flags: remark-mdx-image
           fail_ci_if_error: true
           verbose: true
 
@@ -101,7 +101,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           directory: ./packages/types/coverage
-          flags: '@reshoot/types'
+          flags: types
           fail_ci_if_error: true
           verbose: true
 
