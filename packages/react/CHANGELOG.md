@@ -1,5 +1,11 @@
 # @reshoot/react
 
+## 2.0.3
+
+### Patch Changes
+
+- 0e54ec5: fix: fix style exports
+
 ## 2.0.2
 
 ### Patch Changes
