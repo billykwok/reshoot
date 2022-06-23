@@ -21,7 +21,7 @@
     },
     "test": {
       "dependsOn": ["build"],
-      "outputs": [],
+      "outputs": ["coverage/**"],
       "inputs": [
         "src/**/*.tsx",
         "src/**/*.ts",
