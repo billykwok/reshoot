@@ -1,6 +1,6 @@
 {
   "name": "@reshoot/react",
-  "description": "A React component that lazily renders responsive images with LQIPs",
+  "description": "React integration for Reshoot",
   "version": "1.8.1",
   "type": "module",
   "exports": {
@@ -21,33 +21,48 @@
   "sideEffects": [
     "*.css"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
     "reshoot",
-    "srcset",
-    "image",
-    "img",
-    "react",
     "responsive",
-    "babel"
+    "image",
+    "react",
+    "react-dom"
   ],
-  "repository": "https://github.com/billykwok/reshoot",
-  "bugs": {
-    "url": "https://github.com/billykwok/reshoot/issues"
-  },
-  "homepage": "https://github.com/billykwok/reshoot/tree/main/packages/react",
   "scripts": {
-    "lint": "eslint ./src/**",
     "clean": "rm -rf lib types",
-    "build": "yarn clean && rollup -c rollup.config.js && rollup -c rollup.config.js --format es --dir ./lib/es && tsc --project tsconfig.json"
+    "lint": "eslint ./src ./test",
+    "build": "rollup -c rollup.config.js && tsc --project tsconfig.types.json",
+    "test": "jest"
   },
-  "peerDependencies": {
-    "@babel/runtime-corejs3": "^7.12.13",
-    "object-assign": "4.1.1",
-    "react": "^17.0.1"
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7",
+    "@reshoot/types": "workspace:^1.0.0",
+    "react": "^17 || ^18",
+    "use-lifecycle-ref": "^1.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/preset-react": "^7.17.12",
+    "@linaria/babel-preset": "^3.0.0-beta.22",
+    "@linaria/core": "^3.0.0-beta.22",
+    "@linaria/rollup": "^3.0.0-beta.22",
+    "@linaria/shaker": "^3.0.0-beta.22",
+    "@testing-library/react": "^13.3.0",
+    "@types/postcss-preset-env": "^6.7.3",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "eslint": "^8.18.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest-environment-jsdom": "^28.1.1",
+    "postcss": "^8.4.14",
+    "postcss-preset-env": "^7.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }

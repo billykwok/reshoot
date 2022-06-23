@@ -1,49 +1,160 @@
-# <img src="https://raw.githubusercontent.com/billykwok/reshoot/main/logo.png" width="200" />
+# <img src="https://raw.githubusercontent.com/billykwok/reshoot/main/logo.png" width="200" alt="Reshoot logo" />
 
-[![Babel Macro](https://img.shields.io/badge/babel--macro-%F0%9F%8E%A3-f5da55.svg?style=flat-square)](https://github.com/kentcdodds/babel-plugin-macros)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
-[![codecov](https://codecov.io/gh/billykwok/reshoot/branch/main/graph/badge.svg)](https://codecov.io/gh/billykwok/reshoot)
-[![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/main.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/main)
-
-**Official Documentation**: [https://reshootjs.github.io](https://reshootjs.github.io)
-
-Reshoot is a production-ready image framework for React. As a spiritual successor of [`react-ideal-image`](https://github.com/stereobooster/react-ideal-image) (no longer actively maintained), Reshoot makes the generation and rendering of lazy-loaded responsive images as effortless and efficient as possible.
-
-It is not just a library but a framework, because apart from a lightweight React component library, it is also shipped with a Webpack loader and a Babel macro that generate images in different sizes ([`srcset`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)) as well as low-quality previews ([`lqip`](https://github.com/zouhir/lqip)).
-
-Written in TypeScript, Reshoot provides type definitions out of the box. Powered by hooks and IntersectionObserver, its React runtime is only `4.4kb` in size (`3kb` js and `1.4kb` css) before gzip and `2.5kb` after gzip. The built-in Babel macro also helps you override image generation setting while maintaining maximum code readability and type-checkability. The project has a test coverage of over 90%.
+Reshoot is a JavaScript / Typescript image framework that makes the processing and rendering of responsive images as easy and efficient as possible.
 
 ## What is in the box
 
-Reshoot currently consists of the following 3 packages.
+Reshoot currently consists of the following packages.
 
-### `@reshoot/loader`
+### User packages
 
-A [`webpack-loader`](https://webpack.js.org/loaders) that emits low-quality image preview ([`lqip`](https://github.com/zouhir/lqip)) and responsive images, and returns meta info of the images.
+Packages you will likely use directly, as they interface with the libraries and tools in your projects.
 
-### `@reshoot/macro`
+| Package                                                                                | Description                                                                                                                                                                                                                                                                                                         |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`@reshoot/react`](https://www.npmjs.com/package/@reshoot/react)                       | A [`React`](https://reactjs.org) component rendering responsive images, designed to accept the output meta data of [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader).                                                                                                                              |
+| [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader)                     | A Webpack [`loader`](https://webpack.js.org/loaders) that returns low-quality image placeholder ([`lqip`](https://github.com/zouhir/lqip)) and meta data of the images.                                                                                                                                             |
+| [`@reshoot/macro`](https://www.npmjs.com/package/@reshoot/macro)                       | A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) transpiling `reshoot('image.jpg', { color: '#eee' })` into `import meta from 'image.jpg?color=%23eee';`.                                                                                                                                       |
+| [`@reshoot/remark-mdx-image`](https://www.npmjs.com/package/@reshoot/remark-mdx-image) | An [`mdx`](https://mdxjs.com) / [`remark-plugin`](https://github.com/remarkjs/remark) transpiling `![alt text](image.jpg "title"){{color=#eee}}` into the following.<pre lang="mdx">import meta from 'image.jpg?color=%23eee';<br/>&lt;img meta={meta} alt=&quot;alt text&quot; title=&quot;title&quot; /&gt;</pre> |
 
-A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) that transpiles `reshoot('image.jpg', { a: 1, b: 2 })` into `require('image.jpg!@reshoot/loader?a=1&b=2')`.
+> These packages can be used selectively to fit your specific use cases. For example, you can ignore `@reshoot/remark-mdx-image` if you are not using `mdx`. Or you can use `@reshoot/loader` to generate responsive images, but build your own `<Img />` component to render the images. Or you can just use `@reshoot/react` for images that you prepared yourself.
+>
+> Currently Reshoot assumes that you use Webpack, Babel and React. Support for other frameworks/libraries will be considered in the future.
 
-### `@reshoot/react`
+### Core packages
 
-A lightweight [`React`](https://reactjs.org) component that renders lazy-loaded responsive images. It is designed to accept the output meta data of `@reshoot/loader`.
+Packages that you will rarely need to use, as they are the underlying logics and infrastructural components of Reshoot.
 
-> Despite it works the best when all 3 packages are used together, there is nothing stopping you from selectively adopt one of them to fit your use case. For example, you can use `@reshoot/loader` to generate responsive images, but build your own `<Img />` component to render the images. Or, the other way round - using `@reshoot/react` to render images that you build yourself.
+| Package                                                          | Description                                                                                                 |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [`@reshoot/core`](https://www.npmjs.com/package/@reshoot/core)   | A backend library for extracting meta data and generating low-quality iamge placeholder from a given image. |
+| [`@reshoot/types`](https://www.npmjs.com/package/@reshoot/types) | Enums and types shared across the above libraries.                                                          |
 
-> Currently Reshoot assumes that you use Webpack, Babel and React. Please let know if you need support for other framework/library.
+## Documentation via Example Usage
 
-## Quick Look
+Here is a simple demonstration on how to use all four Reshoot user packages.
 
-Here is a simplfied demonstration on how easy to use Reshoot.
+### Installation
+
+```sh
+# PNPM
+pnpm add @reshoot/react
+pnpm add -D @reshoot/loader @reshoot/macro @reshoot/remark-mdx-image
+
+# NPM
+npm install @reshoot/react
+npm install -D @reshoot/loader @reshoot/macro @reshoot/remark-mdx-image
+
+# yarn
+yarn add @reshoot/react
+yarn add -D @reshoot/loader @reshoot/macro @reshoot/remark-mdx-image
+```
+
+### Setup
+
+```js
+// babel.config.js
+module.exports = {
+  // ...
+  plugins: ['babel-plugin-macros'],
+};
+```
+
+```js
+// webpack.config.js
+import reshootRemarkMdxImage from '@reshoot/remark-mdx-image';
+
+export default {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|webp|gif|svg)$/i,
+        use: [
+          {
+            loader: '@reshoot/loader',
+            options: {
+              meta: {
+                // The color of placeholder image while loading. It is the dominant color of the image if this option is set to null
+                // Type: '#abc' | '#abcdef' | 'transparent' | null
+                color: null,
+                // The size of placeholder image
+                // Type: number
+                placeholderSize: 8,
+                // The quality of placeholder image
+                // Type: number (1 - 10)
+                placeholderQuality: 10,
+                // The type of the aspect ratio in the output meta data
+                // Type: 'heightByWidth' | 'widthByHeight'
+                aspectRatioType: 'heightByWidth',
+                // The format of the aspect ratio in the output meta data
+                // Type: 'percent' | 'ratio'
+                aspectRatioFormat: 'precent',
+                // The number of decimals of the aspect ratio in the output meta data
+                // Type: number
+                aspectRatioDecimal: 4,
+              },
+              // The shape of the output meta data
+              // Type: (output: object, resourcePath: string) => Field
+              shape: ({
+                hash,
+                src,
+                width,
+                height,
+                aspectRatio,
+                placeholder,
+                color,
+              }) => ({
+                hash,
+                src,
+                width,
+                height,
+                aspectRatio,
+                placeholder,
+                color,
+              }),
+              // File name pattern of the output image
+              // Type: string
+              filename: '[contenthash:16].[ext]', // default to '[path][name].[ext]' in development mode
+              // Output path of the output images
+              // Type: string | ((path: string) => string)| null
+              outputPath: null,
+              // Public path
+              // Type: string | ((filename: string) => string)
+              publicPath: '/',
+              // Whether to emit the image the file system (useful for static site generation using both client-side and server-side builds)
+              // Type: boolean
+              emitFile: true,
+              // Whether to export meta data in the ES module syntax
+              // Type: boolean
+              esModule: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.mdx$/i,
+        use: [
+          {
+            loader: '@mdx-js/loader',
+            options: { remarkPlugins: [reshootRemarkMdxImage] },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+### UI Component
 
 ```jsx
-import React from 'react';
+// Example.jsx
 import reshoot from '@reshoot/macro';
-import { Reshoot } from '@reshoot/react';
+import Img from '@reshoot/react';
 
-function Example() {
-  return <Reshoot data={reshoot('./image.jpg')} />;
+export default function Example() {
+  return <Img meta={reshoot('./image.jpg')} />;
 }
 ```
 

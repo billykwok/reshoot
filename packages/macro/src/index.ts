@@ -1,3 +1,2 @@
-import macro from './macro';
-
-export default macro;
+import reshootMacro from './macro';
+export default reshootMacro;

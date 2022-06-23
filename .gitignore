@@ -1,7 +1,9 @@
+.turbo
+
 node_modules/
 coverage/
 lib/
-types/
+packages/*/types/
 yarn-error.log
 build/
 *.log

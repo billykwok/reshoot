@@ -1,0 +1,43 @@
+{
+  "name": "@reshoot/core",
+  "description": "Extract meta data from image and generate low-quality image preview",
+  "version": "1.8.1",
+  "type": "module",
+  "exports": {
+    "import": "./lib/es/index.mjs",
+    "require": "./lib/index.cjs",
+    "types": "./types/index.d.ts"
+  },
+  "module": "./lib/es/index.mjs",
+  "main": "./lib/index.cjs",
+  "types": "./types/index.d.ts",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "author": "Billy Kwok <opensource@billykwok.me>",
+  "license": "MIT",
+  "keywords": [
+    "reshoot",
+    "responsive",
+    "image",
+    "lqip"
+  ],
+  "scripts": {
+    "clean": "rm -rf lib types",
+    "lint": "eslint ./src ./test",
+    "build": "rollup -c rollup.config.js && tsc --project tsconfig.types.json",
+    "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
+  },
+  "dependencies": {
+    "@reshoot/types": "workspace:^1.0.0",
+    "color": "^4.2.0",
+    "sharp": "^0.30.0"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.3",
+    "@types/sharp": "^0.30.4",
+    "color": "^4.2.3",
+    "sharp": "^0.30.6"
+  }
+}

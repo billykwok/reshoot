@@ -1,15 +1,15 @@
-module.exports = {
-  projects: ['<rootDir>/packages/*/jest.config.js'],
+const config = {
+  injectGlobals: false,
   collectCoverage: true,
-  coverageProvider: 'v8',
   coverageDirectory: '<rootDir>/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
-    '!**/src/index.ts',
-    '!**/src/macro.ts',
-    '!**/*.d.ts',
+    '!types/**/*.ts',
+    '!test/**/*.ts',
   ],
   notify: true,
   notifyMode: 'always',
   verbose: true,
 };
+
+export default config;

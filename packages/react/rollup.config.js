@@ -1,24 +1,42 @@
 import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import { terser } from 'rollup-plugin-terser';
-import linaria from 'linaria/rollup';
+import linaria from '@linaria/rollup';
 import postcss from 'rollup-plugin-postcss';
 import postcssPresetEnv from 'postcss-preset-env';
+import replace from '@rollup/plugin-replace';
+import { terser } from 'rollup-plugin-terser';
 
 export default {
-  input: './src/index.ts',
-  output: {
-    dir: './lib',
-    format: 'cjs',
-    sourcemap: false,
-    freeze: false,
-    compact: true,
-    exports: 'auto',
-  },
-  external: [/@babel\/runtime-corejs3/i, 'object-assign', 'react', 'linaria'],
+  input: 'src/index.tsx',
+  output: [
+    {
+      dir: 'lib/',
+      entryFileNames: '[name].cjs',
+      format: 'cjs',
+      sourcemap: true,
+      generatedCode: 'es2015',
+      freeze: false,
+      externalLiveBindings: false,
+      compact: true,
+      exports: 'default',
+    },
+    {
+      dir: 'lib/es',
+      entryFileNames: '[name].mjs',
+      format: 'es',
+      sourcemap: true,
+      generatedCode: 'es2015',
+      freeze: false,
+      externalLiveBindings: false,
+      compact: true,
+      exports: 'default',
+    },
+  ],
+  external: [
+    /@linaria\/core/i,
+    /@babel\/runtime-corejs3/i,
+    /use-lifecycle-ref/i,
+    /react/i,
+  ],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
     linaria(),
@@ -29,28 +47,15 @@ export default {
       plugins: [postcssPresetEnv()],
     }),
     babel({
-      babelrc: false,
+      babelrc: true,
       babelHelpers: 'runtime',
-      exclude: '../../node_modules/**',
-      presets: [
-        '@babel/preset-modules',
-        [
-          '@babel/preset-typescript',
-          { isTSX: true, allExtensions: true, allowNamespaces: true },
-        ],
-        '@babel/preset-react',
-      ],
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions: ['.ts', '.tsx'],
+      exclude: [/\.test\.tsx?/i, /node_modules\//i],
     }),
-    peerDepsExternal(),
-    resolve({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
     replace({
+      preventAssignment: false,
       ENVIRONMENT: JSON.stringify('production'),
-      'process.env.NODE_ENV': () => JSON.stringify('production'),
-    }),
-    commonjs({
-      include: '../../node_modules/**',
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     terser({
       toplevel: true,

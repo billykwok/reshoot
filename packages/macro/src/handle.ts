@@ -1,136 +1,71 @@
-import path from 'path';
-import { MacroError } from 'babel-plugin-macros';
-import { parseExpression } from '@babel/parser';
 import {
-  arrayExpression,
-  objectExpression,
-  objectProperty,
+  default as BabelPluginMacros,
+  type MacroParams,
+} from 'babel-plugin-macros';
+import { type NodePath } from '@babel/core';
+import { statement } from '@babel/template';
+import {
+  type Program,
+  type Statement,
+  identifier,
+  isCallExpression,
   stringLiteral,
 } from '@babel/types';
-import extractArguments from './extractArguments';
-import evalFirstArgument from './evalFirstArgument';
-import evalSecondArgument from './evalSecondArgument';
-import { requireExpression } from './requireExpression';
 
-import type { ParsedUrlQueryInput } from 'querystring';
-import type { ObjectExpression } from '@babel/types';
-import type { MacroParams } from 'babel-plugin-macros';
+import { evalOptions, evalPath } from './eval';
 
-function handle({ references, state }: MacroParams): void {
-  const filename = state?.file?.opts?.filename;
-  if (!filename) {
-    throw new MacroError('Failed to retrieve filename');
+const importDeclaration = statement('import %%name%% from %%url%%;', {
+  syntacticPlaceholders: true,
+});
+
+export default function handle({ references }: Partial<MacroParams>): void {
+  if (references.default.length) {
+    const imports: Statement[] = [];
+    const imported = new Map<string, string>();
+
+    references.default.forEach((referencePath) => {
+      if (!isCallExpression(referencePath.parentPath)) {
+        throw new BabelPluginMacros.MacroError('Please use it as a function');
+      }
+
+      const argumentPaths = referencePath.parentPath.get(
+        'arguments'
+      ) as NodePath[];
+      const numberOfArguments = argumentPaths.length;
+      if (numberOfArguments < 1 || numberOfArguments > 2) {
+        throw new BabelPluginMacros.MacroError(
+          `Expect 1 - 2 argument(s), but got ${numberOfArguments}`
+        );
+      }
+      const [firstArgumentPath, secondArgumentPath] = argumentPaths;
+      let url = evalPath(firstArgumentPath);
+      const inlineOptions = evalOptions(secondArgumentPath);
+
+      const [, existingSearchParams] = url.split('?');
+      const serializedOptions = new URLSearchParams(
+        inlineOptions as Record<string, string>
+      ).toString();
+      if (serializedOptions) {
+        url += `${existingSearchParams ? '&' : '?'}${serializedOptions}`;
+      }
+
+      let name = imported.get(url);
+      if (!name) {
+        name = `__${imported.size}_${url.replace(/\W/g, '_')}__`;
+        imports.push(
+          importDeclaration({
+            name: identifier(name),
+            url: stringLiteral(url),
+          })
+        );
+        imported.set(url, name);
+      }
+      referencePath.parentPath.replaceWith(identifier(name));
+    });
+
+    const programPath = references.default[0].findParent(
+      (path) => !path.parentPath
+    ) as NodePath<Program>;
+    programPath.unshiftContainer('body', imports);
   }
-
-  references.default.forEach((referencePath) => {
-    const [argPath1, argPath2 = false] = extractArguments(referencePath);
-    const firstArg = evalFirstArgument(argPath1);
-    const options = argPath2 ? evalSecondArgument(argPath2) : {};
-    const [isJson] = /\.json$/gi.exec(firstArg) ?? [false];
-
-    if (!isJson) {
-      return referencePath.parentPath.replaceWith(
-        requireExpression(firstArg, options)
-      );
-    }
-
-    const images = require(path.join(
-      path.dirname(filename),
-      firstArg
-    )) as (ParsedUrlQueryInput & { src: string })[];
-    referencePath.parentPath.replaceWith(
-      arrayExpression(
-        images.map((image) => {
-          const {
-            src,
-            /* eslint-disable @typescript-eslint/no-unused-vars */
-            name,
-            alternativeFormats,
-            alternativeWidths,
-            defaultFormat,
-            defaultWidth,
-            quality,
-            background,
-            color,
-            placeholderSize,
-            placeholderQuality,
-            placeholderTrimDataUrl,
-            aspectRatioType,
-            aspectRatioFormat,
-            aspectRatioDecimal,
-            outputPath,
-            publicPath,
-            shape,
-            fastMode,
-            cache,
-            emitFile,
-            esModule,
-            data,
-            /* eslint-enable @typescript-eslint/no-unused-vars */
-            ...rest
-          } = image;
-          const options: ParsedUrlQueryInput = {};
-          if ('name' in image) {
-            options.name = image.name;
-          }
-          if ('alternativeFormats' in image) {
-            options.alternativeFormats = image.alternativeFormats;
-          }
-          if ('alternativeWidths' in image) {
-            options.alternativeWidths = image.alternativeWidths;
-          }
-          if ('defaultFormat' in image) {
-            options.defaultFormat = image.defaultFormat;
-          }
-          if ('defaultWidth' in image) {
-            options.defaultWidth = image.defaultWidth;
-          }
-          if ('quality' in image) {
-            options.quality = image.quality;
-          }
-          if ('background' in image) {
-            options.background = image.background;
-          }
-          if ('color' in image) {
-            options.color = image.color;
-          }
-          if ('placeholderSize' in image) {
-            options.placeholderSize = image.placeholderSize;
-          }
-          if ('placeholderQuality' in image) {
-            options.placeholderQuality = image.placeholderQuality;
-          }
-          if ('placeholderTrimDataUrl' in image) {
-            options.placeholderTrimDataUrl = image.placeholderTrimDataUrl;
-          }
-          if ('aspectRatioType' in image) {
-            options.aspectRatioType = image.aspectRatioType;
-          }
-          if ('aspectRatioFormat' in image) {
-            options.aspectRatioFormat = image.aspectRatioFormat;
-          }
-          if ('aspectRatioDecimal' in image) {
-            options.aspectRatioDecimal = image.aspectRatioDecimal;
-          }
-          return objectExpression(
-            (!rest || Object.keys(rest).length
-              ? (parseExpression(JSON.stringify(rest)) as ObjectExpression)
-                  .properties
-              : []
-            ).concat(
-              objectProperty(
-                stringLiteral('data'),
-                requireExpression(
-                  path.join(path.dirname(firstArg), src),
-                  options
-                )
-              )
-            )
-          );
-        })
-      )
-    );
-  });
 }
-
-export default handle;

@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reshoot render input correctly on error 1`] = `
+<div
+  class="cew27ew"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="true"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+</div>
+`;
+
+exports[`Reshoot render input correctly on error 2`] = `
+<div
+  class="cew27ew"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="true"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+</div>
+`;
+
+exports[`Reshoot render input correctly on error 3`] = `
+<div
+  class="cew27ew"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="false"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+  <div
+    class="e1b2ugnh"
+  >
+    <p>
+      Failed to load image
+    </p>
+    <p>
+      Please try refreshing the page
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Reshoot render input correctly on load with HTMLImageElement.complete false 1`] = `
+<a
+  class="cew27ew classname-1 classname-2"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="true"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+</a>
+`;
+
+exports[`Reshoot render input correctly on load with HTMLImageElement.complete false 2`] = `
+<a
+  class="cew27ew classname-1 classname-2"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="true"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+</a>
+`;
+
+exports[`Reshoot render input correctly on load with HTMLImageElement.complete false 3`] = `
+<a
+  class="cew27ew classname-1 classname-2"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="true"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only fhsfp3r"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+</a>
+`;
+
+exports[`Reshoot render input correctly on load with HTMLImageElement.complete false 4`] = `
+<a
+  class="cew27ew classname-1 classname-2"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="false"
+    crossorigin=""
+    src="image.jpg"
+  />
+</a>
+`;
+
+exports[`Reshoot render input correctly on load with HTMLImageElement.complete true 1`] = `
+<a
+  class="cew27ew classname-1 classname-2"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="true"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+</a>
+`;
+
+exports[`Reshoot render input correctly on load with HTMLImageElement.complete true 2`] = `
+<a
+  class="cew27ew classname-1 classname-2"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="true"
+    crossorigin=""
+    src="image.jpg"
+  />
+  <div
+    aria-hidden="true"
+    class="js-only"
+  >
+    <img
+      alt=""
+      src="data:jpeg;base64,1shfk241jkw"
+    />
+  </div>
+</a>
+`;
+
+exports[`Reshoot render input correctly on load with HTMLImageElement.complete true 3`] = `
+<a
+  class="cew27ew classname-1 classname-2"
+  data-testid="123"
+  sizes=""
+  srcset="image-480.jpg 480w, image-640.jpg 640w"
+  style="--c: #fff; --r: 0.8%;"
+>
+  <img
+    alt="alt content"
+    aria-busy="false"
+    crossorigin=""
+    src="image.jpg"
+  />
+</a>
+`;

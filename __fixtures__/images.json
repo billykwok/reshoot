@@ -1,7 +1,0 @@
-[
-  { "src": "image-1.jpg", "color": "red", "others": 1 },
-  { "src": "image-2.png", "color": "blue", "others": 2 },
-  { "src": "image-3.webp", "color": "yellow", "others": 3 },
-  { "src": "image-4.gif", "color": "#ddeeaa", "others": 4 },
-  { "src": "image-5.svg", "others": 5 }
-]

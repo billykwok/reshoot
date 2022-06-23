@@ -1,0 +1,6 @@
+{
+  ".js, .jsx, .mjs, .ts, .tsx, .mts, .md, .mdx": {
+    "parser": "babylon",
+    "style": "renke"
+  }
+}

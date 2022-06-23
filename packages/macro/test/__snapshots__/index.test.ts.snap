@@ -1,0 +1,315 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Babel with @reshoot/macro should correctly transform 1`] = `
+import __0____asset_image_png_color__f4f4f4__ from "../asset/image.png?color=#f4f4f4";
+import Img from "@reshoot/react";
+import { createElement } from "react";
+const meta = __0____asset_image_png_color__f4f4f4__;
+export default function ExampleImg(props) {
+  return createElement(Img, {
+    meta,
+    ...props,
+  });
+}
+
+`;
+
+exports[`Babel with @reshoot/macro should correctly transform with options 1`] = `
+import __0____asset_image_png_color__23f4f4f4__ from "../asset/image.png?color=%23f4f4f4";
+import Img from "@reshoot/react";
+import { createElement } from "react";
+const meta = __0____asset_image_png_color__23f4f4f4__;
+export default function ExampleImg(props) {
+  return createElement(Img, {
+    meta,
+    ...props,
+  });
+}
+
+`;
+
+exports[`Babel with @reshoot/macro should correctly transform with options and existing search params 1`] = `
+import __0____asset_image_png_reshoot_color__23f4f4f4__ from "../asset/image.png?reshoot&color=%23f4f4f4";
+import Img from "@reshoot/react";
+import { createElement } from "react";
+const meta = __0____asset_image_png_reshoot_color__23f4f4f4__;
+export default function ExampleImg(props) {
+  return createElement(Img, {
+    meta,
+    ...props,
+  });
+}
+
+`;
+
+exports[`Babel with @reshoot/macro should correctly transform with two identical sources 1`] = `
+import __0____asset_image_png_color__23f4f4f4__ from "../asset/image.png?color=%23f4f4f4";
+import Img from "@reshoot/react";
+import { createElement } from "react";
+const meta = __0____asset_image_png_color__23f4f4f4__;
+export default function ExampleImg(props) {
+  return createElement(Img, {
+    meta,
+    ...props,
+  });
+}
+export const meta2 = __0____asset_image_png_color__23f4f4f4__;
+
+`;
+
+exports[`Babel with @reshoot/macro should do nothing when macro is unused 1`] = `
+import { createElement } from "react";
+export default function ExampleImg(props) {
+  return createElement(img, props);
+}
+
+`;
+
+exports[`Babel with @reshoot/macro should throw if not used as a function 1`] = `[MacroError: unknown: Please use it as a function]`;
+
+exports[`Babel with @reshoot/macro should throw if options cannot be evaluated 1`] = `
+[MacroError: unknown: Failed to evaluate Reshoot options Node {
+  type: [32m'ObjectExpression'[39m,
+  start: [33m203[39m,
+  end: [33m235[39m,
+  loc: SourceLocation {
+    start: Position { line: [33m6[39m, column: [33m55[39m, index: [33m203[39m },
+    end: Position { line: [33m6[39m, column: [33m87[39m, index: [33m235[39m },
+    filename: [90mundefined[39m,
+    identifierName: [90mundefined[39m
+  },
+  properties: [
+    Node {
+      type: [32m'ObjectProperty'[39m,
+      start: [33m205[39m,
+      end: [33m233[39m,
+      loc: SourceLocation {
+        start: Position { line: [33m6[39m, column: [33m57[39m, index: [33m205[39m },
+        end: Position { line: [33m6[39m, column: [33m85[39m, index: [33m233[39m },
+        filename: [90mundefined[39m,
+        identifierName: [90mundefined[39m
+      },
+      method: [33mfalse[39m,
+      key: Node {
+        type: [32m'Identifier'[39m,
+        start: [33m205[39m,
+        end: [33m210[39m,
+        loc: SourceLocation {
+          start: Position { line: [33m6[39m, column: [33m57[39m, index: [33m205[39m },
+          end: Position { line: [33m6[39m, column: [33m62[39m, index: [33m210[39m },
+          filename: [90mundefined[39m,
+          identifierName: [32m'color'[39m
+        },
+        name: [32m'color'[39m,
+        leadingComments: [90mundefined[39m,
+        innerComments: [90mundefined[39m,
+        trailingComments: [90mundefined[39m
+      },
+      computed: [33mfalse[39m,
+      shorthand: [33mfalse[39m,
+      value: Node {
+        type: [32m'CallExpression'[39m,
+        start: [33m212[39m,
+        end: [33m233[39m,
+        loc: SourceLocation {
+          start: Position { line: [33m6[39m, column: [33m64[39m, index: [33m212[39m },
+          end: Position { line: [33m6[39m, column: [33m85[39m, index: [33m233[39m },
+          filename: [90mundefined[39m,
+          identifierName: [90mundefined[39m
+        },
+        callee: Node {
+          type: [32m'MemberExpression'[39m,
+          start: [33m212[39m,
+          end: [33m231[39m,
+          loc: SourceLocation {
+            start: Position { line: [33m6[39m, column: [33m64[39m, index: [33m212[39m },
+            end: Position { line: [33m6[39m, column: [33m83[39m, index: [33m231[39m },
+            filename: [90mundefined[39m,
+            identifierName: [90mundefined[39m
+          },
+          object: Node {
+            type: [32m'NewExpression'[39m,
+            start: [33m212[39m,
+            end: [33m222[39m,
+            loc: SourceLocation {
+              start: Position { line: [33m6[39m, column: [33m64[39m, index: [33m212[39m },
+              end: Position { line: [33m6[39m, column: [33m74[39m, index: [33m222[39m },
+              filename: [90mundefined[39m,
+              identifierName: [90mundefined[39m
+            },
+            callee: Node {
+              type: [32m'Identifier'[39m,
+              start: [33m216[39m,
+              end: [33m220[39m,
+              loc: SourceLocation {
+                start: Position { line: [33m6[39m, column: [33m68[39m, index: [33m216[39m },
+                end: Position { line: [33m6[39m, column: [33m72[39m, index: [33m220[39m },
+                filename: [90mundefined[39m,
+                identifierName: [32m'Date'[39m
+              },
+              name: [32m'Date'[39m,
+              leadingComments: [90mundefined[39m,
+              innerComments: [90mundefined[39m,
+              trailingComments: [90mundefined[39m
+            },
+            arguments: [],
+            leadingComments: [90mundefined[39m,
+            innerComments: [90mundefined[39m,
+            trailingComments: [90mundefined[39m
+          },
+          computed: [33mfalse[39m,
+          property: Node {
+            type: [32m'Identifier'[39m,
+            start: [33m223[39m,
+            end: [33m231[39m,
+            loc: SourceLocation {
+              start: Position { line: [33m6[39m, column: [33m75[39m, index: [33m223[39m },
+              end: Position { line: [33m6[39m, column: [33m83[39m, index: [33m231[39m },
+              filename: [90mundefined[39m,
+              identifierName: [32m'toString'[39m
+            },
+            name: [32m'toString'[39m,
+            leadingComments: [90mundefined[39m,
+            innerComments: [90mundefined[39m,
+            trailingComments: [90mundefined[39m
+          },
+          leadingComments: [90mundefined[39m,
+          innerComments: [90mundefined[39m,
+          trailingComments: [90mundefined[39m
+        },
+        arguments: [],
+        leadingComments: [90mundefined[39m,
+        innerComments: [90mundefined[39m,
+        trailingComments: [90mundefined[39m
+      },
+      leadingComments: [90mundefined[39m,
+      innerComments: [90mundefined[39m,
+      trailingComments: [90mundefined[39m
+    }
+  ],
+  leadingComments: [90mundefined[39m,
+  innerComments: [90mundefined[39m,
+  trailingComments: [90mundefined[39m
+}]
+`;
+
+exports[`Babel with @reshoot/macro should throw if options is not evaluated into an object 1`] = `[MacroError: unknown: Reshoot options must be evaluated into a string, but got [33m1[39m]`;
+
+exports[`Babel with @reshoot/macro should throw if path cannot be evaluated 1`] = `
+[MacroError: unknown: Failed to evaluate Reshoot path Node {
+  type: [32m'BinaryExpression'[39m,
+  start: [33m181[39m,
+  end: [33m225[39m,
+  loc: SourceLocation {
+    start: Position { line: [33m6[39m, column: [33m33[39m, index: [33m181[39m },
+    end: Position { line: [33m6[39m, column: [33m77[39m, index: [33m225[39m },
+    filename: [90mundefined[39m,
+    identifierName: [90mundefined[39m
+  },
+  left: Node {
+    type: [32m'StringLiteral'[39m,
+    start: [33m181[39m,
+    end: [33m201[39m,
+    loc: SourceLocation {
+      start: Position { line: [33m6[39m, column: [33m33[39m, index: [33m181[39m },
+      end: Position { line: [33m6[39m, column: [33m53[39m, index: [33m201[39m },
+      filename: [90mundefined[39m,
+      identifierName: [90mundefined[39m
+    },
+    extra: { rawValue: [32m'../asset/image.png'[39m, raw: [32m"'../asset/image.png'"[39m },
+    value: [32m'../asset/image.png'[39m,
+    leadingComments: [90mundefined[39m,
+    innerComments: [90mundefined[39m,
+    trailingComments: [90mundefined[39m
+  },
+  operator: [32m'+'[39m,
+  right: Node {
+    type: [32m'CallExpression'[39m,
+    start: [33m204[39m,
+    end: [33m225[39m,
+    loc: SourceLocation {
+      start: Position { line: [33m6[39m, column: [33m56[39m, index: [33m204[39m },
+      end: Position { line: [33m6[39m, column: [33m77[39m, index: [33m225[39m },
+      filename: [90mundefined[39m,
+      identifierName: [90mundefined[39m
+    },
+    callee: Node {
+      type: [32m'MemberExpression'[39m,
+      start: [33m204[39m,
+      end: [33m223[39m,
+      loc: SourceLocation {
+        start: Position { line: [33m6[39m, column: [33m56[39m, index: [33m204[39m },
+        end: Position { line: [33m6[39m, column: [33m75[39m, index: [33m223[39m },
+        filename: [90mundefined[39m,
+        identifierName: [90mundefined[39m
+      },
+      object: Node {
+        type: [32m'NewExpression'[39m,
+        start: [33m204[39m,
+        end: [33m214[39m,
+        loc: SourceLocation {
+          start: Position { line: [33m6[39m, column: [33m56[39m, index: [33m204[39m },
+          end: Position { line: [33m6[39m, column: [33m66[39m, index: [33m214[39m },
+          filename: [90mundefined[39m,
+          identifierName: [90mundefined[39m
+        },
+        callee: Node {
+          type: [32m'Identifier'[39m,
+          start: [33m208[39m,
+          end: [33m212[39m,
+          loc: SourceLocation {
+            start: Position { line: [33m6[39m, column: [33m60[39m, index: [33m208[39m },
+            end: Position { line: [33m6[39m, column: [33m64[39m, index: [33m212[39m },
+            filename: [90mundefined[39m,
+            identifierName: [32m'Date'[39m
+          },
+          name: [32m'Date'[39m,
+          leadingComments: [90mundefined[39m,
+          innerComments: [90mundefined[39m,
+          trailingComments: [90mundefined[39m
+        },
+        arguments: [],
+        leadingComments: [90mundefined[39m,
+        innerComments: [90mundefined[39m,
+        trailingComments: [90mundefined[39m
+      },
+      computed: [33mfalse[39m,
+      property: Node {
+        type: [32m'Identifier'[39m,
+        start: [33m215[39m,
+        end: [33m223[39m,
+        loc: SourceLocation {
+          start: Position { line: [33m6[39m, column: [33m67[39m, index: [33m215[39m },
+          end: Position { line: [33m6[39m, column: [33m75[39m, index: [33m223[39m },
+          filename: [90mundefined[39m,
+          identifierName: [32m'toString'[39m
+        },
+        name: [32m'toString'[39m,
+        leadingComments: [90mundefined[39m,
+        innerComments: [90mundefined[39m,
+        trailingComments: [90mundefined[39m
+      },
+      leadingComments: [90mundefined[39m,
+      innerComments: [90mundefined[39m,
+      trailingComments: [90mundefined[39m
+    },
+    arguments: [],
+    leadingComments: [90mundefined[39m,
+    innerComments: [90mundefined[39m,
+    trailingComments: [90mundefined[39m
+  },
+  leadingComments: [90mundefined[39m,
+  innerComments: [90mundefined[39m,
+  trailingComments: [90mundefined[39m
+}]
+`;
+
+exports[`Babel with @reshoot/macro should throw if path is a HTTP url 1`] = `[MacroError: unknown: Only local path is supported, but got https://example.com/image.png]`;
+
+exports[`Babel with @reshoot/macro should throw if path is not evaluated into a string 1`] = `[MacroError: unknown: Reshoot path must be evaluated into a string, but got [33m6[39m]`;
+
+exports[`Babel with @reshoot/macro should throw if there are more than two arguments 1`] = `[MacroError: unknown: Expect 1 - 2 argument(s), but got 3]`;
+
+exports[`Babel with @reshoot/macro should throw if there are no arguments 1`] = `[MacroError: unknown: Expect 1 - 2 argument(s), but got 0]`;
+
+exports[`Babel with @reshoot/macro should throw if there is unknown options 1`] = `[MacroError: unknown: Unknown options foo]`;

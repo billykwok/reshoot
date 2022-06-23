@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`defaultOptions basic test 1`] = `
+Object {
+  "aspectRatioDecimal": 4,
+  "aspectRatioFormat": "percent",
+  "aspectRatioType": "heightByWidth",
+  "color": null,
+  "maxWidth": Infinity,
+  "placeholderQuality": 10,
+  "placeholderSize": 8,
+}
+`;
+
+exports[`extractMeta should extract meta with aspectRatioFormat \`ratio\` 1`] = `
+Object {
+  "aspectRatio": 1,
+  "color": "#c85858",
+  "hash": "7fb419d29095e35c0360352224eea0f9",
+  "height": 512,
+  "placeholder": StringMatching /data:image\\\\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA/,
+  "width": 512,
+}
+`;
+
+exports[`extractMeta should extract meta with aspectRatioType \`widthByHeight\` 1`] = `
+Object {
+  "aspectRatio": 100,
+  "color": "#c85858",
+  "hash": "5bc91dcfcabb72b70db3cc31ee20a935",
+  "height": 512,
+  "placeholder": StringMatching /data:image\\\\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA/,
+  "width": 512,
+}
+`;
+
+exports[`extractMeta should extract meta with color override 1`] = `
+Object {
+  "aspectRatio": 100,
+  "color": "#eee",
+  "hash": "affff220bfa0e17de888b3de33fc4023",
+  "height": 512,
+  "placeholder": StringMatching /data:image\\\\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA/,
+  "width": 512,
+}
+`;
+
+exports[`extractMeta should extract meta with color transparent 1`] = `
+Object {
+  "aspectRatio": 100,
+  "color": "transparent",
+  "hash": "c2bcac89cb8fa278b45f0b3f74aa187c",
+  "height": 512,
+  "placeholder": StringMatching /data:image\\\\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA/,
+  "width": 512,
+}
+`;
+
+exports[`extractMeta should extract meta without options 1`] = `
+Object {
+  "aspectRatio": 100,
+  "color": "#c85858",
+  "hash": "5f932a17e3ea4c07f6d22128ec9ff65b",
+  "height": 512,
+  "placeholder": StringMatching /data:image\\\\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA/,
+  "width": 512,
+}
+`;

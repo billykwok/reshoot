@@ -1,0 +1,32 @@
+{
+  "name": "@reshoot/types",
+  "description": "Common types for Reshoot",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "import": "./lib/es/index.mjs",
+    "require": "./lib/index.cjs",
+    "types": "./types/index.d.ts"
+  },
+  "module": "./lib/es/index.mjs",
+  "main": "./lib/index.cjs",
+  "types": "./types/index.d.ts",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "author": "Billy Kwok <opensource@billykwok.me>",
+  "license": "MIT",
+  "keywords": [
+    "reshoot",
+    "responsive",
+    "image",
+    "types"
+  ],
+  "scripts": {
+    "clean": "rm -rf lib types",
+    "lint": "eslint ./src ./test",
+    "build": "rollup -c rollup.config.js && tsc --project tsconfig.types.json",
+    "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
+  }
+}

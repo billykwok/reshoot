@@ -1,49 +1,51 @@
 {
   "name": "@reshoot/macro",
-  "description": "Babel macro for @reshoot/loader",
+  "description": "Babel macro integration for Reshoot",
   "version": "1.10.4",
-  "type": "commonjs",
+  "type": "module",
   "exports": {
-    "require": "./lib/index.js"
+    "import": "./lib/es/index.mjs",
+    "require": "./lib/index.cjs",
+    "types": "./types/index.d.ts"
   },
-  "main": "./lib/index.js",
+  "module": "./lib/es/index.mjs",
+  "main": "./lib/index.cjs",
   "types": "./types/index.d.ts",
   "files": [
     "lib",
     "types"
   ],
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
-  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
     "reshoot",
-    "srcset",
-    "image",
-    "img",
     "responsive",
+    "image",
     "babel",
-    "babel-macros",
-    "babel-plugin-macros"
+    "macro"
   ],
-  "repository": "https://github.com/billykwok/reshoot",
-  "bugs": {
-    "url": "https://github.com/billykwok/reshoot/issues"
-  },
-  "homepage": "https://github.com/billykwok/reshoot/tree/main/packages/macro",
   "scripts": {
-    "clean": "rm -rf lib",
-    "build": "yarn clean && babel src --root-mode=upward --out-dir lib --extensions .ts && tsc --project tsconfig.json",
-    "lint": "eslint ./src/**"
+    "clean": "rm -rf lib types",
+    "lint": "eslint ./src ./test",
+    "build": "rollup -c rollup.config.js && tsc --project tsconfig.types.json",
+    "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
   },
   "dependencies": {
-    "@babel/types": "^7.12.13"
+    "@reshoot/types": "workspace:^1.0.0",
+    "@babel/core": "^7",
+    "@babel/template": "^7",
+    "@babel/types": "^7"
   },
   "peerDependencies": {
-    "@babel/core": "^7.12.13",
-    "@reshoot/loader": "latest",
-    "babel-plugin-macros": "^3.0.1"
+    "@reshoot/loader": "workspace:^1.9.7",
+    "babel-plugin-macros": "^3"
+  },
+  "devDependencies": {
+    "@babel/template": "^7.16.7",
+    "@babel/types": "^7.18.4",
+    "@types/babel-plugin-macros": "^2.8.5",
+    "@types/babel__core": "^7.1.19",
+    "@types/babel__template": "^7.4.1",
+    "babel-plugin-macros": "^3.1.0"
   }
 }

@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Basic component test for @reshoot/loader should emit error with invalid options 1`] = `undefined`;
-
-exports[`Basic component test for @reshoot/loader should emit files and output successfully with default options 1`] = `"module.exports={\\"id\\":\\"tEsThAsH\\",\\"src\\":__webpack_public_path__+\\"tEsThAsH-1120.jpg\\",\\"width\\":4774,\\"height\\":3024,\\"srcSet\\":__webpack_public_path__+\\"tEsThAsH-640.jpg 640w,\\"+__webpack_public_path__+\\"tEsThAsH-1440.jpg 1440w\\",\\"aspectRatio\\":0.6334,\\"placeholder\\":\\"data:image/jpeg;base64,data/of=someimage\\",\\"color\\":\\"#283838\\",\\"sources\\":[{\\"type\\":\\"image/avif\\",\\"srcSet\\":__webpack_public_path__+\\"tEsThAsH-640.avif 640w,\\"+__webpack_public_path__+\\"tEsThAsH-1440.avif 1440w,\\"+__webpack_public_path__+\\"tEsThAsH-1120.avif 1120w\\"},{\\"type\\":\\"image/webp\\",\\"srcSet\\":__webpack_public_path__+\\"tEsThAsH-640.webp 640w,\\"+__webpack_public_path__+\\"tEsThAsH-1440.webp 1440w,\\"+__webpack_public_path__+\\"tEsThAsH-1120.webp 1120w\\"}]};"`;

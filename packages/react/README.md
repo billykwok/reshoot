@@ -1,14 +1,57 @@
-# @reshoot/react
+# <img src="https://raw.githubusercontent.com/billykwok/reshoot/main/logo.png" width="200" alt="Reshoot logo" /><br/>`@reshoot/react`
 
-[![npm version](https://badgen.net/npm/v/@reshoot/react)](https://www.npmjs.com/package/@reshoot/react)
-[![download](https://badgen.net/npm/dm/@reshoot/react)](https://www.npmjs.com/package/@reshoot/react)
-[![minified size](https://badgen.net/bundlephobia/min/@reshoot/react)](https://www.npmjs.com/package/@reshoot/macro)
-[![GZip size](https://badgen.net/bundlephobia/minzip/@reshoot/react)](https://www.npmjs.com/package/@reshoot/macro)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
-[![License](https://badgen.net/npm/license/@reshoot/react)](https://github.com/billykwok/reshoot/blob/main/LICENSE)
-[![CircleCI](https://circleci.com/gh/billykwok/reshoot/tree/main.svg?style=svg)](https://circleci.com/gh/billykwok/reshoot/tree/main)
+A [`React`](https://reactjs.org) component rendering responsive images, designed to accept the output meta data of [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader).
 
-Please refer to [Official Documentation](https://reshootjs.github.io).
+More about [`reshoot`](https://github.com/billykwok/reshoot).
+
+## Installation
+
+```sh
+# PNPM
+pnpm add @reshoot/react
+
+# NPM
+npm install @reshoot/react
+
+# yarn
+yarn add @reshoot/react
+```
+
+## API
+
+```jsx
+import reshoot from '@reshoot/macro';
+import Img from '@reshoot/react';
+
+export default function Example() {
+  return (
+    <Img
+      // Meta data of the image. Could be generated and typed automatically using @reshoot/loader and @reshoot/macro
+      // Type: {
+      //   placeholder?: string;
+      //   srcSet?: string;
+      //   sizes?: string;
+      //   aspectRatio: number;
+      //   color: string;
+      //   src: string;
+      // }
+      meta={reshoot('./image.png')}
+      // Container wrapping the image
+      // Type: string | ReactComponent
+      container="div"
+      // Reference to the container, work the same as normal ref
+      // Type: RefCallback<HTMLElement> | MutableRefObject<HTMLElement>
+      ref={undefined}
+      // Reference to the inner image element, work the same as normal ref
+      // Type: RefCallback<HTMLImageElement> | MutableRefObject<HTMLImageElement>
+      imgRef={undefined}
+      // The same as the native `alt` property of <img />
+      // Type: string
+      alt=""
+    />
+  );
+}
+```
 
 ## Support
 
@@ -20,7 +63,7 @@ Please voice your opinion and report bugs in the [issues](https://github.com/bil
 
 ## Contributing
 
-You are more than welcome to add more functionalities, improve documentation, fix bugs, and anything you think is needed. The build step is pretty self-explanatory. Please refer to [`package.json`](https://github.com/billykwok/reshoot/blob/main/packages/react/package.json).
+You are more than welcome to add more functionalities, improve documentation, fix bugs, and anything you think is needed. The build step is pretty self-explanatory. Please refer to [`package.json`](https://github.com/billykwok/reshoot/blob/main/package.json).
 
 ## License
 

@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MDX with @reshoot/remark-mdx-image should correctly transform when default settings 1`] = `
+/*@jsxRuntime automatic @jsxImportSource react*/
+import __0___assets_image_png__ from "./assets/image.png";
+import __1____assets_image_png__ from "../assets/image.png";
+import __2____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
+import __3____assets_image_png_reshoot_color__23f4f4f4__ from "../assets/image.png?reshoot&color=%23f4f4f4";
+function _createMdxContent(props) {
+  const _components = Object.assign(
+    {
+      h2: "h2",
+      p: "p",
+      img: "img",
+      a: "a",
+    },
+    props.components
+  );
+  return (
+    <>
+      <_components.h2>{"Hellow World"}</_components.h2>
+      {"\\n"}
+      <_components.p>
+        {
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      </_components.p>
+      {"\\n"}
+      <_components.img
+        src={"https://example.com/image.png?color=%23f4f4f4"}
+        alt=""
+      />
+      {"\\n"}
+      <_components.img
+        alt="Image alt text 1"
+        meta={__0___assets_image_png__}
+        title="Image title 1"
+      />
+      {"\\n"}
+      <_components.p>
+        {
+          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        }
+      </_components.p>
+      {"\\n"}
+      <div id="abc">
+        <_components.img alt="" meta={__1____assets_image_png__} />
+        <_components.img
+          alt=""
+          meta={__2____assets_image_png_color__23f4f4f4__}
+          title="Image title 2"
+        />
+        <_components.img
+          alt="Image alt text 2"
+          meta={__2____assets_image_png_color__23f4f4f4__}
+        />
+      </div>
+      {"\\n"}
+      <_components.p>
+        {
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        }
+      </_components.p>
+      {"\\n"}
+      <_components.p>
+        <_components.a href="https://example.com" title="Link title">
+          <_components.img
+            alt="Image alt text 3"
+            meta={__3____assets_image_png_reshoot_color__23f4f4f4__}
+            title="Image title 3"
+          />
+        </_components.a>
+      </_components.p>
+      {"\\n"}
+      <_components.p>
+        {
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        }
+      </_components.p>
+    </>
+  );
+}
+function MDXContent(props = {}) {
+  const { wrapper: MDXLayout } = props.components || {};
+  return MDXLayout ? (
+    <MDXLayout {...props}>
+      <_createMdxContent {...props} />
+    </MDXLayout>
+  ) : (
+    _createMdxContent(props)
+  );
+}
+export default MDXContent;
+
+`;
+
+exports[`MDX with @reshoot/remark-mdx-image should correctly transform when relativeToDocument is disabled 1`] = `
+/*@jsxRuntime automatic @jsxImportSource react*/
+import __0_assets_image_png__ from "assets/image.png";
+import __1____assets_image_png__ from "../assets/image.png";
+import __2____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
+import __3____assets_image_png_reshoot_color__23f4f4f4__ from "../assets/image.png?reshoot&color=%23f4f4f4";
+function _createMdxContent(props) {
+  const _components = Object.assign(
+    {
+      h2: "h2",
+      p: "p",
+      img: "img",
+      a: "a",
+    },
+    props.components
+  );
+  return (
+    <>
+      <_components.h2>{"Hellow World"}</_components.h2>
+      {"\\n"}
+      <_components.p>
+        {
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      </_components.p>
+      {"\\n"}
+      <_components.img
+        src={"https://example.com/image.png?color=%23f4f4f4"}
+        alt=""
+      />
+      {"\\n"}
+      <_components.img
+        alt="Image alt text 1"
+        meta={__0_assets_image_png__}
+        title="Image title 1"
+      />
+      {"\\n"}
+      <_components.p>
+        {
+          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        }
+      </_components.p>
+      {"\\n"}
+      <div id="abc">
+        <_components.img alt="" meta={__1____assets_image_png__} />
+        <_components.img
+          alt=""
+          meta={__2____assets_image_png_color__23f4f4f4__}
+          title="Image title 2"
+        />
+        <_components.img
+          alt="Image alt text 2"
+          meta={__2____assets_image_png_color__23f4f4f4__}
+        />
+      </div>
+      {"\\n"}
+      <_components.p>
+        {
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        }
+      </_components.p>
+      {"\\n"}
+      <_components.p>
+        <_components.a href="https://example.com" title="Link title">
+          <_components.img
+            alt="Image alt text 3"
+            meta={__3____assets_image_png_reshoot_color__23f4f4f4__}
+            title="Image title 3"
+          />
+        </_components.a>
+      </_components.p>
+      {"\\n"}
+      <_components.p>
+        {
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        }
+      </_components.p>
+    </>
+  );
+}
+function MDXContent(props = {}) {
+  const { wrapper: MDXLayout } = props.components || {};
+  return MDXLayout ? (
+    <MDXLayout {...props}>
+      <_createMdxContent {...props} />
+    </MDXLayout>
+  ) : (
+    _createMdxContent(props)
+  );
+}
+export default MDXContent;
+
+`;
+
+exports[`MDX with @reshoot/remark-mdx-image should correctly transform when removeTrailingLineBreak is disabled 1`] = `
+/*@jsxRuntime automatic @jsxImportSource react*/
+import __0___assets_image_png__ from "./assets/image.png";
+import __1____assets_image_png__ from "../assets/image.png";
+import __2____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
+import __3____assets_image_png_reshoot_color__23f4f4f4__ from "../assets/image.png?reshoot&color=%23f4f4f4";
+function _createMdxContent(props) {
+  const _components = Object.assign(
+    {
+      h2: "h2",
+      p: "p",
+      img: "img",
+      a: "a",
+    },
+    props.components
+  );
+  return (
+    <>
+      <_components.h2>{"Hellow World"}</_components.h2>
+      {"\\n"}
+      <_components.p>
+        {
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      </_components.p>
+      {"\\n"}
+      <_components.img
+        src={"https://example.com/image.png?color=%23f4f4f4"}
+        alt=""
+      />
+      {"\\n"}
+      {"\\n"}
+      {"\\n"}
+      <_components.img
+        alt="Image alt text 1"
+        meta={__0___assets_image_png__}
+        title="Image title 1"
+      />
+      {"\\n"}
+      <_components.p>
+        {
+          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        }
+      </_components.p>
+      {"\\n"}
+      <div id="abc">
+        <_components.img alt="" meta={__1____assets_image_png__} />
+        {"\\n"}
+        <_components.img
+          alt=""
+          meta={__2____assets_image_png_color__23f4f4f4__}
+          title="Image title 2"
+        />
+        {"\\n"}
+        <_components.img
+          alt="Image alt text 2"
+          meta={__2____assets_image_png_color__23f4f4f4__}
+        />
+      </div>
+      {"\\n"}
+      <_components.p>
+        {
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        }
+      </_components.p>
+      {"\\n"}
+      <_components.p>
+        <_components.a href="https://example.com" title="Link title">
+          <_components.img
+            alt="Image alt text 3"
+            meta={__3____assets_image_png_reshoot_color__23f4f4f4__}
+            title="Image title 3"
+          />
+        </_components.a>
+      </_components.p>
+      {"\\n"}
+      <_components.p>
+        {
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        }
+      </_components.p>
+    </>
+  );
+}
+function MDXContent(props = {}) {
+  const { wrapper: MDXLayout } = props.components || {};
+  return MDXLayout ? (
+    <MDXLayout {...props}>
+      <_createMdxContent {...props} />
+    </MDXLayout>
+  ) : (
+    _createMdxContent(props)
+  );
+}
+export default MDXContent;
+
+`;

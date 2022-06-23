@@ -1,7 +1,7 @@
-module.exports = {
-  displayName: '@reshoot/loader',
-  testEnvironment: 'node',
-  coverageProvider: 'v8',
-  verbose: true,
-  transform: { '^.+\\.[tj]sx?$': './babel-jest-lerna.js' },
+import base from '../../jest.config.js';
+
+const config = {
+  ...base,
 };
+
+export default config;
