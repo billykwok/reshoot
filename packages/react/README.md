@@ -19,7 +19,14 @@ yarn add @reshoot/react
 
 ## Setup
 
-The library should work out of the box. If you would like to the image to be shown even when JavaScript is disabled (for privacy, accessibility or SEO purposes), you need to render the website on the server side and add the following HTML to the end of `<head />` to hide the overlaying placeholder image.
+The library should work out of the box. The only required setup is to include the styles in your website.
+
+```jsx
+// entry-point.js
+import '@reshoot/react/styles.css';
+```
+
+However, if you would like to the image to be shown even when JavaScript is disabled (for privacy, accessibility or SEO purposes), you need to render the website on the server side and add the following HTML to the end of `<head />` to hide the overlaying placeholder image.
 
 ```html
 <noscript>
@@ -34,7 +41,7 @@ The library should work out of the box. If you would like to the image to be sho
 ## API
 
 ```jsx
-import reshoot from '@reshoot/macro';
+import imageMetaOf from '@reshoot/macro';
 import Img from '@reshoot/react';
 
 export default function Example() {
@@ -49,7 +56,7 @@ export default function Example() {
       //   color: string;
       //   src: string;
       // }
-      meta={reshoot('./image.png')}
+      meta={imageMetaOf('./image.png')}
       // Container wrapping the image
       // Type: string | ReactComponent
       container="div"

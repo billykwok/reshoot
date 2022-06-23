@@ -14,8 +14,8 @@ Packages you will likely use directly, as they interface with the libraries and 
 | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`@reshoot/react`](https://www.npmjs.com/package/@reshoot/react)                       | A [`React`](https://reactjs.org) component rendering responsive images, designed to accept the output meta data of [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader).                                                                                                                              |
 | [`@reshoot/loader`](https://www.npmjs.com/package/@reshoot/loader)                     | A Webpack [`loader`](https://webpack.js.org/loaders) that returns low-quality image placeholder ([`lqip`](https://github.com/zouhir/lqip)) and meta data of the images.                                                                                                                                             |
-| [`@reshoot/macro`](https://www.npmjs.com/package/@reshoot/macro)                       | A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) transpiling `reshoot('image.jpg', { color: '#eee' })` into `import meta from 'image.jpg?color=%23eee';`.                                                                                                                                       |
-| [`@reshoot/remark-mdx-image`](https://www.npmjs.com/package/@reshoot/remark-mdx-image) | An [`mdx`](https://mdxjs.com) / [`remark-plugin`](https://github.com/remarkjs/remark) transpiling `![alt text](image.jpg "title"){{color=#eee}}` into the following.<pre lang="mdx">import meta from 'image.jpg?color=%23eee';<br/>&lt;img meta={meta} alt=&quot;alt text&quot; title=&quot;title&quot; /&gt;</pre> |
+| [`@reshoot/macro`](https://www.npmjs.com/package/@reshoot/macro)                       | A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) transpiling `reshoot('image.png', { color: '#eee' })` into `import meta from 'image.png?color=%23eee';`.                                                                                                                                       |
+| [`@reshoot/remark-mdx-image`](https://www.npmjs.com/package/@reshoot/remark-mdx-image) | An [`mdx`](https://mdxjs.com) / [`remark-plugin`](https://github.com/remarkjs/remark) transpiling `![alt text](image.png "title"){{color=#eee}}` into the following.<pre lang="mdx">import meta from 'image.png?color=%23eee';<br/>&lt;img meta={meta} alt=&quot;alt text&quot; title=&quot;title&quot; /&gt;</pre> |
 
 > These packages can be used selectively to fit your specific use cases. For example, you can ignore `@reshoot/remark-mdx-image` if you are not using `mdx`. Or you can use `@reshoot/loader` to generate responsive images, but build your own `<Img />` component to render the images. Or you can just use `@reshoot/react` for images that you prepared yourself.
 >
@@ -149,12 +149,17 @@ export default {
 ### UI Component
 
 ```jsx
+// entry-point.js
+import '@reshoot/react/styles.css';
+```
+
+```jsx
 // Example.jsx
-import reshoot from '@reshoot/macro';
+import imageMetaOf from '@reshoot/macro';
 import Img from '@reshoot/react';
 
 export default function Example() {
-  return <Img meta={reshoot('./image.jpg')} />;
+  return <Img meta={imageMetaOf('./image.png')} />;
 }
 ```
 

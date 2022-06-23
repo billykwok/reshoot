@@ -4,7 +4,10 @@
   "version": "2.0.2",
   "type": "module",
   "exports": {
-    "./css": "./lib/styles.css",
+    "./styles.css": {
+      "import": "./lib/es/styles.css",
+      "require": "./lib/styles.css"
+    },
     ".": {
       "import": "./lib/es/index.mjs",
       "require": "./lib/index.cjs",

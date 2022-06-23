@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/billykwok/reshoot/main/logo.png" width="200" alt="Reshoot logo" /><br/>`@reshoot/remark-mdx-image`
 
-An [`mdx`](https://mdxjs.com) / [`remark-plugin`](https://github.com/remarkjs/remark) transpiling `![alt text](image.jpg "title"){{color=#eee}}` into the following.<pre lang="mdx">import meta from 'image.jpg?color=%23eee';<br/>&lt;img meta={meta} alt=&quot;alt text&quot; title=&quot;title&quot; /&gt;</pre>
+An [`mdx`](https://mdxjs.com) / [`remark-plugin`](https://github.com/remarkjs/remark) transpiling `![alt text](image.png "title"){{color=#eee}}` into the following.<pre lang="mdx">import meta from 'image.png?color=%23eee';<br/>&lt;img meta={meta} alt=&quot;alt text&quot; title=&quot;title&quot; /&gt;</pre>
 
 More about [`reshoot`](https://github.com/billykwok/reshoot).
 
