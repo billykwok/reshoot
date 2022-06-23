@@ -1,5 +1,13 @@
 # @reshoot/react
 
+## 2.0.1
+
+### Patch Changes
+
+- 226a185: fix: add node version restriction and fix rollup config
+- Updated dependencies [226a185]
+  - @reshoot/types@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

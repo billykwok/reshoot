@@ -1,5 +1,14 @@
 # @reshoot/loader
 
+## 2.1.1
+
+### Patch Changes
+
+- 226a185: fix: add node version restriction and fix rollup config
+- Updated dependencies [226a185]
+  - @reshoot/core@2.1.1
+  - @reshoot/types@2.0.1
+
 ## 2.1.0
 
 ### Minor Changes
