@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/macro",
   "description": "Babel macro integration for Reshoot",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "type": "module",
   "exports": {
     "import": "./lib/es/index.mjs",
@@ -34,14 +34,14 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
   },
   "dependencies": {
-    "@reshoot/types": "workspace:^2.0.1",
+    "@reshoot/types": "workspace:^2.0.2",
     "@babel/core": "^7",
     "@babel/runtime-corejs3": "^7",
     "@babel/template": "^7",
     "@babel/types": "^7"
   },
   "peerDependencies": {
-    "@reshoot/loader": "workspace:^2.1.1",
+    "@reshoot/loader": "workspace:^2.1.2",
     "babel-plugin-macros": "^3"
   },
   "devDependencies": {

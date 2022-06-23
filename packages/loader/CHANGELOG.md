@@ -1,5 +1,13 @@
 # @reshoot/loader
 
+## 2.1.2
+
+### Patch Changes
+
+- 66e5ac9: fix: do not use integer as boolean in terser
+- Updated dependencies [66e5ac9]
+  - @reshoot/types@2.0.2
+
 ## 2.1.1
 
 ### Patch Changes
