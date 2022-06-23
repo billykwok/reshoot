@@ -16,7 +16,7 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "version": "changeset version",
+    "version": "changeset version && pnpm install",
     "publish": "changeset publish"
   },
   "workspaces": [
