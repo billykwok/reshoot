@@ -105,7 +105,7 @@ importers:
 
   packages/loader:
     specifiers:
-      '@reshoot/core': workspace:^2.0.0
+      '@reshoot/core': workspace:^2.1.0
       '@reshoot/types': workspace:^2.0.0
       '@types/loader-utils': ^2.0.3
       '@types/stringify-object': ^4.0.1

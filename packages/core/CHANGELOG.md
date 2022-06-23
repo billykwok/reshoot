@@ -1,5 +1,11 @@
 # @reshoot/core
 
+## 2.1.0
+
+### Minor Changes
+
+- ebfb354: feat: export ImageMeta abd Options types from packages
+
 ## 2.0.0
 
 ### Major Changes

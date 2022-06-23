@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/core",
   "description": "Extract meta data from image and generate low-quality image preview",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "type": "module",
   "exports": {
     "import": "./lib/es/index.mjs",
