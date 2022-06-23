@@ -29,22 +29,28 @@ export default {
       exports: 'named',
     },
   ],
-  external: [
-    /@babel\/runtime-corejs3/i,
-    /unist-util-visit-parents/i,
-    /mdast-util-mdxjs-esm/i,
-  ],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
-    resolve({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
     nodeExternals(),
     peerDepsExternal(),
+    resolve({ extensions: ['.js', '.ts'] }),
     babel({
       babelrc: true,
       babelHelpers: 'runtime',
-      extensions: ['.ts', '.tsx'],
-      exclude: [/\.test\.tsx?/i, /node_modules\//i],
+      extensions: ['.ts'],
+      exclude: [/\.test\.ts/i, /node_modules\//i],
     }),
+    {
+      name: 'retain-import-expression',
+      resolveDynamicImport(specifier) {
+        if (specifier === 'unist-util-visit-parents') return false;
+        return null;
+      },
+      renderDynamicImport({ targetModuleId }) {
+        if (targetModuleId === 'unist-util-visit-parents')
+          return { left: 'import(', right: ')' };
+      },
+    },
     replace({
       preventAssignment: false,
       ENVIRONMENT: JSON.stringify('production'),

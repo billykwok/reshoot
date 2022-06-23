@@ -21,6 +21,9 @@
   "sideEffects": [
     "*.css"
   ],
+  "engines": {
+    "node": ">=13.0.0"
+  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
@@ -50,7 +53,7 @@
     "@linaria/rollup": "^3.0.0-beta.22",
     "@linaria/shaker": "^3.0.0-beta.22",
     "@testing-library/react": "^13.3.0",
-    "@types/postcss-preset-env": "^6.7.3",
+    "@types/postcss-preset-env": "^7.7.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "eslint": "^8.18.0",
@@ -59,7 +62,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jest-environment-jsdom": "^28.1.1",
     "postcss": "^8.4.14",
-    "postcss-preset-env": "^7.7.1",
+    "postcss-preset-env": "^7.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-test-renderer": "^18.2.0",

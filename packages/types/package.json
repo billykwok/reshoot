@@ -15,6 +15,9 @@
     "lib",
     "types"
   ],
+  "engines": {
+    "node": ">=13.0.0"
+  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [

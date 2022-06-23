@@ -29,23 +29,17 @@ export default {
       exports: 'named',
     },
   ],
-  external: [
-    /@reshoot\//i,
-    /@babel\/runtime-corejs3/i,
-    /stringify-object/i,
-    /loader-utils/i,
-  ],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
-    resolve({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
     nodeExternals(),
     peerDepsExternal(),
+    resolve({ extensions: ['.js', '.ts'] }),
     resolve(),
     babel({
       babelrc: true,
       babelHelpers: 'runtime',
-      extensions: ['.ts', '.tsx'],
-      exclude: [/\.test\.tsx?/i, /node_modules\//i],
+      extensions: ['.ts'],
+      exclude: [/\.test\.ts/i, /node_modules\//i],
     }),
     replace({
       preventAssignment: false,

@@ -2,7 +2,6 @@ import JSON5 from 'json5';
 import type { Image } from 'mdast';
 import type { MdxjsEsm } from 'mdast-util-mdxjs-esm';
 import type { Node, Parent } from 'unist';
-import { SKIP, visitParents } from 'unist-util-visit-parents';
 import type { Transformer } from 'unified';
 import { type InlineOptions } from '@reshoot/types';
 
@@ -33,10 +32,11 @@ export default function reshootRemarkMdxImage({
   relativeToDocument = true,
   removeTrailingLineBreak = true,
 }: ReshootRemarkMdxImageOptions = {}): Transformer {
-  return (ast: Node): void => {
+  const unistUtilVisitParents = import('unist-util-visit-parents');
+  return async (ast: Node): Promise<void> => {
+    const { SKIP, visitParents } = await unistUtilVisitParents;
     const imports: MdxjsEsm[] = [];
     const imported = new Map<string, string>();
-
     visitParents(
       ast,
       (node: Node & { children?: Node[] }) =>

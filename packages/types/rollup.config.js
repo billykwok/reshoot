@@ -28,7 +28,6 @@ export default {
       exports: 'named',
     },
   ],
-  external: [/@babel\/runtime-corejs3/i, 'react'],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
     babel({

@@ -15,6 +15,9 @@
     "lib",
     "types"
   ],
+  "engines": {
+    "node": ">=13.0.0"
+  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
@@ -31,13 +34,13 @@
   },
   "dependencies": {
     "@reshoot/types": "workspace:^2.0.0",
-    "color": "^4.2.0",
+    "@babel/runtime-corejs3": "^7",
+    "color": "^4.2.3",
     "sharp": "^0.30.0"
   },
   "devDependencies": {
     "@types/color": "^3.0.3",
     "@types/sharp": "^0.30.4",
-    "color": "^4.2.3",
-    "sharp": "^0.30.6"
+    "sharp": "^0.30.7"
   }
 }

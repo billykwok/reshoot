@@ -32,8 +32,6 @@ describe('Reshoot', () => {
   );
   const imageMeta: ImageMeta = {
     src: 'image.jpg',
-    width: 100,
-    height: 80,
     aspectRatio: 0.8,
     color: '#fff',
     placeholder: 'data:jpeg;base64,1shfk241jkw',

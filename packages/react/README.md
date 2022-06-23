@@ -17,6 +17,20 @@ npm install @reshoot/react
 yarn add @reshoot/react
 ```
 
+## Setup
+
+The library should work out of the box. If you would like to the image to be shown even when JavaScript is disabled (for privacy, accessibility or SEO purposes), you need to render the website on the server side and add the following HTML to the end of `<head />` to hide the overlaying placeholder image.
+
+```html
+<noscript>
+  <style>
+    .js-only {
+      display: none;
+    }
+  </style>
+</noscript>
+```
+
 ## API
 
 ```jsx

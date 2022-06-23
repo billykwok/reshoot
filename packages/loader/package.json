@@ -15,6 +15,9 @@
     "lib",
     "types"
   ],
+  "engines": {
+    "node": ">=13.0.0"
+  },
   "author": "Billy Kwok <opensource@billykwok.me>",
   "license": "MIT",
   "keywords": [
@@ -33,6 +36,7 @@
   "dependencies": {
     "@reshoot/core": "workspace:^2.1.0",
     "@reshoot/types": "workspace:^2.0.0",
+    "@babel/runtime-corejs3": "^7",
     "json5": "^2.2.1",
     "loader-utils": "^3.2.0"
   },
@@ -41,7 +45,6 @@
   },
   "devDependencies": {
     "@types/loader-utils": "^2.0.3",
-    "@types/stringify-object": "^4.0.1",
     "memfs": "^3.4.6",
     "webpack": "^5.73.0"
   }

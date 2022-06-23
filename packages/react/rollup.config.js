@@ -1,8 +1,10 @@
 import babel from '@rollup/plugin-babel';
 import linaria from '@linaria/rollup';
+import nodeExternals from 'rollup-plugin-node-externals';
 import postcss from 'rollup-plugin-postcss';
 import postcssPresetEnv from 'postcss-preset-env';
 import replace from '@rollup/plugin-replace';
+import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
@@ -31,14 +33,10 @@ export default {
       exports: 'default',
     },
   ],
-  external: [
-    /@linaria\/core/i,
-    /@babel\/runtime-corejs3/i,
-    /use-lifecycle-ref/i,
-    /react/i,
-  ],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
+    nodeExternals(),
+    resolve({ extensions: ['.js', '.ts'] }),
     linaria(),
     postcss({
       minimize: true,

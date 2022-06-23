@@ -29,22 +29,16 @@ export default {
       exports: 'named',
     },
   ],
-  external: [
-    /@babel\/runtime-corejs3/i,
-    /@babel\/template/i,
-    /@babel\/types/i,
-    /babel-plugin-macros/i,
-  ],
   treeshake: { moduleSideEffects: false, propertyReadSideEffects: false },
   plugins: [
-    resolve({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
     nodeExternals(),
     peerDepsExternal(),
+    resolve({ extensions: ['.js', '.ts'] }),
     babel({
       babelrc: true,
       babelHelpers: 'runtime',
-      extensions: ['.ts', '.tsx'],
-      exclude: [/\.test\.tsx?/i, /node_modules\//i],
+      extensions: ['.ts'],
+      exclude: [/\.test\.ts/i, /node_modules\//i],
     }),
     replace({
       preventAssignment: false,
