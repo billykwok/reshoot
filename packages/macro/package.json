@@ -15,6 +15,7 @@
     "lib",
     "types"
   ],
+  "sideEffects": false,
   "engines": {
     "node": ">=13.0.0"
   },
@@ -36,7 +37,6 @@
   "dependencies": {
     "@reshoot/types": "workspace:^2.0.2",
     "@babel/core": "^7",
-    "@babel/runtime-corejs3": "^7",
     "@babel/template": "^7",
     "@babel/types": "^7"
   },

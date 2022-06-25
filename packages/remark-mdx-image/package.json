@@ -15,6 +15,7 @@
     "lib",
     "types"
   ],
+  "sideEffects": false,
   "engines": {
     "node": ">=13.0.0"
   },
@@ -35,7 +36,6 @@
   },
   "dependencies": {
     "@reshoot/types": "workspace:^2.0.2",
-    "@babel/runtime-corejs3": "^7",
     "unist-util-visit-parents": "^5.1.0",
     "json5": "^2.2.1"
   },

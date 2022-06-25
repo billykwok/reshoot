@@ -37,7 +37,7 @@ export default {
     resolve(),
     babel({
       babelrc: true,
-      babelHelpers: 'runtime',
+      babelHelpers: 'bundled',
       extensions: ['.ts'],
       exclude: [/\.test\.ts/i, /node_modules\//i],
     }),

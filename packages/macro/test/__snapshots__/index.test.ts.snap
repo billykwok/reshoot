@@ -6,10 +6,7 @@ import Img from "@reshoot/react";
 import { createElement } from "react";
 const meta = __0____asset_image_png_color__f4f4f4__;
 export default function ExampleImg(props) {
-  return createElement(Img, {
-    meta,
-    ...props,
-  });
+  return createElement(Img, { meta, ...props });
 }
 
 `;
@@ -20,10 +17,7 @@ import Img from "@reshoot/react";
 import { createElement } from "react";
 const meta = __0____asset_image_png_color__23f4f4f4__;
 export default function ExampleImg(props) {
-  return createElement(Img, {
-    meta,
-    ...props,
-  });
+  return createElement(Img, { meta, ...props });
 }
 
 `;
@@ -34,10 +28,7 @@ import Img from "@reshoot/react";
 import { createElement } from "react";
 const meta = __0____asset_image_png_reshoot_color__23f4f4f4__;
 export default function ExampleImg(props) {
-  return createElement(Img, {
-    meta,
-    ...props,
-  });
+  return createElement(Img, { meta, ...props });
 }
 
 `;
@@ -48,10 +39,7 @@ import Img from "@reshoot/react";
 import { createElement } from "react";
 const meta = __0____asset_image_png_color__23f4f4f4__;
 export default function ExampleImg(props) {
-  return createElement(Img, {
-    meta,
-    ...props,
-  });
+  return createElement(Img, { meta, ...props });
 }
 export const meta2 = __0____asset_image_png_color__23f4f4f4__;
 

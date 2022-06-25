@@ -14,7 +14,7 @@ const BABEL_TRANSFORM_OPTIONS: TransformOptions = {
     [
       '@babel/preset-env',
       {
-        targets: { node: 'current', esmodules: false },
+        targets: { esmodules: false },
         exclude: ['transform-async-to-generator', 'transform-regenerator'],
         modules: false,
       },

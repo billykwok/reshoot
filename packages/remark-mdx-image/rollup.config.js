@@ -36,7 +36,7 @@ export default {
     resolve({ extensions: ['.js', '.ts'] }),
     babel({
       babelrc: true,
-      babelHelpers: 'runtime',
+      babelHelpers: 'bundled',
       extensions: ['.ts'],
       exclude: [/\.test\.ts/i, /node_modules\//i],
     }),

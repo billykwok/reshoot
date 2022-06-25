@@ -15,6 +15,7 @@
     "lib",
     "types"
   ],
+  "sideEffects": false,
   "engines": {
     "node": ">=13.0.0"
   },
@@ -34,13 +35,11 @@
   },
   "dependencies": {
     "@reshoot/types": "workspace:^2.0.1",
-    "@babel/runtime-corejs3": "^7",
     "color": "^4.2.3",
-    "sharp": "^0.30.0"
+    "sharp": "^0.30.7"
   },
   "devDependencies": {
     "@types/color": "^3.0.3",
-    "@types/sharp": "^0.30.4",
-    "sharp": "^0.30.7"
+    "@types/sharp": "^0.30.4"
   }
 }

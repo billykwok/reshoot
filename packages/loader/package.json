@@ -15,6 +15,7 @@
     "lib",
     "types"
   ],
+  "sideEffects": false,
   "engines": {
     "node": ">=13.0.0"
   },
@@ -36,7 +37,6 @@
   "dependencies": {
     "@reshoot/core": "workspace:^2.1.1",
     "@reshoot/types": "workspace:^2.0.2",
-    "@babel/runtime-corejs3": "^7",
     "json5": "^2.2.1",
     "loader-utils": "^3.2.0"
   },
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@types/loader-utils": "^2.0.3",
-    "memfs": "^3.4.6",
+    "memfs": "^3.4.7",
     "webpack": "^5.73.0"
   }
 }
