@@ -1,5 +1,11 @@
 # @reshoot/types
 
+## 2.0.3
+
+### Patch Changes
+
+- ec76336: fix: improve rollup setup and update dependencies
+
 ## 2.0.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @reshoot/react
 
+## 2.0.4
+
+### Patch Changes
+
+- ec76336: fix: improve rollup setup and update dependencies
+- Updated dependencies [ec76336]
+  - @reshoot/types@2.0.3
+
 ## 2.0.3
 
 ### Patch Changes
