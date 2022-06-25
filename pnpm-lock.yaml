@@ -90,7 +90,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@reshoot/types': workspace:^2.0.1
+      '@reshoot/types': workspace:^2.0.3
       '@types/color': ^3.0.3
       '@types/sharp': ^0.30.4
       color: ^4.2.3
@@ -105,8 +105,8 @@ importers:
 
   packages/loader:
     specifiers:
-      '@reshoot/core': workspace:^2.1.1
-      '@reshoot/types': workspace:^2.0.2
+      '@reshoot/core': workspace:^2.1.2
+      '@reshoot/types': workspace:^2.0.3
       '@types/loader-utils': ^2.0.3
       json5: ^2.2.1
       loader-utils: ^3.2.0
@@ -127,7 +127,7 @@ importers:
       '@babel/core': ^7
       '@babel/template': ^7
       '@babel/types': ^7
-      '@reshoot/types': workspace:^2.0.2
+      '@reshoot/types': workspace:^2.0.3
       '@types/babel__core': ^7.1.19
       '@types/babel__template': ^7.4.1
       '@types/babel-plugin-macros': ^2.8.5
@@ -152,7 +152,7 @@ importers:
       '@linaria/core': ^3.0.0-beta.22
       '@linaria/rollup': ^3.0.0-beta.22
       '@linaria/shaker': ^3.0.0-beta.22
-      '@reshoot/types': workspace:^2.0.1
+      '@reshoot/types': workspace:^2.0.3
       '@testing-library/react': ^13.3.0
       '@types/postcss-preset-env': ^7.7.0
       '@types/react': ^18.0.14
@@ -199,7 +199,7 @@ importers:
   packages/remark-mdx-image:
     specifiers:
       '@mdx-js/mdx': ^2.1.2
-      '@reshoot/types': workspace:^2.0.2
+      '@reshoot/types': workspace:^2.0.3
       '@types/estree': ^0.0.51
       '@types/mdast': ^3.0.10
       '@types/unist': ^2.0.6

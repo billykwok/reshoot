@@ -1,5 +1,14 @@
 # @reshoot/macro
 
+## 2.1.4
+
+### Patch Changes
+
+- ec76336: fix: improve rollup setup and update dependencies
+- Updated dependencies [ec76336]
+  - @reshoot/loader@2.1.3
+  - @reshoot/types@2.0.3
+
 ## 2.1.3
 
 ### Patch Changes

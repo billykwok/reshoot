@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/core",
   "description": "Extract meta data from image and generate low-quality image preview",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "type": "module",
   "exports": {
     "import": "./lib/es/index.mjs",
@@ -34,7 +34,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
   },
   "dependencies": {
-    "@reshoot/types": "workspace:^2.0.1",
+    "@reshoot/types": "workspace:^2.0.3",
     "color": "^4.2.3",
     "sharp": "^0.30.7"
   },
