@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@mdx-js/mdx": "^2.1.2",
-    "@types/estree": "^0.0.51",
+    "@types/estree": "^0.0.52",
     "@types/mdast": "^3.0.10",
     "@types/unist": "^2.0.6",
     "mdast-util-mdxjs-esm": "^1.2.0",

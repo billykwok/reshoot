@@ -43,14 +43,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7",
     "@reshoot/types": "workspace:^2.0.3",
+    "@babel/runtime-corejs3": "^7",
     "react": "^17 || ^18",
     "use-lifecycle-ref": "^1.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
-    "@babel/preset-react": "^7.17.12",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
     "@linaria/babel-preset": "^3.0.0-beta.22",
     "@linaria/core": "^3.0.0-beta.22",
     "@linaria/rollup": "^3.0.0-beta.22",
@@ -67,7 +67,7 @@
     "postcss": "^8.4.14",
     "postcss-preset-env": "^7.7.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "18.2.0",
     "react-test-renderer": "^18.2.0",
     "rollup-plugin-postcss": "^4.0.2"
   }
