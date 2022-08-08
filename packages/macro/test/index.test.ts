@@ -76,7 +76,7 @@ describe('Babel with @reshoot/macro', () => {
           return createElement(Img, { meta, ...props });
         };
 
-        export const meta2 = imageMeta('../asset/image.png?color=%23f4f4f4');
+        export const meta2 = imageMeta('../asset/image.png?color=#f4f4f4');
       `,
       BABEL_TRANSFORM_OPTIONS
     );
@@ -112,6 +112,40 @@ describe('Babel with @reshoot/macro', () => {
           return createElement(Img, { meta, ...props });
         };
       `,
+      BABEL_TRANSFORM_OPTIONS
+    );
+    expect(result.code).toMatchSnapshot();
+  });
+
+  test('should correctly transform with null value', async () => {
+    const result = await transformAsync(
+      `
+          import Img from '@reshoot/react';
+          import { createElement } from 'react';
+          import imageMeta from './macro/src/macro';
+
+          const meta = imageMeta('../asset/image.png', { color: null });;
+          export default function ExampleImg(props) {
+            return createElement(Img, { meta, ...props });
+          };
+        `,
+      BABEL_TRANSFORM_OPTIONS
+    );
+    expect(result.code).toMatchSnapshot();
+  });
+
+  test('should correctly transform with empty options', async () => {
+    const result = await transformAsync(
+      `
+          import Img from '@reshoot/react';
+          import { createElement } from 'react';
+          import imageMeta from './macro/src/macro';
+
+          const meta = imageMeta('../asset/image.png', {});;
+          export default function ExampleImg(props) {
+            return createElement(Img, { meta, ...props });
+          };
+        `,
       BABEL_TRANSFORM_OPTIONS
     );
     expect(result.code).toMatchSnapshot();

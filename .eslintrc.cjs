@@ -71,6 +71,7 @@ module.exports = {
           { allowArgumentsExplicitlyTypedAsAny: true },
         ],
         '@typescript-eslint/prefer-includes': 'off',
+        'jest/no-standalone-expect': 'off',
       },
     },
   ],

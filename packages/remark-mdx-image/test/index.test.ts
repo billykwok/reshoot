@@ -24,13 +24,14 @@ describe('MDX with @reshoot/remark-mdx-image', () => {
         
         <div id="abc">
           ![](../assets/image.png)
+          ![](../assets/image.png){{color:null}}
           ![](../assets/image.png "Image title 2"){{color:'#f4f4f4'}}
           ![Image alt text 2](../assets/image.png){{color:'#f4f4f4'}}
         </div>
 
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-        [![Image alt text 3](../assets/image.png?reshoot "Image title 3"){{color:'#f4f4f4'}}](https://example.com "Link title")
+        [![Image alt text 3](../assets/image.png?maxWidth=1280 "Image title 3"){{color:'#f4f4f4'}}](https://example.com "Link title")
 
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       `,
@@ -56,13 +57,14 @@ describe('MDX with @reshoot/remark-mdx-image', () => {
         
         <div id="abc">
           ![](../assets/image.png)
+          ![](../assets/image.png){{color:null}}
           ![](../assets/image.png "Image title 2"){{color:'#f4f4f4'}}
           ![Image alt text 2](../assets/image.png){{color:'#f4f4f4'}}
         </div>
 
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-        [![Image alt text 3](../assets/image.png?reshoot "Image title 3"){{color:'#f4f4f4'}}](https://example.com "Link title")
+        [![Image alt text 3](../assets/image.png?maxWidth=1280 "Image title 3"){{color:'#f4f4f4'}}](https://example.com "Link title")
 
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       `,
@@ -88,13 +90,14 @@ describe('MDX with @reshoot/remark-mdx-image', () => {
         
         <div id="abc">
           ![](../assets/image.png)
+          ![](../assets/image.png){{color:null}}
           ![](../assets/image.png "Image title 2"){{color:'#f4f4f4'}}
           ![Image alt text 2](../assets/image.png){{color:'#f4f4f4'}}
         </div>
 
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-        [![Image alt text 3](../assets/image.png?reshoot "Image title 3"){{color:'#f4f4f4'}}](https://example.com "Link title")
+        [![Image alt text 3](../assets/image.png?maxWidth=1280 "Image title 3"){{color:'#f4f4f4'}}](https://example.com "Link title")
 
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       `,

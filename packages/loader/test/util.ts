@@ -76,7 +76,7 @@ export async function compile(
         const output = stats.toJson(statsOptions).modules[0].source as string;
         resolve(
           output.replaceAll(
-            /placeholder:\s*'data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA.*'/g,
+            /placeholder:\s*'data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA[a-zA-Z0-9+/=]*'/g,
             "placeholder:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA'"
           )
         );

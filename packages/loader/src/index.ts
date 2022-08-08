@@ -35,12 +35,13 @@ const reshootLoader: RawLoaderDefinitionFunction<LoaderOptions> =
       esModule: false,
       ...this.getOptions(),
     };
-    const urlSearchParams = new URLSearchParams(this.resourceQuery);
+    const [, searchQuery = ''] = /^.+(?:\?(.+))$/.exec(this.resource) || [];
+    const searchParams = new URLSearchParams(searchQuery);
 
     const coreImageMeta = await extractMeta(content, {
       ...loaderOptions.meta,
-      color: urlSearchParams.get('color'),
-      maxWidth: parseInt(urlSearchParams.get('maxWidth')),
+      color: searchParams.get('color')?.replace('%23', '#'),
+      maxWidth: parseInt(searchParams.get('maxWidth')),
       filename: loaderOptions.filename,
     });
     const filename = interpolate(

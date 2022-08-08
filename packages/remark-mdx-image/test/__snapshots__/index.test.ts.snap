@@ -4,8 +4,9 @@ exports[`MDX with @reshoot/remark-mdx-image should correctly transform when defa
 /*@jsxRuntime automatic @jsxImportSource react*/
 import __0___assets_image_png__ from "./assets/image.png";
 import __1____assets_image_png__ from "../assets/image.png";
-import __2____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
-import __3____assets_image_png_reshoot_color__23f4f4f4__ from "../assets/image.png?reshoot&color=%23f4f4f4";
+import __2____assets_image_png_color___ from "../assets/image.png?color=";
+import __3____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
+import __4____assets_image_png_maxWidth_1280_color__23f4f4f4__ from "../assets/image.png?maxWidth=1280&color=%23f4f4f4";
 function _createMdxContent(props) {
   const _components = Object.assign(
     {
@@ -45,14 +46,15 @@ function _createMdxContent(props) {
       {"\\n"}
       <div id="abc">
         <_components.img alt="" meta={__1____assets_image_png__} />
+        <_components.img alt="" meta={__2____assets_image_png_color___} />
         <_components.img
           alt=""
-          meta={__2____assets_image_png_color__23f4f4f4__}
+          meta={__3____assets_image_png_color__23f4f4f4__}
           title="Image title 2"
         />
         <_components.img
           alt="Image alt text 2"
-          meta={__2____assets_image_png_color__23f4f4f4__}
+          meta={__3____assets_image_png_color__23f4f4f4__}
         />
       </div>
       {"\\n"}
@@ -66,7 +68,7 @@ function _createMdxContent(props) {
         <_components.a href="https://example.com" title="Link title">
           <_components.img
             alt="Image alt text 3"
-            meta={__3____assets_image_png_reshoot_color__23f4f4f4__}
+            meta={__4____assets_image_png_maxWidth_1280_color__23f4f4f4__}
             title="Image title 3"
           />
         </_components.a>
@@ -98,8 +100,9 @@ exports[`MDX with @reshoot/remark-mdx-image should correctly transform when rela
 /*@jsxRuntime automatic @jsxImportSource react*/
 import __0_assets_image_png__ from "assets/image.png";
 import __1____assets_image_png__ from "../assets/image.png";
-import __2____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
-import __3____assets_image_png_reshoot_color__23f4f4f4__ from "../assets/image.png?reshoot&color=%23f4f4f4";
+import __2____assets_image_png_color___ from "../assets/image.png?color=";
+import __3____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
+import __4____assets_image_png_maxWidth_1280_color__23f4f4f4__ from "../assets/image.png?maxWidth=1280&color=%23f4f4f4";
 function _createMdxContent(props) {
   const _components = Object.assign(
     {
@@ -139,14 +142,15 @@ function _createMdxContent(props) {
       {"\\n"}
       <div id="abc">
         <_components.img alt="" meta={__1____assets_image_png__} />
+        <_components.img alt="" meta={__2____assets_image_png_color___} />
         <_components.img
           alt=""
-          meta={__2____assets_image_png_color__23f4f4f4__}
+          meta={__3____assets_image_png_color__23f4f4f4__}
           title="Image title 2"
         />
         <_components.img
           alt="Image alt text 2"
-          meta={__2____assets_image_png_color__23f4f4f4__}
+          meta={__3____assets_image_png_color__23f4f4f4__}
         />
       </div>
       {"\\n"}
@@ -160,7 +164,7 @@ function _createMdxContent(props) {
         <_components.a href="https://example.com" title="Link title">
           <_components.img
             alt="Image alt text 3"
-            meta={__3____assets_image_png_reshoot_color__23f4f4f4__}
+            meta={__4____assets_image_png_maxWidth_1280_color__23f4f4f4__}
             title="Image title 3"
           />
         </_components.a>
@@ -192,8 +196,9 @@ exports[`MDX with @reshoot/remark-mdx-image should correctly transform when remo
 /*@jsxRuntime automatic @jsxImportSource react*/
 import __0___assets_image_png__ from "./assets/image.png";
 import __1____assets_image_png__ from "../assets/image.png";
-import __2____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
-import __3____assets_image_png_reshoot_color__23f4f4f4__ from "../assets/image.png?reshoot&color=%23f4f4f4";
+import __2____assets_image_png_color___ from "../assets/image.png?color=";
+import __3____assets_image_png_color__23f4f4f4__ from "../assets/image.png?color=%23f4f4f4";
+import __4____assets_image_png_maxWidth_1280_color__23f4f4f4__ from "../assets/image.png?maxWidth=1280&color=%23f4f4f4";
 function _createMdxContent(props) {
   const _components = Object.assign(
     {
@@ -236,15 +241,17 @@ function _createMdxContent(props) {
       <div id="abc">
         <_components.img alt="" meta={__1____assets_image_png__} />
         {"\\n"}
+        <_components.img alt="" meta={__2____assets_image_png_color___} />
+        {"\\n"}
         <_components.img
           alt=""
-          meta={__2____assets_image_png_color__23f4f4f4__}
+          meta={__3____assets_image_png_color__23f4f4f4__}
           title="Image title 2"
         />
         {"\\n"}
         <_components.img
           alt="Image alt text 2"
-          meta={__2____assets_image_png_color__23f4f4f4__}
+          meta={__3____assets_image_png_color__23f4f4f4__}
         />
       </div>
       {"\\n"}
@@ -258,7 +265,7 @@ function _createMdxContent(props) {
         <_components.a href="https://example.com" title="Link title">
           <_components.img
             alt="Image alt text 3"
-            meta={__3____assets_image_png_reshoot_color__23f4f4f4__}
+            meta={__4____assets_image_png_maxWidth_1280_color__23f4f4f4__}
             title="Image title 3"
           />
         </_components.a>

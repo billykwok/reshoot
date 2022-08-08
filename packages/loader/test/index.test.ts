@@ -5,7 +5,7 @@ import { format } from 'prettier';
 
 import { compile, createMemfs } from './util';
 
-const IMAGE_PATH = '../../../__fixtures__/lena.png?color=%23eee';
+const IMAGE_PATH = '../../../__fixtures__/lena.png';
 
 async function listImages(fs: IFs, pathname: string) {
   const files = (await fs.promises.readdir(
@@ -140,6 +140,40 @@ describe('Webpack with @reshoot/loader', () => {
     const output = await compile('production', memfs, IMAGE_PATH, {
       esModule: true,
     });
+    expect(output).toMatchSnapshot();
+
+    const images = await listImages(memfs, './');
+    expect(images).toMatchSnapshot();
+
+    memfs.reset();
+  });
+
+  test('should pass user provided color if specified', async () => {
+    const memfs = createMemfs();
+
+    const output = await compile(
+      'production',
+      memfs,
+      `${IMAGE_PATH}?color=#eee`,
+      { esModule: true }
+    );
+    expect(output).toMatchSnapshot();
+
+    const images = await listImages(memfs, './');
+    expect(images).toMatchSnapshot();
+
+    memfs.reset();
+  });
+
+  test('should decode user provided color if possible', async () => {
+    const memfs = createMemfs();
+
+    const output = await compile(
+      'production',
+      memfs,
+      `${IMAGE_PATH}?color=%23eee`,
+      { esModule: true }
+    );
     expect(output).toMatchSnapshot();
 
     const images = await listImages(memfs, './');

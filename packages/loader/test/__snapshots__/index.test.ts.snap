@@ -2,13 +2,14 @@
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image in development mode 1`] = `
 module.exports = {
-  hash: "8e426aa9dee4ea97fc2a0675bba6b036",
+  hash: "24793c5e741d6fa9378cf941c91bd754",
   src: "/_/_/_/__fixtures__/lena.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
@@ -21,32 +22,34 @@ Array [
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image in production mode 1`] = `
 module.exports = {
-  hash: "ab38bf3f75a11f905b2211f93b2ae280",
-  src: "/ab38bf3f75a11f90.png",
+  hash: "c063cce5c8f8c5f6ab3fa5feb96ca646",
+  src: "/c063cce5c8f8c5f6.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image in production mode 2`] = `
 Array [
-  "ab38bf3f75a11f90.png",
+  "c063cce5c8f8c5f6.png",
 ]
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with emitFile disabled 1`] = `
 module.exports = {
-  hash: "ab38bf3f75a11f905b2211f93b2ae280",
-  src: "/ab38bf3f75a11f90.png",
+  hash: "c063cce5c8f8c5f6ab3fa5feb96ca646",
+  src: "/c063cce5c8f8c5f6.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
@@ -55,101 +58,126 @@ exports[`Webpack with @reshoot/loader should extract image meta and output image
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with esModule enabled 1`] = `
 export default {
-  hash: "ab38bf3f75a11f905b2211f93b2ae280",
-  src: "/ab38bf3f75a11f90.png",
+  hash: "c063cce5c8f8c5f6ab3fa5feb96ca646",
+  src: "/c063cce5c8f8c5f6.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with esModule enabled 2`] = `
 Array [
-  "ab38bf3f75a11f90.png",
+  "c063cce5c8f8c5f6.png",
 ]
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with outputPath as a string 1`] = `
 module.exports = {
-  hash: "ab38bf3f75a11f905b2211f93b2ae280",
-  src: "/ab38bf3f75a11f90.png",
+  hash: "c063cce5c8f8c5f6ab3fa5feb96ca646",
+  src: "/c063cce5c8f8c5f6.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with outputPath as a string 2`] = `
 Array [
-  "ab38bf3f75a11f90.png",
+  "c063cce5c8f8c5f6.png",
 ]
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with publicPath as a function 1`] = `
 module.exports = {
-  hash: "ab38bf3f75a11f905b2211f93b2ae280",
-  src: "/images/ab38bf3f75a11f90.png",
+  hash: "c063cce5c8f8c5f6ab3fa5feb96ca646",
+  src: "/images/c063cce5c8f8c5f6.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with publicPath as a function 2`] = `
 Array [
-  "ab38bf3f75a11f90.png",
+  "c063cce5c8f8c5f6.png",
 ]
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with webpack publicPath 1`] = `
 module.exports = {
-  hash: "ab38bf3f75a11f905b2211f93b2ae280",
-  src: "/static/ab38bf3f75a11f90.png",
+  hash: "c063cce5c8f8c5f6ab3fa5feb96ca646",
+  src: "/static/c063cce5c8f8c5f6.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with webpack publicPath 2`] = `
 Array [
-  "ab38bf3f75a11f90.png",
+  "c063cce5c8f8c5f6.png",
 ]
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image without hash length 1`] = `
 module.exports = {
-  hash: "6695e2fef6c49dcbc78b7d6e1162f7e2",
-  src: "/6695e2fef6c49dcb.png",
+  hash: "237cd5b009a23c41445ebc847dd90cc6",
+  src: "/237cd5b009a23c41.png",
   width: 512,
   height: 512,
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
 };
 
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image without hash length 2`] = `
 Array [
-  "6695e2fef6c49dcb.png",
+  "237cd5b009a23c41.png",
 ]
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image without options 1`] = `
 module.exports = {
+  hash: "c063cce5c8f8c5f6ab3fa5feb96ca646",
+  src: "/c063cce5c8f8c5f6.png",
+  width: 512,
+  height: 512,
+  aspectRatio: 100,
+  placeholder:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#c85858",
+};
+
+`;
+
+exports[`Webpack with @reshoot/loader should extract image meta and output image without options 2`] = `
+Array [
+  "c063cce5c8f8c5f6.png",
+]
+`;
+
+exports[`Webpack with @reshoot/loader should pass user provided color if specified 1`] = `
+export default {
   hash: "ab38bf3f75a11f905b2211f93b2ae280",
   src: "/ab38bf3f75a11f90.png",
   width: 512,
@@ -157,11 +185,32 @@ module.exports = {
   aspectRatio: 100,
   placeholder:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#eee",
 };
 
 `;
 
-exports[`Webpack with @reshoot/loader should extract image meta and output image without options 2`] = `
+exports[`Webpack with @reshoot/loader should pass user provided color if specified 2`] = `
+Array [
+  "ab38bf3f75a11f90.png",
+]
+`;
+
+exports[`Webpack with @reshoot/loader should decode user provided color if possible 1`] = `
+export default {
+  hash: "ab38bf3f75a11f905b2211f93b2ae280",
+  src: "/ab38bf3f75a11f90.png",
+  width: 512,
+  height: 512,
+  aspectRatio: 100,
+  placeholder:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#eee",
+};
+
+`;
+
+exports[`Webpack with @reshoot/loader should decode user provided color if possible 2`] = `
 Array [
   "ab38bf3f75a11f90.png",
 ]

@@ -74,22 +74,24 @@ export default function reshootRemarkMdxImage({
             }
 
             const { alt, title, url: rawUrl } = child as Image;
-            const [, existingSearchParams] = rawUrl.trim().split('?');
-            const isLocal = !HTTP_PATTERN.test(rawUrl);
 
-            let url = rawUrl;
+            const [, basePath = rawUrl, searchQuery = ''] =
+              /^(.+)(?:\?(.*))$/.exec(rawUrl) || [];
+            const searchParms = new URLSearchParams(searchQuery);
+            Object.entries(inlineOptions).forEach(([k, v]) =>
+              searchParms.set(k, v ? v.toString() : '')
+            );
+            const mergedSearchQuery = searchParms.toString();
+
+            let url =
+              basePath + (mergedSearchQuery ? `?${mergedSearchQuery}` : '');
+            const isLocal = !HTTP_PATTERN.test(rawUrl);
             if (
               relativeToDocument &&
               isLocal &&
               !RELATIVE_PATTERN.test(rawUrl)
             ) {
               url = `./${rawUrl}`;
-            }
-            const serializedOptions = new URLSearchParams(
-              inlineOptions as Record<string, string>
-            ).toString();
-            if (serializedOptions) {
-              url += `${existingSearchParams ? '&' : '?'}${serializedOptions}`;
             }
 
             const urlString = JSON5.stringify(url);

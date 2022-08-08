@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/billykwok/reshoot/main/logo.png" width="200" alt="Reshoot logo" /><br/>`@reshoot/macro`
 
-A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) transpiling `reshoot('image.png', { color: '#eee' })` into `import meta from 'image.png?color=%23eee';`.
+A [`babel-macro`](https://github.com/kentcdodds/babel-plugin-macros) transpiling `reshoot('image.png', { color: '#eee' })` into `import meta from 'image.png?color=#eee';`.
 
 More about [`reshoot`](https://github.com/billykwok/reshoot).
 

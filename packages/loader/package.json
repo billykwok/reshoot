@@ -46,6 +46,6 @@
   "devDependencies": {
     "@types/loader-utils": "^2.0.3",
     "memfs": "^3.4.7",
-    "webpack": "^5.73.0"
+    "webpack": "^5.74.0"
   }
 }

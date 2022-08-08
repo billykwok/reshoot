@@ -1,10 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Babel with @reshoot/macro should correctly transform 1`] = `
-import __0____asset_image_png_color__f4f4f4__ from "../asset/image.png?color=#f4f4f4";
+import __0____asset_image_png_color__23f4f4f4__ from "../asset/image.png?color=%23f4f4f4";
 import Img from "@reshoot/react";
 import { createElement } from "react";
-const meta = __0____asset_image_png_color__f4f4f4__;
+const meta = __0____asset_image_png_color__23f4f4f4__;
+export default function ExampleImg(props) {
+  return createElement(Img, { meta, ...props });
+}
+
+`;
+
+exports[`Babel with @reshoot/macro should correctly transform with empty options 1`] = `
+import __0____asset_image_png__ from "../asset/image.png";
+import Img from "@reshoot/react";
+import { createElement } from "react";
+const meta = __0____asset_image_png__;
+export default function ExampleImg(props) {
+  return createElement(Img, { meta, ...props });
+}
+
+`;
+
+exports[`Babel with @reshoot/macro should correctly transform with null value 1`] = `
+import __0____asset_image_png_color___ from "../asset/image.png?color=";
+import Img from "@reshoot/react";
+import { createElement } from "react";
+const meta = __0____asset_image_png_color___;
 export default function ExampleImg(props) {
   return createElement(Img, { meta, ...props });
 }
@@ -23,10 +45,10 @@ export default function ExampleImg(props) {
 `;
 
 exports[`Babel with @reshoot/macro should correctly transform with options and existing search params 1`] = `
-import __0____asset_image_png_reshoot_color__23f4f4f4__ from "../asset/image.png?reshoot&color=%23f4f4f4";
+import __0____asset_image_png_reshoot__color__23f4f4f4__ from "../asset/image.png?reshoot=&color=%23f4f4f4";
 import Img from "@reshoot/react";
 import { createElement } from "react";
-const meta = __0____asset_image_png_reshoot_color__23f4f4f4__;
+const meta = __0____asset_image_png_reshoot__color__23f4f4f4__;
 export default function ExampleImg(props) {
   return createElement(Img, { meta, ...props });
 }

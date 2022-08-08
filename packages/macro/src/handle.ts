@@ -38,17 +38,18 @@ export default function handle({ references }: Partial<MacroParams>): void {
         );
       }
       const [firstArgumentPath, secondArgumentPath] = argumentPaths;
-      let url = evalPath(firstArgumentPath);
+      const rawUrl = evalPath(firstArgumentPath);
       const inlineOptions = evalOptions(secondArgumentPath);
 
-      const [, existingSearchParams] = url.split('?');
-      const serializedOptions = new URLSearchParams(
-        inlineOptions as Record<string, string>
-      ).toString();
-      if (serializedOptions) {
-        url += `${existingSearchParams ? '&' : '?'}${serializedOptions}`;
-      }
+      const [, basePath = rawUrl, searchQuery = ''] =
+        /^(.+)(?:\?(.*))$/.exec(rawUrl) || [];
+      const searchParms = new URLSearchParams(searchQuery);
+      Object.entries(inlineOptions).forEach(([k, v]) =>
+        searchParms.set(k, v ? v.toString() : '')
+      );
+      const mergedSearchQuery = searchParms.toString();
 
+      const url = basePath + (mergedSearchQuery ? `?${mergedSearchQuery}` : '');
       let name = imported.get(url);
       if (!name) {
         name = `__${imported.size}_${url.replace(/\W/g, '_')}__`;
