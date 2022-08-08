@@ -1,5 +1,11 @@
 # @reshoot/core
 
+## 2.1.3
+
+### Patch Changes
+
+- a0288f4: fix: support hash character in inline options
+
 ## 2.1.2
 
 ### Patch Changes

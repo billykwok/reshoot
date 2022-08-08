@@ -1,5 +1,13 @@
 # @reshoot/loader
 
+## 2.1.4
+
+### Patch Changes
+
+- a0288f4: fix: support hash character in inline options
+- Updated dependencies [a0288f4]
+  - @reshoot/core@2.1.3
+
 ## 2.1.3
 
 ### Patch Changes
