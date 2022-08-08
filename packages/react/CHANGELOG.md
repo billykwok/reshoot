@@ -1,5 +1,11 @@
 # @reshoot/react
 
+## 2.0.5
+
+### Patch Changes
+
+- a0288f4: fix: support hash character in inline options
+
 ## 2.0.4
 
 ### Patch Changes
