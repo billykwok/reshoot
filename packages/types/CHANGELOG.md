@@ -1,5 +1,11 @@
 # @reshoot/types
 
+## 2.0.4
+
+### Patch Changes
+
+- 1fbc91a: fix: fix InlineOptions typing
+
 ## 2.0.3
 
 ### Patch Changes

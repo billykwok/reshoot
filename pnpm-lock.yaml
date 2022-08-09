@@ -125,7 +125,7 @@ importers:
       '@babel/core': ^7.18.10
       '@babel/template': ^7.18.10
       '@babel/types': ^7.18.10
-      '@reshoot/types': workspace:^2.0.3
+      '@reshoot/types': workspace:^2.0.4
       '@types/babel-plugin-macros': ^2.8.5
       '@types/babel__core': ^7.1.19
       '@types/babel__template': ^7.4.1
@@ -197,7 +197,7 @@ importers:
   packages/remark-mdx-image:
     specifiers:
       '@mdx-js/mdx': ^2.1.2
-      '@reshoot/types': workspace:^2.0.3
+      '@reshoot/types': workspace:^2.0.4
       '@types/estree': ^1.0.0
       '@types/mdast': ^3.0.10
       '@types/unist': ^2.0.6
