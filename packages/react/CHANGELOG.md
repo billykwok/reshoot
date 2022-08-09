@@ -1,5 +1,11 @@
 # @reshoot/react
 
+## 2.1.0
+
+### Minor Changes
+
+- 35ad25a: feat: support overriding blur radius
+
 ## 2.0.5
 
 ### Patch Changes
