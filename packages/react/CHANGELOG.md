@@ -1,5 +1,11 @@
 # @reshoot/react
 
+## 2.1.1
+
+### Patch Changes
+
+- 3967ba5: fix: fix incorrect blur radius CSS variable
+
 ## 2.1.0
 
 ### Minor Changes
