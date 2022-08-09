@@ -41,7 +41,7 @@ However, if you would like to the image to be shown even when JavaScript is disa
 ## API
 
 ```jsx
-import imageMetaOf from '@reshoot/macro';
+import imageMeta from '@reshoot/macro';
 import Img from '@reshoot/react';
 
 export default function Example() {
@@ -56,7 +56,7 @@ export default function Example() {
       //   color: string;
       //   src: string;
       // }
-      meta={imageMetaOf('./image.png')}
+      meta={imageMeta('./image.png')}
       // Container wrapping the image
       // Type: string | ReactComponent
       container="div"
@@ -69,6 +69,9 @@ export default function Example() {
       // The same as the native `alt` property of <img />
       // Type: string
       alt=""
+      // The blur radius CSS value of image preview
+      // Type: string
+      blur="1rem"
     />
   );
 }

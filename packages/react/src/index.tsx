@@ -53,7 +53,7 @@ const container = css`
     > img {
       width: 100%;
       height: 100%;
-      filter: blur(2rem);
+      filter: blur(--b);
     }
   }
 `;
@@ -101,6 +101,7 @@ export type Props = {
   imgRef?: RefCallback<HTMLImageElement> | MutableRefObject<HTMLImageElement>;
   alt?: string;
   className?: string;
+  blur?: string;
   style?: Record<string, any>;
   onClick?: (e: MouseEvent<HTMLElement>) => void;
   [key: string]: any;
@@ -113,6 +114,7 @@ const Img = forwardRef(function RefReceivingImg(
     imgRef,
     alt,
     className,
+    blur = '2rem',
     style,
     ...props
   }: Props,
@@ -139,7 +141,7 @@ const Img = forwardRef(function RefReceivingImg(
     <Container
       ref={ref}
       className={container + (className ? ' ' + className : '')}
-      style={{ '--c': color, '--r': `${aspectRatio}%`, ...style }}
+      style={{ '--c': color, '--r': `${aspectRatio}%`, '--b': blur, ...style }}
       {...props}
     >
       <img

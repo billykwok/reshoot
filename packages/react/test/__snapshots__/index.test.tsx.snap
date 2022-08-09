@@ -6,7 +6,7 @@ exports[`Reshoot render input correctly on error 1`] = `
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -32,7 +32,7 @@ exports[`Reshoot render input correctly on error 2`] = `
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -58,7 +58,7 @@ exports[`Reshoot render input correctly on error 3`] = `
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -94,7 +94,7 @@ exports[`Reshoot render input correctly on load with HTMLImageElement.complete f
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -120,7 +120,7 @@ exports[`Reshoot render input correctly on load with HTMLImageElement.complete f
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -146,7 +146,7 @@ exports[`Reshoot render input correctly on load with HTMLImageElement.complete f
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -172,7 +172,7 @@ exports[`Reshoot render input correctly on load with HTMLImageElement.complete f
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -189,7 +189,7 @@ exports[`Reshoot render input correctly on load with HTMLImageElement.complete t
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -215,7 +215,7 @@ exports[`Reshoot render input correctly on load with HTMLImageElement.complete t
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"
@@ -241,7 +241,7 @@ exports[`Reshoot render input correctly on load with HTMLImageElement.complete t
   data-testid="123"
   sizes=""
   srcset="image-480.jpg 480w, image-640.jpg 640w"
-  style="--c: #fff; --r: 0.8%;"
+  style="--c: #fff; --r: 0.8%; --b: 2rem;"
 >
   <img
     alt="alt content"

@@ -155,11 +155,11 @@ import '@reshoot/react/styles.css';
 
 ```jsx
 // Example.jsx
-import imageMetaOf from '@reshoot/macro';
+import imageMeta from '@reshoot/macro';
 import Img from '@reshoot/react';
 
 export default function Example() {
-  return <Img meta={imageMetaOf('./image.png')} />;
+  return <Img meta={imageMeta('./image.png')} />;
 }
 ```
 
