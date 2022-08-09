@@ -153,7 +153,7 @@ const Img = forwardRef(function RefReceivingImg(
         crossOrigin=""
         aria-busy={State.LOADED !== state && State.ERROR !== state}
       />
-      {State.LOADED !== state && (
+      {placeholder && State.LOADED !== state ? (
         <div
           className={
             'js-only' +
@@ -168,7 +168,7 @@ const Img = forwardRef(function RefReceivingImg(
         >
           <img src={placeholder} alt="" />
         </div>
-      )}
+      ) : null}
       {State.ERROR === state && (
         <div className={error}>
           <p>Failed to load image</p>
