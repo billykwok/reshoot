@@ -1,5 +1,11 @@
 # @reshoot/react
 
+## 2.1.2
+
+### Patch Changes
+
+- 845ad42: fix: fix inability to disable preview
+
 ## 2.1.1
 
 ### Patch Changes
