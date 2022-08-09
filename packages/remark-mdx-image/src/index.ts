@@ -49,7 +49,7 @@ export default function reshootRemarkMdxImage({
           const child = children[i];
           if (child.type === 'image') {
             const [childPlusOne, childPlusTwo] = children.slice(i + 1, i + 3);
-            let inlineOptions: Partial<InlineOptions> = {};
+            let inlineOptions: InlineOptions = {};
             let numberOfChildrenToReplace = 1;
             if (childPlusOne) {
               if (childPlusOne.type === 'mdxTextExpression') {

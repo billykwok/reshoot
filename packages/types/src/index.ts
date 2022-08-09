@@ -19,8 +19,8 @@ export type CoreOptions = {
 };
 
 export type InlineOptions = {
-  color: string;
-  maxWidth: number;
+  color?: string;
+  maxWidth?: number;
 };
 
 export type CoreImageMeta = {
