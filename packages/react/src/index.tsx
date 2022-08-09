@@ -137,6 +137,8 @@ const Img = forwardRef(function RefReceivingImg(
     },
     ref: imgRef,
   });
+  const loaded = !placeholder || State.LOADED === state;
+  const failed = State.ERROR === state;
   return (
     <Container
       ref={ref}
@@ -151,9 +153,9 @@ const Img = forwardRef(function RefReceivingImg(
         sizes={sizes}
         alt={alt}
         crossOrigin=""
-        aria-busy={State.LOADED !== state && State.ERROR !== state}
+        aria-busy={!loaded && !failed}
       />
-      {placeholder && State.LOADED !== state ? (
+      {loaded ? null : (
         <div
           className={
             'js-only' +
@@ -168,13 +170,13 @@ const Img = forwardRef(function RefReceivingImg(
         >
           <img src={placeholder} alt="" />
         </div>
-      ) : null}
-      {State.ERROR === state && (
+      )}
+      {failed ? (
         <div className={error}>
           <p>Failed to load image</p>
           <p>Please try refreshing the page</p>
         </div>
-      )}
+      ) : null}
     </Container>
   );
 });
