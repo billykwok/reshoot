@@ -53,7 +53,7 @@ const container = css`
     > img {
       width: 100%;
       height: 100%;
-      filter: blur(--b);
+      filter: blur(var(--b));
     }
   }
 `;
