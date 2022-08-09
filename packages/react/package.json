@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/react",
   "description": "React integration for Reshoot",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "type": "module",
   "exports": {
     "./styles.css": {
