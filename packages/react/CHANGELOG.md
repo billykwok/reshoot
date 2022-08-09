@@ -1,5 +1,11 @@
 # @reshoot/react
 
+## 2.1.3
+
+### Patch Changes
+
+- 42d65b8: fix: fix false positive aria-busy
+
 ## 2.1.2
 
 ### Patch Changes
