@@ -1,5 +1,13 @@
 # @reshoot/macro
 
+## 2.1.6
+
+### Patch Changes
+
+- 1fbc91a: fix: fix InlineOptions typing
+- Updated dependencies [1fbc91a]
+  - @reshoot/types@2.0.4
+
 ## 2.1.5
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "@reshoot/remark-mdx-image",
   "description": "MDX integration for Reshoot",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "type": "module",
   "exports": {
     "import": "./lib/es/index.mjs",
@@ -35,7 +35,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
   },
   "dependencies": {
-    "@reshoot/types": "workspace:^2.0.3",
+    "@reshoot/types": "workspace:^2.0.4",
     "unist-util-visit-parents": "^5.1.0",
     "json5": "^2.2.1"
   },
