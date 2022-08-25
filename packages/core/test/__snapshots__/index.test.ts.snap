@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`defaultOptions basic test 1`] = `
-Object {
+{
   "aspectRatioDecimal": 4,
   "aspectRatioFormat": "percent",
   "aspectRatioType": "heightByWidth",
@@ -13,7 +13,7 @@ Object {
 `;
 
 exports[`extractMeta should extract meta with aspectRatioFormat \`ratio\` 1`] = `
-Object {
+{
   "aspectRatio": 1,
   "color": "#c85858",
   "hash": "7fb419d29095e35c0360352224eea0f9",
@@ -24,7 +24,7 @@ Object {
 `;
 
 exports[`extractMeta should extract meta with aspectRatioType \`widthByHeight\` 1`] = `
-Object {
+{
   "aspectRatio": 100,
   "color": "#c85858",
   "hash": "5bc91dcfcabb72b70db3cc31ee20a935",
@@ -35,7 +35,7 @@ Object {
 `;
 
 exports[`extractMeta should extract meta with color override 1`] = `
-Object {
+{
   "aspectRatio": 100,
   "color": "#eee",
   "hash": "affff220bfa0e17de888b3de33fc4023",
@@ -46,7 +46,7 @@ Object {
 `;
 
 exports[`extractMeta should extract meta with color transparent 1`] = `
-Object {
+{
   "aspectRatio": 100,
   "color": "transparent",
   "hash": "c2bcac89cb8fa278b45f0b3f74aa187c",
@@ -57,7 +57,7 @@ Object {
 `;
 
 exports[`extractMeta should extract meta without options 1`] = `
-Object {
+{
   "aspectRatio": 100,
   "color": "#c85858",
   "hash": "5f932a17e3ea4c07f6d22128ec9ff65b",

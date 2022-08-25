@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Webpack with @reshoot/loader should decode user provided color if possible 1`] = `
+export default {
+  hash: "ab38bf3f75a11f905b2211f93b2ae280",
+  src: "/ab38bf3f75a11f90.png",
+  width: 512,
+  height: 512,
+  aspectRatio: 100,
+  placeholder:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
+  color: "#eee",
+};
+
+`;
+
+exports[`Webpack with @reshoot/loader should decode user provided color if possible 2`] = `
+[
+  "ab38bf3f75a11f90.png",
+]
+`;
+
 exports[`Webpack with @reshoot/loader should extract image meta and output image in development mode 1`] = `
 module.exports = {
   hash: "24793c5e741d6fa9378cf941c91bd754",
@@ -15,7 +35,7 @@ module.exports = {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image in development mode 2`] = `
-Array [
+[
   "________fixtures___lena.png",
 ]
 `;
@@ -35,7 +55,7 @@ module.exports = {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image in production mode 2`] = `
-Array [
+[
   "c063cce5c8f8c5f6.png",
 ]
 `;
@@ -54,7 +74,7 @@ module.exports = {
 
 `;
 
-exports[`Webpack with @reshoot/loader should extract image meta and output image with emitFile disabled 2`] = `Array []`;
+exports[`Webpack with @reshoot/loader should extract image meta and output image with emitFile disabled 2`] = `[]`;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with esModule enabled 1`] = `
 export default {
@@ -71,7 +91,7 @@ export default {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with esModule enabled 2`] = `
-Array [
+[
   "c063cce5c8f8c5f6.png",
 ]
 `;
@@ -91,7 +111,7 @@ module.exports = {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with outputPath as a string 2`] = `
-Array [
+[
   "c063cce5c8f8c5f6.png",
 ]
 `;
@@ -111,7 +131,7 @@ module.exports = {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with publicPath as a function 2`] = `
-Array [
+[
   "c063cce5c8f8c5f6.png",
 ]
 `;
@@ -131,7 +151,7 @@ module.exports = {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image with webpack publicPath 2`] = `
-Array [
+[
   "c063cce5c8f8c5f6.png",
 ]
 `;
@@ -151,7 +171,7 @@ module.exports = {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image without hash length 2`] = `
-Array [
+[
   "237cd5b009a23c41.png",
 ]
 `;
@@ -171,7 +191,7 @@ module.exports = {
 `;
 
 exports[`Webpack with @reshoot/loader should extract image meta and output image without options 2`] = `
-Array [
+[
   "c063cce5c8f8c5f6.png",
 ]
 `;
@@ -191,27 +211,7 @@ export default {
 `;
 
 exports[`Webpack with @reshoot/loader should pass user provided color if specified 2`] = `
-Array [
-  "ab38bf3f75a11f90.png",
-]
-`;
-
-exports[`Webpack with @reshoot/loader should decode user provided color if possible 1`] = `
-export default {
-  hash: "ab38bf3f75a11f905b2211f93b2ae280",
-  src: "/ab38bf3f75a11f90.png",
-  width: 512,
-  height: 512,
-  aspectRatio: 100,
-  placeholder:
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAA",
-  color: "#eee",
-};
-
-`;
-
-exports[`Webpack with @reshoot/loader should decode user provided color if possible 2`] = `
-Array [
+[
   "ab38bf3f75a11f90.png",
 ]
 `;
